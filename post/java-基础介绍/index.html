@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title> - Paper</title>
+
+  
+  
+  <meta name="description" content="Java 基础介绍 Jave的诞生   1972年C诞生
+优点：贴近硬件，运行极快，效率极高
+开发：操作系统，编译器，数据库，网络系统等
+问题：指针和内存管理
+  1982年C&#43;&#43;诞生
+特点：面对对象
+优点：兼容C
+开发：图形领域、游戏等
+  1995年Java诞生
+特点：语法像C，没有指针和内存管理，具有真正的可以执行（编写一次，到处运行），面向对象，类型安全，高质量的类库
+要求：需要安装JVM（Java虚拟机）
+产品：
+Java2标准版(J2SE):占领桌面
+Java2移动版(J2ME):占领手机
+Java2企业版(J2EE):占领服务器
+基于Java开发的平台，系统，工具：
+ 构建工具：Ant，Maven，Jekins 应用服务器：Tomcat，Jetty，Jboss，Websphere，Weblogic Web开发：Struts，Spring，Hibernate，myBatis 开发工具：Eclipse，Netbean，intellij idea，Jbuilder 大数据领域：Hadoop 手机端：Android    Java的特性和优势 简单性，面向对象，可移植性，高性能，分布式，动态性，多线程，安全性，健壮性" />
+  <meta name="author" content="" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://bruisesl.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/theme.png" />
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/github.svg" />
+  
+
+  
+  <link rel="icon" href="https://bruisesl.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://bruisesl.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.87.0" />
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="" />
+<meta property="og:description" content="Java 基础介绍 Jave的诞生   1972年C诞生
+优点：贴近硬件，运行极快，效率极高
+开发：操作系统，编译器，数据库，网络系统等
+问题：指针和内存管理
+  1982年C&#43;&#43;诞生
+特点：面对对象
+优点：兼容C
+开发：图形领域、游戏等
+  1995年Java诞生
+特点：语法像C，没有指针和内存管理，具有真正的可以执行（编写一次，到处运行），面向对象，类型安全，高质量的类库
+要求：需要安装JVM（Java虚拟机）
+产品：
+Java2标准版(J2SE):占领桌面
+Java2移动版(J2ME):占领手机
+Java2企业版(J2EE):占领服务器
+基于Java开发的平台，系统，工具：
+ 构建工具：Ant，Maven，Jekins 应用服务器：Tomcat，Jetty，Jboss，Websphere，Weblogic Web开发：Struts，Spring，Hibernate，myBatis 开发工具：Eclipse，Netbean，intellij idea，Jbuilder 大数据领域：Hadoop 手机端：Android    Java的特性和优势 简单性，面向对象，可移植性，高性能，分布式，动态性，多线程，安全性，健壮性" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bruisesl.github.io/post/java-%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/" /><meta property="article:section" content="post" />
+
+
+
+
+  
+  <meta itemprop="name" content="">
+<meta itemprop="description" content="Java 基础介绍 Jave的诞生   1972年C诞生
+优点：贴近硬件，运行极快，效率极高
+开发：操作系统，编译器，数据库，网络系统等
+问题：指针和内存管理
+  1982年C&#43;&#43;诞生
+特点：面对对象
+优点：兼容C
+开发：图形领域、游戏等
+  1995年Java诞生
+特点：语法像C，没有指针和内存管理，具有真正的可以执行（编写一次，到处运行），面向对象，类型安全，高质量的类库
+要求：需要安装JVM（Java虚拟机）
+产品：
+Java2标准版(J2SE):占领桌面
+Java2移动版(J2ME):占领手机
+Java2企业版(J2EE):占领服务器
+基于Java开发的平台，系统，工具：
+ 构建工具：Ant，Maven，Jekins 应用服务器：Tomcat，Jetty，Jboss，Websphere，Weblogic Web开发：Struts，Spring，Hibernate，myBatis 开发工具：Eclipse，Netbean，intellij idea，Jbuilder 大数据领域：Hadoop 手机端：Android    Java的特性和优势 简单性，面向对象，可移植性，高性能，分布式，动态性，多线程，安全性，健壮性">
+
+<meta itemprop="wordCount" content="28">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="Java 基础介绍 Jave的诞生   1972年C诞生
+优点：贴近硬件，运行极快，效率极高
+开发：操作系统，编译器，数据库，网络系统等
+问题：指针和内存管理
+  1982年C&#43;&#43;诞生
+特点：面对对象
+优点：兼容C
+开发：图形领域、游戏等
+  1995年Java诞生
+特点：语法像C，没有指针和内存管理，具有真正的可以执行（编写一次，到处运行），面向对象，类型安全，高质量的类库
+要求：需要安装JVM（Java虚拟机）
+产品：
+Java2标准版(J2SE):占领桌面
+Java2移动版(J2ME):占领手机
+Java2企业版(J2EE):占领服务器
+基于Java开发的平台，系统，工具：
+ 构建工具：Ant，Maven，Jekins 应用服务器：Tomcat，Jetty，Jboss，Websphere，Weblogic Web开发：Struts，Spring，Hibernate，myBatis 开发工具：Eclipse，Netbean，intellij idea，Jbuilder 大数据领域：Hadoop 手机端：Android    Java的特性和优势 简单性，面向对象，可移植性，高性能，分布式，动态性，多线程，安全性，健壮性"/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://bruisesl.github.io">Paper</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
+    
+    <a class="" href="/about/">About</a>
+    
+  </nav>
+  
+
+  
+  <nav class="social">
+    
+    <a
+      class="github"
+      style="--url: url(./github.svg)"
+      href="https://github.com/BruisesL"
+      target="_blank"
+    ></a>
+    
+  </nav>
+  
+</header>
+
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <aside>
+      <time>January 1, 0001</time>
+      
+    </aside>
+    <h1></h1>
+  </header>
+  <section class="post-content"><h2 id="java-基础介绍">Java 基础介绍</h2>
+<h3 id="jave的诞生">Jave的诞生</h3>
+<ul>
+<li>
+<p>1972年C诞生</p>
+<p><strong>优点</strong>：贴近硬件，运行极快，效率极高</p>
+<p><strong>开发</strong>：操作系统，编译器，数据库，网络系统等</p>
+<p><strong>问题</strong>：指针和内存管理</p>
+</li>
+<li>
+<p>1982年C++诞生</p>
+<p><strong>特点</strong>：面对对象</p>
+<p><strong>优点</strong>：兼容C</p>
+<p><strong>开发</strong>：图形领域、游戏等</p>
+</li>
+<li>
+<p>1995年Java诞生</p>
+<p><strong>特点</strong>：语法像C，没有指针和内存管理，具有真正的可以执行（编写一次，到处运行），面向对象，类型安全，高质量的类库</p>
+<p><strong>要求</strong>：需要安装JVM（Java虚拟机）</p>
+<p><strong>产品</strong>：</p>
+<p>Java2标准版(J2SE):占领桌面</p>
+<p>Java2移动版(J2ME):占领手机</p>
+<p>Java2企业版(J2EE):占领服务器</p>
+<p><strong>基于Java开发的平台，系统，工具</strong>：</p>
+<ul>
+<li>构建工具：Ant，Maven，Jekins</li>
+<li>应用服务器：Tomcat，Jetty，Jboss，Websphere，Weblogic</li>
+<li>Web开发：Struts，Spring，Hibernate，myBatis</li>
+<li>开发工具：Eclipse，Netbean，intellij idea，Jbuilder</li>
+<li>大数据领域：Hadoop</li>
+<li>手机端：Android</li>
+</ul>
+</li>
+</ul>
+<h3 id="java的特性和优势">Java的特性和优势</h3>
+<p>简单性，面向对象，可移植性，高性能，分布式，动态性，多线程，安全性，健壮性</p>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav class="post-nav">
+    
+    <a class="prev" href="https://bruisesl.github.io/post/dos%E5%91%BD%E4%BB%A4/"><span>←</span><span></span></a>
+     
+    <a class="next" href="https://bruisesl.github.io/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><span></span><span>→</span></a>
+    
+  </nav>
+  
+
+  
+  
+</article>
+
+</main>
+
+    <footer class="footer">
+  <p>&copy; 2021 <a href="https://bruisesl.github.io">Paper</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
+
+  </body>
+</html>
