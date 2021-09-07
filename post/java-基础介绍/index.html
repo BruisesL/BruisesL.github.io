@@ -167,7 +167,7 @@ JRE : Java Runtime Environment （Java运行环境）
 JVM : Java Virtual Machine （Java虚拟机）
 Java开发环境搭建   JDK下载、安装与卸载"><meta itemprop="datePublished" content="2021-09-07T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-09-07T00:00:00+00:00" />
-<meta itemprop="wordCount" content="78">
+<meta itemprop="wordCount" content="132">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
@@ -314,16 +314,16 @@ Java开发环境搭建   JDK下载、安装与卸载"/>
 <p>多线程（带来更好的交互性能）</p>
 <p>安全性（可构建防病毒，防篡改的系统，由于去除了内存与指针的管理，Java在运行前检查内存）</p>
 <p>健壮性</p>
-<h2 id="java的三大版本">Java的三大版本</h2>
+<h3 id="java的三大版本">Java的三大版本</h3>
 <p>JavaSE：标准版（桌面程序、控制台开发）
 JavaME：嵌入式开发（手机端，小家电，目前基本不会使用）
 JavaEE：企业级开发（web端、服务器开发）</p>
-<h2 id="jdkjrejvm">JDK、JRE、JVM</h2>
+<h3 id="jdkjrejvm">JDK、JRE、JVM</h3>
 <p>JDK : Java Development Kit （Java开发工具）</p>
 <p>JRE : Java Runtime Environment （Java运行环境）</p>
 <p>JVM : Java Virtual Machine （Java虚拟机）</p>
 <p><img src="/JDK%E3%80%81JRE%E3%80%81JVM.jpg" alt="JDK、JRE、JVM"></p>
-<h2 id="java开发环境搭建">Java开发环境搭建</h2>
+<h3 id="java开发环境搭建">Java开发环境搭建</h3>
 <ul>
 <li>
 <p>JDK下载、安装与卸载</p>
@@ -336,13 +336,59 @@ JavaEE：企业级开发（web端、服务器开发）</p>
 </blockquote>
 <p><strong>卸载</strong>（Windows）</p>
 <ol>
-<li>删除Java的安装目录</li>
-<li>删除环境变量JAVA_HOME</li>
-<li>删除环境变量path下的java目录</li>
-<li>控制台查看java -version</li>
+<li>
+<p>删除Java的安装目录</p>
+</li>
+<li>
+<p>删除环境变量JAVA_HOME</p>
+</li>
+<li>
+<p>删除环境变量path下的java目录</p>
+</li>
+<li>
+<p>控制台查看java -version</p>
+</li>
 </ol>
 </li>
 </ul>
+<h3 id="helloworld">HelloWorld</h3>
+<ol>
+<li>
+<p>新建 Java 文件 Hello.java，编写代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Hello</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello,World!&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p>打开终端，切换到对应文件所在盘符</p>
+</li>
+<li>
+<p>编译文件，编译成功后会生成对应class文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">javac Hello.java
+</code></pre></div></li>
+<li>
+<p>运行class文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">java Hello
+</code></pre></div><p><img src="/HelloWorld.jpg" alt="HelloWorld"></p>
+</li>
+</ol>
+<p><strong>注</strong>：Java是<strong>大小写敏感</strong>的，需要注意大小写</p>
+<p>​		文件名 和 类名 必须保持一致，并且首字母大写</p>
+<h3 id="java-程序运行机制">Java 程序运行机制</h3>
+<p>计算机的高级编程语言类型分为：编译型(complie) 与 解释型</p>
+<p>两种类型的翻译时机不同，<strong>编译型</strong>会通过程序（编译器）将源代码转化成计算机执行的代码，<strong>解释型</strong>是执行一段代码解释一段</p>
+<p>编译型  开发操作系统，C/C++ 为编译型</p>
+<p>解释型 开发网页、服务器脚本，对速度要求不高，JS 为解释型</p>
+<p>Java同时具有这两种类型的特点</p>
+<p><img src="/Java%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6.jpg" alt="Java程序运行机制"></p>
+<ol>
+<li>从 java 文件通过编译器(javac)变为 class 文件是编译的过程，可以理解为预编译，生成的代码介于机器码与 Java 源代码之间</li>
+<li>class文件运行的时候，放入 JVM 虚拟机的类装载机，将类装载到虚拟机</li>
+<li>进入字节码校验器，对代码的对错进行校验</li>
+<li>最后通过解释器解释给操作系统，执行一段解释一段</li>
+</ol>
 </section>
 
   
