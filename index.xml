@@ -7,7 +7,45 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2008–2019, Steve Francia and the lee.so; all rights reserved.</copyright>
-    <lastBuildDate>Thu, 02 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java 基础介绍</title>
+      <link>https://bruisesl.github.io/post/java-%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Tue, 07 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/java-%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/</guid>
+      <description>Java 基础介绍 Jave的诞生   1972年C诞生
+优点：贴近硬件，运行极快，效率极高
+开发：操作系统，编译器，数据库，网络系统等
+问题：指针和内存管理
+  1982年C++诞生
+特点：面对对象
+优点：兼容C
+开发：图形领域、游戏等
+  1995年Java诞生
+特点：语法像C，没有指针和内存管理，具有真正的可以执行（编写一次，到处运行），面向对象，类型安全，高质量的类库
+要求：需要安装JVM（Java虚拟机）
+产品：
+Java2标准版(J2SE):占领桌面
+Java2移动版(J2ME):占领手机
+Java2企业版(J2EE):占领服务器
+基于Java开发的平台，系统，工具：
+ 构建工具：Ant，Maven，Jekins 应用服务器：Tomcat，Jetty，Jboss，Websphere，Weblogic Web开发：Struts，Spring，Hibernate，myBatis 开发工具：Eclipse，Netbean，intellij idea，Jbuilder 大数据领域：Hadoop 手机端：Android    Java的特性和优势 简单性（C++语法纯净版，无头文件，无指针运算）
+面向对象（重点放在对象以及对象之间的接口上，以人的思维写程序）
+可移植性（可跨平台移植）
+高性能（即时编译，效率接近C++）
+分布式（为网络分布式所设计，可通过URL访问网络资源）
+动态性（反射机制）
+多线程（带来更好的交互性能）
+安全性（可构建防病毒，防篡改的系统，由于去除了内存与指针的管理，Java在运行前检查内存）
+健壮性
+Java的三大版本 JavaSE：标准版（桌面程序、控制台开发） JavaME：嵌入式开发（手机端，小家电，目前基本不会使用） JavaEE：企业级开发（web端、服务器开发）
+JDK、JRE、JVM JDK : Java Development Kit （Java开发工具）
+JRE : Java Runtime Environment （Java运行环境）
+JVM : Java Virtual Machine （Java虚拟机）
+Java开发环境搭建   JDK下载、安装与卸载</description>
+    </item>
+    
     <item>
       <title>计算机的构成</title>
       <link>https://bruisesl.github.io/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</link>
