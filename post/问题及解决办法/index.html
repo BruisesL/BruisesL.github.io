@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>问题及解决办法 - Paper</title>
+
+  
+  
+  <meta name="description" content="问题及解决办法 Mac删除launchpad中无法正常移除的图标 **场景：**网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。
+解决办法：
+  找到com.apple.dock.launchpad文件夹
+打开一个folder，按command&#43;shift&#43;G，在前往当中输入地址/private/var/folders，然后在里边自己尝试找到com.apple.dock.launchpad这个文件夹
+  找到数据库，获取其路径
+打开com.apple.dock.launchpad 文件夹
+之后有一个db文件夹，再点进去有一个文件叫db,它就是要找的数据库。
+查看db文件简介，复制对应路径，注意从private开始。
+  开始对数据库进行操作
+打开终端，切换盘符至复制路径。
+然后输入： sqlite3 db &quot;delete from apps where title=&#39;应用名称&#39;;&quot;&amp;&amp;killall Dock
+注意要将应用名称处替换成要删除的图标的名称，然后回车即可。
+  " />
+  <meta name="author" content="BruisesL" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://bruisesl.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/theme.png" />
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/github.svg" />
+  
+
+  
+  <link rel="icon" href="https://bruisesl.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://bruisesl.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.87.0" />
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="问题及解决办法" />
+<meta property="og:description" content="问题及解决办法 Mac删除launchpad中无法正常移除的图标 **场景：**网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。
+解决办法：
+  找到com.apple.dock.launchpad文件夹
+打开一个folder，按command&#43;shift&#43;G，在前往当中输入地址/private/var/folders，然后在里边自己尝试找到com.apple.dock.launchpad这个文件夹
+  找到数据库，获取其路径
+打开com.apple.dock.launchpad 文件夹
+之后有一个db文件夹，再点进去有一个文件叫db,它就是要找的数据库。
+查看db文件简介，复制对应路径，注意从private开始。
+  开始对数据库进行操作
+打开终端，切换盘符至复制路径。
+然后输入： sqlite3 db &quot;delete from apps where title=&#39;应用名称&#39;;&quot;&amp;&amp;killall Dock
+注意要将应用名称处替换成要删除的图标的名称，然后回车即可。
+  " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bruisesl.github.io/post/%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-01-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-01T00:00:00+00:00" />
+
+
+  
+  <meta itemprop="name" content="问题及解决办法">
+<meta itemprop="description" content="问题及解决办法 Mac删除launchpad中无法正常移除的图标 **场景：**网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。
+解决办法：
+  找到com.apple.dock.launchpad文件夹
+打开一个folder，按command&#43;shift&#43;G，在前往当中输入地址/private/var/folders，然后在里边自己尝试找到com.apple.dock.launchpad这个文件夹
+  找到数据库，获取其路径
+打开com.apple.dock.launchpad 文件夹
+之后有一个db文件夹，再点进去有一个文件叫db,它就是要找的数据库。
+查看db文件简介，复制对应路径，注意从private开始。
+  开始对数据库进行操作
+打开终端，切换盘符至复制路径。
+然后输入： sqlite3 db &quot;delete from apps where title=&#39;应用名称&#39;;&quot;&amp;&amp;killall Dock
+注意要将应用名称处替换成要删除的图标的名称，然后回车即可。
+  "><meta itemprop="datePublished" content="2021-01-01T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-01-01T00:00:00+00:00" />
+<meta itemprop="wordCount" content="23">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="问题及解决办法"/>
+<meta name="twitter:description" content="问题及解决办法 Mac删除launchpad中无法正常移除的图标 **场景：**网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。
+解决办法：
+  找到com.apple.dock.launchpad文件夹
+打开一个folder，按command&#43;shift&#43;G，在前往当中输入地址/private/var/folders，然后在里边自己尝试找到com.apple.dock.launchpad这个文件夹
+  找到数据库，获取其路径
+打开com.apple.dock.launchpad 文件夹
+之后有一个db文件夹，再点进去有一个文件叫db,它就是要找的数据库。
+查看db文件简介，复制对应路径，注意从private开始。
+  开始对数据库进行操作
+打开终端，切换盘符至复制路径。
+然后输入： sqlite3 db &quot;delete from apps where title=&#39;应用名称&#39;;&quot;&amp;&amp;killall Dock
+注意要将应用名称处替换成要删除的图标的名称，然后回车即可。
+  "/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://bruisesl.github.io">Paper</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
+    
+    <a class="" href="/about/">About</a>
+    
+  </nav>
+  
+
+  
+  <nav class="social">
+    
+    <a
+      class="github"
+      style="--url: url(./github.svg)"
+      href="https://github.com/BruisesL"
+      target="_blank"
+    ></a>
+    
+  </nav>
+  
+</header>
+
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <aside>
+      <time>January 1, 2021</time>
+      
+      <span>BruisesL</span>
+      
+    </aside>
+    <h1>问题及解决办法</h1>
+  </header>
+  <section class="post-content"><h1 id="问题及解决办法">问题及解决办法</h1>
+<h2 id="mac删除launchpad中无法正常移除的图标">Mac删除launchpad中无法正常移除的图标</h2>
+<p>**场景：**网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。</p>
+<p><strong>解决办法：</strong></p>
+<ol>
+<li>
+<p>找到com.apple.dock.launchpad文件夹</p>
+<p>打开一个folder，按<code>command+shift+G</code>，在前往当中输入地址<code>/private/var/folders</code>，然后在里边自己尝试找到<code>com.apple.dock.launchpad</code>这个文件夹</p>
+<p><img src="/%E6%9C%AC%E5%9C%B0launchpad%E6%96%87%E4%BB%B6%E5%A4%B9.png" alt="本地launchpad文件夹"></p>
+</li>
+<li>
+<p>找到数据库，获取其路径</p>
+<p>打开<code>com.apple.dock.launchpad</code> 文件夹</p>
+<p>之后有一个<code>db</code>文件夹，再点进去有一个文件叫<code>db</code>,它就是要找的数据库。</p>
+<p><img src="/%E6%9C%AC%E5%9C%B0db.png" alt="本地db"></p>
+<p>查看db文件简介，复制对应路径，注意从private开始。</p>
+</li>
+<li>
+<p>开始对数据库进行操作</p>
+<p>打开终端，切换盘符至复制路径。</p>
+<p>然后输入：
+<code>sqlite3 db &quot;delete from apps where title='应用名称';&quot;&amp;&amp;killall Dock</code></p>
+<p>注意要将<code>应用名称</code>处替换成要删除的图标的名称，然后回车即可。</p>
+</li>
+</ol>
+<p><img src="/%E5%88%A0%E9%99%A4%E5%9B%BE%E6%A0%87.png" alt="删除图标"></p>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav class="post-nav">
+    
+    <a class="prev" href="https://bruisesl.github.io/post/dos%E5%91%BD%E4%BB%A4/"><span>←</span><span>DOS命令</span></a>
+     
+  </nav>
+  
+
+  
+  
+</article>
+
+</main>
+
+    <footer class="footer">
+  <p>&copy; 2021 <a href="https://bruisesl.github.io">Paper</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
+
+  </body>
+</html>

@@ -70,6 +70,27 @@ Java开发环境搭建   JDK下载、安装与卸载</description>
     </item>
     
     <item>
+      <title>问题及解决办法</title>
+      <link>https://bruisesl.github.io/post/%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
+      <description>问题及解决办法 Mac删除launchpad中无法正常移除的图标 **场景：**网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。
+解决办法：
+  找到com.apple.dock.launchpad文件夹
+打开一个folder，按command+shift+G，在前往当中输入地址/private/var/folders，然后在里边自己尝试找到com.apple.dock.launchpad这个文件夹
+  找到数据库，获取其路径
+打开com.apple.dock.launchpad 文件夹
+之后有一个db文件夹，再点进去有一个文件叫db,它就是要找的数据库。
+查看db文件简介，复制对应路径，注意从private开始。
+  开始对数据库进行操作
+打开终端，切换盘符至复制路径。
+然后输入： sqlite3 db &amp;quot;delete from apps where title=&#39;应用名称&#39;;&amp;quot;&amp;amp;&amp;amp;killall Dock
+注意要将应用名称处替换成要删除的图标的名称，然后回车即可。
+  </description>
+    </item>
+    
+    <item>
       <title></title>
       <link>https://bruisesl.github.io/archives/</link>
       <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
