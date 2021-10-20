@@ -101,7 +101,7 @@
   非法标识符举例：123abc、-salary、 #abc
   关键字"><meta itemprop="datePublished" content="2021-10-20T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-10-20T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1008">
+<meta itemprop="wordCount" content="1004">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
@@ -713,22 +713,24 @@
 <p>Java 语言中运算符的优先级共分为 14 级，其中 1 级最高，14 级最低。在同一个表达式中运算符优先级高的先执行。</p>
 <p><img src="/%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7.png" alt="运算符的优先级"></p>
 <p><strong>使用优先级为 1 的小括号可以改变其他运算符的优先级</strong>，即如果需要将具有较低优先级的运算符先运算，则可以使用小括号将该运算符和操作符括起来。例如下面的表达式：</p>
-<pre><code>(x-y)*z/5
-</code></pre><p>在这个表达式中先进行括号内的减法运算，再将结果与 z 相乘，最后将积除以 5 得出结果。整个表达式的顺序按照从左向右执行，比较容易理解。</p>
+<p><code>(x-y)*z/5</code></p>
+<p>在这个表达式中先进行括号内的减法运算，再将结果与 z 相乘，最后将积除以 5 得出结果。整个表达式的顺序按照从左向右执行，比较容易理解。</p>
 <p>再来看一个复杂的表达式，如下所示。</p>
-<pre><code>--y || ++x &amp;&amp; ++z;
-</code></pre><p>这个表达式中包含了算术运算符和逻辑运算符。根据表 1 中列出的优先级，可以确定它的执行顺序如下：
-① 先计算 y 的自减运算符，即 &ndash;y。
-② 再计算 x 的自增运算符，即 ++x。
-③ 接着计算 z 的自增运算符，即 ++z。
-④ 由于逻辑与比逻辑或的优先级高，这里将 ② 和 ③ 的结果进行逻辑与运算，即 ++x &amp;&amp; ++z。
-⑤ 最后将 ④ 的结果与 ① 进行逻辑或运算，即 &ndash;y||++x&amp;&amp;++z。</p>
+<p><code>--y || ++x &amp;&amp; ++z;</code></p>
+<p>这个表达式中包含了算术运算符和逻辑运算符。根据表 1 中列出的优先级，可以确定它的执行顺序如下：</p>
+<ol>
+<li>先计算 y 的自减运算符，即 &ndash;y。</li>
+<li>再计算 x 的自增运算符，即 ++x。</li>
+<li>接着计算 z 的自增运算符，即 ++z。</li>
+<li>由于逻辑与比逻辑或的优先级高，这里将 ② 和 ③ 的结果进行逻辑与运算，即 ++x &amp;&amp; ++z。</li>
+<li>最后将 ④ 的结果与 ① 进行逻辑或运算，即 &ndash;y||++x&amp;&amp;++z。</li>
+</ol>
 <p>如果没有上述对该表达式执行顺序的说明，第一眼看到它时将很难识别优先级。对于这类问题，可以通过添加小括号使表达的顺序更加清晰，而不用去查优先级表。如下所示为改进后的表达式。</p>
-<pre><code>(--y)||((++x)&amp;&amp;(++z));
-</code></pre><p>例：</p>
-<p>int a = 5;
-int b = 4;
-int c = a++- &ndash;b*++a/b&ndash; &raquo;2%a&ndash;;</p>
+<p><code>(--y)||((++x)&amp;&amp;(++z));</code></p>
+<p>例：</p>
+<p>int a = 5;</p>
+<p>int b = 4;</p>
+<p>int c = a++- &ndash;b*++a/b&ndash; &raquo;2%a&ndash;;</p>
 <p>问 c 的值是多少？</p>
 <p><strong>tips</strong>：</p>
 <ol>
@@ -747,7 +749,7 @@ int c = a++- &ndash;b*++a/b&ndash; &raquo;2%a&ndash;;</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> pkg<span style="color:#f92672">[.</span> pkg2<span style="color:#f92672">[.</span> pkg3<span style="color:#f92672">...]];</span>
 </code></pre></div></li>
 <li>
-<p>**一般利用公司域名倒置作为包名。**com.baidu.www</p>
+<p><strong>一般利用公司域名倒置作为包名。</strong>    com.baidu.www</p>
 </li>
 <li>
 <p>为了能够使用某一个包的成员，我们需要在Java程序中明确导入该包。使用“import”语句可完成此功能</p>
