@@ -7,7 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2008–2019, Steve Francia and the lee.so; all rights reserved.</copyright>
-    <lastBuildDate>Wed, 20 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java 流程控制</title>
+      <link>https://bruisesl.github.io/post/java%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/</link>
+      <pubDate>Thu, 11 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/java%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/</guid>
+      <description>用户交互Scanner 之前学习的基本语法中并没有实现程序和人的交互，Java提供了一个工具类，可以获取用户的输入。java.util.Scanner是Java5的新特征，可以通过Scanner类来获取用户的输入。
+  语法
+Scanner s = new Scanner(System.in)   通过 Scanner 类的 next() 与 nextLine() 方法获取输入的字符串，在读取前我们一般需要 使用 hasNext() 与 hasNextLine() 判断是否还有输入的数据。
+public class Demo01 { public static void main(String[] args) { //创建一个扫描器对象，用于接收键盘数据  Scanner scanner = new Scanner(System.in); System.out.println(&amp;#34;使用next方法接收：&amp;#34;); //判断用户是否输入字符串  if (scanner.hasNext()){ //使用next方式接收  String str = scanner.next(); System.out.println(&amp;#34;输入的内容为：&amp;#34;+str); } //凡事属于IO流的类，如果不关会一直占用资源  scanner.close(); } } tips：
+  next():
+  一定要读取到有效字符后才可以结束输入
+  对输入有效字符前遇到的空白，next() 方法会自动将其去掉</description>
+    </item>
+    
     <item>
       <title>Java 基础语法</title>
       <link>https://bruisesl.github.io/post/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>

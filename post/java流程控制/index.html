@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>Java 流程控制 - Paper</title>
+
+  
+  
+  <meta name="description" content="用户交互Scanner 之前学习的基本语法中并没有实现程序和人的交互，Java提供了一个工具类，可以获取用户的输入。java.util.Scanner是Java5的新特征，可以通过Scanner类来获取用户的输入。
+  语法
+Scanner s = new Scanner(System.in)   通过 Scanner 类的 next() 与 nextLine() 方法获取输入的字符串，在读取前我们一般需要 使用 hasNext() 与 hasNextLine() 判断是否还有输入的数据。
+public class Demo01 { public static void main(String[] args) { //创建一个扫描器对象，用于接收键盘数据  Scanner scanner = new Scanner(System.in); System.out.println(&#34;使用next方法接收：&#34;); //判断用户是否输入字符串  if (scanner.hasNext()){ //使用next方式接收  String str = scanner.next(); System.out.println(&#34;输入的内容为：&#34;&#43;str); } //凡事属于IO流的类，如果不关会一直占用资源  scanner.close(); } } tips：
+  next():
+  一定要读取到有效字符后才可以结束输入
+  对输入有效字符前遇到的空白，next() 方法会自动将其去掉" />
+  <meta name="author" content="BruisesL" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://bruisesl.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/theme.png" />
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/github.svg" />
+  
+
+  
+  <link rel="icon" href="https://bruisesl.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://bruisesl.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.87.0" />
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Java 流程控制" />
+<meta property="og:description" content="用户交互Scanner 之前学习的基本语法中并没有实现程序和人的交互，Java提供了一个工具类，可以获取用户的输入。java.util.Scanner是Java5的新特征，可以通过Scanner类来获取用户的输入。
+  语法
+Scanner s = new Scanner(System.in)   通过 Scanner 类的 next() 与 nextLine() 方法获取输入的字符串，在读取前我们一般需要 使用 hasNext() 与 hasNextLine() 判断是否还有输入的数据。
+public class Demo01 { public static void main(String[] args) { //创建一个扫描器对象，用于接收键盘数据  Scanner scanner = new Scanner(System.in); System.out.println(&#34;使用next方法接收：&#34;); //判断用户是否输入字符串  if (scanner.hasNext()){ //使用next方式接收  String str = scanner.next(); System.out.println(&#34;输入的内容为：&#34;&#43;str); } //凡事属于IO流的类，如果不关会一直占用资源  scanner.close(); } } tips：
+  next():
+  一定要读取到有效字符后才可以结束输入
+  对输入有效字符前遇到的空白，next() 方法会自动将其去掉" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bruisesl.github.io/post/java%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-11-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-11-11T00:00:00+00:00" />
+
+
+  
+  <meta itemprop="name" content="Java 流程控制">
+<meta itemprop="description" content="用户交互Scanner 之前学习的基本语法中并没有实现程序和人的交互，Java提供了一个工具类，可以获取用户的输入。java.util.Scanner是Java5的新特征，可以通过Scanner类来获取用户的输入。
+  语法
+Scanner s = new Scanner(System.in)   通过 Scanner 类的 next() 与 nextLine() 方法获取输入的字符串，在读取前我们一般需要 使用 hasNext() 与 hasNextLine() 判断是否还有输入的数据。
+public class Demo01 { public static void main(String[] args) { //创建一个扫描器对象，用于接收键盘数据  Scanner scanner = new Scanner(System.in); System.out.println(&#34;使用next方法接收：&#34;); //判断用户是否输入字符串  if (scanner.hasNext()){ //使用next方式接收  String str = scanner.next(); System.out.println(&#34;输入的内容为：&#34;&#43;str); } //凡事属于IO流的类，如果不关会一直占用资源  scanner.close(); } } tips：
+  next():
+  一定要读取到有效字符后才可以结束输入
+  对输入有效字符前遇到的空白，next() 方法会自动将其去掉"><meta itemprop="datePublished" content="2021-11-11T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-11-11T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1176">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java 流程控制"/>
+<meta name="twitter:description" content="用户交互Scanner 之前学习的基本语法中并没有实现程序和人的交互，Java提供了一个工具类，可以获取用户的输入。java.util.Scanner是Java5的新特征，可以通过Scanner类来获取用户的输入。
+  语法
+Scanner s = new Scanner(System.in)   通过 Scanner 类的 next() 与 nextLine() 方法获取输入的字符串，在读取前我们一般需要 使用 hasNext() 与 hasNextLine() 判断是否还有输入的数据。
+public class Demo01 { public static void main(String[] args) { //创建一个扫描器对象，用于接收键盘数据  Scanner scanner = new Scanner(System.in); System.out.println(&#34;使用next方法接收：&#34;); //判断用户是否输入字符串  if (scanner.hasNext()){ //使用next方式接收  String str = scanner.next(); System.out.println(&#34;输入的内容为：&#34;&#43;str); } //凡事属于IO流的类，如果不关会一直占用资源  scanner.close(); } } tips：
+  next():
+  一定要读取到有效字符后才可以结束输入
+  对输入有效字符前遇到的空白，next() 方法会自动将其去掉"/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://bruisesl.github.io">Paper</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
+    
+    <a class="" href="/about/">About</a>
+    
+  </nav>
+  
+
+  
+  <nav class="social">
+    
+    <a
+      class="github"
+      style="--url: url(./github.svg)"
+      href="https://github.com/BruisesL"
+      target="_blank"
+    ></a>
+    
+  </nav>
+  
+</header>
+
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <aside>
+      <time>November 11, 2021</time>
+      
+      <span>BruisesL</span>
+      
+    </aside>
+    <h1>Java 流程控制</h1>
+  </header>
+  <section class="post-content"><h2 id="用户交互scanner">用户交互Scanner</h2>
+<p>之前学习的基本语法中并没有实现程序和人的交互，Java提供了一个工具类，可以获取用户的输入。java.util.Scanner是Java5的新特征，<strong>可以通过Scanner类来获取用户的输入。</strong></p>
+<ul>
+<li>
+<p>语法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Scanner s <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">in</span><span style="color:#f92672">)</span>
+</code></pre></div></li>
+<li>
+<p>通过 Scanner 类的 next() 与 nextLine() 方法获取输入的字符串，在读取前我们一般需要 使用 hasNext() 与 hasNextLine() 判断是否还有输入的数据。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo01</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+        <span style="color:#75715e">//创建一个扫描器对象，用于接收键盘数据
+</span><span style="color:#75715e"></span>        Scanner scanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">in</span><span style="color:#f92672">);</span>
+
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;使用next方法接收：&#34;</span><span style="color:#f92672">);</span>
+
+        <span style="color:#75715e">//判断用户是否输入字符串
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">()){</span>
+            <span style="color:#75715e">//使用next方式接收
+</span><span style="color:#75715e"></span>            String str <span style="color:#f92672">=</span> scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;输入的内容为：&#34;</span><span style="color:#f92672">+</span>str<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#75715e">//凡事属于IO流的类，如果不关会一直占用资源
+</span><span style="color:#75715e"></span>        scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p><strong>tips</strong>：</p>
+<ul>
+<li>
+<p>next():</p>
+<ol>
+<li>
+<p>一定要读取到有效字符后才可以结束输入</p>
+</li>
+<li>
+<p>对输入有效字符前遇到的空白，next() 方法会自动将其去掉</p>
+</li>
+<li>
+<p>只有输入有效字符后，才将其后面输入的空白作为分隔符或结束符</p>
+</li>
+<li>
+<p><strong>next() 不能得到带有空格的字符串</strong></p>
+</li>
+</ol>
+</li>
+<li>
+<p>nextLine():</p>
+<ol>
+<li>
+<p>以 Enter 为结束符，也就是说 nextLine() 方法返回的是输入回车之前的所有字符</p>
+</li>
+<li>
+<p>可以获得空白</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>练习</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo03</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+        Scanner scanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">in</span><span style="color:#f92672">);</span>
+
+        <span style="color:#75715e">//从键盘接收数据
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">float</span> f <span style="color:#f92672">=</span> 0<span style="color:#f92672">.</span><span style="color:#a6e22e">0f</span><span style="color:#f92672">;</span>
+
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;请输入整数：&#34;</span><span style="color:#f92672">);</span>
+
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNextInt</span><span style="color:#f92672">()){</span>
+            i <span style="color:#f92672">=</span> scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">nextInt</span><span style="color:#f92672">();</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;整数数据：&#34;</span> <span style="color:#f92672">+</span> i<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span><span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;输入的不是整数数据&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;请输入小数：&#34;</span><span style="color:#f92672">);</span>
+
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNextFloat</span><span style="color:#f92672">()){</span>
+            f <span style="color:#f92672">=</span> scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">nextFloat</span><span style="color:#f92672">();</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;小数数据：&#34;</span> <span style="color:#f92672">+</span> f<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span><span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;输入的不是小数数据&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+
+        scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo04</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//我们可以输入多个数字，并求其总和与平均数，每输入一个数字用回车确认，通过输入非数字来结束输入并输出执行结果：
+</span><span style="color:#75715e"></span>        Scanner scanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">in</span><span style="color:#f92672">);</span>
+
+        <span style="color:#75715e">//定义 和
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">double</span> sum <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+        <span style="color:#75715e">//定义 数字个数
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;请输入数据：&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#75715e">//通过循环判断是否还有输入，并在里面对每一次进行求和和统计
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNextDouble</span><span style="color:#f92672">()){</span>
+            <span style="color:#66d9ef">double</span> x <span style="color:#f92672">=</span> scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">nextDouble</span><span style="color:#f92672">();</span>
+
+            i<span style="color:#f92672">++;</span>
+            sum <span style="color:#f92672">=</span> sum <span style="color:#f92672">+</span> x<span style="color:#f92672">;</span>
+
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;你输入了第&#34;</span><span style="color:#f92672">+</span>i<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;个数据，和为&#34;</span><span style="color:#f92672">+</span> sum  <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;，平均值为&#34;</span><span style="color:#f92672">+</span> <span style="color:#f92672">(</span>sum<span style="color:#f92672">/</span>i<span style="color:#f92672">));</span>
+        <span style="color:#f92672">}</span>
+
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;输入的数字和为：&#34;</span> <span style="color:#f92672">+</span> sum<span style="color:#f92672">);</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;输入的平均值为：&#34;</span><span style="color:#f92672">+</span> <span style="color:#f92672">(</span>sum<span style="color:#f92672">/</span>i<span style="color:#f92672">));</span>
+
+        scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+</ul>
+<h2 id="顺序结构">顺序结构</h2>
+<ul>
+<li>Java的基本结构就是顺序结构，除非特别指明，否则就按照顺序一句一句执行。他是任何一个算法都离不开的一种基本算法结构。</li>
+</ul>
+<h2 id="选择结构">选择结构</h2>
+<h3 id="if单选择结构">if单选择结构</h3>
+<p>在需要判断一个东西是否可行，然后才去执行的过程，用if语句来表示</p>
+<ul>
+<li>
+<p>语法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">If<span style="color:#f92672">(</span>布尔表达式<span style="color:#f92672">){</span>
+<span style="color:#75715e">//如果布尔表达式为true将执行的语句
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">IfDemo01</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+        Scanner scanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">in</span><span style="color:#f92672">);</span>
+
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;请输入一个内容：&#34;</span><span style="color:#f92672">);</span>
+        String str <span style="color:#f92672">=</span> scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">nextLine</span><span style="color:#f92672">();</span>
+
+        <span style="color:#75715e">//equals 判断字符串是否相等
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>str<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hello&#34;</span><span style="color:#f92672">)){</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>str<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;End&#34;</span><span style="color:#f92672">);</span>
+        scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+</ul>
+<h3 id="if双选择结构">if双选择结构</h3>
+<p>例：公司收购一个软件，成功了，给别人支付100万元，失败了自己找人开发。</p>
+<p>对于这个问题一个if无法解决，需要有两个判断，需要一个双选择结构，所以有了if-else结构。</p>
+<ul>
+<li>
+<p>语法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>布尔表达式<span style="color:#f92672">){</span>
+  <span style="color:#75715e">//如果布尔表达式为true
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span><span style="color:#66d9ef">else</span><span style="color:#f92672">{</span>
+  <span style="color:#75715e">//如果布尔表达式为false
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">IfDemo02</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+        <span style="color:#75715e">//考试分数大于等于60分就是及格，小于60分就是不及格
+</span><span style="color:#75715e"></span>        Scanner scanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">in</span><span style="color:#f92672">);</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;请输入成绩：&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">int</span> score <span style="color:#f92672">=</span> scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">nextInt</span><span style="color:#f92672">();</span>
+
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>score <span style="color:#f92672">&gt;=</span> 60<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;及格&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;不及格&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+</ul>
+<h3 id="if多选择结构">if多选择结构</h3>
+<p>在实际情况中，可能存在ABCD，存在区间多级判断，比如90-100为A，80-90为B，60-80为C，小于60为D。</p>
+<ul>
+<li>
+<p>语法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>布尔表达式1<span style="color:#f92672">){</span>
+  <span style="color:#75715e">//如果布尔表达式1的值为true执行代码
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span><span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>布尔表达式2<span style="color:#f92672">){</span>
+  <span style="color:#75715e">//如果布尔表达式2的值为true执行代码
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span><span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>布尔表达式3<span style="color:#f92672">){</span>
+  <span style="color:#75715e">//如果布尔表达式3的值为true执行代码
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span><span style="color:#66d9ef">else</span><span style="color:#f92672">{</span>
+  <span style="color:#75715e">//如果以上布尔表达式都不为true执行代码
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">IfDemo03</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        Scanner scanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">in</span><span style="color:#f92672">);</span>
+
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;请输入成绩：&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#75715e">/*
+</span><span style="color:#75715e">        if 语句至多有1个 else 语句，else 语句在所有的 else if 语句之后。
+</span><span style="color:#75715e">        语句可以有若干个 eLse if 语句，它们必须在 else 语句之前。
+</span><span style="color:#75715e">        一旦其中一个 else tf 语句检测为 true，其他的 else if 以及else 语句都将跳过执行。
+</span><span style="color:#75715e">        */</span>
+        <span style="color:#66d9ef">int</span> score <span style="color:#f92672">=</span> scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">nextInt</span><span style="color:#f92672">();</span>
+
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>score <span style="color:#f92672">&gt;=</span> 90 <span style="color:#f92672">&amp;&amp;</span> score <span style="color:#f92672">&lt;=</span> 100<span style="color:#f92672">){</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;您的成绩为A&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span><span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>score <span style="color:#f92672">&gt;=</span> 80 <span style="color:#f92672">&amp;&amp;</span> score <span style="color:#f92672">&lt;</span> 90<span style="color:#f92672">){</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;您的成绩为B&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span><span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>score <span style="color:#f92672">&gt;=</span> 60 <span style="color:#f92672">&amp;&amp;</span> score <span style="color:#f92672">&lt;</span> 80<span style="color:#f92672">){</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;您的成绩为C&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span><span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>score <span style="color:#f92672">&gt;=</span> 0 <span style="color:#f92672">&amp;&amp;</span> score <span style="color:#f92672">&lt;</span> 60<span style="color:#f92672">){</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;您的成绩为D&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span><span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;请输入正确的成绩&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+</ul>
+<h3 id="嵌套的if结构">嵌套的if结构</h3>
+<p>使用嵌套的 if&hellip;else 语句是合法的。也就是说，可以在另一个 if 或者 else if 语句中使用 if 或 else if 语句。</p>
+<ul>
+<li>
+<p>语法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>布尔表达式1<span style="color:#f92672">){</span>
+  <span style="color:#75715e">//如果布尔表达式1的值为true执行代码
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>布尔表达式2<span style="color:#f92672">){</span>
+    <span style="color:#75715e">//如果布尔表达式2的值为true执行代码
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+</ul>
+<h3 id="switch多选择结构">switch多选择结构</h3>
+<p>多选择结构还一个实现方式为 switch case 语句。</p>
+<p>switch case 语句判断一个变量与一系列值是否相等，每个值称为一个分支。</p>
+<ul>
+<li>
+<p>语法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">switch</span><span style="color:#f92672">(</span>expression<span style="color:#f92672">){</span>
+  <span style="color:#66d9ef">case</span> value <span style="color:#f92672">:</span>
+    <span style="color:#75715e">//语句
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span><span style="color:#75715e">//可选
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">case</span> value <span style="color:#f92672">:</span>
+    <span style="color:#75715e">//语句
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span><span style="color:#75715e">//可选
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">//可以有任意数量的case语句
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">default</span> <span style="color:#f92672">:</span><span style="color:#75715e">//可选
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//语句
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p>switch 语句中的变量类型可以是：</p>
+<ol>
+<li>
+<p>byte、short、int或者char</p>
+</li>
+<li>
+<p>Java SE 7 开始，switch支持字符串String类型</p>
+</li>
+<li>
+<p>同时 case 标签必须为字符串常量或字面量</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SwitchDemo01</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//switch 匹配一个具体的值 //case 穿透
+</span><span style="color:#75715e"></span>
+        <span style="color:#66d9ef">char</span> grade <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;C&#39;</span><span style="color:#f92672">;</span>
+
+        <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>grade<span style="color:#f92672">){</span>
+            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;A&#39;</span><span style="color:#f92672">:</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;优秀&#34;</span><span style="color:#f92672">);</span>
+                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span><span style="color:#75715e">//不结束就会一直向下执行，输出全部
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;B&#39;</span><span style="color:#f92672">:</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;良好&#34;</span><span style="color:#f92672">);</span>
+                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;C&#39;</span><span style="color:#f92672">:</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;一般&#34;</span><span style="color:#f92672">);</span><span style="color:#75715e">//没有 break 会穿透
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;D&#39;</span><span style="color:#f92672">:</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;及格&#34;</span><span style="color:#f92672">);</span>
+                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;E&#39;</span><span style="color:#f92672">:</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;不及格&#34;</span><span style="color:#f92672">);</span>
+                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;错误&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SwitchDemo02</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        String name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;BruisesL&#34;</span><span style="color:#f92672">;</span>
+        <span style="color:#75715e">//JDK7 新特性，表达式结果可以是字符串
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//字符的本质还是数字
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>name<span style="color:#f92672">){</span>
+            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;BruisesL&#34;</span><span style="color:#f92672">:</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;oooooooops&#34;</span><span style="color:#f92672">);</span>
+                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;lxc&#34;</span><span style="color:#f92672">:</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;noop&#34;</span><span style="color:#f92672">);</span>
+                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;emmmmm&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+</ul>
+<h2 id="循环结构">循环结构</h2>
+<ul>
+<li>
+<p>while 循环</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">while</span><span style="color:#f92672">(</span>布尔表达式<span style="color:#f92672">){</span>
+  <span style="color:#75715e">//循环内容
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><ol>
+<li>
+<p>只要布尔表达式为true，循环就会一直进行下去。</p>
+</li>
+<li>
+<p>一般会让循环停下来，需要一个让表达式失效的方式来结束循环。</p>
+</li>
+<li>
+<p>少部分情况需要循环一直执行，比如服务器的请求响应监听等。</p>
+</li>
+<li>
+<p>循环条件一直为true就会造成无限循环【死循环】，正常的业务编程中应该尽量避免死循环，会影响程序性能或者导致程序卡死崩溃。</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WhileDemo01</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+        <span style="color:#75715e">//输出1-100
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+
+        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>i<span style="color:#f92672">&lt;</span>100<span style="color:#f92672">){</span>
+            i<span style="color:#f92672">++;</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WhileDemo01</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+        <span style="color:#75715e">//输出1-100
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+
+        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>i<span style="color:#f92672">&lt;</span>100<span style="color:#f92672">){</span>
+            i<span style="color:#f92672">++;</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WhileDemo02</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+        <span style="color:#75715e">//计算1+2+3+...+100的值
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+
+        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>i<span style="color:#f92672">&lt;</span>100<span style="color:#f92672">){</span>
+            i<span style="color:#f92672">++;</span>
+            sum <span style="color:#f92672">=</span> sum <span style="color:#f92672">+</span> i<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sum<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p>do&hellip;while 循环</p>
+<p>对于 while 语句，如果不满足条件，则不能进入循环。但有时候我们需要即使不满足条件，也至少执行一次。</p>
+<p>do&hellip;while 循环和 while 循环相似，不同的是 do&hellip;while 循环至少会执行一次。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">do</span><span style="color:#f92672">{</span>
+  <span style="color:#75715e">//代码语句
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span><span style="color:#66d9ef">while</span><span style="color:#f92672">(</span>布尔表达式<span style="color:#f92672">)</span>
+</code></pre></div><ul>
+<li>
+<p><strong>tips：</strong></p>
+<p>while 和 do&hellip;while 的区别：</p>
+<ol>
+<li>
+<p>while 先判断后执行，do&hellip;while 先执行后判断</p>
+</li>
+<li>
+<p>do&hellip;while 总是保证循环体会被至少执行一次</p>
+</li>
+</ol>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DoWhileDemo01</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+         <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+         <span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+
+         <span style="color:#66d9ef">do</span> <span style="color:#f92672">{</span>
+             i<span style="color:#f92672">++;</span>
+             sum <span style="color:#f92672">=</span> sum <span style="color:#f92672">+</span> i<span style="color:#f92672">;</span>
+         <span style="color:#f92672">}</span><span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>i<span style="color:#f92672">&lt;</span>100<span style="color:#f92672">);</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sum<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DoWhileDemo02</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+
+        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>a<span style="color:#f92672">&lt;</span>0<span style="color:#f92672">){</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a<span style="color:#f92672">);</span>
+            a<span style="color:#f92672">++;</span>
+        <span style="color:#f92672">}</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;=======================&#34;</span><span style="color:#f92672">);</span>
+
+        <span style="color:#66d9ef">do</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a<span style="color:#f92672">);</span>
+            a<span style="color:#f92672">++;</span>
+        <span style="color:#f92672">}</span><span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>a<span style="color:#f92672">&lt;</span>0<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p>for 循环</p>
+<p>虽然所有循环结构都可以用 while 或者 do&hellip;while 表示，但 Java 提供了另一种语句——for
+循环，使一些循环结构变得更加简单。</p>
+<ol>
+<li>
+<p>for 循环语句是支持迭代的一种通用结构，是最有效的、最灵活的循环结构。</p>
+</li>
+<li>
+<p>for 循环执行的次数是在执行前就确定的。</p>
+</li>
+</ol>
+<p>语法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>初始值<span style="color:#960050;background-color:#1e0010">；</span>布尔表达式<span style="color:#960050;background-color:#1e0010">；</span>更新<span style="color:#f92672">){</span>
+  <span style="color:#75715e">//代码语句
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ForDemo01</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span><span style="color:#75715e">//初始化条件
+</span><span style="color:#75715e"></span>
+        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>a <span style="color:#f92672">&lt;=</span> 10<span style="color:#f92672">){</span><span style="color:#75715e">//条件判断
+</span><span style="color:#75715e"></span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a<span style="color:#f92672">);</span><span style="color:#75715e">//循环体
+</span><span style="color:#75715e"></span>            a<span style="color:#f92672">+=</span>2<span style="color:#f92672">;</span><span style="color:#75715e">//迭代
+</span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;while循环结束&#34;</span><span style="color:#f92672">);</span>
+
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>i <span style="color:#f92672">&lt;=</span> 10<span style="color:#f92672">;</span>i<span style="color:#f92672">+=</span>2<span style="color:#f92672">){</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;for循环结束&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#75715e">/*
+</span><span style="color:#75715e">        关于 for 循环有以下几点说阴：
+</span><span style="color:#75715e">        最先执行初始化步骤。可以声明一种类型，但可初始化一个或多个循环控制变量，1也可以是空语句。
+</span><span style="color:#75715e">        然后，检测布尔表达式的值。如果为 true，循环体被执行。如果为false，循环终止，开始执行循环体后面的语句。
+</span><span style="color:#75715e">        执行一次循环后，更新循环控制变量(迭代因子控制循环变量的增减)。
+</span><span style="color:#75715e">        再次检测布尔表达式。循环执行上面的过程。
+</span><span style="color:#75715e">         */</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ForDemo02</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//练习1：计算0到100之间的奇数和偶数的和
+</span><span style="color:#75715e"></span>
+        <span style="color:#66d9ef">int</span> oddsum <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">int</span> evensum <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 101<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">%</span> 2 <span style="color:#f92672">!=</span> 0<span style="color:#f92672">){</span>
+                oddsum <span style="color:#f92672">+=</span> i<span style="color:#f92672">;</span>
+            <span style="color:#f92672">}</span><span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+                evensum <span style="color:#f92672">+=</span> i<span style="color:#f92672">;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;奇数和为：&#34;</span> <span style="color:#f92672">+</span> oddsum <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\n&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;偶数和为：&#34;</span> <span style="color:#f92672">+</span> evensum<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ForDemo03</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//练习2：用while或for循环输出1-1000之间能被5整除的数，并且每行输出3个
+</span><span style="color:#75715e"></span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;=</span> 1000<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">%</span> 5 <span style="color:#f92672">==</span> 0<span style="color:#f92672">){</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>i<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;\t&#34;</span><span style="color:#f92672">);</span><span style="color:#75715e">//println 输出完会换行
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">}</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">%</span> <span style="color:#f92672">(</span>5<span style="color:#f92672">*</span>3<span style="color:#f92672">)</span> <span style="color:#f92672">==</span> 0<span style="color:#f92672">){</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">();</span>
+                <span style="color:#75715e">//print 输出完不会换行
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ForDemo04</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//练习3：打印99乘法表
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 10<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> j <span style="color:#f92672">&lt;=</span> i<span style="color:#f92672">;</span> j<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;*&#34;</span> <span style="color:#f92672">+</span> j <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;=&#34;</span> <span style="color:#f92672">+(</span>i<span style="color:#f92672">*</span>j<span style="color:#f92672">)</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\t&#34;</span><span style="color:#f92672">);</span>
+                <span style="color:#75715e">/*
+</span><span style="color:#75715e">                if (i == j){
+</span><span style="color:#75715e">                    System.out.println();
+</span><span style="color:#75715e">                }
+</span><span style="color:#75715e">                由于第二次循环最后一次true的条件就是 i == j，因此与 在第一次循环加换行 即可
+</span><span style="color:#75715e">                 */</span>
+            <span style="color:#f92672">}</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>增强 for 循环</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>声明语句 <span style="color:#f92672">:</span> 表达式<span style="color:#f92672">)</span>
+<span style="color:#f92672">{</span>
+  <span style="color:#75715e">//代码句子
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><p>**声明语句：**声明新的局部变量，该变量的类型必须和数组元素的类型匹配。其作用域限定在循
+环语句块，其值与此时数组元素的值相等。</p>
+<p>**表达式：**表达式是要访问的数组名，或者是返回值为数组的方法。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ForDemo05</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> numbers <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>10<span style="color:#f92672">,</span>20<span style="color:#f92672">,</span>30<span style="color:#f92672">,</span>40<span style="color:#f92672">,</span>50<span style="color:#f92672">};</span> <span style="color:#75715e">//定义一个数组
+</span><span style="color:#75715e"></span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 5<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>numbers<span style="color:#f92672">[</span>i<span style="color:#f92672">]);</span> <span style="color:#75715e">//输出数组 number 中的第 i 个数
+</span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;==========================&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#75715e">//遍历数组的元素
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> x<span style="color:#f92672">:</span>numbers<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>x<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+</ul>
+<h2 id="break--continue">break &amp; continue</h2>
+<ul>
+<li>
+<p>break在任何循环语句的主体部分，均可用break控制循环的流程。<strong>break用于强行退出循环</strong>，不执行循环中剩余的语句。（break语句也在switch语句中使用）</p>
+</li>
+<li>
+<p>continue 语句用在循环语句体中，<strong>用于终止某次循环过程</strong>，即跳过循环体中尚未执行的语句，接着进行下一次是否执行循环的判定。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BreakDemo01</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">&lt;</span> 100<span style="color:#f92672">){</span>
+            i<span style="color:#f92672">++;</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">==</span> 30<span style="color:#f92672">){</span>
+                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ContinueDemo01</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span>0<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">&lt;</span> 100<span style="color:#f92672">){</span>
+            i<span style="color:#f92672">++;</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">%</span> 10 <span style="color:#f92672">==</span> 0<span style="color:#f92672">){</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">();</span>
+                <span style="color:#66d9ef">continue</span><span style="color:#f92672">;</span>
+            <span style="color:#f92672">}</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p>关于 goto 关键字</p>
+<ol>
+<li>
+<p>goto 关键字很早就在程序设计语言中出现。尽管 goto 仍是 Java 的一个保留字，但并未在语言中得到正式使用；Java 没有 goto。然而，在 break 和 continue 这两个关键字的身上，我们仍然能看出一些 goto 的影子&mdash;-带标签的 break 和 continue 。</p>
+</li>
+<li>
+<p>&ldquo;标签〞是指后面跟一个冒号的标识符，例如：label:</p>
+</li>
+<li>
+<p>对 Java 来说唯一用到标签的地方是在循环语句之前。而在循环之前设置标签的唯一理由是：我们希望在其中嵌套另一个循环，由于 break 和 continue 关键字通常只中断当前循环，但若随同标签使用，它们就会中断到存在标签的地方。</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LabelDemo01</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//打印101-150之间所有的质数
+</span><span style="color:#75715e"></span>         <span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+
+        outer:<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 101<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 150<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> 2<span style="color:#f92672">;</span> j <span style="color:#f92672">&lt;</span> i<span style="color:#f92672">/</span>2<span style="color:#f92672">;</span> j<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">%</span> j <span style="color:#f92672">==</span> 0<span style="color:#f92672">){</span>
+                    <span style="color:#66d9ef">continue</span> outer<span style="color:#f92672">;</span>
+                <span style="color:#f92672">}</span>
+            <span style="color:#f92672">}</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+</ul>
+<h2 id="练习">练习</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestDemo01</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//打印三角形 5行
+</span><span style="color:#75715e"></span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;=</span> 5<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> 4<span style="color:#f92672">;</span> j <span style="color:#f92672">&gt;=</span> i <span style="color:#f92672">;</span> j<span style="color:#f92672">--)</span> <span style="color:#f92672">{</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">);</span> <span style="color:#75715e">//打印左上角倒三角，用空格占位
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">}</span>
+            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> j <span style="color:#f92672">&lt;=</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">*</span> 2 <span style="color:#f92672">-</span> 1<span style="color:#f92672">);</span> j<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;*&#34;</span><span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span>
+            <span style="color:#75715e">/* 如果第二次循环打印与左上互补的直角三角形，即
+</span><span style="color:#75715e">            for (int j = 1; j &lt;= i; j++){
+</span><span style="color:#75715e">                System.out.print(&#34;*&#34;);
+</span><span style="color:#75715e">            }
+</span><span style="color:#75715e">            则需要补全右半直角三角形
+</span><span style="color:#75715e">            for (int j = 1; j &lt; i; j++) {
+</span><span style="color:#75715e">                System.out.print(&#34;*&#34;);
+</span><span style="color:#75715e">            }
+</span><span style="color:#75715e">             */</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></section>
+
+  
+  
+
+  
+  
+  
+  <nav class="post-nav">
+     
+    <a class="next" href="https://bruisesl.github.io/post/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"><span>Java 基础语法</span><span>→</span></a>
+    
+  </nav>
+  
+
+  
+  
+</article>
+
+</main>
+
+    <footer class="footer">
+  <p>&copy; 2021 <a href="https://bruisesl.github.io">Paper</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
+
+  </body>
+</html>
