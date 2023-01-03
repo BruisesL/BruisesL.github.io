@@ -86,8 +86,8 @@ Java开发环境搭建   JDK下载、安装与卸载</description>
       <description>计算机的构成   计算机由硬件+软件构成
   硬件的构成为冯诺依曼体系结构，最简单的组成为CPU、内存、主板
   软件的构成分为系统软件和应用软件
-  系统软件:DOS(Disk Operating System),Windows,Linux,Mac,Android,IOS
-  应用软件:WPS,QQ,微信等
+  系统软件:DOS (Disk Operating System) , Windows, Linux, Mac, Android, IOS
+  应用软件:WPS, QQ, 微信等
   冯诺依曼体系结构  I/O设备(input/output设备)：即输入输出设备，输入设备例如键盘、鼠标，输出设备例如显示器、音响等 CPU主要由运算器和控制器组成 运算：数据由输入设备进入存储器，存储器将数据传入运算器进行运算，在得出结果后返回存储器，存储器再将数据通过输出设备输出。  计算机语言发展史 第一代语言&amp;ndash;机器语言  计算机的基本计算方式是基于二进制的方式  第二代语言&amp;ndash;汇编语言  解决人类无法读懂机器语言的问题 指令替代二进制  第三代语言&amp;ndash;高级语言  大体分为：面向过程和面向对象两大类 C语言是面向过程的语言，C++、Java是面向对象的语言  </description>
     </item>
     
@@ -97,7 +97,7 @@ Java开发环境搭建   JDK下载、安装与卸载</description>
       <pubDate>Wed, 01 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://bruisesl.github.io/post/dos%E5%91%BD%E4%BB%A4/</guid>
-      <description>#盘符切换  C: #查看当前目录下的所有文件  dir #切换目录 cd (change directory)实例目录为F盘下user文件夹 跨盘符切换 cd /d f:\user 返回上一级 cd .. 进入目录 cd user #清理屏幕  cls (clear screen) #退出终端  exit #查看电脑ip  ipconfig #ping 命令（获取网站ip） ping www.baidu.com #打开电脑工具（直接输入软件名称缩写） clac 计算器 mspaint 画图 notepad 记事本 #文件操作 md test 创建文件夹（文件夹名称tese） cd&amp;gt;a.txt 创建文件（文件为名字是a的txt文件） del a.txt 删除文件 rd test 删除文件夹（需进入有该文件夹的目录再进行删除） </description>
+      <description>#盘符切换  C: #查看当前目录下的所有文件  dir #切换目录 cd (change directory)实例目录为F盘下user文件夹 跨盘符切换 cd /d f:\user 返回上一级 cd .. 进入目录 cd user #清理屏幕  cls (clear screen) #退出终端  exit #查看电脑ip  ipconfig #ping 命令（获取网站ip） ping www.baidu.com #打开电脑工具（直接输入软件名称缩写） clac 计算器 mspaint 画图 notepad 记事本 #文件操作 md test 创建文件夹（文件夹名称tese） cd&amp;gt;a.txt 创建文件（文件为名字是a的txt文件） del a.txt 删除文件 rd test 删除文件夹（需进入有该文件夹的目录再进行删除，且文件夹需要为空） </description>
     </item>
     
     <item>
