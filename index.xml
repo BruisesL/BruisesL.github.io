@@ -118,7 +118,12 @@ Java开发环境搭建   JDK下载、安装与卸载</description>
 打开终端，切换盘符至复制路径。
 然后输入： sqlite3 db &amp;quot;delete from apps where title=&#39;应用名称&#39;;&amp;quot;&amp;amp;&amp;amp;killall Dock
 注意要将应用名称处替换成要删除的图标的名称，然后回车即可。
-  </description>
+  permission denied (publickey)问题的解决方法 **场景：**上时间未远端登陆git，导致ssh key过期，git push 失败报错：Permission denied (publickey)
+**解决办法：**重新生成一个新的ssh key ，然后将这个ssh key添加到github账户上面。
+ 检查SSH key是否已经存在  ls ~/.ssh/ 进行检查 id_rsa.pub 是否存在，如果存在，就不用生成一个新的SSH key了，直接跳到下面的第3步。
+生成一个新的SSH key  切换盘符至 .ssh 文件
+cd /Users/your_user_name/.ssh 输入命令（其中 your_email@example.com 替换成个人邮箱地址）：
+ssh-keygen -t rsa -b 2048 -C &amp;quot;your_email@example.</description>
     </item>
     
     <item>
