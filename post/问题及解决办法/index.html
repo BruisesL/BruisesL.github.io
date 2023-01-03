@@ -131,7 +131,7 @@ ssh-keygen -t rsa -b 2048 -C &quot;your_email@example." />
 cd /Users/your_user_name/.ssh 输入命令（其中 your_email@example.com 替换成个人邮箱地址）：
 ssh-keygen -t rsa -b 2048 -C &quot;your_email@example."><meta itemprop="datePublished" content="2021-01-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-01-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="137">
+<meta itemprop="wordCount" content="130">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
@@ -280,12 +280,7 @@ The key fingerprint is:
 <li>将ssh key添加到git</li>
 </ol>
 <p>打开<code>id_rsa.pub</code>文件，复制里面的内容，然后粘贴到git中相关的位置中。</p>
-<ol start="4">
-<li>把ssh 添加到keychain中</li>
-</ol>
-<p>这个时候如果去git clone代码，会让你输入密码，如果一个还好说，如果关联了很多的话，那就比较麻烦了，这个时候的解决方法就是添加到keychain中：</p>
-<pre tabindex="0"><code>ssh-add -K /Users/youre_user_name/.ssh/id_rsa 
-</code></pre><p><strong>注意：</strong></p>
+<p><strong>注意：</strong></p>
 <p>如果出现：</p>
 <pre tabindex="0"><code>Could not open a connection to your authentication agent. 
 </code></pre><p>那么就使用如下命令解决：</p>
