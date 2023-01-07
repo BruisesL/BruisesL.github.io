@@ -92,7 +92,7 @@
   不能使用关键字作为变量名或方法名
   标识符是大小写敏感的"><meta itemprop="datePublished" content="2023-01-04T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2023-01-04T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1052">
+<meta itemprop="wordCount" content="1141">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
@@ -408,10 +408,130 @@
 <li>
 <p>引用类型(reference type)</p>
 <ul>
-<li>类</li>
-<li>接口</li>
-<li>数组</li>
+<li>类  class</li>
+<li>接口  interface</li>
+<li>数组  数据类型 []</li>
+<li>枚举  enum</li>
 </ul>
+</li>
+<li>
+<p>转义符</p>
+<ul>
+<li>
+<p>\r 表示回车符</p>
+</li>
+<li>
+<p>\n 表示换行符</p>
+</li>
+<li>
+<p>\t 表示 Table 键制表符</p>
+</li>
+<li>
+<p>\b 表示退格键，相当于 Back Space 键
+表示单引号</p>
+</li>
+</ul>
+<p>**注意：**因为系统差异性，在不同的系统中  ，有时候 \r 起作用，有时候 \n 起作用。所以，一般建议：\r\n 连用，这样可以在任意系统中都可以换行。</p>
+</li>
+</ul>
+<h2 id="变量常量">变量、常量</h2>
+<ul>
+<li>
+<p><strong>变量</strong>：Java变量是程序中最基本的存储单元，其要素包括<strong>变量名</strong>，<strong>变量类型</strong>和<strong>作用域</strong>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">type varName <span style="color:#f92672">[=</span>value<span style="color:#f92672">]</span> <span style="color:#f92672">[{,</span>varName<span style="color:#f92672">[=</span>value<span style="color:#f92672">]}];</span>
+<span style="color:#75715e">//数据类型 变量名 = 值；可以使用 , 隔开来声明多个同类型变量，不过不建议一行定义多个变量。
+</span><span style="color:#75715e"></span>
+例<span style="color:#960050;background-color:#1e0010">：</span>
+<span style="color:#66d9ef">int</span> num1 <span style="color:#f92672">=</span> 1 <span style="color:#f92672">,</span> num2 <span style="color:#f92672">=</span> 2<span style="color:#f92672">;</span>
+</code></pre></div></li>
+</ul>
+<p>tips:</p>
+<ol>
+<li>
+<p>每个变量都有类型，类型可以是基本类型，也可以是引用类型，例如String。</p>
+</li>
+<li>
+<p>变量名必须是合法的标识符。</p>
+</li>
+<li>
+<p>变量声明是一条完整的语句，因此每一个声明都必须以分号结束。</p>
+</li>
+</ol>
+<ul>
+<li>
+<p><strong>变量作用域</strong>：类变量、实例变量、局部变量</p>
+<ul>
+<li>成员变量：成员变量分为类变量和实例变量，均存储在堆内存中。</li>
+<li>类变量：声明的位置在类里面、方法的外面，用static修饰，也叫静态变量，生命周期跟随类。</li>
+<li>实例变量：声明的位置在类里面、方法的外面，与类变量的区别是<strong>不用</strong>static修饰。</li>
+<li>局部变量：声明的位置在类里面、方法()或{}内，存储在栈内存中。</li>
+</ul>
+<p>tips：类变量和实例变量在加载类的时候会默认初始化，所以可以不赋值直接输出，输出值即为变量类型的默认值；而局部变量则不会被程序初始化，需要人工进行初始化，否则输出会报错；命名相同的变量不可存储在统一内存区域中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo04</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//属性：变量
+</span><span style="color:#75715e"></span>
+    <span style="color:#75715e">//类变量  static
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">double</span> salary <span style="color:#f92672">=</span> 2500<span style="color:#f92672">;</span>
+
+    <span style="color:#75715e">//实例变量：从属于对象,如果不进行初始化，则为默认值,布尔值默认是false
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> age<span style="color:#f92672">;</span>
+    String name<span style="color:#f92672">;</span>
+    <span style="color:#75715e">//main方法
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//局部变量：必须声明和和初始化值
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//int i;
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//System.out.println(i);会报错，因为没有初始化i的值
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
+
+        <span style="color:#75715e">//变量类型  变量名字  = new Demo04();
+</span><span style="color:#75715e"></span>        Demo04 demo04 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Demo04<span style="color:#f92672">();</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>demo04<span style="color:#f92672">.</span><span style="color:#a6e22e">age</span><span style="color:#f92672">);</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>demo04<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">);</span><span style="color:#75715e">//除了基本类型，其他类型的初始值都是null
+</span><span style="color:#75715e"></span>
+        <span style="color:#66d9ef">double</span> salary <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> <span style="color:#75715e">// 局部变量
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>salary<span style="color:#f92672">);</span> <span style="color:#75715e">// 输出时，优先找相同内存区域的变量，若找到，则直接输出，找不到时会换内存区域查找
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">/*
+</span><span style="color:#75715e">         * 输出结果为
+</span><span style="color:#75715e">         * 10   
+</span><span style="color:#75715e">				 * 0       age的值，因为没有赋值，int默认值为0
+</span><span style="color:#75715e">				 * null    name的值，因为没有赋值,String默认值为null
+</span><span style="color:#75715e">				 * 1.0
+</span><span style="color:#75715e">         */</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p><strong>常量</strong>：初始化后不能再改变值。</p>
+<ol>
+<li>
+<p>所谓常量可以理解成一种特殊的变量，它的值被设定后，在程序运行过程中不允许被改变。</p>
+</li>
+<li>
+<p>常量名一般用大写字符。</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">final</span> 常量名 <span style="color:#f92672">=</span> 值<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">double</span> PI <span style="color:#f92672">=</span> 3<span style="color:#f92672">.</span><span style="color:#a6e22e">14</span><span style="color:#f92672">;</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo05</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//修饰符不区分前后，变量类型前的都是修饰符，下列语句等同 final static double PI = 3.14;
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">double</span> PI <span style="color:#f92672">=</span> 3<span style="color:#f92672">.</span><span style="color:#a6e22e">14</span><span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>PI<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p><strong>命名规范：</strong></p>
+<ol>
+<li>类成员变量：首字母小写和驼峰原则：monthSalary除了第一个单词以外，后面的单词首字母大写lastName</li>
+<li>局部变量：首字母小写和驼峰原则</li>
+<li>常量：大写字母和下划线MAX_VALUE</li>
+<li>类名：首字母大写和驼峰原则：Man, GoodMan</li>
+<li>方法名：首字母小写和驼峰原则run(), runRun()</li>
+</ol>
 </li>
 </ul>
 <h2 id="类型转换">类型转换</h2>
@@ -422,7 +542,7 @@
 <li>
 <p>运算中，不同类型的数据先<strong>转化为同一类型</strong>，然后进行运算。</p>
 <p><strong>字节从低到高排列：</strong></p>
-<p>byte,short,char&ndash;&gt;int&ndash;&gt;long&ndash;&gt;float&ndash;&gt;double</p>
+<p>byte, short, char &ndash;&gt; int &ndash;&gt; long &ndash;&gt; float &ndash;&gt; double</p>
 <p>**由高到低转换：**强制转换，格式为 <em>(类型)变量名</em></p>
 <p>**由低到高转换：**自动转换</p>
 <p>tips：</p>
@@ -450,12 +570,7 @@
         System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>b<span style="color:#f92672">);</span><span style="color:#75715e">//byte的范围是-128到127，所以128对于byte会内存溢出，输出的值会变
 </span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>d<span style="color:#f92672">);</span>
         System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;==============================&#34;</span><span style="color:#f92672">);</span>
-        <span style="color:#75715e">/*
-</span><span style="color:#75715e">        1. 不能对布尔值进行转换
-</span><span style="color:#75715e">        2. 不能把对象类型转换为不相干的类型
-</span><span style="color:#75715e">        3. 在把高容量转换到低容量的时候，强制转换
-</span><span style="color:#75715e">        4. 转换的时候可能存在内存溢出，或者精度问题
-</span><span style="color:#75715e">         */</span>
+
         <span style="color:#75715e">//精度问题
 </span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">((</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)</span>23<span style="color:#f92672">.</span><span style="color:#a6e22e">7</span><span style="color:#f92672">);</span><span style="color:#75715e">//23
 </span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">((</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)-</span>45<span style="color:#f92672">.</span><span style="color:#a6e22e">89f</span><span style="color:#f92672">);</span><span style="color:#75715e">//-45
@@ -473,7 +588,7 @@
 </span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> money <span style="color:#f92672">=</span> 1_000_000_000<span style="color:#f92672">;</span><span style="color:#75715e">//数字之间可以用下划线分割
 </span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> years <span style="color:#f92672">=</span> 20<span style="color:#f92672">;</span>
         <span style="color:#66d9ef">int</span> total1 <span style="color:#f92672">=</span> money<span style="color:#f92672">*</span>years<span style="color:#f92672">;</span><span style="color:#75715e">//-1474836480 计算时内存溢出了
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">long</span> total2 <span style="color:#f92672">=</span> money<span style="color:#f92672">*</span>years<span style="color:#f92672">;</span><span style="color:#75715e">//先进行int类型的计算，再将结果转换成long类型
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">long</span> total2 <span style="color:#f92672">=</span> money<span style="color:#f92672">*</span>years<span style="color:#f92672">;</span><span style="color:#75715e">//先进行int类型的计算，再将结果转换成long类型,所以也会溢出
 </span><span style="color:#75715e"></span>        <span style="color:#66d9ef">long</span> total3 <span style="color:#f92672">=</span> <span style="color:#f92672">((</span><span style="color:#66d9ef">long</span><span style="color:#f92672">)</span>money<span style="color:#f92672">)*</span>years<span style="color:#f92672">;</span>
 
         System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>money<span style="color:#f92672">);</span>
@@ -485,104 +600,20 @@
 
 </code></pre></div></li>
 </ul>
-<h2 id="变量常量">变量、常量</h2>
-<ul>
-<li>
-<p><strong>变量</strong>：Java变量是程序中最基本的存储单元，其要素包括<strong>变量名</strong>，<strong>变量类型</strong>和<strong>作用域</strong>。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">type varName <span style="color:#f92672">[=</span>value<span style="color:#f92672">]</span> <span style="color:#f92672">[{,</span>varName<span style="color:#f92672">[=</span>value<span style="color:#f92672">]}];</span>
-<span style="color:#75715e">//数据类型  变量名 = 值；可以使用都好隔开来声明多个同类型变量，不过不建议一行定义多个变量。
-</span></code></pre></div></li>
-</ul>
-<p>tips:</p>
-<ol>
-<li>
-<p>每个变量都有类型，类型可以是基本类型，也可以是引用类型，例如String。</p>
-</li>
-<li>
-<p>变量名必须是合法的标识符。</p>
-</li>
-<li>
-<p>变量声明是一条完整的语句，因此每一个生命都必须以分号结束。</p>
-</li>
-</ol>
-<ul>
-<li>
-<p><strong>变量作用域</strong>：类变量、实例变量、局部变量</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo04</span> <span style="color:#f92672">{</span>
-    <span style="color:#75715e">//属性：变量
-</span><span style="color:#75715e"></span>
-    <span style="color:#75715e">//类变量  static
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">double</span> slary <span style="color:#f92672">=</span> 2500<span style="color:#f92672">;</span>
-
-    <span style="color:#75715e">//实例变量：从属于对象,如果不进行初始化，则为默认值,布尔值默认是false
-</span><span style="color:#75715e"></span>    String name<span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">int</span> age<span style="color:#f92672">;</span>
-    <span style="color:#75715e">//main方法
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#75715e">//局部变量：必须声明和和初始化值
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">//int i;
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">//System.out.println(i);会报错，因为没有初始化i的值
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
-
-        <span style="color:#75715e">//变量类型  变量名字  = new Demo04();
-</span><span style="color:#75715e"></span>        Demo04 demo04 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Demo04<span style="color:#f92672">();</span>
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>demo04<span style="color:#f92672">.</span><span style="color:#a6e22e">age</span><span style="color:#f92672">);</span>
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>demo04<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">);</span><span style="color:#75715e">//除了基本类型，其他类型的初始值都是null
-</span><span style="color:#75715e"></span>
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>slary<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(){</span>
-
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div></li>
-<li>
-<p><strong>常量</strong>：初始化后不能再改变值。</p>
-<ol>
-<li>
-<p>所谓常量可以理解成一种特殊的变量，它的值被设定后，在程序运行过程中不允许被改变。</p>
-</li>
-<li>
-<p>常量名一般用大写字符。</p>
-</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">final</span> 常量名 <span style="color:#f92672">=</span> 值<span style="color:#f92672">;</span>
-<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">double</span> PI <span style="color:#f92672">=</span> 3<span style="color:#f92672">.</span><span style="color:#a6e22e">14</span><span style="color:#f92672">;</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo05</span> <span style="color:#f92672">{</span>
-    <span style="color:#75715e">//修饰符不区分前后，变量类型前的都是修饰符，下列语句等同 final static double PI = 3.14;
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">double</span> PI <span style="color:#f92672">=</span> 3<span style="color:#f92672">.</span><span style="color:#a6e22e">14</span><span style="color:#f92672">;</span>
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>PI<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div></li>
-<li>
-<p>变量的命名规范</p>
-<ol>
-<li>类成员变量：首字母小写和驼峰原则：monthSalary除了第一个单词以外，后面的单词首字母大写lastName</li>
-<li>局部变量：首字母小写和驼峰原则</li>
-<li>常量：大写字母和下划线MAX_VALUE</li>
-<li>类名：首字母大写和驼峰原则：Man,GoodMan</li>
-<li>方法名：首字母小写和驼峰原则run(),runRun()</li>
-</ol>
-</li>
-</ul>
 <h2 id="运算符">运算符</h2>
 <ul>
 <li>
 <p>Java语言支持如下运算符</p>
-<p><strong>算术运算符</strong>：+,-,*,/,%(取余,模运算),++,&ndash;</p>
+<p><strong>算术运算符</strong>：+, -, *, /, %(取余,模运算), ++, &ndash;</p>
 <p><strong>赋值运算符</strong>：=</p>
-<p><strong>关系运算符</strong>：&gt;,&lt;,&gt;=,&lt;=,==,!=,instanceof</p>
-<p><strong>逻辑运算符</strong>：&amp;&amp;(与),||(或),!(非)</p>
-<p><strong>位运算符</strong>：&amp;,|,^,~,&raquo;,&laquo;,&raquo;&gt;</p>
-<p><strong>扩展赋值运算符</strong>：+=,-=,*=,/=</p>
-<p><strong>条件运算符</strong>：?,:</p>
+<p><strong>关系运算符</strong>：&gt;, &lt;, &gt;=, &lt;=, ==, !=, instanceof</p>
+<p><strong>逻辑运算符</strong>：&amp;&amp;(与), ||(或), !(非)</p>
+<p><strong>位运算符</strong>：&amp;, |, ^, ~, &raquo;, &laquo;, &raquo;&gt;</p>
+<p><strong>扩展赋值运算符</strong>：+=, -=, *=, /=</p>
+<p><strong>条件运算符</strong>：?, :</p>
 </li>
 </ul>
+<p>Tips:当表达式中所有的变量类型小于<strong>int</strong>的时候，运算后的结果都会自动提升为<strong>int</strong>类型。当表达式中有变量类型大于<strong>int</strong>的时候，运算后的结果以表达式中<strong>精度最高</strong>的为主。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo01</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         <span style="color:#75715e">//二元运算符
