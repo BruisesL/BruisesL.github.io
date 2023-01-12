@@ -92,7 +92,7 @@
   不能使用关键字作为变量名或方法名
   标识符是大小写敏感的"><meta itemprop="datePublished" content="2023-01-04T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2023-01-04T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1141">
+<meta itemprop="wordCount" content="1232">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
@@ -559,6 +559,9 @@
 <li>
 <p>转换的时候可能存在内存溢出，或者精度问题</p>
 </li>
+<li>
+<p>当表达式中所有的变量类型小于<strong>int</strong>的时候，运算后的结果都会自动提升为<strong>int</strong>类型。当表达式中有变量类型大于<strong>int</strong>的时候，运算后的结果以表达式中<strong>精度最高</strong>的为主。</p>
+</li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo03</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
@@ -604,16 +607,15 @@
 <ul>
 <li>
 <p>Java语言支持如下运算符</p>
-<p><strong>算术运算符</strong>：+, -, *, /, %(取余,模运算), ++, &ndash;</p>
+<p><strong>算术运算符</strong>：+ , - , * , / , % (取余,模运算) , ++ , &ndash;</p>
 <p><strong>赋值运算符</strong>：=</p>
-<p><strong>关系运算符</strong>：&gt;, &lt;, &gt;=, &lt;=, ==, !=, instanceof</p>
-<p><strong>逻辑运算符</strong>：&amp;&amp;(与), ||(或), !(非)</p>
-<p><strong>位运算符</strong>：&amp;, |, ^, ~, &raquo;, &laquo;, &raquo;&gt;</p>
-<p><strong>扩展赋值运算符</strong>：+=, -=, *=, /=</p>
-<p><strong>条件运算符</strong>：?, :</p>
+<p><strong>关系运算符</strong>：&gt; , &lt; , &gt;= , &lt;= , == , != , instanceof</p>
+<p><strong>逻辑运算符</strong>：&amp;&amp;(与) , ||(或) , !(非)</p>
+<p><strong>位运算符</strong>：&amp; , | , ^ , ~ , &raquo; , &laquo; , &raquo;&gt;</p>
+<p><strong>扩展赋值运算符</strong>：+= , -= , *= , /=</p>
+<p><strong>条件运算符</strong>：? :</p>
 </li>
 </ul>
-<p>Tips:当表达式中所有的变量类型小于<strong>int</strong>的时候，运算后的结果都会自动提升为<strong>int</strong>类型。当表达式中有变量类型大于<strong>int</strong>的时候，运算后的结果以表达式中<strong>精度最高</strong>的为主。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo01</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         <span style="color:#75715e">//二元运算符
@@ -647,10 +649,12 @@
 </span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
         <span style="color:#66d9ef">int</span> y <span style="color:#f92672">=</span> 20<span style="color:#f92672">;</span>
 
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>x<span style="color:#f92672">&gt;</span>y<span style="color:#f92672">);</span><span style="color:#75715e">//false
-</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>x<span style="color:#f92672">&lt;</span>y<span style="color:#f92672">);</span><span style="color:#75715e">//true
-</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>x<span style="color:#f92672">==</span>y<span style="color:#f92672">);</span><span style="color:#75715e">//false
-</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>x<span style="color:#f92672">!=</span>y<span style="color:#f92672">);</span><span style="color:#75715e">//true
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>x <span style="color:#f92672">&gt;</span> y<span style="color:#f92672">);</span><span style="color:#75715e">//false
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>x <span style="color:#f92672">&lt;</span> y<span style="color:#f92672">);</span><span style="color:#75715e">//true
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>x <span style="color:#f92672">==</span> y<span style="color:#f92672">);</span><span style="color:#75715e">//false
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>x <span style="color:#f92672">!=</span> y<span style="color:#f92672">);</span><span style="color:#75715e">//true
+</span><span style="color:#75715e"></span>      	
+      	<span style="color:#75715e">// 若 == 两边是引用类型，那么比较的是他们内存地址是否相等
 </span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo03</span> <span style="color:#f92672">{</span>
@@ -665,7 +669,15 @@
 
         <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> <span style="color:#f92672">++</span>a<span style="color:#f92672">;</span>
         <span style="color:#75715e">//++a  a = a + 1 运算完a = a + 1后再赋值
-</span><span style="color:#75715e"></span>
+</span><span style="color:#75715e"></span>				
+      	<span style="color:#66d9ef">int</span> i1 <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">int</span> i2 <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
+      	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>i1<span style="color:#f92672">++);</span> <span style="color:#75715e">// i++放在输出语句里面，执行流程：1、先取出i的值10 2、执行输出语句，输出10、执行自增1，i变为11
+</span><span style="color:#75715e"></span>      	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(++</span>i2<span style="color:#f92672">);</span> <span style="color:#75715e">// 执行流程：1、先先取出i的值10 2、执行自增1，i变为11，执行输出语句，输出11
+</span><span style="color:#75715e"></span>      	
+        <span style="color:#66d9ef">byte</span> x <span style="color:#f92672">=</span> 128<span style="color:#f92672">;</span>
+      	x<span style="color:#f92672">++;</span> <span style="color:#75715e">// ++隐含强制转换，相当于 x = (byte)(x + 1),所以输出结果为-128溢出了
+</span><span style="color:#75715e"></span>      	
         System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a<span style="color:#f92672">);</span>
         System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>b<span style="color:#f92672">);</span>
         System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c<span style="color:#f92672">);</span>
@@ -740,6 +752,11 @@
         a<span style="color:#f92672">-=</span>b<span style="color:#f92672">;</span><span style="color:#75715e">//a = a - b
 </span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a<span style="color:#f92672">);</span>
 
+      	<span style="color:#75715e">// 赋值运算符有隐含的强制转换
+</span><span style="color:#75715e"></span>      	<span style="color:#66d9ef">byte</span> c <span style="color:#f92672">=</span> 127<span style="color:#f92672">;</span>
+      	c <span style="color:#f92672">+=</span> 1<span style="color:#f92672">;</span> <span style="color:#75715e">//等同于 c = (byte)(c + 1);
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c<span style="color:#f92672">);</span> <span style="color:#75715e">// c = -128 数据溢出，未报错。
+</span><span style="color:#75715e"></span>
         <span style="color:#75715e">//字符串连接符 +
 </span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a<span style="color:#f92672">+</span>b<span style="color:#f92672">);</span>
         System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">+</span>a<span style="color:#f92672">+</span>b<span style="color:#f92672">);</span><span style="color:#75715e">//1020 +左右出现String类型时，自动将后续运算判断成字符串连接符
@@ -749,9 +766,9 @@
 <span style="color:#f92672">}</span>
 </code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo07</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#75715e">//三元运算符 ?,:
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">//x ? y : z  条件 ? 真 : 假
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">//如果x==true，则结果为y，否则为z
+        <span style="color:#75715e">// 三元运算符 ? :
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// x ? y : z  条件 ? 真 : 假
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// 如果x == true，则结果为y，否则为z
 </span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> score <span style="color:#f92672">=</span> 80<span style="color:#f92672">;</span>
         <span style="color:#66d9ef">boolean</span> y <span style="color:#f92672">=</span> score <span style="color:#f92672">&lt;</span> 60 <span style="color:#f92672">?</span> <span style="color:#66d9ef">false</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
         String type <span style="color:#f92672">=</span> score <span style="color:#f92672">&lt;</span> 60 <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;不及格&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;及格&#34;</span><span style="color:#f92672">;</span>
@@ -853,6 +870,8 @@
   
   
   <nav class="post-nav">
+    
+    <a class="prev" href="https://bruisesl.github.io/post/java%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/"><span>←</span><span>Java 流程控制</span></a>
      
     <a class="next" href="https://bruisesl.github.io/post/eclipse%E7%9A%84%E4%BD%BF%E7%94%A8/"><span>开发软件使用相关</span><span>→</span></a>
     
