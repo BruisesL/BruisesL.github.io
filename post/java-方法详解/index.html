@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>Java 方法详解 - Paper</title>
+
+  
+  
+  <meta name="description" content="Java 方法详解 什么是方法 Java 方法是语句的集合，他们在一起执行一个功能
+  方法是解决一类问题的步骤的 有序组合
+  方法包含于 类 或 对象 中
+  方法在程序中被创建，在其他地方被引用
+  System.out.printLn() //System类 里的标准 对象out 中的 方法printLn() **设计方法的原则：**方法的本意是功能块，就是实现某个功能的语句块的集合。我们设计方法的时候，最好保持方法的原子性，即一个方法只完成一个功能，这样利于我们后期的扩展。
+public class Demo { //main方法  public static void main(String[] args) { int sum = add(1,2); System.out.println(sum); System.out.println(&#34;=====================&#34;); test(); } //加法  public static int add(int a,int b){ return a &#43; b; } public static void test(){ int i = 0; while (i &lt; 10) { i&#43;&#43;; System." />
+  <meta name="author" content="BruisesL" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://bruisesl.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/theme.png" />
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/github.svg" />
+  
+
+  
+  <link rel="icon" href="https://bruisesl.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://bruisesl.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.92.2" />
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Java 方法详解" />
+<meta property="og:description" content="Java 方法详解 什么是方法 Java 方法是语句的集合，他们在一起执行一个功能
+  方法是解决一类问题的步骤的 有序组合
+  方法包含于 类 或 对象 中
+  方法在程序中被创建，在其他地方被引用
+  System.out.printLn() //System类 里的标准 对象out 中的 方法printLn() **设计方法的原则：**方法的本意是功能块，就是实现某个功能的语句块的集合。我们设计方法的时候，最好保持方法的原子性，即一个方法只完成一个功能，这样利于我们后期的扩展。
+public class Demo { //main方法  public static void main(String[] args) { int sum = add(1,2); System.out.println(sum); System.out.println(&#34;=====================&#34;); test(); } //加法  public static int add(int a,int b){ return a &#43; b; } public static void test(){ int i = 0; while (i &lt; 10) { i&#43;&#43;; System." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bruisesl.github.io/post/java-%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/" /><meta property="article:section" content="post" />
+
+
+
+
+  
+  <meta itemprop="name" content="Java 方法详解">
+<meta itemprop="description" content="Java 方法详解 什么是方法 Java 方法是语句的集合，他们在一起执行一个功能
+  方法是解决一类问题的步骤的 有序组合
+  方法包含于 类 或 对象 中
+  方法在程序中被创建，在其他地方被引用
+  System.out.printLn() //System类 里的标准 对象out 中的 方法printLn() **设计方法的原则：**方法的本意是功能块，就是实现某个功能的语句块的集合。我们设计方法的时候，最好保持方法的原子性，即一个方法只完成一个功能，这样利于我们后期的扩展。
+public class Demo { //main方法  public static void main(String[] args) { int sum = add(1,2); System.out.println(sum); System.out.println(&#34;=====================&#34;); test(); } //加法  public static int add(int a,int b){ return a &#43; b; } public static void test(){ int i = 0; while (i &lt; 10) { i&#43;&#43;; System.">
+
+<meta itemprop="wordCount" content="577">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java 方法详解"/>
+<meta name="twitter:description" content="Java 方法详解 什么是方法 Java 方法是语句的集合，他们在一起执行一个功能
+  方法是解决一类问题的步骤的 有序组合
+  方法包含于 类 或 对象 中
+  方法在程序中被创建，在其他地方被引用
+  System.out.printLn() //System类 里的标准 对象out 中的 方法printLn() **设计方法的原则：**方法的本意是功能块，就是实现某个功能的语句块的集合。我们设计方法的时候，最好保持方法的原子性，即一个方法只完成一个功能，这样利于我们后期的扩展。
+public class Demo { //main方法  public static void main(String[] args) { int sum = add(1,2); System.out.println(sum); System.out.println(&#34;=====================&#34;); test(); } //加法  public static int add(int a,int b){ return a &#43; b; } public static void test(){ int i = 0; while (i &lt; 10) { i&#43;&#43;; System."/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://bruisesl.github.io">Paper</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
+    
+    <a class="" href="/about/">About</a>
+    
+  </nav>
+  
+
+  
+  <nav class="social">
+    
+    <a
+      class="github"
+      style="--url: url(./github.svg)"
+      href="https://github.com/BruisesL"
+      target="_blank"
+    ></a>
+    
+  </nav>
+  
+</header>
+
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <aside>
+      <time>January 1, 0001</time>
+      
+      <span>BruisesL</span>
+      
+    </aside>
+    <h1>Java 方法详解</h1>
+  </header>
+  <section class="post-content"><h1 id="java-方法详解">Java 方法详解</h1>
+<h2 id="什么是方法">什么是方法</h2>
+<p>Java 方法是语句的集合，他们在一起执行一个功能</p>
+<ul>
+<li>
+<p>方法是解决一类问题的步骤的 <strong>有序组合</strong></p>
+</li>
+<li>
+<p>方法包含于 <strong>类</strong> 或 <strong>对象</strong> 中</p>
+</li>
+<li>
+<p>方法在程序中被创建，在其他地方被引用</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">printLn</span><span style="color:#f92672">()</span>
+  <span style="color:#75715e">//System类 里的标准 对象out 中的 方法printLn()
+</span></code></pre></div><p>**设计方法的原则：**方法的本意是功能块，就是实现某个功能的语句块的集合。我们设计方法的时候，最好保持方法的原子性，<strong>即一个方法只完成一个功能，这样利于我们后期的扩展。</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//main方法
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> add<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span>2<span style="color:#f92672">);</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sum<span style="color:#f92672">);</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;=====================&#34;</span><span style="color:#f92672">);</span>
+        test<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#75715e">//加法
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> a<span style="color:#f92672">,</span><span style="color:#66d9ef">int</span> b<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test</span><span style="color:#f92672">(){</span>
+        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">&lt;</span> 10<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            i<span style="color:#f92672">++;</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">==</span> 3<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="方法的定义及调用">方法的定义及调用</h2>
+<p>Java 是<strong>一段用来完成特定功能的代码片段</strong>，一般情况下，定义一个方法包含以下语法：</p>
+<ul>
+<li>
+<p>方法包含一个<strong>方法头</strong>和一个<strong>方法体</strong>。下面是一个方法的所有部分：</p>
+<ul>
+<li>
+<p>**修饰符：**修饰符，这是可选的，告诉编译器如何调用该方法。定义了该方法的访问类型，例如有<code>public</code>与<code>static</code>等。</p>
+</li>
+<li>
+<p>**返回值类型：**方法可能会返回值。returnValueType 是方法返回值的数据类型。有些方法执行所需的操作，但没有返回值，这种情况下，returnValueType 是关键字 <code>void</code>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo01</span><span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> <span style="color:#a6e22e">getNums</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+
+		<span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>100<span style="color:#f92672">];</span>
+		<span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>i <span style="color:#f92672">&lt;</span> nums<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span>i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+			nums<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)(</span>Math<span style="color:#f92672">.</span><span style="color:#a6e22e">random</span><span style="color:#f92672">()</span> <span style="color:#f92672">*</span> 100 <span style="color:#f92672">+</span> 1<span style="color:#f92672">);</span>
+		<span style="color:#f92672">}</span>
+		<span style="color:#66d9ef">return</span> nums<span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> Demo01<span style="color:#f92672">.</span><span style="color:#a6e22e">getNums</span><span style="color:#f92672">();</span>
+		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">));</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p>**方法名：**是方法的实际名称。方法名和参数表共同构成方法签名。</p>
+</li>
+<li>
+<p>**参数类型：**参数像是一个占位符。当方法被调用时，传递值给参数。这个值称为实参或变量。参数列表是指方法的参数类型、顺序和参数的个数。参数是可选的，方法可以不包含任何参数。</p>
+<ul>
+<li>形参：形式参数，用于定义方法的时候使用的参数，是用来接收调用者传递的参数的。 形参只有在方法被调用的时候，虚拟机才会分配内存单元，在方法调用结束之后便会释放所分配的内存单元。 因此,形参只在方法内部有效，所以针对引用对象的改动也无法影响到方法外。</li>
+<li>实参：实际参数，用于调用时传递给方法的参数。实参在传递给别的方法之前是要被预先赋值的。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//例，形参
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> a<span style="color:#f92672">,</span><span style="color:#66d9ef">int</span> b<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">//例，实参
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> add<span style="color:#f92672">(</span>a<span style="color:#f92672">:</span>1<span style="color:#f92672">,</span>b<span style="color:#f92672">:</span>2<span style="color:#f92672">)</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo02</span><span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getSum</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+		<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">:</span> arr<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+			sum <span style="color:#f92672">+=</span> i<span style="color:#f92672">;</span>
+		<span style="color:#f92672">}</span>
+		<span style="color:#66d9ef">return</span> sum<span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>1<span style="color:#f92672">,</span>2<span style="color:#f92672">,</span>3<span style="color:#f92672">,</span>4<span style="color:#f92672">};</span>
+		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Demo02<span style="color:#f92672">.</span><span style="color:#a6e22e">getSum</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">));</span>
+		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Demo02<span style="color:#f92672">.</span><span style="color:#a6e22e">getSum</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> <span style="color:#f92672">{</span>1<span style="color:#f92672">,</span>2<span style="color:#f92672">,</span>3<span style="color:#f92672">,</span>4<span style="color:#f92672">}));</span> <span style="color:#75715e">// 直接输出时在参数位置直接new一个数组也可做到调用，不推荐
+</span><span style="color:#75715e"></span>	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p>**方法体：**方法体包含具体的语句，定义该方法的功能。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo03</span>  <span style="color:#f92672">{</span>
+    <span style="color:#75715e">// 方法的命名：修饰符 + 返回值类型 + 方法名 + 形参列表 + 方法体
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">getSum</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// 声明方法为getSum，void是返回值类型  （是没有返回值的返回类型）
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 11<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            sum <span style="color:#f92672">+=</span> i<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sum<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>方法的调用</p>
+<p>看调用方法**是否有<code>static</code>**修饰：</p>
+<ol>
+<li>
+<p>有<code>static</code>修饰，访问用：当前类名.方法名(实参(变量/值));</p>
+</li>
+<li>
+<p>没有<code>static</code>修饰，访问 用：当前类的对象名.方法名(实参(变量/值));</p>
+</li>
+<li>
+<p>如果调用方（目前是指main方法）和被调用方都在同一个类中，且都有或者都没有<code>static</code>修饰，可以简写为：<strong>方法名(实参(变量/值))</strong>;</p>
+</li>
+</ol>
+<p>注1：调用方法的时候，传入的参数数量、数据类型、顺序必须和 声明方法的一致</p>
+<p>注2：<strong><code>static</code>修饰的方法</strong>中<strong>不能</strong>直接调用<strong>非<code>static</code>修饰的方法</strong>，但是<strong>非<code>static</code>方法</strong>中<strong>可以</strong>调用**<code>static</code>修饰的方法**</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo02</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">// 方法的命名：修饰符 + 返回值类型 + 方法名 + 形参列表 + 方法体
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">getSum</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// 声明方法为getSum，void是返回值类型（是没有返回值的返回类型）
+</span><span style="color:#75715e"></span>
+        <span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 11<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            sum <span style="color:#f92672">+=</span> i<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sum<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+       getSum<span style="color:#f92672">();</span> <span style="color:#75715e">// 在main函数内直接调用同static修饰符的方法getSum()
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+</ul>
+<h2 id="方法重载">方法重载</h2>
+<p>重载(overloading) 是在<strong>同一个类</strong>里面，<strong>方法名相同</strong>，而<strong>参数不同</strong>（参数个数 / 类型 / 顺序不同）。返回类型可以相同也可以不同。每个重载的方法（或者构造函数）都必须有一个独一无二的参数类型列表。最常用的地方就是构造器的重载。</p>
+<p>方法重载的目的是，功能类似的方法使用同一名字，更容易记住，因此，调用起来更简单。</p>
+<p><strong>使用：</strong></p>
+<ul>
+<li>声明方法的时候，写不同的形参即可。</li>
+<li>调用方法的时候，程序会根据参数数量、类型、顺序自动匹配调用。</li>
+</ul>
+<p><strong>重载规则:</strong></p>
+<ol>
+<li>
+<p>被重载的方法<strong>必须改变</strong>参数列表（参数个数或类型不一样）；</p>
+</li>
+<li>
+<p>被重载的方法可以改变返回类型（方法重载的返回值类型通常都是相同的）；</p>
+</li>
+<li>
+<p>被重载的方法可以改变访问修饰符；</p>
+</li>
+<li>
+<p>被重载的方法可以声明新的或更广的检查异常；</p>
+</li>
+<li>
+<p>方法能够在<strong>同一个类中</strong>或者<strong>在一个子类中</strong>被重载；</p>
+</li>
+<li>
+<p>无法以返回值类型作为重载函数的区分标准。</p>
+</li>
+</ol>
+<p>**注：**调用方法时如果匹配不上参数类型，会自动转型（例如long类型自动向double类型转换，即实参为long类型，可以匹配上形参为double类型的方法），若转型后仍无法匹配，则会报错。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo</span><span style="color:#f92672">{</span>
+  <span style="color:#75715e">// 方法1，用于将两个int类型的数相加
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> a<span style="color:#f92672">,</span><span style="color:#66d9ef">int</span> b<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b<span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+  <span style="color:#75715e">// 方法3，用于将三个double类型的数相加
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">double</span> a<span style="color:#f92672">,</span><span style="color:#66d9ef">double</span> b<span style="color:#f92672">,</span><span style="color:#66d9ef">double</span> c<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b <span style="color:#f92672">+</span> c<span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>add<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> 3<span style="color:#f92672">));</span> <span style="color:#75715e">// 调用第一个返回值为int类型的方法
+</span><span style="color:#75715e"></span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>add<span style="color:#f92672">(</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">6</span><span style="color:#f92672">,</span> 9<span style="color:#f92672">.</span><span style="color:#a6e22e">89</span><span style="color:#f92672">,</span> 11<span style="color:#f92672">.</span><span style="color:#a6e22e">3245</span><span style="color:#f92672">));</span> <span style="color:#75715e">// 调用第二个返回值为double类型的方法
+</span><span style="color:#75715e"></span>	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="可变参数">可变参数</h2>
+<p>可变参数是支持传递<strong>同类型</strong>的可变参数给一个方法，相当于<strong>数组类型</strong>。且<strong>一个方法</strong>中只能指定<strong>一个可变参数</strong>，它必须是方法的<strong>最后一个参数</strong>。任何普通的参数必须在它之前声明。在方法声明中，在指定参数类型后加一个省略号(&hellip;) 。</p>
+<p>方法的可变参数的声明如下所示：</p>
+<p><code>typeName... parameterName</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo</span><span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getSum</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">...</span> nums<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+		<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> n <span style="color:#f92672">:</span> nums<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+			sum <span style="color:#f92672">+=</span> n<span style="color:#f92672">;</span>
+		<span style="color:#f92672">}</span>
+		<span style="color:#66d9ef">return</span> sum<span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Demo<span style="color:#f92672">.</span><span style="color:#a6e22e">getSum</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span>1<span style="color:#f92672">,</span>2<span style="color:#f92672">,</span>3<span style="color:#f92672">));</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="方法的执行流程">方法的执行流程</h2>
+<p>方法执行时遵循一定的规律，这个规律就是方法的执行流程，以如下代码实例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo</span><span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">getSum</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> a<span style="color:#f92672">,</span><span style="color:#66d9ef">int</span> b<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a <span style="color:#f92672">+</span> b<span style="color:#f92672">);</span>
+	<span style="color:#f92672">}</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		Demo<span style="color:#f92672">.</span><span style="color:#a6e22e">getSum</span><span style="color:#f92672">(</span>10<span style="color:#f92672">,</span> 20 <span style="color:#f92672">);</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ol>
+<li>
+<p>首先进入<code>main</code>方法，在栈内存开辟栈帧；</p>
+</li>
+<li>
+<p>将<code>Demo.getSum(10, 20); </code>放入<code>main</code>方法的栈帧；</p>
+</li>
+<li>
+<p>开辟<code>getSum</code>方法的栈帧；</p>
+</li>
+<li>
+<p>在<code>Demo</code>类中找<code>getSum(int a,int b)</code>方法；</p>
+</li>
+<li>
+<p>为形参赋值<code>a = 10;</code> <code>b=20;</code></p>
+</li>
+<li>
+<p>执行方法代码里的<code>System.out.println(10 + 20);</code> 输出结果30；</p>
+</li>
+<li>
+<p><code>getSum </code>方法执行完毕，出栈回到 <code>main</code>方法的栈帧；</p>
+</li>
+<li>
+<p><code>main</code>方法结束， 出栈。</p>
+</li>
+</ol>
+<p><img src="/%E6%96%B9%E6%B3%95%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.jpg" alt="方法的执行流程"></p>
+<h2 id="值传递与址传递">值传递与址传递</h2>
+<p>值传递概念：值传递是指在调用函数时将<strong>实际参数</strong>复制一份传递到函数中，这样在函数中如果对参数进行修改，将<strong>不会影响</strong>到实际参数。基础数据类型均为值传递。</p>
+<p>在方法的调用过程中，实参把它的实际值传递给形参，此传递过程就是将实参的值复制一份传递到函数中，这样如果在函数中对该值（形参的值）进行了操作将不会影响实参的值。因为是直接复制，所以这种方式在传递大量数据时，运行效率会特别低下。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> num <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span> <span style="color:#75715e">// 实际参数
+</span><span style="color:#75715e"></span>        test<span style="color:#f92672">(</span>num<span style="color:#f92672">);</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>num<span style="color:#f92672">);</span> <span style="color:#75715e">// num的值没有被改变，任然为10；
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+    <span style="color:#75715e">// 测试值传递的方法
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> num<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        num <span style="color:#f92672">=</span> num <span style="color:#f92672">+</span> 19<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>引用传递：所谓引用传递是指在调用函数时将<strong>实际参数的地址</strong>传递到函数中，那么在函数中对参数所进行的修改，将<strong>影响</strong>到实际参数。引用类型均为引用传递。</p>
+<p>引用传递弥补了值传递的不足，如果传递的数据量很大，直接复过去的话，会占用大量的内存空间，而引用传递就是将对象的地址值传递过去，函数接收的是原始值的首地址值。在方法的执行过程中，形参和实参的内容 相同，指向同一块内存地址，也就是说操作的其实都是源数据，所以方法的执行将会影响到实际对象。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>1<span style="color:#f92672">,</span> 1<span style="color:#f92672">,</span> 1<span style="color:#f92672">};</span> <span style="color:#75715e">// 实际参数
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>nums<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">+</span>  <span style="color:#e6db74">&#34;\t&#34;</span> <span style="color:#f92672">+</span> nums<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\t&#34;</span> <span style="color:#f92672">+</span> nums<span style="color:#f92672">[</span>2<span style="color:#f92672">]);</span> <span style="color:#75715e">// 结果为 1 1	1
+</span><span style="color:#75715e"></span>        test<span style="color:#f92672">(</span>nums<span style="color:#f92672">);</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>nums<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">+</span>  <span style="color:#e6db74">&#34;\t&#34;</span> <span style="color:#f92672">+</span> nums<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\t&#34;</span> <span style="color:#f92672">+</span> nums<span style="color:#f92672">[</span>2<span style="color:#f92672">]);</span> <span style="color:#75715e">// 结果为 2 2	2
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+    <span style="color:#75715e">// 测试引用传递的方法
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        nums<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 2<span style="color:#f92672">;</span>
+        nums<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 2<span style="color:#f92672">;</span>
+        nums<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 2<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></section>
+
+  
+  
+
+  
+  
+  
+  <nav class="post-nav">
+    
+    <a class="prev" href="https://bruisesl.github.io/post/%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"><span>←</span><span>问题及解决办法</span></a>
+     
+  </nav>
+  
+
+  
+  
+</article>
+
+</main>
+
+    <footer class="footer">
+  <p>&copy; 2023 <a href="https://bruisesl.github.io">Paper</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
+
+  </body>
+</html>

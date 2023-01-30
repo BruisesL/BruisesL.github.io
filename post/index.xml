@@ -182,5 +182,19 @@ cd /Users/your_user_name/.ssh 输入命令（其中 your_email@example.com 替�
 ssh-keygen -t rsa -b 2048 -C &amp;quot;your_email@example.</description>
     </item>
     
+    <item>
+      <title>Java 方法详解</title>
+      <link>https://bruisesl.github.io/post/java-%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/java-%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/</guid>
+      <description>Java 方法详解 什么是方法 Java 方法是语句的集合，他们在一起执行一个功能
+  方法是解决一类问题的步骤的 有序组合
+  方法包含于 类 或 对象 中
+  方法在程序中被创建，在其他地方被引用
+  System.out.printLn() //System类 里的标准 对象out 中的 方法printLn() **设计方法的原则：**方法的本意是功能块，就是实现某个功能的语句块的集合。我们设计方法的时候，最好保持方法的原子性，即一个方法只完成一个功能，这样利于我们后期的扩展。
+public class Demo { //main方法  public static void main(String[] args) { int sum = add(1,2); System.out.println(sum); System.out.println(&amp;#34;=====================&amp;#34;); test(); } //加法  public static int add(int a,int b){ return a + b; } public static void test(){ int i = 0; while (i &amp;lt; 10) { i++; System.</description>
+    </item>
+    
   </channel>
 </rss>
