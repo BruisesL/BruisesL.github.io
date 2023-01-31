@@ -7,7 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2008–2019, Steve Francia and the lee.so; all rights reserved.</copyright>
-    <lastBuildDate>Mon, 09 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 14 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java 方法详解</title>
+      <link>https://bruisesl.github.io/post/java-%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Sat, 14 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/java-%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/</guid>
+      <description>Java 方法详解 什么是方法 Java 方法是语句的集合，他们在一起执行一个功能
+  方法是解决一类问题的步骤的 有序组合
+  方法包含于 类 或 对象 中
+  方法在程序中被创建，在其他地方被引用
+  System.out.printLn() //System类 里的标准 对象out 中的 方法printLn() **设计方法的原则：**方法的本意是功能块，就是实现某个功能的语句块的集合。我们设计方法的时候，最好保持方法的原子性，即一个方法只完成一个功能，这样利于我们后期的扩展。
+public class Demo { //main方法  public static void main(String[] args) { int sum = add(1,2); System.out.println(sum); System.out.println(&amp;#34;=====================&amp;#34;); test(); } //加法  public static int add(int a,int b){ return a + b; } public static void test(){ int i = 0; while (i &amp;lt; 10) { i++; System.</description>
+    </item>
+    
     <item>
       <title>Java 流程控制</title>
       <link>https://bruisesl.github.io/post/java%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/</link>
@@ -110,6 +124,27 @@ Java开发环境搭建   JDK下载、安装与卸载</description>
     </item>
     
     <item>
+      <title>数据结构</title>
+      <link>https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+      <description>数组 「数组 Array」是一种将 相同类型元素 存储在 连续内存空间 的数据结构，将元素在数组中的位置称为元素的「索引 Index」。
+  数组名 ：数组的名字
+  数组元素：就是存放在数组里面的数据
+  数组索引：就是数组里面连续存储空间的编号，从0开始。而从0开始的原因是根据地址计算公式，索引本质上表示的是内存地址偏移量，首个元素的地址偏移量是 0 ，所以索引值也是 0 。
+  length ：数组的属性长度，数组名.length拿到数组的长度
+    数组的声明：数据类型[] 数组名
+int[] ages; // 声明一个int类型的数组ages，数组内元素均为int类型 String[] names；// 声明一个String类型的数组names，数组内元素均为String类型 // 也可以用 int ages[]声明，但是不推荐   数组的赋值与取值：
+数组在定义后，必须**初始化「赋值」**才能使用。所谓初始化，就是在堆内存中给数组分配存储空间，并为每一 个元素赋上初始值，有两种方式：
+  动态创建：
+**语法 ：**数据类型[] 数组名 = new 数据类型[长度] ，长度不能为负数，默认是int类型，最大就是int最大值。
+int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度3   静态创建：
+**语法：**第一个方式是常用方式，第二个方式作为了解。
+数据类型[] 数组名 = {值1, 值2, 值3&amp;hellip;.</description>
+    </item>
+    
+    <item>
       <title>算法</title>
       <link>https://bruisesl.github.io/post/%E7%AE%97%E6%B3%95/</link>
       <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
@@ -179,41 +214,6 @@ ssh-keygen -t rsa -b 2048 -C &amp;quot;your_email@example.</description>
       <description>Written in Go, Hugo is an open source static site generator available under the Apache Licence 2.0. Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
 Hugo makes use of a variety of open source projects including:
  https://github.</description>
-    </item>
-    
-    <item>
-      <title>Java 方法详解</title>
-      <link>https://bruisesl.github.io/post/java-%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://bruisesl.github.io/post/java-%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/</guid>
-      <description>Java 方法详解 什么是方法 Java 方法是语句的集合，他们在一起执行一个功能
-  方法是解决一类问题的步骤的 有序组合
-  方法包含于 类 或 对象 中
-  方法在程序中被创建，在其他地方被引用
-  System.out.printLn() //System类 里的标准 对象out 中的 方法printLn() **设计方法的原则：**方法的本意是功能块，就是实现某个功能的语句块的集合。我们设计方法的时候，最好保持方法的原子性，即一个方法只完成一个功能，这样利于我们后期的扩展。
-public class Demo { //main方法  public static void main(String[] args) { int sum = add(1,2); System.out.println(sum); System.out.println(&amp;#34;=====================&amp;#34;); test(); } //加法  public static int add(int a,int b){ return a + b; } public static void test(){ int i = 0; while (i &amp;lt; 10) { i++; System.</description>
-    </item>
-    
-    <item>
-      <title>数据结构</title>
-      <link>https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
-      <description>数组 「数组 Array」是一种将 相同类型元素 存储在 连续内存空间 的数据结构，将元素在数组中的位置称为元素的「索引 Index」。
-  数组名 ：数组的名字
-  数组元素：就是存放在数组里面的数据
-  数组索引：就是数组里面连续存储空间的编号，从0开始。而从0开始的原因是根据地址计算公式，索引本质上表示的是内存地址偏移量，首个元素的地址偏移量是 0 ，所以索引值也是 0 。
-  length ：数组的属性长度，数组名.length拿到数组的长度
-    数组的声明：数据类型[] 数组名
-int[] ages; // 声明一个int类型的数组ages，数组内元素均为int类型 String[] names；// 声明一个String类型的数组names，数组内元素均为String类型 // 也可以用 int ages[]声明，但是不推荐   数组的赋值与取值：
-数组在定义后，必须**初始化「赋值」**才能使用。所谓初始化，就是在堆内存中给数组分配存储空间，并为每一 个元素赋上初始值，有两种方式：
-  动态创建：
-**语法 ：**数据类型[] 数组名 = new 数据类型[长度] ，长度不能为负数，默认是int类型，最大就是int最大值。
-int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度3   静态创建：
-**语法：**第一个方式是常用方式，第二个方式作为了解。
-数据类型[] 数组名 = {值1, 值2, 值3&amp;hellip;.</description>
     </item>
     
   </channel>
