@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>类、对象与构造方法 - Paper</title>
+
+  
+  
+  <meta name="description" content="面向对象 面向对象：面向对象(Object Oriented)是软件开发方法，一种编程范式。把数据及对数据的操作方法放在一起，作为一个相互依存的整体——对象。对同类对象抽象出其共性，形成类。类中的大多数数据，只能用本类的方法进行处理。类通过一个简单的外部接口与外界发生关系，对象与对象之间通过消息进行通信。程序流程由用户在使用中决定。对象即为人对各种具体物体抽象后的一个概念，人们每天都要接触各种各样的对象，如手机就是一个对象。
+   项目名称 面向对象程序设计 面向过程程序设计（也叫结构化编程）     定义 面向对象顾名思义就是把现实中的事务都抽象成为程序设计中的“对象”，其基本思想是一切皆对象，是一种“自下而上”的设计语言，先设计组件，再完成拼装。 面向过程是“自上而下”的设计语言，先定好框架，再增砖添瓦。通俗点，就是先定好main()函数，然后再逐步实现mian()函数中所要用到的其他方法。   特点 封装、继承、多态 算法&#43;数据结构   优势 适用于大型复杂系统，方便复用、 适用于简单系统，容易理解   劣势 比较抽象、性能比面向过程低 难以应对复杂系统，难以复用，不易维护、不易扩展   对比 易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统 更加灵活、更加易于维护 性能比面向对象高，因为类调用时需要实例化，开销比较大，比较消耗资源;比如单片机、嵌入式开发、 Linux/Unix等一般采用面向过程开发，性能是最重要的因素。   设计语言 Java、Smalltalk、EIFFEL、C&#43;&#43;、Objective-、C#、Python等 C、Fortran    面向对象的基本特性
+  **唯一：**每个对象都有自身唯一的标识，通过这种标识，可找到相应的对象。在对象的整个生命期中，它的标识都不改变，不同的对象不能有相同的标识。
+  **抽象：**抽象性是指将具有一致的数据结构（属性）和行为（操作）的对象抽象成类。一个类就是这样一种抽象，它反映了与应用有关的重要性质，而忽略其他一些无关内容。任何类的划分都是主观的，但必须与具体的应用有关。
+  **继承：**继承性是子类自动共享父类数据结构和方法的机制，这是类之间的一种关系。在定义和实现一个类的时候，可以在一个已经存在的类的基础之上来进行，把这个已经存在的类所定义的内容作为自己的内容，并加入若干新的内容。
+继承性是面向对象程序设计语言不同于其它语言的最重要的特点，是其他语言所没有的。
+在类层次中，子类只继承一个父类的数据结构和方法，则称为单重继承。
+在类层次中，子类继承了多个父类的数据结构和方法，则称为多重继承，Java仅支持单继承，C&#43;&#43;支持均支持。
+在软件开发中，类的继承性使所建立的软件具有开放性、可扩充性，这是信息组织与分类的行之有效的方法，它简化了对象、类的创建工作量，增加了代码的可重用性。
+  **多态：**多态性是指相同的操作或函数、过程可作用于多种类型的对象上并获得不同的结果。不同的对象，收到同一消息可以产生不同的结果，这种现象称为多态性。
+多态性允许每个对象以适合自身的方式去响应共同的消息。
+多态性增强了软件的灵活性和重用性。
+  类与对象 类(Class) 用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。" />
+  <meta name="author" content="BruisesL" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://bruisesl.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/theme.png" />
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/github.svg" />
+  
+
+  
+  <link rel="icon" href="https://bruisesl.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://bruisesl.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.92.2" />
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="类、对象与构造方法" />
+<meta property="og:description" content="面向对象 面向对象：面向对象(Object Oriented)是软件开发方法，一种编程范式。把数据及对数据的操作方法放在一起，作为一个相互依存的整体——对象。对同类对象抽象出其共性，形成类。类中的大多数数据，只能用本类的方法进行处理。类通过一个简单的外部接口与外界发生关系，对象与对象之间通过消息进行通信。程序流程由用户在使用中决定。对象即为人对各种具体物体抽象后的一个概念，人们每天都要接触各种各样的对象，如手机就是一个对象。
+   项目名称 面向对象程序设计 面向过程程序设计（也叫结构化编程）     定义 面向对象顾名思义就是把现实中的事务都抽象成为程序设计中的“对象”，其基本思想是一切皆对象，是一种“自下而上”的设计语言，先设计组件，再完成拼装。 面向过程是“自上而下”的设计语言，先定好框架，再增砖添瓦。通俗点，就是先定好main()函数，然后再逐步实现mian()函数中所要用到的其他方法。   特点 封装、继承、多态 算法&#43;数据结构   优势 适用于大型复杂系统，方便复用、 适用于简单系统，容易理解   劣势 比较抽象、性能比面向过程低 难以应对复杂系统，难以复用，不易维护、不易扩展   对比 易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统 更加灵活、更加易于维护 性能比面向对象高，因为类调用时需要实例化，开销比较大，比较消耗资源;比如单片机、嵌入式开发、 Linux/Unix等一般采用面向过程开发，性能是最重要的因素。   设计语言 Java、Smalltalk、EIFFEL、C&#43;&#43;、Objective-、C#、Python等 C、Fortran    面向对象的基本特性
+  **唯一：**每个对象都有自身唯一的标识，通过这种标识，可找到相应的对象。在对象的整个生命期中，它的标识都不改变，不同的对象不能有相同的标识。
+  **抽象：**抽象性是指将具有一致的数据结构（属性）和行为（操作）的对象抽象成类。一个类就是这样一种抽象，它反映了与应用有关的重要性质，而忽略其他一些无关内容。任何类的划分都是主观的，但必须与具体的应用有关。
+  **继承：**继承性是子类自动共享父类数据结构和方法的机制，这是类之间的一种关系。在定义和实现一个类的时候，可以在一个已经存在的类的基础之上来进行，把这个已经存在的类所定义的内容作为自己的内容，并加入若干新的内容。
+继承性是面向对象程序设计语言不同于其它语言的最重要的特点，是其他语言所没有的。
+在类层次中，子类只继承一个父类的数据结构和方法，则称为单重继承。
+在类层次中，子类继承了多个父类的数据结构和方法，则称为多重继承，Java仅支持单继承，C&#43;&#43;支持均支持。
+在软件开发中，类的继承性使所建立的软件具有开放性、可扩充性，这是信息组织与分类的行之有效的方法，它简化了对象、类的创建工作量，增加了代码的可重用性。
+  **多态：**多态性是指相同的操作或函数、过程可作用于多种类型的对象上并获得不同的结果。不同的对象，收到同一消息可以产生不同的结果，这种现象称为多态性。
+多态性允许每个对象以适合自身的方式去响应共同的消息。
+多态性增强了软件的灵活性和重用性。
+  类与对象 类(Class) 用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bruisesl.github.io/post/%E7%B1%BB%E5%AF%B9%E8%B1%A1%E4%B8%8E%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/" /><meta property="article:section" content="post" />
+
+
+
+
+  
+  <meta itemprop="name" content="类、对象与构造方法">
+<meta itemprop="description" content="面向对象 面向对象：面向对象(Object Oriented)是软件开发方法，一种编程范式。把数据及对数据的操作方法放在一起，作为一个相互依存的整体——对象。对同类对象抽象出其共性，形成类。类中的大多数数据，只能用本类的方法进行处理。类通过一个简单的外部接口与外界发生关系，对象与对象之间通过消息进行通信。程序流程由用户在使用中决定。对象即为人对各种具体物体抽象后的一个概念，人们每天都要接触各种各样的对象，如手机就是一个对象。
+   项目名称 面向对象程序设计 面向过程程序设计（也叫结构化编程）     定义 面向对象顾名思义就是把现实中的事务都抽象成为程序设计中的“对象”，其基本思想是一切皆对象，是一种“自下而上”的设计语言，先设计组件，再完成拼装。 面向过程是“自上而下”的设计语言，先定好框架，再增砖添瓦。通俗点，就是先定好main()函数，然后再逐步实现mian()函数中所要用到的其他方法。   特点 封装、继承、多态 算法&#43;数据结构   优势 适用于大型复杂系统，方便复用、 适用于简单系统，容易理解   劣势 比较抽象、性能比面向过程低 难以应对复杂系统，难以复用，不易维护、不易扩展   对比 易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统 更加灵活、更加易于维护 性能比面向对象高，因为类调用时需要实例化，开销比较大，比较消耗资源;比如单片机、嵌入式开发、 Linux/Unix等一般采用面向过程开发，性能是最重要的因素。   设计语言 Java、Smalltalk、EIFFEL、C&#43;&#43;、Objective-、C#、Python等 C、Fortran    面向对象的基本特性
+  **唯一：**每个对象都有自身唯一的标识，通过这种标识，可找到相应的对象。在对象的整个生命期中，它的标识都不改变，不同的对象不能有相同的标识。
+  **抽象：**抽象性是指将具有一致的数据结构（属性）和行为（操作）的对象抽象成类。一个类就是这样一种抽象，它反映了与应用有关的重要性质，而忽略其他一些无关内容。任何类的划分都是主观的，但必须与具体的应用有关。
+  **继承：**继承性是子类自动共享父类数据结构和方法的机制，这是类之间的一种关系。在定义和实现一个类的时候，可以在一个已经存在的类的基础之上来进行，把这个已经存在的类所定义的内容作为自己的内容，并加入若干新的内容。
+继承性是面向对象程序设计语言不同于其它语言的最重要的特点，是其他语言所没有的。
+在类层次中，子类只继承一个父类的数据结构和方法，则称为单重继承。
+在类层次中，子类继承了多个父类的数据结构和方法，则称为多重继承，Java仅支持单继承，C&#43;&#43;支持均支持。
+在软件开发中，类的继承性使所建立的软件具有开放性、可扩充性，这是信息组织与分类的行之有效的方法，它简化了对象、类的创建工作量，增加了代码的可重用性。
+  **多态：**多态性是指相同的操作或函数、过程可作用于多种类型的对象上并获得不同的结果。不同的对象，收到同一消息可以产生不同的结果，这种现象称为多态性。
+多态性允许每个对象以适合自身的方式去响应共同的消息。
+多态性增强了软件的灵活性和重用性。
+  类与对象 类(Class) 用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。">
+
+<meta itemprop="wordCount" content="255">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="类、对象与构造方法"/>
+<meta name="twitter:description" content="面向对象 面向对象：面向对象(Object Oriented)是软件开发方法，一种编程范式。把数据及对数据的操作方法放在一起，作为一个相互依存的整体——对象。对同类对象抽象出其共性，形成类。类中的大多数数据，只能用本类的方法进行处理。类通过一个简单的外部接口与外界发生关系，对象与对象之间通过消息进行通信。程序流程由用户在使用中决定。对象即为人对各种具体物体抽象后的一个概念，人们每天都要接触各种各样的对象，如手机就是一个对象。
+   项目名称 面向对象程序设计 面向过程程序设计（也叫结构化编程）     定义 面向对象顾名思义就是把现实中的事务都抽象成为程序设计中的“对象”，其基本思想是一切皆对象，是一种“自下而上”的设计语言，先设计组件，再完成拼装。 面向过程是“自上而下”的设计语言，先定好框架，再增砖添瓦。通俗点，就是先定好main()函数，然后再逐步实现mian()函数中所要用到的其他方法。   特点 封装、继承、多态 算法&#43;数据结构   优势 适用于大型复杂系统，方便复用、 适用于简单系统，容易理解   劣势 比较抽象、性能比面向过程低 难以应对复杂系统，难以复用，不易维护、不易扩展   对比 易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统 更加灵活、更加易于维护 性能比面向对象高，因为类调用时需要实例化，开销比较大，比较消耗资源;比如单片机、嵌入式开发、 Linux/Unix等一般采用面向过程开发，性能是最重要的因素。   设计语言 Java、Smalltalk、EIFFEL、C&#43;&#43;、Objective-、C#、Python等 C、Fortran    面向对象的基本特性
+  **唯一：**每个对象都有自身唯一的标识，通过这种标识，可找到相应的对象。在对象的整个生命期中，它的标识都不改变，不同的对象不能有相同的标识。
+  **抽象：**抽象性是指将具有一致的数据结构（属性）和行为（操作）的对象抽象成类。一个类就是这样一种抽象，它反映了与应用有关的重要性质，而忽略其他一些无关内容。任何类的划分都是主观的，但必须与具体的应用有关。
+  **继承：**继承性是子类自动共享父类数据结构和方法的机制，这是类之间的一种关系。在定义和实现一个类的时候，可以在一个已经存在的类的基础之上来进行，把这个已经存在的类所定义的内容作为自己的内容，并加入若干新的内容。
+继承性是面向对象程序设计语言不同于其它语言的最重要的特点，是其他语言所没有的。
+在类层次中，子类只继承一个父类的数据结构和方法，则称为单重继承。
+在类层次中，子类继承了多个父类的数据结构和方法，则称为多重继承，Java仅支持单继承，C&#43;&#43;支持均支持。
+在软件开发中，类的继承性使所建立的软件具有开放性、可扩充性，这是信息组织与分类的行之有效的方法，它简化了对象、类的创建工作量，增加了代码的可重用性。
+  **多态：**多态性是指相同的操作或函数、过程可作用于多种类型的对象上并获得不同的结果。不同的对象，收到同一消息可以产生不同的结果，这种现象称为多态性。
+多态性允许每个对象以适合自身的方式去响应共同的消息。
+多态性增强了软件的灵活性和重用性。
+  类与对象 类(Class) 用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。"/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://bruisesl.github.io">Paper</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
+    
+    <a class="" href="/about/">About</a>
+    
+  </nav>
+  
+
+  
+  <nav class="social">
+    
+    <a
+      class="github"
+      style="--url: url(./github.svg)"
+      href="https://github.com/BruisesL"
+      target="_blank"
+    ></a>
+    
+  </nav>
+  
+</header>
+
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <aside>
+      <time>January 1, 0001</time>
+      
+      <span>BruisesL</span>
+      
+    </aside>
+    <h1>类、对象与构造方法</h1>
+  </header>
+  <section class="post-content"><h2 id="面向对象">面向对象</h2>
+<p>面向对象：面向对象(Object Oriented)是软件开发方法，一种编程范式。把<strong>数据</strong>及对<strong>数据的操作方法</strong>放在一起，作为一个相互依存的整体——对象。对同类对象抽象出其<strong>共性</strong>，形成<strong>类</strong>。类中的大多数数据，只能用本类的方法进行处理。类通过一个简单的<strong>外部接口</strong>与外界发生关系，对象与对象之间通过消息进行通信。程序流程由用户在使用中决定。<strong>对象即为人对各种具体物体抽象后的一个概念</strong>，人们每天都要接触各种各样的对象，如手机就是一个对象。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">项目名称</th>
+<th style="text-align:center">面向对象程序设计</th>
+<th style="text-align:center">面向过程程序设计（也叫结构化编程）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">定义</td>
+<td style="text-align:center">面向对象顾名思义就是把现实中的事务都抽象成为程序设计中的“对象”，其基本思想是一切皆对象，是一种“自下而上”的设计语言，先设计组件，再完成拼装。</td>
+<td style="text-align:center">面向过程是“自上而下”的设计语言，先定好框架，再增砖添瓦。通俗点，就是先定好main()函数，然后再逐步实现mian()函数中所要用到的其他方法。</td>
+</tr>
+<tr>
+<td style="text-align:center">特点</td>
+<td style="text-align:center">封装、继承、多态</td>
+<td style="text-align:center">算法+数据结构</td>
+</tr>
+<tr>
+<td style="text-align:center">优势</td>
+<td style="text-align:center">适用于大型复杂系统，方便复用、</td>
+<td style="text-align:center">适用于简单系统，容易理解</td>
+</tr>
+<tr>
+<td style="text-align:center">劣势</td>
+<td style="text-align:center">比较抽象、性能比面向过程低</td>
+<td style="text-align:center">难以应对复杂系统，难以复用，不易维护、不易扩展</td>
+</tr>
+<tr>
+<td style="text-align:center">对比</td>
+<td style="text-align:center">易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统 更加灵活、更加易于维护</td>
+<td style="text-align:center">性能比面向对象高，因为类调用时需要实例化，开销比较大，比较消耗资源;比如单片机、嵌入式开发、 Linux/Unix等一般采用面向过程开发，性能是最重要的因素。</td>
+</tr>
+<tr>
+<td style="text-align:center">设计语言</td>
+<td style="text-align:center">Java、Smalltalk、EIFFEL、C++、Objective-、C#、Python等</td>
+<td style="text-align:center">C、Fortran</td>
+</tr>
+</tbody>
+</table>
+<p>面向对象的<strong>基本特性</strong></p>
+<ul>
+<li>
+<p>**唯一：**每个对象都有自身唯一的标识，通过这种标识，可找到相应的对象。在对象的整个生命期中，它的标识都不改变，不同的对象不能有相同的标识。</p>
+</li>
+<li>
+<p>**抽象：**抽象性是指将具有一致的数据结构（属性）和行为（操作）的对象抽象成类。一个类就是这样一种抽象，它反映了与应用有关的重要性质，而忽略其他一些无关内容。任何类的划分都是主观的，但必须与具体的应用有关。</p>
+</li>
+<li>
+<p>**继承：**继承性是子类自动共享父类数据结构和方法的机制，这是类之间的一种关系。在定义和实现一个类的时候，可以在一个已经存在的类的基础之上来进行，把这个已经存在的类所定义的内容作为自己的内容，并加入若干新的内容。</p>
+<p>继承性是面向对象程序设计语言不同于其它语言的最重要的特点，是其他语言所没有的。</p>
+<p>在类层次中，子类只继承一个父类的数据结构和方法，则称为<strong>单重继承</strong>。</p>
+<p>在类层次中，子类继承了多个父类的数据结构和方法，则称为<strong>多重继承</strong>，Java仅支持单继承，C++支持均支持。</p>
+<p>在软件开发中，类的继承性使所建立的软件具有开放性、可扩充性，这是信息组织与分类的行之有效的方法，它简化了对象、类的创建工作量，增加了代码的可重用性。</p>
+</li>
+<li>
+<p>**多态：**多态性是指相同的操作或函数、过程可作用于多种类型的对象上并获得不同的结果。不同的对象，收到同一消息可以产生不同的结果，这种现象称为多态性。</p>
+<p>多态性允许每个对象以适合自身的方式去响应共同的消息。</p>
+<p>多态性增强了软件的灵活性和重用性。</p>
+</li>
+</ul>
+<h3 id="类与对象">类与对象</h3>
+<h3 id="类class">类(Class)</h3>
+<p>用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。</p>
+<p>格式：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">访问修饰符 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">类名</span>
+<span style="color:#f92672">{</span>
+  特征
+  行为
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">// 注: 特征和行为都称为该类的成员;
+</span></code></pre></div><p>一个业务类分为静态与动态部分，静态部分为成员变量，动态部分为方法</p>
+<p>设计业务类时不能用<code>main</code>方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student</span><span style="color:#f92672">{</span>
+<span style="color:#75715e">/** String name : 姓名 成员变量 */</span>
+String name<span style="color:#f92672">;</span>
+<span style="color:#75715e">/** int age : 年龄 成员变量 */</span>
+<span style="color:#66d9ef">int</span> age<span style="color:#f92672">;</span>
+<span style="color:#75715e">/** String sex : 性别 成员变量 */</span>
+String sex<span style="color:#f92672">;</span>
+
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * 动态部分：方法
+</span><span style="color:#75715e"> */</span>
+<span style="color:#75715e">/** study是方法：成员方法 */</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">study</span><span style="color:#f92672">(){</span>
+	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;学习的方法&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">/** exam是方法：成员方法 */</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">exam</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;考试的方法&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="对象">对象</h3>
+<p>对象是类的一个实例，有状态和行为。例如，一条狗是一个对象，它的状态有：颜色、名字、品种；行为有：摇尾巴、叫、吃等。</p>
+<p>**创建对象：**类名 对象名 = new 类名();</p>
+<p>**生命周期：**对象从被创建开始&ndash;&gt;当对象失去所有引用/对象真正的被销毀（对象会在堆里面占用内存，当把对象的内存空问回收了〕</p>
+<p><strong>匿名对象：<strong>就是创建的时候</strong>没有</strong>使用变量接收保存一个对象。但是匿名对象本质也是一个对象（具体的值）。在仅使用一次的情况，可以使用匿名对象。匿名对象可以节约资源，因为垃圾回收器（GC）会不定时回收匿名对象。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StudentTest</span> <span style="color:#f92672">{</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	<span style="color:#75715e">// 创建对象
+</span><span style="color:#75715e"></span>	Student s1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">();</span> <span style="color:#75715e">// 用new创建一个对象，s1就是Student类的一个对象
+</span><span style="color:#75715e"></span>  String str <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">();</span>  <span style="color:#75715e">// 匿名对象
+</span><span style="color:#75715e"></span>	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s1<span style="color:#f92672">);</span>
+	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Student<span style="color:#f92672">().</span><span style="color:#a6e22e">name</span><span style="color:#f92672">);</span> <span style="color:#75715e">// 匿名对象,并没有一个实际的对象名接收
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// 为成员变量赋值：对象名.成员变量名 = 值
+</span><span style="color:#75715e"></span>	s1<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;name1&#34;</span><span style="color:#f92672">;</span>
+	s1<span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
+	s1<span style="color:#f92672">.</span><span style="color:#a6e22e">sex</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;未知&#34;</span><span style="color:#f92672">;</span>
+	
+	<span style="color:#75715e">// 取值：对象名.成员变量名；
+</span><span style="color:#75715e"></span>	String stuName <span style="color:#f92672">=</span> s1<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">;</span>
+	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;学生姓名：&#34;</span> <span style="color:#f92672">+</span> stuName<span style="color:#f92672">);</span>
+	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;学生年龄&#34;</span> <span style="color:#f92672">+</span> s1<span style="color:#f92672">.</span><span style="color:#a6e22e">age</span><span style="color:#f92672">);</span>
+	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;学生性别&#34;</span> <span style="color:#f92672">+</span> s1<span style="color:#f92672">.</span><span style="color:#a6e22e">sex</span><span style="color:#f92672">);</span>	
+<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>声明对象的<strong>内存运行过程：</strong></p>
+<ol>
+<li>
+<p>进入<code>main</code>函数，在栈内创建<code>main</code>栈帧;</p>
+</li>
+<li>
+<p>声明对象前读取<code>Student</code>类，在元空间查询是否有<code>Student</code>类，没有则新建；</p>
+</li>
+<li>
+<p>声明对象，在堆内存创建新的空间存储<code>Student</code>的参数<code>name</code> <code>age</code> ，并赋值，在<code>main</code>栈帧内存储堆内对应参数存储地址；</p>
+</li>
+</ol>
+<p><img src="/%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F%E5%86%85%E5%AD%98%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B.png" alt="声明变量内存运行过程"></p>
+<p>所以在<a href="https://juejin.cn/post/6844903976802975752">new一个对象</a>时，JVM会在内存中做出一系列操作。</p>
+<h2 id="构造方法">构造方法</h2>
+<p>构造方法，是一种属于类的特殊方法，它是一个<strong>与类同名</strong>的方法。 对象的创建就是通过构造方法来完成，其功能主要是<strong>完成对象的初始化</strong>。 <strong>当类实例化一个对象时会自动调用构造方法。</strong> 构造方法和其他方法一样也可以重载。如果类里<strong>没有写构造方法</strong>，JVM会<strong>自动创建</strong>一个无参的构造方法，这个构造方法不会显示在类里面。</p>
+<p>结构：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 修饰符 方法名(与类名相同，包括大小写)
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Student</span><span style="color:#f92672">(){</span>
+			类变量a <span style="color:#f92672">=</span> 值<span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>调用构造方法：用<code>new</code>关键字调用，给变量赋值。</p>
+<p>使用场景：</p>
+<ol>
+<li>有参数的构造方法一般使用在参数较少的场景；</li>
+<li>参数多时建议使用无参数的构造方法，多数情况应用无参数的构造方法。</li>
+</ol>
+<p><strong>注：</strong></p>
+<p>若构造函数内未初始化的类变量，JVM会默认初始化为变量类型的默认值（例如String类型的类变量未在构造函数中初始化，则该变量的默认值为<code>null</code>）；若在构造函数内新定义一个与类变量同名的变量，则在调用构造函数初始化时，不会初始化类变量，且构造函数内的局部变量也不会被引用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">int</span> a<span style="color:#f92672">;</span>
+	<span style="color:#66d9ef">int</span> b<span style="color:#f92672">;</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Test</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> 99<span style="color:#f92672">;</span> <span style="color:#75715e">// 新的局部变量，与类变量a无关
+</span><span style="color:#75715e"></span>		a <span style="color:#f92672">=</span> 2<span style="color:#f92672">;</span> <span style="color:#75715e">// 会默认先识别为局部变量，不会初始化类变量
+</span><span style="color:#75715e"></span>	<span style="color:#f92672">}</span>	
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		Test test <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Test<span style="color:#f92672">();</span>
+		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>test<span style="color:#f92672">.</span><span style="color:#a6e22e">a</span><span style="color:#f92672">);</span> <span style="color:#75715e">// 此时a未被初始化，默认值为0
+</span><span style="color:#75715e"></span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>test<span style="color:#f92672">.</span><span style="color:#a6e22e">b</span><span style="color:#f92672">);</span> <span style="color:#75715e">// 构造函数内未初始化类变量b，默认初始值为0
+</span><span style="color:#75715e"></span>	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></section>
+
+  
+  
+
+  
+  
+  
+  <nav class="post-nav">
+    
+    <a class="prev" href="https://bruisesl.github.io/post/%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"><span>←</span><span>问题及解决办法</span></a>
+     
+  </nav>
+  
+
+  
+  
+</article>
+
+</main>
+
+    <footer class="footer">
+  <p>&copy; 2023 <a href="https://bruisesl.github.io">Paper</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
+
+  </body>
+</html>
