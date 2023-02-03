@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Paper</title>
+    <title>BruisesL&#39;s blog</title>
     <link>https://bruisesl.github.io/</link>
-    <description>Recent content on Paper</description>
+    <description>Recent content on BruisesL&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2008–2019, Steve Francia and the lee.so; all rights reserved.</copyright>
     <lastBuildDate>Wed, 01 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>类、对象与构造方法</title>
-      <link>https://bruisesl.github.io/post/%E7%B1%BB%E5%AF%B9%E8%B1%A1%E4%B8%8E%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/</link>
+      <title>面向对象</title>
+      <link>https://bruisesl.github.io/post/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
       <pubDate>Wed, 01 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://bruisesl.github.io/post/%E7%B1%BB%E5%AF%B9%E8%B1%A1%E4%B8%8E%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95/</guid>
+      <guid>https://bruisesl.github.io/post/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
       <description>面向对象 面向对象：面向对象(Object Oriented)是软件开发方法，一种编程范式。把数据及对数据的操作方法放在一起，作为一个相互依存的整体——对象。对同类对象抽象出其共性，形成类。类中的大多数数据，只能用本类的方法进行处理。类通过一个简单的外部接口与外界发生关系，对象与对象之间通过消息进行通信。程序流程由用户在使用中决定。对象即为人对各种具体物体抽象后的一个概念，人们每天都要接触各种各样的对象，如手机就是一个对象。
    项目名称 面向对象程序设计 面向过程程序设计（也叫结构化编程）     定义 面向对象顾名思义就是把现实中的事务都抽象成为程序设计中的“对象”，其基本思想是一切皆对象，是一种“自下而上”的设计语言，先设计组件，再完成拼装。 面向过程是“自上而下”的设计语言，先定好框架，再增砖添瓦。通俗点，就是先定好main()函数，然后再逐步实现mian()函数中所要用到的其他方法。   特点 封装、继承、多态 算法+数据结构   优势 适用于大型复杂系统，方便复用、 适用于简单系统，容易理解   劣势 比较抽象、性能比面向过程低 难以应对复杂系统，难以复用，不易维护、不易扩展   对比 易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统 更加灵活、更加易于维护 性能比面向对象高，因为类调用时需要实例化，开销比较大，比较消耗资源;比如单片机、嵌入式开发、 Linux/Unix等一般采用面向过程开发，性能是最重要的因素。   设计语言 Java、Smalltalk、EIFFEL、C++、Objective-、C#、Python等 C、Fortran    面向对象的基本特性
   **唯一：**每个对象都有自身唯一的标识，通过这种标识，可找到相应的对象。在对象的整个生命期中，它的标识都不改变，不同的对象不能有相同的标识。
