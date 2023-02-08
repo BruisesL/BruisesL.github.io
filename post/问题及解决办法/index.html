@@ -23,7 +23,7 @@
 
   
   
-  <meta name="description" content="Mac删除launchpad中无法正常移除的图标 **场景：**网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。
+  <meta name="description" content="Mac删除launchpad中无法正常移除的图标 场景：网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。
 解决办法：
   找到com.apple.dock.launchpad文件夹
 打开一个folder，按command&#43;shift&#43;G，在前往当中输入地址/private/var/folders，然后在里边自己尝试找到com.apple.dock.launchpad这个文件夹
@@ -35,8 +35,8 @@
 打开终端，切换盘符至复制路径。
 然后输入： sqlite3 db &quot;delete from apps where title=&#39;应用名称&#39;;&quot;&amp;&amp;killall Dock
 注意要将应用名称处替换成要删除的图标的名称，然后回车即可。
-  permission denied (publickey)问题的解决方法 **场景：**上时间未远端登陆git，导致ssh key过期，git push 失败报错：Permission denied (publickey)
-**解决办法：**重新生成一个新的ssh key ，然后将这个ssh key添加到github账户上面。
+  permission denied (publickey)问题的解决方法 场景：上时间未远端登陆git，导致ssh key过期，git push 失败报错：Permission denied (publickey)
+解决办法：重新生成一个新的ssh key ，然后将这个ssh key添加到github账户上面。
  检查SSH key是否已经存在  ls ~/.ssh/ 进行检查 id_rsa.pub 是否存在，如果存在，就不用生成一个新的SSH key了，直接跳到下面的第3步。
 生成一个新的SSH key  切换盘符至 .ssh 文件
 cd /Users/your_user_name/.ssh 输入命令（其中 your_email@example.com 替换成个人邮箱地址）：
@@ -86,7 +86,7 @@ ssh-keygen -t rsa -b 2048 -C &quot;your_email@example." />
   
   
   <meta property="og:title" content="问题及解决办法" />
-<meta property="og:description" content="Mac删除launchpad中无法正常移除的图标 **场景：**网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。
+<meta property="og:description" content="Mac删除launchpad中无法正常移除的图标 场景：网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。
 解决办法：
   找到com.apple.dock.launchpad文件夹
 打开一个folder，按command&#43;shift&#43;G，在前往当中输入地址/private/var/folders，然后在里边自己尝试找到com.apple.dock.launchpad这个文件夹
@@ -98,8 +98,8 @@ ssh-keygen -t rsa -b 2048 -C &quot;your_email@example." />
 打开终端，切换盘符至复制路径。
 然后输入： sqlite3 db &quot;delete from apps where title=&#39;应用名称&#39;;&quot;&amp;&amp;killall Dock
 注意要将应用名称处替换成要删除的图标的名称，然后回车即可。
-  permission denied (publickey)问题的解决方法 **场景：**上时间未远端登陆git，导致ssh key过期，git push 失败报错：Permission denied (publickey)
-**解决办法：**重新生成一个新的ssh key ，然后将这个ssh key添加到github账户上面。
+  permission denied (publickey)问题的解决方法 场景：上时间未远端登陆git，导致ssh key过期，git push 失败报错：Permission denied (publickey)
+解决办法：重新生成一个新的ssh key ，然后将这个ssh key添加到github账户上面。
  检查SSH key是否已经存在  ls ~/.ssh/ 进行检查 id_rsa.pub 是否存在，如果存在，就不用生成一个新的SSH key了，直接跳到下面的第3步。
 生成一个新的SSH key  切换盘符至 .ssh 文件
 cd /Users/your_user_name/.ssh 输入命令（其中 your_email@example.com 替换成个人邮箱地址）：
@@ -112,7 +112,7 @@ ssh-keygen -t rsa -b 2048 -C &quot;your_email@example." />
 
   
   <meta itemprop="name" content="问题及解决办法">
-<meta itemprop="description" content="Mac删除launchpad中无法正常移除的图标 **场景：**网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。
+<meta itemprop="description" content="Mac删除launchpad中无法正常移除的图标 场景：网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。
 解决办法：
   找到com.apple.dock.launchpad文件夹
 打开一个folder，按command&#43;shift&#43;G，在前往当中输入地址/private/var/folders，然后在里边自己尝试找到com.apple.dock.launchpad这个文件夹
@@ -124,8 +124,8 @@ ssh-keygen -t rsa -b 2048 -C &quot;your_email@example." />
 打开终端，切换盘符至复制路径。
 然后输入： sqlite3 db &quot;delete from apps where title=&#39;应用名称&#39;;&quot;&amp;&amp;killall Dock
 注意要将应用名称处替换成要删除的图标的名称，然后回车即可。
-  permission denied (publickey)问题的解决方法 **场景：**上时间未远端登陆git，导致ssh key过期，git push 失败报错：Permission denied (publickey)
-**解决办法：**重新生成一个新的ssh key ，然后将这个ssh key添加到github账户上面。
+  permission denied (publickey)问题的解决方法 场景：上时间未远端登陆git，导致ssh key过期，git push 失败报错：Permission denied (publickey)
+解决办法：重新生成一个新的ssh key ，然后将这个ssh key添加到github账户上面。
  检查SSH key是否已经存在  ls ~/.ssh/ 进行检查 id_rsa.pub 是否存在，如果存在，就不用生成一个新的SSH key了，直接跳到下面的第3步。
 生成一个新的SSH key  切换盘符至 .ssh 文件
 cd /Users/your_user_name/.ssh 输入命令（其中 your_email@example.com 替换成个人邮箱地址）：
@@ -136,7 +136,7 @@ ssh-keygen -t rsa -b 2048 -C &quot;your_email@example."><meta itemprop="datePubl
   
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="问题及解决办法"/>
-<meta name="twitter:description" content="Mac删除launchpad中无法正常移除的图标 **场景：**网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。
+<meta name="twitter:description" content="Mac删除launchpad中无法正常移除的图标 场景：网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。
 解决办法：
   找到com.apple.dock.launchpad文件夹
 打开一个folder，按command&#43;shift&#43;G，在前往当中输入地址/private/var/folders，然后在里边自己尝试找到com.apple.dock.launchpad这个文件夹
@@ -148,8 +148,8 @@ ssh-keygen -t rsa -b 2048 -C &quot;your_email@example."><meta itemprop="datePubl
 打开终端，切换盘符至复制路径。
 然后输入： sqlite3 db &quot;delete from apps where title=&#39;应用名称&#39;;&quot;&amp;&amp;killall Dock
 注意要将应用名称处替换成要删除的图标的名称，然后回车即可。
-  permission denied (publickey)问题的解决方法 **场景：**上时间未远端登陆git，导致ssh key过期，git push 失败报错：Permission denied (publickey)
-**解决办法：**重新生成一个新的ssh key ，然后将这个ssh key添加到github账户上面。
+  permission denied (publickey)问题的解决方法 场景：上时间未远端登陆git，导致ssh key过期，git push 失败报错：Permission denied (publickey)
+解决办法：重新生成一个新的ssh key ，然后将这个ssh key添加到github账户上面。
  检查SSH key是否已经存在  ls ~/.ssh/ 进行检查 id_rsa.pub 是否存在，如果存在，就不用生成一个新的SSH key了，直接跳到下面的第3步。
 生成一个新的SSH key  切换盘符至 .ssh 文件
 cd /Users/your_user_name/.ssh 输入命令（其中 your_email@example.com 替换成个人邮箱地址）：
@@ -223,8 +223,8 @@ ssh-keygen -t rsa -b 2048 -C &quot;your_email@example."/>
     <h1>问题及解决办法</h1>
   </header>
   <section class="post-content"><h2 id="mac删除launchpad中无法正常移除的图标">Mac删除launchpad中无法正常移除的图标</h2>
-<p>**场景：**网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。</p>
-<p><strong>解决办法：</strong></p>
+<p><strong>场景</strong>：网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。</p>
+<p><strong>解决办法</strong>：</p>
 <ol>
 <li>
 <p>找到com.apple.dock.launchpad文件夹</p>
@@ -248,8 +248,8 @@ ssh-keygen -t rsa -b 2048 -C &quot;your_email@example."/>
 </ol>
 <p><img src="/%E5%88%A0%E9%99%A4%E5%9B%BE%E6%A0%87.png" alt="删除图标"></p>
 <h2 id="permission-denied-publickey问题的解决方法">permission denied (publickey)问题的解决方法</h2>
-<p>**场景：**上时间未远端登陆git，导致ssh key过期，git push 失败报错：Permission denied (publickey)</p>
-<p>**解决办法：**重新生成一个新的ssh key ，然后将这个ssh key添加到github账户上面。</p>
+<p><strong>场景</strong>：上时间未远端登陆git，导致ssh key过期，git push 失败报错：Permission denied (publickey)</p>
+<p><strong>解决办法</strong>：重新生成一个新的ssh key ，然后将这个ssh key添加到github账户上面。</p>
 <ol>
 <li>检查SSH key是否已经存在</li>
 </ol>
@@ -280,7 +280,7 @@ The key fingerprint is:
 <li>将ssh key添加到git</li>
 </ol>
 <p>打开<code>id_rsa.pub</code>文件，复制里面的内容，然后粘贴到git中相关的位置中。</p>
-<p><strong>注意：</strong></p>
+<p><strong>注意</strong>：</p>
 <p>如果出现：</p>
 <pre tabindex="0"><code>Could not open a connection to your authentication agent. 
 </code></pre><p>那么就使用如下命令解决：</p>
