@@ -95,7 +95,7 @@ public class Demo { //main方法  public static void main(String[] args) { int s
   System.out.printLn() //System类 里的标准 对象out 中的 方法printLn() **设计方法的原则：**方法的本意是功能块，就是实现某个功能的语句块的集合。我们设计方法的时候，最好保持方法的原子性，即一个方法只完成一个功能，这样利于我们后期的扩展。
 public class Demo { //main方法  public static void main(String[] args) { int sum = add(1,2); System.out.println(sum); System.out.println(&#34;=====================&#34;); test(); } //加法  public static int add(int a,int b){ return a &#43; b; } public static void test(){ int i = 0; while (i &lt; 10) { i&#43;&#43;; System."><meta itemprop="datePublished" content="2023-01-14T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2023-01-14T00:00:00+00:00" />
-<meta itemprop="wordCount" content="577">
+<meta itemprop="wordCount" content="507">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
@@ -319,51 +319,7 @@ public class Demo { //main方法  public static void main(String[] args) { int s
 <span style="color:#f92672">}</span>
 </code></pre></div></li>
 </ul>
-<h2 id="方法重载">方法重载</h2>
-<p>重载(overloading) 是在<strong>同一个类</strong>里面，<strong>方法名相同</strong>，而<strong>参数不同</strong>（参数个数 / 类型 / 顺序不同）。返回类型可以相同也可以不同。每个重载的方法（或者构造函数）都必须有一个独一无二的参数类型列表。最常用的地方就是构造器的重载。</p>
-<p>方法重载的目的是，功能类似的方法使用同一名字，更容易记住，因此，调用起来更简单。</p>
-<p><strong>使用：</strong></p>
-<ul>
-<li>声明方法的时候，写不同的形参即可。</li>
-<li>调用方法的时候，程序会根据参数数量、类型、顺序自动匹配调用。</li>
-</ul>
-<p><strong>重载规则:</strong></p>
-<ol>
-<li>
-<p>被重载的方法<strong>必须改变</strong>参数列表（参数个数或类型不一样）；</p>
-</li>
-<li>
-<p>被重载的方法可以改变返回类型（方法重载的返回值类型通常都是相同的）；</p>
-</li>
-<li>
-<p>被重载的方法可以改变访问修饰符；</p>
-</li>
-<li>
-<p>被重载的方法可以声明新的或更广的检查异常；</p>
-</li>
-<li>
-<p>方法能够在<strong>同一个类中</strong>或者<strong>在一个子类中</strong>被重载；</p>
-</li>
-<li>
-<p>无法以返回值类型作为重载函数的区分标准。</p>
-</li>
-</ol>
-<p>**注：**调用方法时如果匹配不上参数类型，会自动转型（例如long类型自动向double类型转换，即实参为long类型，可以匹配上形参为double类型的方法），若转型后仍无法匹配，则会报错。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo</span><span style="color:#f92672">{</span>
-  <span style="color:#75715e">// 方法1，用于将两个int类型的数相加
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> a<span style="color:#f92672">,</span><span style="color:#66d9ef">int</span> b<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-		<span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b<span style="color:#f92672">;</span>
-	<span style="color:#f92672">}</span>
-  <span style="color:#75715e">// 方法3，用于将三个double类型的数相加
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">double</span> a<span style="color:#f92672">,</span><span style="color:#66d9ef">double</span> b<span style="color:#f92672">,</span><span style="color:#66d9ef">double</span> c<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-		<span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b <span style="color:#f92672">+</span> c<span style="color:#f92672">;</span>
-	<span style="color:#f92672">}</span>
-	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>add<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> 3<span style="color:#f92672">));</span> <span style="color:#75715e">// 调用第一个返回值为int类型的方法
-</span><span style="color:#75715e"></span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>add<span style="color:#f92672">(</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">6</span><span style="color:#f92672">,</span> 9<span style="color:#f92672">.</span><span style="color:#a6e22e">89</span><span style="color:#f92672">,</span> 11<span style="color:#f92672">.</span><span style="color:#a6e22e">3245</span><span style="color:#f92672">));</span> <span style="color:#75715e">// 调用第二个返回值为double类型的方法
-</span><span style="color:#75715e"></span>	<span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><h2 id="可变参数">可变参数</h2>
+<h2 id="可变参数">可变参数</h2>
 <p>可变参数是支持传递<strong>同类型</strong>的可变参数给一个方法，相当于<strong>数组类型</strong>。且<strong>一个方法</strong>中只能指定<strong>一个可变参数</strong>，它必须是方法的<strong>最后一个参数</strong>。任何普通的参数必须在它之前声明。在方法声明中，在指定参数类型后加一个省略号(&hellip;) 。</p>
 <p>方法的可变参数的声明如下所示：</p>
 <p><code>typeName... parameterName</code></p>

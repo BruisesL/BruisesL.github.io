@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>修饰符与关键字 - BruisesL&#39;s blog</title>
+
+  
+  
+  <meta name="description" content="修饰符 修饰符用来定义类、方法或者变量，通常放在语句的最前端。Java语言提供了很多修饰符，主要分为以下两类：
+ 访问修饰符 非访问修饰符  访问控制修饰符 可以使用访问控制符来保护对类、变量、方法和构造方法的访问。Java 支持 4 种不同的访问权限。
+  default (即默认，什么也不写）: 在同一包内可见，不使用任何修饰符。**使用对象：**类、接口、变量、方法。
+  private : 在同一类内可见。**使用对象：**变量、方法。 注意：不能修饰类（外部类）。
+  public : 对所有类可见。**使用对象：**类、接口、变量、方法。
+  protected : 对同一包内的类和所有子类可见。使用对象：变量、方法。 注意：不能修饰类（外部类）。
+     修饰符 当前类 同一包内 子孙类(同一包) 子孙类(不同包) 其他包     public Y Y Y Y Y   protected Y Y Y Y/N（见protected说明） N   default Y Y Y N N   private Y N N N N      default:" />
+  <meta name="author" content="BruisesL" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://bruisesl.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/theme.png" />
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/github.svg" />
+  
+
+  
+  <link rel="icon" href="https://bruisesl.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://bruisesl.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.92.2" />
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="修饰符与关键字" />
+<meta property="og:description" content="修饰符 修饰符用来定义类、方法或者变量，通常放在语句的最前端。Java语言提供了很多修饰符，主要分为以下两类：
+ 访问修饰符 非访问修饰符  访问控制修饰符 可以使用访问控制符来保护对类、变量、方法和构造方法的访问。Java 支持 4 种不同的访问权限。
+  default (即默认，什么也不写）: 在同一包内可见，不使用任何修饰符。**使用对象：**类、接口、变量、方法。
+  private : 在同一类内可见。**使用对象：**变量、方法。 注意：不能修饰类（外部类）。
+  public : 对所有类可见。**使用对象：**类、接口、变量、方法。
+  protected : 对同一包内的类和所有子类可见。使用对象：变量、方法。 注意：不能修饰类（外部类）。
+     修饰符 当前类 同一包内 子孙类(同一包) 子孙类(不同包) 其他包     public Y Y Y Y Y   protected Y Y Y Y/N（见protected说明） N   default Y Y Y N N   private Y N N N N      default:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bruisesl.github.io/post/%E4%BF%AE%E9%A5%B0%E7%AC%A6%E4%B8%8E%E5%85%B3%E9%94%AE%E5%AD%97/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-02-02T00:00:00+00:00" />
+
+
+  
+  <meta itemprop="name" content="修饰符与关键字">
+<meta itemprop="description" content="修饰符 修饰符用来定义类、方法或者变量，通常放在语句的最前端。Java语言提供了很多修饰符，主要分为以下两类：
+ 访问修饰符 非访问修饰符  访问控制修饰符 可以使用访问控制符来保护对类、变量、方法和构造方法的访问。Java 支持 4 种不同的访问权限。
+  default (即默认，什么也不写）: 在同一包内可见，不使用任何修饰符。**使用对象：**类、接口、变量、方法。
+  private : 在同一类内可见。**使用对象：**变量、方法。 注意：不能修饰类（外部类）。
+  public : 对所有类可见。**使用对象：**类、接口、变量、方法。
+  protected : 对同一包内的类和所有子类可见。使用对象：变量、方法。 注意：不能修饰类（外部类）。
+     修饰符 当前类 同一包内 子孙类(同一包) 子孙类(不同包) 其他包     public Y Y Y Y Y   protected Y Y Y Y/N（见protected说明） N   default Y Y Y N N   private Y N N N N      default:"><meta itemprop="datePublished" content="2023-02-02T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-02-02T00:00:00+00:00" />
+<meta itemprop="wordCount" content="894">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="修饰符与关键字"/>
+<meta name="twitter:description" content="修饰符 修饰符用来定义类、方法或者变量，通常放在语句的最前端。Java语言提供了很多修饰符，主要分为以下两类：
+ 访问修饰符 非访问修饰符  访问控制修饰符 可以使用访问控制符来保护对类、变量、方法和构造方法的访问。Java 支持 4 种不同的访问权限。
+  default (即默认，什么也不写）: 在同一包内可见，不使用任何修饰符。**使用对象：**类、接口、变量、方法。
+  private : 在同一类内可见。**使用对象：**变量、方法。 注意：不能修饰类（外部类）。
+  public : 对所有类可见。**使用对象：**类、接口、变量、方法。
+  protected : 对同一包内的类和所有子类可见。使用对象：变量、方法。 注意：不能修饰类（外部类）。
+     修饰符 当前类 同一包内 子孙类(同一包) 子孙类(不同包) 其他包     public Y Y Y Y Y   protected Y Y Y Y/N（见protected说明） N   default Y Y Y N N   private Y N N N N      default:"/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://bruisesl.github.io">BruisesL&#39;s blog</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
+    
+    <a class="" href="/about/">About</a>
+    
+  </nav>
+  
+
+  
+  <nav class="social">
+    
+    <a
+      class="github"
+      style="--url: url(./github.svg)"
+      href="https://github.com/BruisesL"
+      target="_blank"
+    ></a>
+    
+  </nav>
+  
+</header>
+
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <aside>
+      <time>February 2, 2023</time>
+      
+      <span>BruisesL</span>
+      
+    </aside>
+    <h1>修饰符与关键字</h1>
+  </header>
+  <section class="post-content"><h2 id="修饰符">修饰符</h2>
+<p>修饰符用来定义类、方法或者变量，通常放在语句的最前端。Java语言提供了很多修饰符，主要分为以下两类：</p>
+<ul>
+<li>访问修饰符</li>
+<li>非访问修饰符</li>
+</ul>
+<h3 id="访问控制修饰符">访问控制修饰符</h3>
+<p>可以使用访问控制符来保护对类、变量、方法和构造方法的访问。Java 支持 4 种不同的访问权限。</p>
+<ul>
+<li>
+<p><strong>default</strong> (即默认，什么也不写）: 在同一包内可见，不使用任何修饰符。**使用对象：**类、接口、变量、方法。</p>
+</li>
+<li>
+<p><strong>private</strong> : 在同一类内可见。**使用对象：**变量、方法。 <strong>注意：不能修饰类（外部类）。</strong></p>
+</li>
+<li>
+<p><strong>public</strong> : 对所有类可见。**使用对象：**类、接口、变量、方法。</p>
+</li>
+<li>
+<p><strong>protected</strong> : 对同一包内的类和所有子类可见。使用对象：变量、方法。 <strong>注意：不能修饰类（外部类）。</strong></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">修饰符</th>
+<th style="text-align:left">当前类</th>
+<th style="text-align:left">同一包内</th>
+<th style="text-align:left">子孙类(同一包)</th>
+<th style="text-align:left">子孙类(不同包)</th>
+<th style="text-align:left">其他包</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>public</code></td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">Y</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>protected</code></td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">Y/N（见<code>protected</code>说明）</td>
+<td style="text-align:left">N</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>default</code></td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">N</td>
+<td style="text-align:left">N</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>private</code></td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">N</td>
+<td style="text-align:left">N</td>
+<td style="text-align:left">N</td>
+<td style="text-align:left">N</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+<p><strong>default:</strong></p>
+<p>使用默认访问修饰符声明的变量和方法，对同一个包内的类是可见的。接口里的变量都隐式声明为 <code>public static final</code>,而接口里的方法默认情况下访问权限为 <code>public</code>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String version <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1.5.1&#34;</span><span style="color:#f92672">;</span>
+<span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">processOrder</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p><strong>private:</strong></p>
+<p>私有访问修饰符是最严格的访问级别，所以被声明为<code>private</code>的方法、变量和构造方法只能被所属类访问，并且<strong>类和接口不能</strong>声明为<code>private</code>。声明为私有访问类型的变量只能通过类中公共的<code>getter</code>方法被外部类访问。<code>Private</code>访问修饰符的使用主要用来<strong>隐藏类的实现细节</strong>和保护类的数据。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Logger</span> <span style="color:#f92672">{</span>
+   <span style="color:#66d9ef">private</span> String format<span style="color:#f92672">;</span> <span style="color:#75715e">// Logger 类中的 format 变量为私有变量，其他类不能直接得到和设置该变量的值
+</span><span style="color:#75715e"></span>   <span style="color:#75715e">// 定义了两个 public 方法，使其他类能够操作该变量
+</span><span style="color:#75715e"></span>   <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getFormat</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> 
+   <span style="color:#75715e">// getFormat() （返回 format的值）
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">;</span>
+   <span style="color:#f92672">}</span>
+   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setFormat</span><span style="color:#f92672">(</span>String format<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> 
+   <span style="color:#75715e">// setFormat(String)（设置 format 的值）
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">format</span> <span style="color:#f92672">=</span> format<span style="color:#f92672">;</span>
+   <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p><strong>public:</strong></p>
+<p>被声明为 public 的类、方法、构造方法和接口能够<strong>被任何其他类访问</strong>。如果几个相互访问的 public 类分布在不同的包中，则需要导入相应 public 类所在的包。由于类的继承性，类所有的公有方法和变量都能被其子类继承。</p>
+</li>
+<li>
+<p><strong>protected:</strong></p>
+<p>protected 需要从以下两个点来分析说明：</p>
+<ul>
+<li><strong>子类与基类在同一包中</strong>：被声明为 protected 的变量、方法和构造器能被同一个包中的任何其他类访问；</li>
+<li><strong>子类与基类不在同一包中</strong>：那么在子类中，子类实例可以访问其从基类继承而来的 protected 方法，而不能访问基类实例的protected方法。</li>
+</ul>
+<p>protected 可以修饰数据成员，构造方法，方法成员，<strong>不能修饰类（内部类除外）</strong>。</p>
+<p>**注：**接口及接口的成员变量和成员方法不能声明为 protected。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AudioPlayer</span> <span style="color:#f92672">{</span>
+   <span style="color:#75715e">// 父类使用了 protected 访问修饰符，子类重写了父类的 openSpeaker() 方法。
+</span><span style="color:#75715e"></span>   <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">openSpeaker</span><span style="color:#f92672">(</span>Speaker sp<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+   <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StreamingAudioPlayer</span> <span style="color:#66d9ef">extends</span> AudioPlayer <span style="color:#f92672">{</span>
+   <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">openSpeaker</span><span style="color:#f92672">(</span>Speaker sp<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+   <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+</ol>
+<p>请注意以下方法继承的规则：</p>
+<ul>
+<li>父类中声明为 public 的方法在子类中也必须为 public。</li>
+<li>父类中声明为 protected 的方法在子类中要么声明为 protected，要么声明为 public，不能声明为 private。</li>
+<li>父类中声明为 private 的方法，不能够被子类继承。</li>
+</ul>
+<h3 id="非访问修饰符">非访问修饰符</h3>
+<p>为了实现一些其他的功能，Java 也提供了许多非访问修饰符。</p>
+<ul>
+<li>
+<p>static 修饰符，用来修饰类方法和类变量。</p>
+</li>
+<li>
+<p>final 修饰符，用来修饰类、方法和变量，final 修饰的类不能够被继承，修饰的方法不能被继承类重新定义，修饰的变量为常量，是不可修改的。</p>
+</li>
+<li>
+<p>abstract 修饰符，用来创建抽象类和抽象方法。</p>
+</li>
+<li>
+<p>synchronized 和 volatile 修饰符，主要用于线程的编程。</p>
+</li>
+</ul>
+<ol>
+<li>
+<p><strong>static:</strong></p>
+<p><code>static</code>表示“全局”或者“静态”的意思，用来修饰成员变量和成员方法，也可以形成静态static代码块，被<code>static</code>修饰的成员变量和成员方法<strong>独立于该类的任何对象</strong>（即表示不用实例化就可以使用）。</p>
+<p>类只要被加载，JVM就能根据类名在运行时数据区的方法区内定找到他们。因此，<code>static</code>对象可以在它的任何对象创建之前访问，<strong>无需引用任何对象。</strong></p>
+<ul>
+<li>
+<p>静态变量：</p>
+<p><code>static</code> 关键字用来声明独立于对象的静态变量，无论一个类实例化多少对象，它的静态变量只有一份拷贝。 静态变量也被称为类变量。<strong>局部变量不能被声明为 static 变量</strong>（因为方法需要调用才能加载，而<code>static</code>修饰的变量需要在类加载的时候存在）。</p>
+<p>**使用场景：**在对象之间共享值时；方便访问变量时。</p>
+<p><img src="/%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7.jpg" alt="静态属性"></p>
+</li>
+<li>
+<p>静态方法：</p>
+<p><code>static</code> 关键字用来声明独立于对象的静态方法。静态方法不能使用类的非静态变量/方法。静态方法从参数列表得到数据，然后计算这些数据。</p>
+<p>静态方法<strong>不能被子类重写</strong>，实际上，子类的静态方法隐藏了父类的静态方法，因此父类和子类的静态方法同时存在，只不过父类通过类名（或对象名）调用的是父类的静态方法，子类通过类名（或对象名）调用的是子类的静态方法。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Father</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">methon</span><span style="color:#f92672">(){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Father static methon()&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doWork</span><span style="color:#f92672">(){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Father doWork()&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Son</span> <span style="color:#66d9ef">extends</span> Father <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">methon</span><span style="color:#f92672">(){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Son static methon()&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doWork</span><span style="color:#f92672">(){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Son doWork()&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        Father f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Son<span style="color:#f92672">();</span>
+        f<span style="color:#f92672">.</span><span style="color:#a6e22e">methon</span><span style="color:#f92672">();</span> <span style="color:#75715e">// static(静态)方法的调用，不支持多态,所以此处调用的父类的静态方法
+</span><span style="color:#75715e"></span>        f<span style="color:#f92672">.</span><span style="color:#a6e22e">doWork</span><span style="color:#f92672">();</span> <span style="color:#75715e">// 非static(静态)方法的调用，支持多态
+</span><span style="color:#75715e"></span>
+      	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;---------------&#34;</span><span style="color:#f92672">);</span>
+        Son s <span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> Son<span style="color:#f92672">();</span>
+        s<span style="color:#f92672">.</span><span style="color:#a6e22e">methon</span><span style="color:#f92672">();</span>
+        s<span style="color:#f92672">.</span><span style="color:#a6e22e">doWork</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">/* 
+</span><span style="color:#75715e"> * 打印结果：
+</span><span style="color:#75715e"> * Father static methon()
+</span><span style="color:#75715e"> * Son doWork()
+</span><span style="color:#75715e"> * ---------------
+</span><span style="color:#75715e"> * Son static methon()
+</span><span style="color:#75715e"> * Son doWork()
+</span><span style="color:#75715e"> */</span>
+</code></pre></div></li>
+<li>
+<p>静态代码块：</p>
+<p><code>static</code>代码块也叫静态代码块，是在类中独立于类成员的<code>static</code>语句块，可以有多个，位置可以随便放，它<strong>不在任何的方法体内</strong>，JVM加载类时会执行这些静态的代码块，如果<code>static</code>代码块有多个，JVM将按照它们在类中出现的先后顺序依次执行它们，<strong>每个代码块只会被执行一次</strong>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> <span style="color:#f92672">{</span>   
+  	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> a<span style="color:#f92672">;</span>   
+  	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> b<span style="color:#f92672">;</span>   
+
+  	<span style="color:#66d9ef">static</span><span style="color:#f92672">{</span>
+      	Test<span style="color:#f92672">.</span><span style="color:#a6e22e">a</span><span style="color:#f92672">=</span>3<span style="color:#f92672">;</span>
+      	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a<span style="color:#f92672">);</span> <span style="color:#75715e">// 结果为3
+</span><span style="color:#75715e"></span>      	Test t<span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> Test<span style="color:#f92672">();</span> <span style="color:#75715e">// 调用构造方法时会调用构造代码块，结果为4
+</span><span style="color:#75715e"></span>      	t<span style="color:#f92672">.</span><span style="color:#a6e22e">f</span><span style="color:#f92672">();</span> <span style="color:#75715e">// 结果为“printTest”
+</span><span style="color:#75715e"></span>      	t<span style="color:#f92672">.</span><span style="color:#a6e22e">b</span><span style="color:#f92672">=</span>1000<span style="color:#f92672">;</span>
+      	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>t<span style="color:#f92672">.</span><span style="color:#a6e22e">b</span><span style="color:#f92672">);</span> <span style="color:#75715e">// 结果为1000 
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>   
+  	<span style="color:#f92672">{</span>
+      	Test<span style="color:#f92672">.</span><span style="color:#a6e22e">a</span><span style="color:#f92672">=</span>4<span style="color:#f92672">;</span>
+      	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a<span style="color:#f92672">);</span> <span style="color:#75715e">// 构造代码块，在调用构造方法的时候调用，结果为4  
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>   
+  	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>    
+    		<span style="color:#75715e">// 调用构造方法时会调用构造代码块，结果为4
+</span><span style="color:#75715e"></span>      	Test t <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Test<span style="color:#f92672">();</span>
+      	<span style="color:#75715e">// 在最后输入，因为静态代码块在加载类的时候先执行，再执行main方法
+</span><span style="color:#75715e"></span>  			System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>t<span style="color:#f92672">);</span> 
+    <span style="color:#f92672">}</span>
+  	<span style="color:#66d9ef">static</span><span style="color:#f92672">{</span>
+      	Test<span style="color:#f92672">.</span><span style="color:#a6e22e">a</span><span style="color:#f92672">=</span>5<span style="color:#f92672">;</span>
+      	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a<span style="color:#f92672">);</span> <span style="color:#75715e">// 结果为5
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+  	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f</span><span style="color:#f92672">(){</span>   
+      	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;printTest&#34;</span><span style="color:#f92672">);</span>   
+    <span style="color:#f92672">}</span>   
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">/*
+</span><span style="color:#75715e"> * 输出结果：
+</span><span style="color:#75715e"> * 3
+</span><span style="color:#75715e"> * 4
+</span><span style="color:#75715e"> * printTest
+</span><span style="color:#75715e"> * 1000
+</span><span style="color:#75715e"> * 5
+</span><span style="color:#75715e"> * 4
+</span><span style="color:#75715e"> * staticDemo.Test@7ad041f3
+</span><span style="color:#75715e">*/</span>
+</code></pre></div></li>
+</ul>
+<p>对类变量和方法的访问可以直接使用 类名.变量名 和 类名.方法名 的方式访问。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InstanceCounter</span> <span style="color:#f92672">{</span>
+   <span style="color:#75715e">// 静态变量
+</span><span style="color:#75715e"></span>   <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> numInstances <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+   <span style="color:#75715e">// 静态方法
+</span><span style="color:#75715e"></span>   <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getCount</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">return</span> numInstances<span style="color:#f92672">;</span>
+   <span style="color:#f92672">}</span>
+   <span style="color:#75715e">// 静态方法
+</span><span style="color:#75715e"></span>   <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addInstance</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+      numInstances<span style="color:#f92672">++;</span>
+   <span style="color:#f92672">}</span>
+   <span style="color:#75715e">// 构造方法
+</span><span style="color:#75715e"></span>   InstanceCounter<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+      InstanceCounter<span style="color:#f92672">.</span><span style="color:#a6e22e">addInstance</span><span style="color:#f92672">();</span>
+   <span style="color:#f92672">}</span>
+
+   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> arguments<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Starting with &#34;</span> <span style="color:#f92672">+</span>
+      InstanceCounter<span style="color:#f92672">.</span><span style="color:#a6e22e">getCount</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; instances&#34;</span><span style="color:#f92672">);</span>
+      <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 500<span style="color:#f92672">;</span> <span style="color:#f92672">++</span>i<span style="color:#f92672">){</span>
+         <span style="color:#66d9ef">new</span> InstanceCounter<span style="color:#f92672">();</span>
+          <span style="color:#f92672">}</span>
+      System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Created &#34;</span> <span style="color:#f92672">+</span>
+      InstanceCounter<span style="color:#f92672">.</span><span style="color:#a6e22e">getCount</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; instances&#34;</span><span style="color:#f92672">);</span>
+   <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p><strong>final:</strong></p>
+<ul>
+<li>
+<p>**final修饰变量：**final 表示&quot;最后的、最终的&quot;含义，变量一旦赋值后，<strong>不能被重新赋值</strong>。被 final 修饰的实例变量必须显式指定初始值。</p>
+<p>final 修饰符通常和 static 修饰符一起使用来<strong>创建类常量</strong>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span><span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> value <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
+  <span style="color:#75715e">// 声明常量
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> BOXWIDTH <span style="color:#f92672">=</span> 6<span style="color:#f92672">;</span>
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> String TITLE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Manager&#34;</span><span style="color:#f92672">;</span>
+  <span style="color:#75715e">/* 将提示报错，不能修改final修饰的变量
+</span><span style="color:#75715e">  public void changeValue(){
+</span><span style="color:#75715e">     value = 12; 
+</span><span style="color:#75715e">  }
+</span><span style="color:#75715e">   */</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p><strong>final修饰方法：</strong></p>
+<p>父类中的 final 方法可以被子类继承，但是<strong>不能</strong>被子类重写。</p>
+<p>声明 final 方法的主要目的是<strong>防止该方法的内容被修改</strong>。</p>
+</li>
+<li>
+<p><strong>final修饰类：</strong></p>
+<p>final 类不能被继承，没有类能够继承 final 类的任何特性。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>abstract:</strong></p>
+<ul>
+<li>
+<p><strong>抽象类：</strong></p>
+<p>抽象类<strong>不能</strong>用来实例化对象，声明抽象类的唯一目的是<strong>为了将来对该类进行扩充</strong>。</p>
+<p>一个类<strong>不能同时</strong>被 <code>abstract</code> 和 <code>final</code> 修饰。如果一个<strong>类包含抽象方法</strong>，那么该<strong>类一定要声明为抽象类</strong>，否则将出现编译错误。抽象类可以包含抽象方法和非抽象方法。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 抽象类
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Caravan</span><span style="color:#f92672">{</span>
+   <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span> price<span style="color:#f92672">;</span>
+   <span style="color:#66d9ef">private</span> String model<span style="color:#f92672">;</span>
+   <span style="color:#66d9ef">private</span> String year<span style="color:#f92672">;</span>
+   <span style="color:#75715e">//抽象方法
+</span><span style="color:#75715e"></span>   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">goFast</span><span style="color:#f92672">();</span>
+   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">changeColor</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p><strong>抽象方法：</strong></p>
+<p>抽象方法是一种<strong>没有任何实现</strong>的方法，该方法的具体实现<strong>由子类提供</strong>。</p>
+<p>抽象方法不能被声明成 <code>final</code> 和 <code>static</code>。</p>
+<p>任何继承抽象类的子类<strong>必须</strong>实现父类的所有抽象方法，除非该子类也是抽象类。</p>
+<p>抽象方法的声明以分号结尾，例如：<code>public abstract sample();</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SuperClass</span><span style="color:#f92672">{</span>
+		<span style="color:#75715e">//抽象方法
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m</span><span style="color:#f92672">();</span> 
+<span style="color:#f92672">}</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SubClass</span> <span style="color:#66d9ef">extends</span> SuperClass<span style="color:#f92672">{</span>
+    <span style="color:#75715e">//实现抽象方法
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m</span><span style="color:#f92672">(){</span>
+        方法体<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>synchronized:</strong></p>
+<p>synchronized 关键字声明的方法同一时间只能被一个线程访问。synchronized 修饰符可以应用于<strong>四个</strong>访问修饰符。</p>
+</li>
+<li>
+<p><strong>transient:</strong></p>
+<p>序列化的对象包含被 transient 修饰的实例变量时，java 虚拟机(JVM)跳过该特定的变量。</p>
+<p>该修饰符包含在定义变量的语句中，用来预处理类和变量的数据类型。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">transient</span> <span style="color:#66d9ef">int</span> limit <span style="color:#f92672">=</span> 55<span style="color:#f92672">;</span>   <span style="color:#75715e">// 不会持久化
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> b<span style="color:#f92672">;</span> <span style="color:#75715e">// 持久化
+</span></code></pre></div></li>
+<li>
+<p><strong>volatile:</strong></p>
+<p>volatile 修饰的成员变量在每次被线程访问时，都强制从共享内存中<strong>重新读取</strong>该成员变量的值。而且，当成员变量发生变化时，会强制线程将变化值回写到共享内存。这样在任何时刻，<strong>两个不同的线程总是看到某个成员变量的同一个值。</strong></p>
+<p>注：一个 volatile 对象引用可能是 null。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyRunnable</span> <span style="color:#66d9ef">implements</span> Runnable<span style="color:#f92672">{</span>
+  <span style="color:#75715e">// 第一行 声明一个变量用volatile修饰
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">boolean</span> active<span style="color:#f92672">;</span>
+    <span style="color:#75715e">/* 一个线程调用 run() 方法，在另一个线程调用 stop() 方法，若第一行中缓冲区的 active 值被使用，那么在 第二行 的 active 值为 false 时循环不会停止。
+</span><span style="color:#75715e">    但是代码中使用了 volatile 修饰 active，所以该循环会停止。
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span>
+    <span style="color:#f92672">{</span>
+        active <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>active<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+          	循环体<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">stop</span><span style="color:#f92672">()</span>
+    <span style="color:#f92672">{</span>
+        active <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+</ol>
+<h2 id="关键字">关键字</h2>
+<p>Java的关键字对Java的编译器有特殊的意义，他们用来表示一种数据类型，或者表示程序的结构等，关键字不能用作变量名、方法名、类名、包名和参数。</p>
+<ul>
+<li>
+<p><code>this</code></p>
+<p><code>this</code>可用于任何实例方法内指向<strong>当前对象</strong>（<code>new</code>对象后会在堆内新增一个内存存储该对象相关的参数等，<code>this</code>会在该对象的内存内执行对应的方法），也可指向对其调用当前方法的对象，或者在需要当前类型对象引用时使用。</p>
+<p>注：只能在<strong>非静态方法</strong>内使用；若<code>tihs</code>是在构造对象内使用时，需要在第一句。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyThisTest</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> a<span style="color:#f92672">;</span>
+
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyThisTest</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">this</span><span style="color:#f92672">(</span>42<span style="color:#f92672">);</span> <span style="color:#75715e">// this(); 代表当前类的构造方法，具体代表哪个构造方法看入参
+</span><span style="color:#75715e"></span>	<span style="color:#f92672">}</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyThisTest</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> a<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> a<span style="color:#f92672">;</span> <span style="color:#75715e">// 将参数a的值赋给同名字段
+</span><span style="color:#75715e"></span>	<span style="color:#f92672">}</span>
+
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">frobnicate</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> <span style="color:#75715e">// 新声明一个int类型变量a，与类变量重名
+</span><span style="color:#75715e"></span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>a<span style="color:#f92672">);</span> <span style="color:#75715e">// 指向当前方法新声明的变量a
+</span><span style="color:#75715e"></span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">a</span><span style="color:#f92672">);</span> <span style="color:#75715e">// 指向类变量a
+</span><span style="color:#75715e"></span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">);</span> <span style="color:#75715e">// 指向当前对象的toString值，由于当前类重写了toString方法，故直接打印&#34;MyThisTest a= 42&#34;
+</span><span style="color:#75715e"></span>	<span style="color:#f92672">}</span>
+
+	<span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;MyThisTest a=&#34;</span> <span style="color:#f92672">+</span> a<span style="color:#f92672">;</span> <span style="color:#75715e">// refers to the field a
+</span><span style="color:#75715e"></span>	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p><code>super</code></p>
+<p>通过<code>super</code>关键字来实现对父类成员的访问，用来引用当前对象的父类。</p>
+<p>与<code>this</code>的区别与共性：</p>
+<ol>
+<li>
+<p><code>super(参数)</code>调用<strong>基类</strong>中的某一个构造函数（必须为子类构造函数中的第一条语句）</p>
+<p><code>this(参数)</code>调用<strong>本类</strong>中另一种构造函数（必须为构造函数中的第一条语句）</p>
+</li>
+<li>
+<p><code>this</code> 和 <code>super</code> 不能同时出现在一个构造函数里面，因为 <code>this</code> 必然会调用其它的构造函数，其它的构造函数必然也会有 <code>super</code> 语句的存在，所以在同一个构造函数里面有相同的语句，就失去了语句的意义，编译器也不会通过。</p>
+</li>
+<li>
+<p><code>this()</code> 和 <code>super()</code> 都指的是对象，所以，均不可以在 static 环境中使用。</p>
+</li>
+<li>
+<p>从本质上讲，<code>this</code> 是一个指向本对象的指针, 然而 <code>super</code> 是一个 Java 关键字。</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 父类
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Country</span> <span style="color:#f92672">{</span>
+    String name<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+       name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;China&#34;</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">// 子类 
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">City</span> <span style="color:#66d9ef">extends</span> Country <span style="color:#f92672">{</span>
+    String name<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Shanghai&#34;</span><span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">();</span> <span style="color:#75715e">//调用父类的方法
+</span><span style="color:#75715e"></span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>name<span style="color:#f92672">);</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+       City c<span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> City<span style="color:#f92672">();</span>
+       c<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p><code>extends</code></p>
+<p>在 Java 中，类的继承是单一继承，也就是说，一个子类只能拥有一个父类，所以 extends 只能继承一个类。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span> <span style="color:#f92672">{</span> 
+    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>   
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> id<span style="color:#f92672">;</span> 
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Animal</span><span style="color:#f92672">(</span>String myName<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> myid<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        构造方法的方法体<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span> 
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">eat</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        方法体<span style="color:#f92672">;</span>  
+    <span style="color:#f92672">}</span> 
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sleep</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        方法体<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span> 
+<span style="color:#f92672">}</span> 
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Penguin</span>  <span style="color:#66d9ef">extends</span>  Animal<span style="color:#f92672">{</span> 
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p><code>implements</code></p>
+<p>使用 implements 关键字可以变相的使Java具有<strong>多继承</strong>的特性，使用范围为<strong>类继承接口</strong>的情况，可以同时继承多个接口（接口跟接口之间采用逗号分隔）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 接口A
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">eat</span><span style="color:#f92672">();</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sleep</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">// 接口B
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">B</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">show</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">// 接口C通过关键字implements继承了两个父类A,B
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span> <span style="color:#66d9ef">implements</span> A<span style="color:#f92672">,</span>B <span style="color:#f92672">{</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p><code>instanceof</code></p>
+<p>判断父类对象是不是有指定子类创建，<code>父类对象 instanceof 子类 </code> ，返回值为Boolean类型</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Animal animal <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Animal<span style="color:#f92672">();</span> 
+		<span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>animal <span style="color:#66d9ef">instanceof</span> Person<span style="color:#f92672">){</span>
+			<span style="color:#75715e">// Animal类型 向下造型 为 Person类
+</span><span style="color:#75715e"></span>			Person person <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Person<span style="color:#f92672">)</span>animal<span style="color:#f92672">;</span>
+		<span style="color:#f92672">}</span>
+</code></pre></div></li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav class="post-nav">
+     
+    <a class="next" href="https://bruisesl.github.io/post/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"><span>面向对象</span><span>→</span></a>
+    
+  </nav>
+  
+
+  
+  
+</article>
+
+</main>
+
+    <footer class="footer">
+  <p>&copy; 2023 <a href="https://bruisesl.github.io">BruisesL&#39;s blog</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
+
+  </body>
+</html>
