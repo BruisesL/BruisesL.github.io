@@ -7,7 +7,115 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2008–2019, Steve Francia and the lee.so; all rights reserved.</copyright>
-    <lastBuildDate>Thu, 02 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>流(Stream)、文件(File)和IO</title>
+      <link>https://bruisesl.github.io/post/%E6%B5%81stream%E6%96%87%E4%BB%B6file%E5%92%8Cio/</link>
+      <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/%E6%B5%81stream%E6%96%87%E4%BB%B6file%E5%92%8Cio/</guid>
+      <description>流(Stream) 文件(File) 计算机文件是以计算机硬盘为载体存储在计算机上的信息集合，对于计算机磁盘的文件和目录，Java提供了对应的一个类File来描述。
+构造方法： File(String pathname) 通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例。
+File(String parent, String child) 从父路径名字符串和子路径名字符串创建新的 File实例。
+File(File parent, String child) 从父抽象路径名和子路径名字符串创建新的 File实例。
+常用方法：
+方法 描述 String getName() 返回由此抽象路径名表示的文件或目录的名称。 String getParent() 返回此抽象路径名的父路径名的路径名字符串，如果此路径名没有指定父目录，则返回 null。 File getParentFile() 返回此抽象路径名的父路径名的抽象路径名，如果此路径名没有指定父目录，则返回 null。 String getPath() 将此抽象路径名转换为一个路径名字符串。 boolean isAbsolute() 测试此抽象路径名是否为绝对路径名。 String getAbsolutePath() 返回抽象路径名的绝对路径名字符串。 boolean canRead() 测试应用程序是否可以读取此抽象路径名表示的文件。 boolean canWrite() 测试应用程序是否可以修改此抽象路径名表示的文件。 boolean exists() 测试此抽象路径名表示的文件或目录是否存在。 boolean isDirectory() 测试此抽象路径名表示的文件是否是一个目录。 boolean isFile() 测试此抽象路径名表示的文件是否是一个标准文件。 long lastModified() 返回此抽象路径名表示的文件最后一次被修改的时间。 long length() 返回由此抽象路径名表示的文件的长度。 boolean createNewFile() 当且仅当不存在具有此抽象路径名指定的名称的文件时，原子地创建由此抽象路径名指定的一个新的空文件。 boolean delete() 删除此抽象路径名表示的文件或目录。 void deleteOnExit() 在虚拟机终止时，请求删除此抽象路径名表示的文件或目录。 String[] list() 返回由此抽象路径名所表示的目录中的文件和目录的名称所组成字符串数组。 String[] list(FilenameFilter filter) 返回由包含在目录中的文件和目录的名称所组成的字符串数组，这一目录是通过满足指定过滤器的抽象路径名来表示的。 File[] listFiles() 返回一个抽象路径名数组，这些路径名表示此抽象路径名所表示目录中的文件。 File[] listFiles(FileFilter filter) 返回表示此抽象路径名所表示目录中的文件和目录的抽象路径名数组，这些路径名满足特定过滤器。 boolean mkdir() 创建此抽象路径名指定的目录。 boolean mkdirs() 创建此抽象路径名指定的目录，包括创建必需但不存在的父目录。 boolean renameTo(File dest) 重新命名此抽象路径名表示的文件。 boolean setLastModified(long time) 设置由此抽象路径名所指定的文件或目录的最后一次修改时间。 boolean setReadOnly() 标记此抽象路径名指定的文件或目录，以便只可对其进行读操作。 static File createTempFile(String prefix, String suffix, File directory) 在指定目录中创建一个新的空文件，使用给定的前缀和后缀字符串生成其名称。 static File createTempFile(String prefix, String suffix) 在默认临时文件目录中创建一个空文件，使用给定前缀和后缀生成其名称。 int compareTo(File pathname) 按字母顺序比较两个抽象路径名。 int compareTo(Object o) 按字母顺序比较抽象路径名与给定对象。 boolean equals(Object obj) 测试此抽象路径名与给定对象是否相等。 String toString() 返回此抽象路径名的路径名字符串。 // boolean mkdir() 创建由此抽象路径名命名的目录。 File f1 = new File(&amp;#34;C:\\Users\\admin\\Desktop\\2&amp;#34;); if (!</description>
+    </item>
+    
+    <item>
+      <title>Java 线程与异常</title>
+      <link>https://bruisesl.github.io/post/java%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%BC%82%E5%B8%B8/</link>
+      <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/java%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%BC%82%E5%B8%B8/</guid>
+      <description>异常 异常发生的原因通常包含以下几大类：
+用户输入了非法数据。
+要打开的文件不存在。
+网络通信时连接中断，或者JVM内存溢出。
+三种类型的异常：
+检查性异常：最具代表的检查性异常是用户错误或问题引起的异常，这是程序员无法预见的。例如要打开一个不存在文件时，一个异常就发生了，这些异常在编译时不能被简单地忽略。
+运行时异常： 运行时异常是可能被程序员避免的异常。与检查性异常相反，运行时异常可以在编译时被忽略。
+错误： 错误不是异常，而是脱离程序员控制的问题。错误在代码中通常被忽略。例如，当栈溢出时，一个错误就发生了，它们在编译也检查不到的。
+Exception 类的层次 所有的异常类是从 java.lang.Exception 类继承的子类。
+Exception 类是 Throwable 类的子类。除了Exception类外，Throwable还有一个子类Error 。Error 用来指示运行时环境发生的错误。
+Java 程序通常不捕获错误。错误一般发生在严重故障时，它们在Java程序处理的范畴之外。例如，JVM 内存溢出。一般程序不会从错误中恢复。
+异常类有两个主要的子类：IOException 类和 RuntimeException 类。
+内置异常类 Java 定义了一些异常类在 java.lang 标准包中，标准运行时异常类的子类是最常见的异常类。由于 java.lang 包是默认加载到所有的 Java 程序的，所以大部分从运行时异常类继承而来的异常都可以直接使用。
+非检查性异常
+异常 描述 ArithmeticException 当出现异常的运算条件时，抛出此异常。例如，一个整数&amp;quot;除以零&amp;quot;时，抛出此类的一个实例。 ArrayIndexOutOfBoundsException 用非法索引访问数组时抛出的异常。如果索引为负或大于等于数组大小，则该索引为非法索引。 ArrayStoreException 试图将错误类型的对象存储到一个对象数组时抛出的异常。 ClassCastException 当试图将对象强制转换为不是实例的子类时，抛出该异常。 IllegalArgumentException 抛出的异常表明向方法传递了一个不合法或不正确的参数。 IllegalMonitorStateException 抛出的异常表明某一线程已经试图等待对象的监视器，或者试图通知其他正在等待对象的监视器而本身没有指定监视器的线程。 IllegalStateException 在非法或不适当的时间调用方法时产生的信号。换句话说，即 Java 环境或 Java 应用程序没有处于请求操作所要求的适当状态下。 IllegalThreadStateException 线程没有处于请求操作所要求的适当状态时抛出的异常。 IndexOutOfBoundsException 指示某排序索引（例如对数组、字符串或向量的排序）超出范围时抛出。 NegativeArraySizeException 如果应用程序试图创建大小为负的数组，则抛出该异常。 NullPointerException 当应用程序试图在需要对象的地方使用 null 时，抛出该异常 NumberFormatException 当应用程序试图将字符串转换成一种数值类型，但该字符串不能转换为适当格式时，抛出该异常。 SecurityException 由安全管理器抛出的异常，指示存在安全侵犯。 StringIndexOutOfBoundsException 此异常由 String 方法抛出，指示索引或者为负，或者超出字符串的大小。 UnsupportedOperationException 当不支持请求的操作时，抛出该异常。 java.</description>
+    </item>
+    
+    <item>
+      <title>集合框架</title>
+      <link>https://bruisesl.github.io/post/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</link>
+      <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</guid>
+      <description>集合框架 早在 Java 2 中之前，Java 就提供了特设类。比如：Dictionary, Vector, Stack, 和 Properties 这些类用来存储和操作对象组。
+虽然这些类都非常有用，但是它们缺少一个核心的，统一的主题。由于这个原因，使用 Vector 类的方式和使用 Properties 类的方式有着很大不同。
+集合框架被设计成要满足以下几个目标：
+该框架必须是高性能的。基本集合（动`态数组，链表，树，哈希表）的实现也必须是高效的。 该框架允许不同类型的集合，以类似的方式工作，具有高度的互操作性。 对一个集合的扩展和适应必须是简单的。 为此，整个集合框架就围绕一组标准接口而设计。你可以直接使用这些接口的标准实现，诸如： LinkedList**, **HashSet, 和 TreeSet 等,除此之外你也可以通过这些接口实现自己的集合。
+从上面的集合框架图可以看到，Java 集合框架主要包括两种类型的容器，一种是集合Collection，存储一个元素集合，另一种是图Map，存储键/值对映射。Collection 接口又有 3 种子类型，List、Set 和 Queue，再下面是一些抽象类，最后是具体实现类，常用的有ArrayList、LinkedList、HashSet、LinkedHashSet、HashMap、LinkedHashMap 等等。
+集合框架是一个用来代表和操纵集合的统一架构。所有的集合框架都包含如下内容：
+接口：是代表集合的抽象数据类型。例如 Collection、List、Set、Map 等。之所以定义多个接口，是为了以不同的方式操作集合对象 实现（类）：是集合接口的具体实现。从本质上讲，它们是可重复使用的数据结构，例如：ArrayList、LinkedList、HashSet、HashMap。 算法：是实现集合接口的对象里的方法执行的一些有用的计算，例如：搜索和排序。这些算法被称为多态，那是因为相同的方法可以在相似的接口上有着不同的实现。 除了集合，该框架也定义了几个 Map 接口和类。Map 里存储的是键/值对。尽管 Map 不是集合，但是它们完全整合在集合中。
+接口 接口名称 接口描述 Collection 接口 Collection 是最基本的集合接口，一个 Collection 代表一组 Object，即 Collection 的元素, Java不提供直接继承自Collection的类，只提供继承于的子接口(如List和Set)。Collection 接口存储一组不唯一，无序的对象。Collection接口才可以使用foreach循环。 List 接口 List接口是一个有序的 Collection，使用此接口能够精确的控制每个元素插入的位置，能够通过索引（元素在List中位置，类似于数组的下标）来访问List中的元素，第一个元素的索引为 0，而且允许有相同的元素。List 接口存储一组不唯一，有序（插入顺序）的对象。 Set 接口 Set 接口具有与 Collection 完全一样的接口，只是行为上不同，Set 不保存重复的元素。Set 接口存储一组唯一，无序的对象。 SortedSet 接口 继承于Set保存有序的集合。 Map接口 Map 接口存储一组键值对象，提供key（键）到value（值）的映射。 Map.</description>
+    </item>
+    
+    <item>
+      <title>正则表达式</title>
+      <link>https://bruisesl.github.io/post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
+      <pubDate>Wed, 15 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</guid>
+      <description>正则表达式：Regex(Regular Expression)就是字符串校验的机制，它是跨平台，跨语言的：Java/JS/c++/sql
+按需求校验做一些要求判断，例如：账号规范、密码强度、身份证、电话号码/邮箱等。
+语法：
+取值范围： [A-Z] 匹配26个大写字母中的一个
+[a-z]` 匹配26个小写字母中的一个
+[0-9] 匹配0至9数字中的一个
+[A-Za-z0-9] 匹配26个大写字母、26个小写字母和0至9数字中的一个
+[ajgu]匹配ajgu中任意一个字符。如果是不连续的取值，则将字符全都写上
+[汉字]匹配是有&amp;quot;汉字&amp;quot;两个字中的一个
+\d等价于[0-9]匹配一个任意数字
+\D等价于[^0-9]	匹配一个任意非数字字符	^是除此之外
+\w等价于[A-Za-z_0-9]匹配任意一个字符
+\W等价于[^A-Za-z_0-9]匹配除了A-Za-z_0-9之外的任意一个字符
+取值的个数：
+?等价于匹配长度{0, 1} 0&amp;lt;= 个数 &amp;lt;=1	例如：[A-Z]?表示匹配A-Z中任意0~1个字符
+*等价于匹配长度{0, } 个数 &amp;gt;= 0
++等价于匹配长度{1,} 个数 &amp;gt;= 1
+{n, m} 匹配长度在n到m之间 n&amp;lt;= 个数 &amp;lt;=m 例如：[A-Z]{2, 6}
+{n, } 匹配长度大于等于n n&amp;lt;= 个数
+{n} 匹配n个
+常用运算符与表达式：
+^ 表示正则表达式开始（可写可不写），匹配输入字符串开始的位置。如果是在取值范围[]中使用，则表示除了&amp;hellip;
+$ 表示正则表达式结尾（可写可不写），匹配输入字符串结尾的位置 如果正则表达式使用了^$表示全匹配，包括顺序 加^$的话就代表把整个要匹配的字符串当成一个整体做一次匹配， 而不加则一个字符串可以匹配多次，只能代表这个字符串中有符合条件的并不代表改字符串符合条件
+[a-z] 可以用来匹配任意位置上的小写字母: &amp;ldquo;&amp;hellip;a&amp;hellip;&amp;rdquo;
+^[a-z] 只能匹配以小写字母为行首的行: &amp;ldquo;a&amp;hellip;&amp;rdquo;
+[a-z]$ 只能匹配以小写字母为行尾的行: &amp;ldquo;&amp;hellip;a&amp;rdquo;
+^[a-z]$ 只能匹配只有一个小写字母的行: &amp;ldquo;a&amp;hellip;a&amp;rdquo;</description>
+    </item>
+    
+    <item>
+      <title>Java 常用类</title>
+      <link>https://bruisesl.github.io/post/java%E5%B8%B8%E7%94%A8%E7%B1%BB/</link>
+      <pubDate>Tue, 14 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/java%E5%B8%B8%E7%94%A8%E7%B1%BB/</guid>
+      <description>String类 String类是一个特殊的对象，适用于描述字符串事物的，一旦被初始化就不可以被改变，可以进行字符串的大小写转换，分割字符串等字符串的操作。
+String底层是final类型的char[]，是不可修改的。
+String str1 = null;// 表示str1没有引用地址 String str2 = &amp;#34;&amp;#34;;// 表示str2对象引用了在常量池中创建了一个空字符串常量 String str3 = new String();// 表示str3对象引用了在堆中创建了一个空字符串常量 String	str4 = str1 + &amp;#34;a&amp;#34;; // 会创建StringBuilder的新对象，本质是调用了StringBuilder的apend()方法拼接 将其他类型转换为String类型不同方式效率对比：
+toString() &amp;gt; String.valueOf(Object obj) &amp;gt; +
+因为+号，底层先将字符串对象转换为StringBuilder对象，然后调用StringBuilder对象的append追加字符串方法，再调用toString方法，转换为String对象。
+常量池 放字符串常量的地方，JDK8后是放在堆中，当创建字符串对象是字面量（直接是= &amp;quot; &amp;ldquo;）的时候，会优先从常量池中查找，是否有该字符串对象，如果有，则会直接将常量池中的地址赋值给该String对象；如果没有，则会在常量池创建对象，然后将对象常量池的地址给String对象保存。
+当创建字符串对象用new创建，会优先从常量池中查找，是否有该字符串对象，如果有，则会直接将常量池中的地址赋值给该String对象在堆中的地址；如果没有，则会在常量池创建对象，然后将对象常量池的地址给String对象在堆中保存
+String常用方法 length() 字符串的长度
+char chars[]={&amp;#39;a&amp;#39;,&amp;#39;b&amp;#39;,&amp;#39;c&amp;#39;}; String s=new String(chars); int len=s.length(); charAt() 截取一个字符
+char ch; ch=&amp;#34;abc&amp;#34;.charAt(1); // 返回&amp;#39;b&amp;#39; getChars() 截取多个字符
+void getChars(int sourceStart,int sourceEnd,char target[],int targetStart) sourceStart指定了子串开始字符的下标，sourceEnd指定了子串结束后的下一个字符的下标。因此， 子串包含从sourceStart到sourceEnd-1的字符。接收字符的数组由target指定，target中开始复制子串的下标值是targetStart。
+String s=&amp;#34;this is a demo of the getChars method.</description>
+    </item>
+    
     <item>
       <title>修饰符与关键字</title>
       <link>https://bruisesl.github.io/post/%E4%BF%AE%E9%A5%B0%E7%AC%A6%E4%B8%8E%E5%85%B3%E9%94%AE%E5%AD%97/</link>
@@ -15,12 +123,14 @@
       
       <guid>https://bruisesl.github.io/post/%E4%BF%AE%E9%A5%B0%E7%AC%A6%E4%B8%8E%E5%85%B3%E9%94%AE%E5%AD%97/</guid>
       <description>修饰符 修饰符用来定义类、方法或者变量，通常放在语句的最前端。Java语言提供了很多修饰符，主要分为以下两类：
- 访问修饰符 非访问修饰符  访问控制修饰符 可以使用访问控制符来保护对类、变量、方法和构造方法的访问。Java 支持 4 种不同的访问权限。
-  default (即默认，什么也不写）: 在同一包内可见，不使用任何修饰符。使用对象：类、接口、变量、方法。
-  private : 在同一类内可见。使用对象：变量、方法。 注意：不能修饰类（外部类）。
-  public : 对所有类可见。使用对象：类、接口、变量、方法。
-  protected : 对同一包内的类和所有子类可见。使用对象：变量、方法。 注意：不能修饰类（外部类）。
-     修饰符 当前类 同一包内 子孙类(同一包) 子孙类(不同包) 其他包     public Y Y Y Y Y   protected Y Y Y Y/N（见protected说明） N   default Y Y Y N N   private Y N N N N      default:</description>
+访问修饰符 非访问修饰符 访问控制修饰符 可以使用访问控制符来保护对类、变量、方法和构造方法的访问。Java 支持 4 种不同的访问权限。
+default (即默认，什么也不写）: 在同一包内可见，不使用任何修饰符。使用对象：类、接口、变量、方法。
+private : 在同一类内可见。使用对象：变量、方法。 注意：不能修饰类（外部类）。
+public : 对所有类可见。使用对象：类、接口、变量、方法。
+protected : 对同一包内的类和所有子类可见。使用对象：变量、方法。 注意：不能修饰类（外部类）。
+修饰符 当前类 同一包内 子孙类(同一包) 子孙类(不同包) 其他包 public Y Y Y Y Y protected Y Y Y Y/N（见protected说明） N default Y Y Y N N private Y N N N N default:
+使用默认访问修饰符声明的变量和方法，对同一个包内的类是可见的。接口里的变量都隐式声明为 public static final,而接口里的方法默认情况下访问权限为 public。
+String version = &amp;#34;1.5.1&amp;#34;; boolean processOrder() { return true; } private:</description>
     </item>
     
     <item>
@@ -30,19 +140,22 @@
       
       <guid>https://bruisesl.github.io/post/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
       <description>面向对象(Object Oriented)是软件开发方法，一种编程范式。把数据及对数据的操作方法放在一起，作为一个相互依存的整体——对象。对同类对象抽象出其共性，形成类。类中的大多数数据，只能用本类的方法进行处理。类通过一个简单的外部接口与外界发生关系，对象与对象之间通过消息进行通信。程序流程由用户在使用中决定。对象即为人对各种具体物体抽象后的一个概念，人们每天都要接触各种各样的对象，如手机就是一个对象。
-   项目名称 面向对象程序设计 面向过程程序设计（也叫结构化编程）     定义 面向对象顾名思义就是把现实中的事务都抽象成为程序设计中的“对象”，其基本思想是一切皆对象，是一种“自下而上”的设计语言，先设计组件，再完成拼装。 面向过程是“自上而下”的设计语言，先定好框架，再增砖添瓦。通俗点，就是先定好main()函数，然后再逐步实现mian()函数中所要用到的其他方法。   特点 封装、继承、多态 算法+数据结构   优势 适用于大型复杂系统，方便复用、 适用于简单系统，容易理解   劣势 比较抽象、性能比面向过程低 难以应对复杂系统，难以复用，不易维护、不易扩展   对比 易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统 更加灵活、更加易于维护 性能比面向对象高，因为类调用时需要实例化，开销比较大，比较消耗资源;比如单片机、嵌入式开发、 Linux/Unix等一般采用面向过程开发，性能是最重要的因素。   设计语言 Java、Smalltalk、EIFFEL、C++、Objective-、C#、Python等 C、Fortran    面向对象的基本特性
-  唯一：每个对象都有自身唯一的标识，通过这种标识，可找到相应的对象。在对象的整个生命期中，它的标识都不改变，不同的对象不能有相同的标识。
-  抽象：抽象性是指将具有一致的数据结构（属性）和行为（操作）的对象抽象成类。一个类就是这样一种抽象，它反映了与应用有关的重要性质，而忽略其他一些无关内容。任何类的划分都是主观的，但必须与具体的应用有关。
-  继承：继承性是子类自动共享父类数据结构和方法的机制，这是类之间的一种关系。在定义和实现一个类的时候，可以在一个已经存在的类的基础之上来进行，把这个已经存在的类所定义的内容作为自己的内容，并加入若干新的内容。
+项目名称 面向对象程序设计 面向过程程序设计（也叫结构化编程） 定义 面向对象顾名思义就是把现实中的事务都抽象成为程序设计中的“对象”，其基本思想是一切皆对象，是一种“自下而上”的设计语言，先设计组件，再完成拼装。 面向过程是“自上而下”的设计语言，先定好框架，再增砖添瓦。通俗点，就是先定好main()函数，然后再逐步实现mian()函数中所要用到的其他方法。 特点 封装、继承、多态 算法+数据结构 优势 适用于大型复杂系统，方便复用、 适用于简单系统，容易理解 劣势 比较抽象、性能比面向过程低 难以应对复杂系统，难以复用，不易维护、不易扩展 对比 易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统 更加灵活、更加易于维护 性能比面向对象高，因为类调用时需要实例化，开销比较大，比较消耗资源;比如单片机、嵌入式开发、 Linux/Unix等一般采用面向过程开发，性能是最重要的因素。 设计语言 Java、Smalltalk、EIFFEL、C++、Objective-、C#、Python等 C、Fortran 面向对象的基本特性
+唯一：每个对象都有自身唯一的标识，通过这种标识，可找到相应的对象。在对象的整个生命期中，它的标识都不改变，不同的对象不能有相同的标识。
+抽象：抽象性是指将具有一致的数据结构（属性）和行为（操作）的对象抽象成类。一个类就是这样一种抽象，它反映了与应用有关的重要性质，而忽略其他一些无关内容。任何类的划分都是主观的，但必须与具体的应用有关。
+继承：继承性是子类自动共享父类数据结构和方法的机制，这是类之间的一种关系。在定义和实现一个类的时候，可以在一个已经存在的类的基础之上来进行，把这个已经存在的类所定义的内容作为自己的内容，并加入若干新的内容。
 继承性是面向对象程序设计语言不同于其它语言的最重要的特点，是其他语言所没有的。
 在类层次中，子类只继承一个父类的数据结构和方法，则称为单重继承。
 在类层次中，子类继承了多个父类的数据结构和方法，则称为多重继承，Java仅支持单继承，C++支持均支持。
 在软件开发中，类的继承性使所建立的软件具有开放性、可扩充性，这是信息组织与分类的行之有效的方法，它简化了对象、类的创建工作量，增加了代码的可重用性。
-  **多态：**多态性是指相同的操作或函数、过程可作用于多种类型的对象上并获得不同的结果。不同的对象，收到同一消息可以产生不同的结果，这种现象称为多态性。
+多态：多态性是指相同的操作或函数、过程可作用于多种类型的对象上并获得不同的结果。不同的对象，收到同一消息可以产生不同的结果，这种现象称为多态性。
 多态性允许每个对象以适合自身的方式去响应共同的消息。
 多态性增强了软件的灵活性和重用性。
-  类与对象 类(Class) 用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。
-格式：</description>
+类与对象 类(Class) 用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。
+格式：
+访问修饰符 class 类名 { 特征 行为 } // 注: 特征和行为都称为该类的成员; 一个业务类分为静态与动态部分，静态部分为成员变量，动态部分为方法
+设计业务类时不能用main方法
+public class Student{ /** String name : 姓名 成员变量 */ String name; /** int age : 年龄 成员变量 */ int age; /** String sex : 性别 成员变量 */ String sex; /** * 动态部分：方法 */ /** study是方法：成员方法 */ public void study(){ System.</description>
     </item>
     
     <item>
@@ -52,11 +165,11 @@
       
       <guid>https://bruisesl.github.io/post/java-%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/</guid>
       <description>Java 方法详解 什么是方法 Java 方法是语句的集合，他们在一起执行一个功能
-  方法是解决一类问题的步骤的 有序组合
-  方法包含于 类 或 对象 中
-  方法在程序中被创建，在其他地方被引用
-  System.out.printLn() //System类 里的标准 对象out 中的 方法printLn() 设计方法的原则：方法的本意是功能块，就是实现某个功能的语句块的集合。我们设计方法的时候，最好保持方法的原子性，即一个方法只完成一个功能，这样利于我们后期的扩展。
-public class Demo { //main方法  public static void main(String[] args) { int sum = add(1,2); System.out.println(sum); System.out.println(&amp;#34;=====================&amp;#34;); test(); } //加法  public static int add(int a,int b){ return a + b; } public static void test(){ int i = 0; while (i &amp;lt; 10) { i++; System.</description>
+方法是解决一类问题的步骤的 有序组合
+方法包含于 类 或 对象 中
+方法在程序中被创建，在其他地方被引用
+System.out.printLn() //System类 里的标准 对象out 中的 方法printLn() 设计方法的原则：方法的本意是功能块，就是实现某个功能的语句块的集合。我们设计方法的时候，最好保持方法的原子性，即一个方法只完成一个功能，这样利于我们后期的扩展。
+public class Demo { //main方法 public static void main(String[] args) { int sum = add(1,2); System.out.println(sum); System.out.println(&amp;#34;=====================&amp;#34;); test(); } //加法 public static int add(int a,int b){ return a + b; } public static void test(){ int i = 0; while (i &amp;lt; 10) { i++; System.out.println(i); if (i == 3) { break; } } } } 方法的定义及调用 Java 是一段用来完成特定功能的代码片段，一般情况下，定义一个方法包含以下语法：</description>
     </item>
     
     <item>
@@ -66,12 +179,19 @@ public class Demo { //main方法  public static void main(String[] args) { int s
       
       <guid>https://bruisesl.github.io/post/java%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/</guid>
       <description>用户交互Scanner 之前学习的基本语法中并没有实现程序和人的交互，Java提供了一个工具类，可以获取用户的输入。java.util.Scanner是Java5的新特征，可以通过Scanner类来获取用户的输入。
-  语法
-Scanner s = new Scanner(System.in)   通过 Scanner 类的 next() 与 nextLine() 方法获取输入的字符串，在读取前我们一般需要 使用 hasNext() 与 hasNextLine() 判断是否还有输入的数据。
-public class Demo01 { public static void main(String[] args) { //创建一个扫描器对象，用于接收键盘数据  Scanner scanner = new Scanner(System.in); System.out.println(&amp;#34;使用next方法接收：&amp;#34;); //判断用户是否输入字符串  if (scanner.hasNext()){ //使用next方式接收  String str = scanner.next(); System.out.println(&amp;#34;输入的内容为：&amp;#34;+str); } //凡事属于IO流的类，如果不关会一直占用资源  scanner.close(); } } tips：
-  next():
-  一定要读取到有效字符后才可以结束输入
-  对输入有效字符前遇到的空白，next() 方法会自动将其去掉</description>
+语法
+Scanner s = new Scanner(System.in) 通过 Scanner 类的 next() 与 nextLine() 方法获取输入的字符串，在读取前我们一般需要 使用 hasNext() 与 hasNextLine() 判断是否还有输入的数据。
+public class Demo01 { public static void main(String[] args) { //创建一个扫描器对象，用于接收键盘数据 Scanner scanner = new Scanner(System.in); System.out.println(&amp;#34;使用next方法接收：&amp;#34;); //判断用户是否输入字符串 if (scanner.hasNext()){ //使用next方式接收 String str = scanner.next(); System.out.println(&amp;#34;输入的内容为：&amp;#34;+str); } //凡事属于IO流的类，如果不关会一直占用资源 scanner.close(); } } tips：
+next():
+一定要读取到有效字符后才可以结束输入
+对输入有效字符前遇到的空白，next() 方法会自动将其去掉
+只有输入有效字符后，才将其后面输入的空白作为分隔符或结束符
+next() 不能得到带有空格的字符串
+nextLine():
+以 Enter 为结束符，也就是说 nextLine() 方法返回的是输入回车之前的所有字符
+可以获得空白
+练习
+public class Demo03 { public static void main(String[] args) { Scanner scanner = new Scanner(System.</description>
     </item>
     
     <item>
@@ -80,11 +200,18 @@ public class Demo01 { public static void main(String[] args) { //创建一个扫
       <pubDate>Wed, 04 Jan 2023 00:00:00 +0000</pubDate>
       
       <guid>https://bruisesl.github.io/post/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
-      <description>注释  Java中注释有三种：单行注释、多行注释、文档注释  public class HelloWorld { public static void main(String[] args) { // 单行注释  System.out.println(&amp;#34;Hello,World!&amp;#34;); // 输出一个HelloWorld  /* * 多行注释, * 可以注释一段文字 */ /* 文档注释：JavaDoc /**回车 * 用法： * 1.用在类的外面，用于对类解释说明 * 2.写在方法上面，对方法解释说明 * 3.解释说明成员变量 */ /** * @Description HelloWorld * @Author BruisesL */ } } 标识符 Java所有的组成部分都需要名字。类名、变量名、以及方法名都被称为标识符。
-  所有的标识符都应该以 字母(A-Z 或者 a-z)、美元符($)、下划线(_) 开始
-  首字符之后可以是 字母(A-Z 或者 a-z)、美元符($)、下划线(_) 或数字的任何字符 组合
-  不能使用关键字作为变量名或方法名
-  标识符是大小写敏感的</description>
+      <description>注释 Java中注释有三种：单行注释、多行注释、文档注释 public class HelloWorld { public static void main(String[] args) { // 单行注释 System.out.println(&amp;#34;Hello,World!&amp;#34;); // 输出一个HelloWorld /* * 多行注释, * 可以注释一段文字 */ /* 文档注释：JavaDoc /**回车 * 用法： * 1.用在类的外面，用于对类解释说明 * 2.写在方法上面，对方法解释说明 * 3.解释说明成员变量 */ /** * @Description HelloWorld * @Author BruisesL */ } } 标识符 Java所有的组成部分都需要名字。类名、变量名、以及方法名都被称为标识符。
+所有的标识符都应该以 字母(A-Z 或者 a-z)、美元符($)、下划线(_) 开始
+首字符之后可以是 字母(A-Z 或者 a-z)、美元符($)、下划线(_) 或数字的任何字符 组合
+不能使用关键字作为变量名或方法名
+标识符是大小写敏感的
+类名命名必须大驼峰。大驼峰：首字母大写，后面每个单词首字母大写。 例如：UserManagement
+方法名、变量名小驼峰。小驼峰：首字母小写，后面每个单词首字母大写
+例如：userName
+合法标识符举例：age、 $salary、_value、__1_value
+非法标识符举例：123abc、-salary、 #abc
+关键字
+分隔符 分号（ ; ）：语句的分割，表示一句话结束，好比使用的句号。</description>
     </item>
     
     <item>
@@ -93,15 +220,15 @@ public class Demo01 { public static void main(String[] args) { //创建一个扫
       <pubDate>Tue, 07 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://bruisesl.github.io/post/java-%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/</guid>
-      <description>Jave的诞生   1972年C诞生
+      <description>Jave的诞生 1972年C诞生
 优点：贴近硬件，运行极快，效率极高
 开发：操作系统，编译器，数据库，网络系统等
 问题：指针和内存管理
-  1982年C++诞生
+1982年C++诞生
 特点：面对对象
 优点：兼容C
 开发：图形领域、游戏等
-  1995年Java诞生
+1995年Java诞生
 特点：语法像C，没有指针和内存管理，具有真正的可以执行（编写一次，到处运行），面向对象，类型安全，高质量的类库
 要求：需要安装JVM（Java虚拟机）
 产品：
@@ -109,7 +236,7 @@ Java2标准版(J2SE):占领桌面
 Java2移动版(J2ME):占领手机
 Java2企业版(J2EE):占领服务器
 基于Java开发的平台，系统，工具：
- 构建工具：Ant，Maven，Jekins 应用服务器：Tomcat，Jetty，Jboss，Websphere，Weblogic Web开发：Struts，Spring，Hibernate，myBatis 开发工具：Eclipse，Netbean，intellij idea，Jbuilder 大数据领域：Hadoop 手机端：Android    Java的特性和优势 简单性（C++语法纯净版，无头文件，无指针运算）
+构建工具：Ant，Maven，Jekins 应用服务器：Tomcat，Jetty，Jboss，Websphere，Weblogic Web开发：Struts，Spring，Hibernate，myBatis 开发工具：Eclipse，Netbean，intellij idea，Jbuilder 大数据领域：Hadoop 手机端：Android Java的特性和优势 简单性（C++语法纯净版，无头文件，无指针运算）
 面向对象（重点放在对象以及对象之间的接口上，以人的思维写程序）
 可移植性（可跨平台移植）
 高性能（即时编译，效率接近C++）
@@ -122,7 +249,11 @@ Java的三大版本 JavaSE：标准版（桌面程序、控制台开发） JavaM
 JDK、JRE、JVM JDK : Java Development Kit （Java开发工具）
 JRE : Java Runtime Environment （Java运行环境）
 JVM : Java Virtual Machine （Java虚拟机）
-Java开发环境搭建   JDK下载、安装与卸载</description>
+Java开发环境搭建 JDK下载、安装与卸载
+安装（Mac M1）
+需要安装适配 Arm 架构的 jdk，选择LTS版本的Java进行下载，下载完成后安装，在terminal执行查看版本号
+java -version azul JDK官网下载链接
+https://www.azul.com/downloads/?package=jdk#download-openjdk</description>
     </item>
     
     <item>
@@ -131,12 +262,12 @@ Java开发环境搭建   JDK下载、安装与卸载</description>
       <pubDate>Thu, 02 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://bruisesl.github.io/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</guid>
-      <description>计算机的构成   计算机由硬件+软件构成
-  硬件的构成为冯诺依曼体系结构，最简单的组成为CPU、内存、主板
-  软件的构成分为系统软件和应用软件
-  系统软件:DOS (Disk Operating System) , Windows, Linux, Mac, Android, IOS
-  应用软件:WPS, QQ, 微信等
-  冯诺依曼体系结构  I/O设备(input/output设备)：即输入输出设备，输入设备例如键盘、鼠标，输出设备例如显示器、音响等 CPU主要由运算器和控制器组成 运算：数据由输入设备进入存储器，存储器将数据传入运算器进行运算，在得出结果后返回存储器，存储器再将数据通过输出设备输出。  计算机语言发展史 第一代语言&amp;ndash;机器语言  计算机的基本计算方式是基于二进制的方式  第二代语言&amp;ndash;汇编语言  解决人类无法读懂机器语言的问题 指令替代二进制  第三代语言&amp;ndash;高级语言  大体分为：面向过程和面向对象两大类 C语言是面向过程的语言，C++、Java是面向对象的语言  </description>
+      <description>计算机的构成 计算机由硬件+软件构成
+硬件的构成为冯诺依曼体系结构，最简单的组成为CPU、内存、主板
+软件的构成分为系统软件和应用软件
+系统软件:DOS (Disk Operating System) , Windows, Linux, Mac, Android, IOS
+应用软件:WPS, QQ, 微信等
+冯诺依曼体系结构 I/O设备(input/output设备)：即输入输出设备，输入设备例如键盘、鼠标，输出设备例如显示器、音响等 CPU主要由运算器和控制器组成 运算：数据由输入设备进入存储器，存储器将数据传入运算器进行运算，在得出结果后返回存储器，存储器再将数据通过输出设备输出。 计算机语言发展史 第一代语言&amp;ndash;机器语言 计算机的基本计算方式是基于二进制的方式 第二代语言&amp;ndash;汇编语言 解决人类无法读懂机器语言的问题 指令替代二进制 第三代语言&amp;ndash;高级语言 大体分为：面向过程和面向对象两大类 C语言是面向过程的语言，C++、Java是面向对象的语言 </description>
     </item>
     
     <item>
@@ -145,7 +276,7 @@ Java开发环境搭建   JDK下载、安装与卸载</description>
       <pubDate>Wed, 01 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://bruisesl.github.io/post/dos%E5%91%BD%E4%BB%A4/</guid>
-      <description>#盘符切换  C: #查看当前目录下的所有文件  dir #切换目录 cd (change directory)实例目录为F盘下user文件夹 跨盘符切换 cd /d f:\user 返回上一级 cd .. 进入目录 cd user #清理屏幕  cls (clear screen) #退出终端  exit #查看电脑ip  ipconfig #ping 命令（获取网站ip） ping www.baidu.com #打开电脑工具（直接输入软件名称缩写） clac 计算器 mspaint 画图 notepad 记事本 #文件操作 md test 创建文件夹（文件夹名称tese） cd&amp;gt;a.txt 创建文件（文件为名字是a的txt文件） del a.txt 删除文件 rd test 删除文件夹（需进入有该文件夹的目录再进行删除，且文件夹需要为空） </description>
+      <description>#盘符切换 C: #查看当前目录下的所有文件 dir #切换目录 cd (change directory)实例目录为F盘下user文件夹 跨盘符切换 cd /d f:\user 返回上一级 cd .. 进入目录 cd user #清理屏幕 cls (clear screen) #退出终端 exit #查看电脑ip ipconfig #ping 命令（获取网站ip） ping www.baidu.com #打开电脑工具（直接输入软件名称缩写） clac 计算器 mspaint 画图 notepad 记事本 #文件操作 md test 创建文件夹（文件夹名称tese） cd&amp;gt;a.txt 创建文件（文件为名字是a的txt文件） del a.txt 删除文件 rd test 删除文件夹（需进入有该文件夹的目录再进行删除，且文件夹需要为空） </description>
     </item>
     
     <item>
@@ -155,18 +286,20 @@ Java开发环境搭建   JDK下载、安装与卸载</description>
       
       <guid>https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
       <description>数组 「数组 Array」是一种将 相同类型元素 存储在 连续内存空间 的数据结构，将元素在数组中的位置称为元素的「索引 Index」。
-  数组名 ：数组的名字
-  数组元素：就是存放在数组里面的数据
-  数组索引：就是数组里面连续存储空间的编号，从0开始。而从0开始的原因是根据地址计算公式，索引本质上表示的是内存地址偏移量，首个元素的地址偏移量是 0 ，所以索引值也是 0 。
-  length ：数组的属性长度，数组名.length拿到数组的长度
-    数组的声明：数据类型[] 数组名
-int[] ages; // 声明一个int类型的数组ages，数组内元素均为int类型 String[] names；// 声明一个String类型的数组names，数组内元素均为String类型 // 也可以用 int ages[]声明，但是不推荐   数组的赋值与取值：
+数组名 ：数组的名字
+数组元素：就是存放在数组里面的数据
+数组索引：就是数组里面连续存储空间的编号，从0开始。而从0开始的原因是根据地址计算公式，索引本质上表示的是内存地址偏移量，首个元素的地址偏移量是 0 ，所以索引值也是 0 。
+length ：数组的属性长度，数组名.length拿到数组的长度
+数组的声明：数据类型[] 数组名
+int[] ages; // 声明一个int类型的数组ages，数组内元素均为int类型 String[] names；// 声明一个String类型的数组names，数组内元素均为String类型 // 也可以用 int ages[]声明，但是不推荐 数组的赋值与取值：
 数组在定义后，必须**初始化「赋值」**才能使用。所谓初始化，就是在堆内存中给数组分配存储空间，并为每一 个元素赋上初始值，有两种方式：
-  动态创建：
+动态创建：
 **语法 **：数据类型[] 数组名 = new 数据类型[长度] ，长度不能为负数，默认是int类型，最大就是int最大值。
-int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度3   静态创建：
+int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度3 静态创建：
 语法：第一个方式是常用方式，第二个方式作为了解。
-数据类型[] 数组名 = {值1, 值2, 值3&amp;hellip;.</description>
+数据类型[] 数组名 = {值1, 值2, 值3&amp;hellip;..};
+数据类型[] 数组名 = new 数据类型[]{值1,值2,值3&amp;hellip;..};
+int[] arr2 = {1,3,5,8,9}; // 静态创建了一个长度为5，int类型的数组arr2，赋值元素 ：1,3,5,8,9 数组赋值</description>
     </item>
     
     <item>
@@ -175,24 +308,31 @@ int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度
       <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>https://bruisesl.github.io/post/%E7%AE%97%E6%B3%95/</guid>
-      <description>算法   算法定义：
+      <description>算法 算法定义：
 「算法 Algorithm」是在有限时间内解决问题的一组指令或操作步骤。算法具有以下特性：
- 问题是明确的，需要拥有明确的输入和输出定义。 解具有确定性，即给定相同输入时，输出一定相同。 具有可行性，可在有限步骤、有限时间、有限内存空间下完成。 独立于编程语言，即可用多种语言实现。      数据结构定义：
+问题是明确的，需要拥有明确的输入和输出定义。 解具有确定性，即给定相同输入时，输出一定相同。 具有可行性，可在有限步骤、有限时间、有限内存空间下完成。 独立于编程语言，即可用多种语言实现。 数据结构定义：
 「数据结构 Data Structure」是在计算机中组织与存储数据的方式。为了提高数据存储和操作性能，数据结构的设计原则有：
- 空间占用尽可能小，节省计算机内存。 数据操作尽量快，包括数据访问、添加、删除、更新等。 提供简洁的数据表示和逻辑信息，以便算法高效运行。  数据结构的设计是一个充满权衡的过程，这意味着如果获得某方面的优势，则往往需要在另一方面做出妥协。例如，链表相对于数组，数据添加删除操作更加方便，但牺牲了数据的访问速度；图相对于链表，提供了更多的逻辑信息，但需要占用更多的内存空间。
-  数据结构与算法的关系：
+空间占用尽可能小，节省计算机内存。 数据操作尽量快，包括数据访问、添加、删除、更新等。 提供简洁的数据表示和逻辑信息，以便算法高效运行。 数据结构的设计是一个充满权衡的过程，这意味着如果获得某方面的优势，则往往需要在另一方面做出妥协。例如，链表相对于数组，数据添加删除操作更加方便，但牺牲了数据的访问速度；图相对于链表，提供了更多的逻辑信息，但需要占用更多的内存空间。
+数据结构与算法的关系：
 「数据结构」与「算法」是高度相关、紧密嵌合的，体现在：
-  数据结构是算法的底座。数据结构为算法提供结构化存储的数据，以及操作数据的对应方法。
-  算法是发挥数据结构优势的舞台。数据结构仅存储数据信息，结合算法才可解决特定问题。
-  算法有对应最优的数据结构。给定算法，一般可基于不同的数据结构实现，而最终执行效率往往相差很大。
-    复杂度分析 算法效率评估 算法的设计目标是什么，或者说，如何来评判算法的好与坏。整体上看，我们设计算法时追求两个层面的目标：找到问题解法 与 寻求最优解法。
+数据结构是算法的底座。数据结构为算法提供结构化存储的数据，以及操作数据的对应方法。
+算法是发挥数据结构优势的舞台。数据结构仅存储数据信息，结合算法才可解决特定问题。
+算法有对应最优的数据结构。给定算法，一般可基于不同的数据结构实现，而最终执行效率往往相差很大。
+复杂度分析 算法效率评估 算法的设计目标是什么，或者说，如何来评判算法的好与坏。整体上看，我们设计算法时追求两个层面的目标：找到问题解法 与 寻求最优解法。
 算法效率则是主要评价维度，包括：
-  时间效率，即算法的运行速度的快慢。
-  空间效率，即算法占用的内存空间大小。
-  注：大多数情况下，时间都是比空间更宝贵的，只要空间复杂度不要太离谱、能接受就行，因此以空间换时间最为常用。
-  效率评估方法&amp;ndash;实际测试
+时间效率，即算法的运行速度的快慢。
+空间效率，即算法占用的内存空间大小。
+注：大多数情况下，时间都是比空间更宝贵的，只要空间复杂度不要太离谱、能接受就行，因此以空间换时间最为常用。
+效率评估方法&amp;ndash;实际测试
 假设我们现在有算法 A 和 算法 B ，都能够解决同一问题，现在需要对比两个算法之间的效率。最直接的方式，就是找一台计算机，把两个算法都完整跑一遍，并监控记录运行时间和内存占用情况。这种评估方式能够反映真实情况，但是也存在弊端：
-  难以排除测试环境的干扰因素。硬件配置会影响到算法的性能表现。例如，在某台计算机中，算法 A 比算法 B 运行时间更短；但换到另一台配置不同的计算机中，可能会得到相反的测试结果。这意味着我们需要在各种机器上展开测试，而这是不现实的。</description>
+难以排除测试环境的干扰因素。硬件配置会影响到算法的性能表现。例如，在某台计算机中，算法 A 比算法 B 运行时间更短；但换到另一台配置不同的计算机中，可能会得到相反的测试结果。这意味着我们需要在各种机器上展开测试，而这是不现实的。
+展开完整测试非常耗费资源。随着输入数据量的大小变化，算法会呈现出不同的效率表现。比如，有可能输入数据量较小时，算法 A 运行时间短于算法 B ，而在输入数据量较大时，测试结果截然相反。因此，若想要达到具有说服力的对比结果，那么需要输入各种体量数据，这样的测试需要占用大量计算资源。
+效率评估方法&amp;ndash;理论估算
+估算方法称为「复杂度分析 Complexity Analysis」或「渐近复杂度分析 Asymptotic Complexity Analysis」。
+复杂度分析评估随着输入数据量的增长，算法的运行时间和占用空间的增长趋势。根据时间和空间两方面，复杂度可分为「时间复杂度 Time Complexity」和「空间复杂度 Space Complexity」。 复杂度分析克服了实际测试方法的弊端。一是独立于测试环境，分析结果适用于所有运行平台。二是可以体现不同数据量下的算法效率，尤其是可以反映大数据量下的算法性能。 时间复杂度 统计算法运行时间
+运行时间能够直观且准确地体现出算法的效率水平，想要准确预估一段代码的运行时间，需要做：
+首先需要 确定运行平台 ，包括硬件配置、编程语言、系统环境等，这些都会影响到代码的运行效率。
+评估 各种计算操作的所需运行时间 ，例如加法操作 + 需要 1 ns ，乘法操作 * 需要 10 ns ，打印操作需要 5 ns 等。</description>
     </item>
     
     <item>
@@ -201,10 +341,9 @@ int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度
       <pubDate>Sat, 02 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://bruisesl.github.io/post/%E5%BC%80%E5%8F%91%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%85%B3/</guid>
-      <description>eclipse的使用   介绍：Eclipse 是一个开放源代码的、基于 Java 的可扩展开发平台。eclipse 附带了一个标准的插件集，包括Java 开发工具 Java Developmment Rit, JDk。eclipse 是一个可以提高开发效率的工具。 可自动编译Java文件，简化运行流程。创建 类 管理项目方式更为简单直观。但是现在使用eclipse的企业很少，大多数企业选择使用IDEA进行开发。
-  区域：左侧工作栏用于创建项目与管理文件，右侧区域用于编写代码，上方选择框最右侧可以选择编写语言。
-  使用：点击左侧创建项目，创建成功后新建类，输入类的名称并选择类及方法的类型，确认后即可编写。
-  </description>
+      <description>eclipse的使用 介绍：Eclipse 是一个开放源代码的、基于 Java 的可扩展开发平台。eclipse 附带了一个标准的插件集，包括Java 开发工具 Java Developmment Rit, JDk。eclipse 是一个可以提高开发效率的工具。 可自动编译Java文件，简化运行流程。创建 类 管理项目方式更为简单直观。但是现在使用eclipse的企业很少，大多数企业选择使用IDEA进行开发。
+区域：左侧工作栏用于创建项目与管理文件，右侧区域用于编写代码，上方选择框最右侧可以选择编写语言。
+使用：点击左侧创建项目，创建成功后新建类，输入类的名称并选择类及方法的类型，确认后即可编写。</description>
     </item>
     
     <item>
@@ -215,22 +354,23 @@ int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度
       <guid>https://bruisesl.github.io/post/%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
       <description>Mac删除launchpad中无法正常移除的图标 场景：网页中下载dmg安装后，卸载了finder/application内对应程序，但launchpad内仍然存在对应图标，且无法删除。
 解决办法：
-  找到com.apple.dock.launchpad文件夹
+找到com.apple.dock.launchpad文件夹
 打开一个folder，按command+shift+G，在前往当中输入地址/private/var/folders，然后在里边自己尝试找到com.apple.dock.launchpad这个文件夹
-  找到数据库，获取其路径
+找到数据库，获取其路径
 打开com.apple.dock.launchpad 文件夹
 之后有一个db文件夹，再点进去有一个文件叫db,它就是要找的数据库。
 查看db文件简介，复制对应路径，注意从private开始。
-  开始对数据库进行操作
+开始对数据库进行操作
 打开终端，切换盘符至复制路径。
 然后输入： sqlite3 db &amp;quot;delete from apps where title=&#39;应用名称&#39;;&amp;quot;&amp;amp;&amp;amp;killall Dock
 注意要将应用名称处替换成要删除的图标的名称，然后回车即可。
-  permission denied (publickey)问题的解决方法 场景：上时间未远端登陆git，导致ssh key过期，git push 失败报错：Permission denied (publickey)
+permission denied (publickey)问题的解决方法 场景：上时间未远端登陆git，导致ssh key过期，git push 失败报错：Permission denied (publickey)
 解决办法：重新生成一个新的ssh key ，然后将这个ssh key添加到github账户上面。
- 检查SSH key是否已经存在  ls ~/.ssh/ 进行检查 id_rsa.pub 是否存在，如果存在，就不用生成一个新的SSH key了，直接跳到下面的第3步。
-生成一个新的SSH key  切换盘符至 .ssh 文件
+检查SSH key是否已经存在 ls ~/.ssh/ 进行检查 id_rsa.pub 是否存在，如果存在，就不用生成一个新的SSH key了，直接跳到下面的第3步。
+生成一个新的SSH key 切换盘符至 .ssh 文件
 cd /Users/your_user_name/.ssh 输入命令（其中 your_email@example.com 替换成个人邮箱地址）：
-ssh-keygen -t rsa -b 2048 -C &amp;quot;your_email@example.</description>
+ssh-keygen -t rsa -b 2048 -C &amp;#34;your_email@example.com&amp;#34; 回车后输出如下：
+Generating public/private rsa key pair. Enter file in which to save the key (/Users/your_user_name/.</description>
     </item>
     
   </channel>

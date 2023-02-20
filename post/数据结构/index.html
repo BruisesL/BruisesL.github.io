@@ -24,18 +24,20 @@
   
   
   <meta name="description" content="数组 「数组 Array」是一种将 相同类型元素 存储在 连续内存空间 的数据结构，将元素在数组中的位置称为元素的「索引 Index」。
-  数组名 ：数组的名字
-  数组元素：就是存放在数组里面的数据
-  数组索引：就是数组里面连续存储空间的编号，从0开始。而从0开始的原因是根据地址计算公式，索引本质上表示的是内存地址偏移量，首个元素的地址偏移量是 0 ，所以索引值也是 0 。
-  length ：数组的属性长度，数组名.length拿到数组的长度
-    数组的声明：数据类型[] 数组名
-int[] ages; // 声明一个int类型的数组ages，数组内元素均为int类型 String[] names；// 声明一个String类型的数组names，数组内元素均为String类型 // 也可以用 int ages[]声明，但是不推荐   数组的赋值与取值：
+数组名 ：数组的名字
+数组元素：就是存放在数组里面的数据
+数组索引：就是数组里面连续存储空间的编号，从0开始。而从0开始的原因是根据地址计算公式，索引本质上表示的是内存地址偏移量，首个元素的地址偏移量是 0 ，所以索引值也是 0 。
+length ：数组的属性长度，数组名.length拿到数组的长度
+数组的声明：数据类型[] 数组名
+int[] ages; // 声明一个int类型的数组ages，数组内元素均为int类型 String[] names；// 声明一个String类型的数组names，数组内元素均为String类型 // 也可以用 int ages[]声明，但是不推荐 数组的赋值与取值：
 数组在定义后，必须**初始化「赋值」**才能使用。所谓初始化，就是在堆内存中给数组分配存储空间，并为每一 个元素赋上初始值，有两种方式：
-  动态创建：
+动态创建：
 **语法 **：数据类型[] 数组名 = new 数据类型[长度] ，长度不能为负数，默认是int类型，最大就是int最大值。
-int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度3   静态创建：
+int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度3 静态创建：
 语法：第一个方式是常用方式，第二个方式作为了解。
-数据类型[] 数组名 = {值1, 值2, 值3&hellip;." />
+数据类型[] 数组名 = {值1, 值2, 值3&hellip;..};
+数据类型[] 数组名 = new 数据类型[]{值1,值2,值3&hellip;..};
+int[] arr2 = {1,3,5,8,9}; // 静态创建了一个长度为5，int类型的数组arr2，赋值元素 ：1,3,5,8,9 数组赋值" />
   <meta name="author" content="BruisesL" />
   
 
@@ -68,7 +70,7 @@ int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度
   <link rel="apple-touch-icon" href="https://bruisesl.github.io/apple-touch-icon.png" />
 
   
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.110.0">
 
   
   
@@ -82,39 +84,42 @@ int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度
   
   <meta property="og:title" content="数据结构" />
 <meta property="og:description" content="数组 「数组 Array」是一种将 相同类型元素 存储在 连续内存空间 的数据结构，将元素在数组中的位置称为元素的「索引 Index」。
-  数组名 ：数组的名字
-  数组元素：就是存放在数组里面的数据
-  数组索引：就是数组里面连续存储空间的编号，从0开始。而从0开始的原因是根据地址计算公式，索引本质上表示的是内存地址偏移量，首个元素的地址偏移量是 0 ，所以索引值也是 0 。
-  length ：数组的属性长度，数组名.length拿到数组的长度
-    数组的声明：数据类型[] 数组名
-int[] ages; // 声明一个int类型的数组ages，数组内元素均为int类型 String[] names；// 声明一个String类型的数组names，数组内元素均为String类型 // 也可以用 int ages[]声明，但是不推荐   数组的赋值与取值：
+数组名 ：数组的名字
+数组元素：就是存放在数组里面的数据
+数组索引：就是数组里面连续存储空间的编号，从0开始。而从0开始的原因是根据地址计算公式，索引本质上表示的是内存地址偏移量，首个元素的地址偏移量是 0 ，所以索引值也是 0 。
+length ：数组的属性长度，数组名.length拿到数组的长度
+数组的声明：数据类型[] 数组名
+int[] ages; // 声明一个int类型的数组ages，数组内元素均为int类型 String[] names；// 声明一个String类型的数组names，数组内元素均为String类型 // 也可以用 int ages[]声明，但是不推荐 数组的赋值与取值：
 数组在定义后，必须**初始化「赋值」**才能使用。所谓初始化，就是在堆内存中给数组分配存储空间，并为每一 个元素赋上初始值，有两种方式：
-  动态创建：
+动态创建：
 **语法 **：数据类型[] 数组名 = new 数据类型[长度] ，长度不能为负数，默认是int类型，最大就是int最大值。
-int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度3   静态创建：
+int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度3 静态创建：
 语法：第一个方式是常用方式，第二个方式作为了解。
-数据类型[] 数组名 = {值1, 值2, 值3&hellip;." />
+数据类型[] 数组名 = {值1, 值2, 值3&hellip;..};
+数据类型[] 数组名 = new 数据类型[]{值1,值2,值3&hellip;..};
+int[] arr2 = {1,3,5,8,9}; // 静态创建了一个长度为5，int类型的数组arr2，赋值元素 ：1,3,5,8,9 数组赋值" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-02-01T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-02-01T00:00:00+00:00" />
 
-
   
   <meta itemprop="name" content="数据结构">
 <meta itemprop="description" content="数组 「数组 Array」是一种将 相同类型元素 存储在 连续内存空间 的数据结构，将元素在数组中的位置称为元素的「索引 Index」。
-  数组名 ：数组的名字
-  数组元素：就是存放在数组里面的数据
-  数组索引：就是数组里面连续存储空间的编号，从0开始。而从0开始的原因是根据地址计算公式，索引本质上表示的是内存地址偏移量，首个元素的地址偏移量是 0 ，所以索引值也是 0 。
-  length ：数组的属性长度，数组名.length拿到数组的长度
-    数组的声明：数据类型[] 数组名
-int[] ages; // 声明一个int类型的数组ages，数组内元素均为int类型 String[] names；// 声明一个String类型的数组names，数组内元素均为String类型 // 也可以用 int ages[]声明，但是不推荐   数组的赋值与取值：
+数组名 ：数组的名字
+数组元素：就是存放在数组里面的数据
+数组索引：就是数组里面连续存储空间的编号，从0开始。而从0开始的原因是根据地址计算公式，索引本质上表示的是内存地址偏移量，首个元素的地址偏移量是 0 ，所以索引值也是 0 。
+length ：数组的属性长度，数组名.length拿到数组的长度
+数组的声明：数据类型[] 数组名
+int[] ages; // 声明一个int类型的数组ages，数组内元素均为int类型 String[] names；// 声明一个String类型的数组names，数组内元素均为String类型 // 也可以用 int ages[]声明，但是不推荐 数组的赋值与取值：
 数组在定义后，必须**初始化「赋值」**才能使用。所谓初始化，就是在堆内存中给数组分配存储空间，并为每一 个元素赋上初始值，有两种方式：
-  动态创建：
+动态创建：
 **语法 **：数据类型[] 数组名 = new 数据类型[长度] ，长度不能为负数，默认是int类型，最大就是int最大值。
-int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度3   静态创建：
+int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度3 静态创建：
 语法：第一个方式是常用方式，第二个方式作为了解。
-数据类型[] 数组名 = {值1, 值2, 值3&hellip;."><meta itemprop="datePublished" content="2021-02-01T00:00:00+00:00" />
+数据类型[] 数组名 = {值1, 值2, 值3&hellip;..};
+数据类型[] 数组名 = new 数据类型[]{值1,值2,值3&hellip;..};
+int[] arr2 = {1,3,5,8,9}; // 静态创建了一个长度为5，int类型的数组arr2，赋值元素 ：1,3,5,8,9 数组赋值"><meta itemprop="datePublished" content="2021-02-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-02-01T00:00:00+00:00" />
 <meta itemprop="wordCount" content="340">
 <meta itemprop="keywords" content="" />
@@ -122,18 +127,20 @@ int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="数据结构"/>
 <meta name="twitter:description" content="数组 「数组 Array」是一种将 相同类型元素 存储在 连续内存空间 的数据结构，将元素在数组中的位置称为元素的「索引 Index」。
-  数组名 ：数组的名字
-  数组元素：就是存放在数组里面的数据
-  数组索引：就是数组里面连续存储空间的编号，从0开始。而从0开始的原因是根据地址计算公式，索引本质上表示的是内存地址偏移量，首个元素的地址偏移量是 0 ，所以索引值也是 0 。
-  length ：数组的属性长度，数组名.length拿到数组的长度
-    数组的声明：数据类型[] 数组名
-int[] ages; // 声明一个int类型的数组ages，数组内元素均为int类型 String[] names；// 声明一个String类型的数组names，数组内元素均为String类型 // 也可以用 int ages[]声明，但是不推荐   数组的赋值与取值：
+数组名 ：数组的名字
+数组元素：就是存放在数组里面的数据
+数组索引：就是数组里面连续存储空间的编号，从0开始。而从0开始的原因是根据地址计算公式，索引本质上表示的是内存地址偏移量，首个元素的地址偏移量是 0 ，所以索引值也是 0 。
+length ：数组的属性长度，数组名.length拿到数组的长度
+数组的声明：数据类型[] 数组名
+int[] ages; // 声明一个int类型的数组ages，数组内元素均为int类型 String[] names；// 声明一个String类型的数组names，数组内元素均为String类型 // 也可以用 int ages[]声明，但是不推荐 数组的赋值与取值：
 数组在定义后，必须**初始化「赋值」**才能使用。所谓初始化，就是在堆内存中给数组分配存储空间，并为每一 个元素赋上初始值，有两种方式：
-  动态创建：
+动态创建：
 **语法 **：数据类型[] 数组名 = new 数据类型[长度] ，长度不能为负数，默认是int类型，最大就是int最大值。
-int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度3   静态创建：
+int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度3 静态创建：
 语法：第一个方式是常用方式，第二个方式作为了解。
-数据类型[] 数组名 = {值1, 值2, 值3&hellip;."/>
+数据类型[] 数组名 = {值1, 值2, 值3&hellip;..};
+数据类型[] 数组名 = new 数据类型[]{值1,值2,值3&hellip;..};
+int[] arr2 = {1,3,5,8,9}; // 静态创建了一个长度为5，int类型的数组arr2，赋值元素 ：1,3,5,8,9 数组赋值"/>
 
   
   
@@ -223,10 +230,10 @@ int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度
 <ul>
 <li>
 <p>数组的<strong>声明</strong>：数据类型[] 数组名</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> ages<span style="color:#f92672">;</span> <span style="color:#75715e">// 声明一个int类型的数组ages，数组内元素均为int类型
-</span><span style="color:#75715e"></span>String<span style="color:#f92672">[]</span> names<span style="color:#960050;background-color:#1e0010">；</span><span style="color:#75715e">// 声明一个String类型的数组names，数组内元素均为String类型
-</span><span style="color:#75715e">// 也可以用 int ages[]声明，但是不推荐
-</span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> ages<span style="color:#f92672">;</span> <span style="color:#75715e">// 声明一个int类型的数组ages，数组内元素均为int类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String<span style="color:#f92672">[]</span> names<span style="color:#960050;background-color:#1e0010">；</span><span style="color:#75715e">// 声明一个String类型的数组names，数组内元素均为String类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 也可以用 int ages[]声明，但是不推荐
+</span></span></span></code></pre></div></li>
 <li>
 <p>数组的<strong>赋值</strong>与<strong>取值</strong>：</p>
 <p>数组在定义后，必须**初始化「赋值」**才能使用。所谓初始化，就是在堆内存中给数组分配存储空间，并为每一 个元素赋上初始值，有两种方式：</p>
@@ -234,53 +241,53 @@ int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度
 <li>
 <p>动态创建：</p>
 <p>**语法 **：数据类型[] 数组名 = new 数据类型[长度] ，长度不能为负数，默认是int类型，最大就是int最大值。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>3<span style="color:#f92672">];</span> <span style="color:#75715e">// 动态创建了一个int类型的数组arr1，长度3
-</span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span><span style="color:#ae81ff">3</span><span style="color:#f92672">];</span> <span style="color:#75715e">// 动态创建了一个int类型的数组arr1，长度3
+</span></span></span></code></pre></div></li>
 <li>
 <p>静态创建：</p>
 <p><strong>语法</strong>：第一个方式是常用方式，第二个方式作为了解。</p>
 <p>数据类型[] 数组名 = {值1, 值2, 值3&hellip;..};</p>
 <p>数据类型[] 数组名 = new 数据类型[]{值1,值2,值3&hellip;..};</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr2 <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>1<span style="color:#f92672">,</span>3<span style="color:#f92672">,</span>5<span style="color:#f92672">,</span>8<span style="color:#f92672">,</span>9<span style="color:#f92672">};</span> <span style="color:#75715e">// 静态创建了一个长度为5，int类型的数组arr2，赋值元素 ：1,3,5,8,9
-</span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr2 <span style="color:#f92672">=</span> <span style="color:#f92672">{</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span><span style="color:#ae81ff">3</span><span style="color:#f92672">,</span><span style="color:#ae81ff">5</span><span style="color:#f92672">,</span><span style="color:#ae81ff">8</span><span style="color:#f92672">,</span><span style="color:#ae81ff">9</span><span style="color:#f92672">};</span> <span style="color:#75715e">// 静态创建了一个长度为5，int类型的数组arr2，赋值元素 ：1,3,5,8,9
+</span></span></span></code></pre></div></li>
 <li>
 <p>数组赋值</p>
 <p>在赋值后，如果数组原位置有值则会覆盖。</p>
 <p><strong>语法</strong>：数组名[下标] = 值;</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">arr1<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> <span style="color:#75715e">// 给数组arr1第1个元素赋值1
-</span><span style="color:#75715e"></span>arr1<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 2<span style="color:#f92672">;</span> <span style="color:#75715e">// 给数组arr1第2个元素赋值2
-</span><span style="color:#75715e"></span>arr1<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 3<span style="color:#f92672">;</span> <span style="color:#75715e">// 给数组arr1第3个元素赋值3
-</span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>arr1<span style="color:#f92672">[</span><span style="color:#ae81ff">0</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">;</span> <span style="color:#75715e">// 给数组arr1第1个元素赋值1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>arr1<span style="color:#f92672">[</span><span style="color:#ae81ff">1</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">;</span> <span style="color:#75715e">// 给数组arr1第2个元素赋值2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>arr1<span style="color:#f92672">[</span><span style="color:#ae81ff">2</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">;</span> <span style="color:#75715e">// 给数组arr1第3个元素赋值3
+</span></span></span></code></pre></div></li>
 <li>
 <p>数组取值</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;第1个元素 ： &#34;</span> <span style="color:#f92672">+</span> arr<span style="color:#f92672">[</span>0<span style="color:#f92672">]);</span> <span style="color:#75715e">// 直接打印第1个元素
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> box <span style="color:#f92672">=</span> arr1<span style="color:#f92672">[</span>2<span style="color:#f92672">];</span> <span style="color:#75715e">// 将数组的第三个元素取出，赋值给box
-</span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;第1个元素 ： &#34;</span> <span style="color:#f92672">+</span> arr<span style="color:#f92672">[</span><span style="color:#ae81ff">0</span><span style="color:#f92672">]);</span> <span style="color:#75715e">// 直接打印第1个元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> box <span style="color:#f92672">=</span> arr1<span style="color:#f92672">[</span><span style="color:#ae81ff">2</span><span style="color:#f92672">];</span> <span style="color:#75715e">// 将数组的第三个元素取出，赋值给box
+</span></span></span></code></pre></div></li>
 <li>
 <p>数组常用操作</p>
 <p><strong>数组遍历</strong>：就是将数组中每一个元素取出来。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/* 遍历数组 */</span>
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">traverse</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
-    <span style="color:#75715e">// 方法1:通过索引遍历数组
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> nums<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
-        count<span style="color:#f92672">++;</span>
-    <span style="color:#f92672">}</span>
-    <span style="color:#75715e">// 方法2:foreach直接遍历数组
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> num <span style="color:#f92672">:</span> nums<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        count<span style="color:#f92672">++;</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p><strong>数组查找</strong>：通过遍历数组，查找数组内的指定元素，并输出对应索引。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/* 在数组中查找指定元素 */</span>
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">find</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> target<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> nums<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>nums<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> target<span style="color:#f92672">)</span>
-            <span style="color:#66d9ef">return</span> i<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span>1<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/* 遍历数组 */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">traverse</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 方法1:通过索引遍历数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> nums<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        count<span style="color:#f92672">++;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 方法2:foreach直接遍历数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> num <span style="color:#f92672">:</span> nums<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        count<span style="color:#f92672">++;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><strong>数组查找</strong>：通过遍历数组，查找数组内的指定元素，并输出对应索引。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/* 在数组中查找指定元素 */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">find</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> target<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> nums<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>nums<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> target<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> i<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
 <li>
 <p>数组中常见异常：</p>
 <p>ArrayIndexOutOfBoundsException：数组越界异常</p>
@@ -297,29 +304,29 @@ int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度
 <p><img src="/%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9A%84%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80%E8%AE%A1%E7%AE%97.png" alt="数组元素的内存地址计算"></p>
 <p><strong>注</strong>：其中的 <strong>元素长度</strong> 与 <strong>数组长度</strong> 概念不同。元素长度与数组类型有关，例如byte与int类型的数组的元素长度是不同的；数组长度就是数组里数的个数。</p>
 <p>访问元素的高效性带来了许多便利。例如，我们可以在 O(1) 时间内随机获取一个数组中的元素。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/* 随机返回一个数组元素 */</span>
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">randomAccess</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">int</span> randomIndex <span style="color:#f92672">=</span> ThreadLocalRandom<span style="color:#f92672">.</span><span style="color:#a6e22e">current</span><span style="color:#f92672">().</span>
-                      nextInt<span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> nums<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">);</span>
-    <span style="color:#66d9ef">int</span> randomNum <span style="color:#f92672">=</span> nums<span style="color:#f92672">[</span>randomIndex<span style="color:#f92672">];</span>
-    <span style="color:#66d9ef">return</span> randomNum<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/* 随机返回一个数组元素 */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">randomAccess</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> randomIndex <span style="color:#f92672">=</span> ThreadLocalRandom<span style="color:#f92672">.</span><span style="color:#a6e22e">current</span><span style="color:#f92672">().</span>
+</span></span><span style="display:flex;"><span>                      nextInt<span style="color:#f92672">(</span><span style="color:#ae81ff">0</span><span style="color:#f92672">,</span> nums<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> randomNum <span style="color:#f92672">=</span> nums<span style="color:#f92672">[</span>randomIndex<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> randomNum<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
 <li>
 <p>数组的<strong>缺点</strong>：</p>
 <p><strong>数组在初始化后长度不可变</strong>。由于系统无法保证数组之后的内存空间是可用的，因此数组长度无法扩展。而若希望扩容数组，则需新建一个数组，然后把原数组元素依次拷贝到新数组，在数组很大的情况下，这是非常耗时的。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/* 扩展数组长度 */</span>
-<span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> <span style="color:#a6e22e">extend</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> enlarge<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#75715e">// 初始化一个扩展长度后的数组
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> res <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>nums<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">+</span> enlarge<span style="color:#f92672">];</span>
-    <span style="color:#75715e">// 将原数组中的所有元素复制到新数组
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> nums<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
-        res<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> nums<span style="color:#f92672">[</span>i<span style="color:#f92672">];</span>
-    <span style="color:#f92672">}</span>
-    <span style="color:#75715e">// 返回扩展后的新数组
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> res<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p><strong>数组中插入或删除元素效率低下</strong>。假设我们想要在数组中间某位置插入一个元素，由于数组元素在内存中是“紧挨着的”，它们之间没有空间再放任何数据。因此，我们不得不将此索引之后的所有元素都向后移动一位，然后再把元素赋值给该索引。删除元素也是类似，需要把此索引之后的元素都向前移动一位。总体看有以下缺点：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/* 扩展数组长度 */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> <span style="color:#a6e22e">extend</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> enlarge<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 初始化一个扩展长度后的数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> res <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>nums<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">+</span> enlarge<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 将原数组中的所有元素复制到新数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> nums<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        res<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> nums<span style="color:#f92672">[</span>i<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 返回扩展后的新数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> res<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><strong>数组中插入或删除元素效率低下</strong>。假设我们想要在数组中间某位置插入一个元素，由于数组元素在内存中是“紧挨着的”，它们之间没有空间再放任何数据。因此，我们不得不将此索引之后的所有元素都向后移动一位，然后再把元素赋值给该索引。删除元素也是类似，需要把此索引之后的元素都向前移动一位。总体看有以下缺点：</p>
 <ol>
 <li>
 <p><strong>时间复杂度高</strong>：数组的插入和删除的平均时间复杂度均为 O(N) ，其中 N 为数组长度。</p>
@@ -332,24 +339,24 @@ int[] arr1 = new int[3]; // 动态创建了一个int类型的数组arr1，长度
 </li>
 </ol>
 <p><img src="/%E5%9C%A8%E6%95%B0%E7%BB%84%E4%B8%AD%E6%8F%92%E5%85%A5%E4%B8%8E%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0.png" alt="在数组中插入与删除元素"></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/* 在数组的索引 index 处插入元素 num */</span>
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">insert</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> num<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> index<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#75715e">// 把索引 index 以及之后的所有元素向后移动一位
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> nums<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> 1<span style="color:#f92672">;</span> i <span style="color:#f92672">&gt;</span> index<span style="color:#f92672">;</span> i<span style="color:#f92672">--)</span> <span style="color:#f92672">{</span>
-        nums<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> nums<span style="color:#f92672">[</span>i <span style="color:#f92672">-</span> 1<span style="color:#f92672">];</span>
-    <span style="color:#f92672">}</span>
-    <span style="color:#75715e">// 将 num 赋给 index 处元素
-</span><span style="color:#75715e"></span>    nums<span style="color:#f92672">[</span>index<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> num<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
-
-<span style="color:#75715e">/* 删除索引 index 处元素 */</span>
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> index<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#75715e">// 把索引 index 之后的所有元素向前移动一位
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> index<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> nums<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> 1<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
-        nums<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> nums<span style="color:#f92672">[</span>i <span style="color:#f92672">+</span> 1<span style="color:#f92672">];</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/* 在数组的索引 index 处插入元素 num */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">insert</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> num<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> index<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 把索引 index 以及之后的所有元素向后移动一位
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> nums<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">;</span> i <span style="color:#f92672">&gt;</span> index<span style="color:#f92672">;</span> i<span style="color:#f92672">--)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        nums<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> nums<span style="color:#f92672">[</span>i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 将 num 赋给 index 处元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    nums<span style="color:#f92672">[</span>index<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> num<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* 删除索引 index 处元素 */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> index<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 把索引 index 之后的所有元素向前移动一位
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> index<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> nums<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        nums<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> nums<span style="color:#f92672">[</span>i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
 <li>
 <p>数组的典型应用</p>
 <p><strong>随机访问</strong>。如果我们想要随机抽取一些样本，那么可以用数组存储，并生成一个随机序列，根据索引实现样本的随机抽取。</p>
