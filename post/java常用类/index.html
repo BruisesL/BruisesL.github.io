@@ -112,7 +112,7 @@ char ch; ch=&#34;abc&#34;.charAt(1); // 返回&#39;b&#39; getChars() 截取多�
 void getChars(int sourceStart,int sourceEnd,char target[],int targetStart) sourceStart指定了子串开始字符的下标，sourceEnd指定了子串结束后的下一个字符的下标。因此， 子串包含从sourceStart到sourceEnd-1的字符。接收字符的数组由target指定，target中开始复制子串的下标值是targetStart。
 String s=&#34;this is a demo of the getChars method."><meta itemprop="datePublished" content="2023-02-14T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2023-02-14T00:00:00+00:00" />
-<meta itemprop="wordCount" content="915">
+<meta itemprop="wordCount" content="1090">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
@@ -774,7 +774,113 @@ String s=&#34;this is a demo of the getChars method."/>
 </ul>
 </li>
 </ul>
-</section>
+<h2 id="日期时间-api">日期时间 API</h2>
+<p>Java 8通过发布新的 API (JSR 310)来进一步加强对日期与时间的处理。在旧版的 Java 中，日期时间 API 存在诸多问题，其中有：</p>
+<ol>
+<li>
+<p>非线程安全：java.util.Date 是非线程安全的，所有的日期类都是可变的，这是Java日期类最大的问题之一。</p>
+</li>
+<li>
+<p>设计差：Java的日期/时间类的定义并不一致，在java.util和java.sql的包中都有日期类，此外用于格式化和解析的类在java.text包中定义。java.util.Date同时包含日期和时间，而java.sql.Date仅包含日期，将其纳入java.sql包并不合理。另外这两个类都有相同的名字，这本身就是一个非常糟糕的设计。</p>
+</li>
+<li>
+<p>时区处理麻烦：日期类并不提供国际化，没有时区支持，因此Java引入了java.util.Calendar和java.util.TimeZone类，但他们同样存在上述所有的问题。</p>
+</li>
+</ol>
+<p>Java 8 在 java.time 包下提供了很多新的 API。以下为两个比较<strong>重要的 API</strong>：</p>
+<ol>
+<li>
+<p><code>Local</code>(本地)：简化了日期时间的处理，没有时区的问题。</p>
+</li>
+<li>
+<p><code>Zoned</code>(时区)：通过制定的时区处理日期时间。</p>
+</li>
+</ol>
+<p>新的java.time包涵盖了所有处理日期，时间，日期/时间，时区，时刻（instants），过程（during）与时钟（clock）的操作</p>
+<h3 id="本地化日期时间-api">本地化日期时间 API</h3>
+<p><code>LocalDate</code>/<code>LocalTime</code> 和 <code>LocalDateTime</code> 类可以在处理时区不是必须的情况。代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 获取当前的日期时间
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>LocalDateTime currentTime <span style="color:#f92672">=</span> LocalDateTime<span style="color:#f92672">.</span><span style="color:#a6e22e">now</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;当前时间: &#34;</span> <span style="color:#f92672">+</span> currentTime<span style="color:#f92672">);</span> 
+</span></span><span style="display:flex;"><span>LocalDate date1 <span style="color:#f92672">=</span> currentTime<span style="color:#f92672">.</span><span style="color:#a6e22e">toLocalDate</span><span style="color:#f92672">();</span> 
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;date1: &#34;</span> <span style="color:#f92672">+</span> date1<span style="color:#f92672">);</span> 
+</span></span><span style="display:flex;"><span>Month month <span style="color:#f92672">=</span> currentTime<span style="color:#f92672">.</span><span style="color:#a6e22e">getMonth</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> day <span style="color:#f92672">=</span> currentTime<span style="color:#f92672">.</span><span style="color:#a6e22e">getDayOfMonth</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> seconds <span style="color:#f92672">=</span> currentTime<span style="color:#f92672">.</span><span style="color:#a6e22e">getSecond</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;月: &#34;</span> <span style="color:#f92672">+</span> month <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;, 日: &#34;</span> <span style="color:#f92672">+</span> day <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;, 秒: &#34;</span> <span style="color:#f92672">+</span> seconds<span style="color:#f92672">);</span>
+</span></span></code></pre></div><h3 id="使用时区的日期时间api">使用时区的日期时间API</h3>
+<p>需要考虑到时区，可以使用时区的日期时间API：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 获取当前时间日期
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>ZonedDateTime date1 <span style="color:#f92672">=</span>ZonedDateTime<span style="color:#f92672">.</span><span style="color:#a6e22e">parse</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;2015-12-03T10:15:30+05:30[Asia/Shanghai]&#34;</span><span style="color:#f92672">);</span> 			
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;date1: &#34;</span> <span style="color:#f92672">+</span> date1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>ZoneId id <span style="color:#f92672">=</span> ZoneId<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Europe/Paris&#34;</span><span style="color:#f92672">);</span> 
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ZoneId: &#34;</span> <span style="color:#f92672">+</span> id<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>ZoneId currentZone <span style="color:#f92672">=</span> ZoneId<span style="color:#f92672">.</span><span style="color:#a6e22e">systemDefault</span><span style="color:#f92672">();</span> 
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;当期时区: &#34;</span> <span style="color:#f92672">+</span> currentZone<span style="color:#f92672">);</span>
+</span></span></code></pre></div><h2 id="optional类">Optional类</h2>
+<p><code>Optional</code> 类是一个可以为<code>null</code>的容器对象。如果值存在则<code>isPresent()</code>方法会返回<code>true</code>，调用<code>get()</code>方法会返回该对象。</p>
+<p><code>Optional</code> 是个容器：它可以保存类型T的值，或者仅仅保存<code>null</code>。<code>Optional</code>提供很多有用的方法，这样我们就不用显式进行空值检测。<code>Optional</code> 类的引入很好的解决空指针异常。</p>
+<p><strong>常用方法</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Optional.of(T t)</code></td>
+<td>创建要给Optional实例</td>
+</tr>
+<tr>
+<td><code>Optional.empty()</code></td>
+<td>创建一个空的Optional实例</td>
+</tr>
+<tr>
+<td><code>Optional.ofNullable(T t)</code></td>
+<td>若t不为null,创建Optional实例，否则创建空的实例</td>
+</tr>
+<tr>
+<td><code>isPresent()</code></td>
+<td>判断是否包含值</td>
+</tr>
+<tr>
+<td><code>orElse(T t)</code></td>
+<td>如果调用对象包含值，返回该值，否则返回t</td>
+</tr>
+<tr>
+<td><code>orElseGet(Supplier s)</code></td>
+<td>如果调用对象包含值，返回该值，否则返回s获取的值</td>
+</tr>
+<tr>
+<td><code>map(function f)</code></td>
+<td>如果有值对其处理，并发挥处理后的Optional ,否则返回Optional.empty()</td>
+</tr>
+<tr>
+<td><code>flatMap(Function mapper)</code></td>
+<td>与map类似，要求返回值必须是Optional</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mytest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(){</span>
+</span></span><span style="display:flex;"><span>		User user <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		user<span style="color:#f92672">.</span><span style="color:#a6e22e">setPassword</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;admin&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		String name <span style="color:#f92672">=</span> getPwd<span style="color:#f92672">(</span>user<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">getPwd</span><span style="color:#f92672">(</span>User u<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>u<span style="color:#f92672">==</span><span style="color:#66d9ef">null</span><span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;unknow&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> u<span style="color:#f92672">.</span><span style="color:#a6e22e">getPassword</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 改写
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">getPwd</span><span style="color:#f92672">(</span>User u<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">ofNullable</span><span style="color:#f92672">(</span>u<span style="color:#f92672">).</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>user<span style="color:#f92672">-&gt;</span>user<span style="color:#f92672">.</span><span style="color:#a6e22e">getPassword</span><span style="color:#f92672">()).</span><span style="color:#a6e22e">orElse</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;unknow&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></section>
 
   
   

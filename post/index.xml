@@ -7,19 +7,90 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2008–2019, Steve Francia and the lee.so; all rights reserved.</copyright>
-    <lastBuildDate>Mon, 20 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>单元测试与文件解析</title>
+      <link>https://bruisesl.github.io/post/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B8%8E%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B8%8E%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/</guid>
+      <description>单元测试 测试的目的是尽可能多的发现软件中存在的BUG，而不是为了隐藏BUG。事实上测试有很多种类，比如：边界测试，压力测试，性能测试等。
+测试的分类：
+黑盒测试：
+黑盒测试也叫功能测试，主要关注软件每个功能是否实现，并不关注软件代码是否有错误。测试人员完全不考虑程序内部的逻辑结构和内部特性。
+白盒测试：
+白盒测试与黑盒测试相反，白盒测试主要检查软件内部逻辑结构、设计等是否符合规定。
+用代码来测试你的代码。
+灰盒测试：
+灰盒测试是介于黑盒和白盒之间的一种测试，既关注功能也关注内部逻辑的实现，但并没有白盒测试那么细致。需要灰盒测试的目的是因为白盒测试效率较低。
+单元测试：
+单元测试是开发者编写的一小段代码，用于检验被测代码的一个很小的、很明确的功能是否正确。比如一个方法是否正确，比如是否达到想要的效果等。也是最常用的一种方式。实际开发中，需要严格要求单元测试必须约束到最小颗粒（最小的业务逻辑）。
+JUnit是一个开源的Java语言的单元测试框架，专门针对Java设计，使用最广泛。JUnit是事实上的单元测试的标准框架，任何Java开发者都应当学习并使用JUnit编写单元测试。JUnit是给开发者提供的工具类，单元测试目前有JUnit3、JUnit4、JUnit5三个版本，每个版本测试方法有微小区别，目前使用最广泛的就是JUnit4。
+官网地址 官方入门文档 官方github
+编写规范 单元测试代码本身必须非常简单，能一下看明白，决不能再为测试代码编写测试； 每个单元测试应当互相独立，不依赖运行的顺序； 测试时不但要覆盖常用测试用例，还要特别注意测试边界条件，例如输入为0，null，空字符串&amp;quot;&amp;quot;等情况。 常用注解 @Test
+在JUnit3中，是通过对测试类和测试方法的命名来确定是否是测试，且所有的测试类必须继承JUnit的测试基类。在JUnit4中，定义一个测试方法变得简单很多，只需要在方法前加上@Test就行了。
+注：测试方法必须是public void，即公共、无返回数据。可以抛出异常。
+@Ignore
+当暂时不运行某些测试方法\测试类，可以在方法前加上这个注解。在运行结果中，JUnit会统计忽略的用例数，来提醒你。但是不建议经常这么做，因为这样的坏处是，容易忘记去更新这些测试方法，导致代码不够干净，用例遗漏。使用此标注的时候不能与其它标注一起使用，如：和@Test 标注一起使用，那就没用了。
+@BeforeClass
+当运行几个有关联的用例时，可能会在数据准备或其它前期准备中执行一些相同的命令，这个时候为了让代码更清晰，更少冗余，可以将公用的部分提取出来，放在一个方法里，并为这个方法注解@BeforeClass。意思是在测试类里所有用例运行之前，运行一次这个方法。例如创建数据库连接、读取文件等。
+注：方法名必须是public static void，即公开、静态、无返回。这个方法只会运行一次。
+@AfterClass
+跟@BeforeClass对应，在测试类里所有用例运行之后，运行一次。用于处理一些测试后续工作，例如清理数据，恢复现场。
+注：方法必须是public static void，即公开、静态、无返回。这个方法只会运行一次。
+@Before
+与@BeforeClass的区别在于，@Before不止运行一次，它会在每个用例运行之前都运行一次。主要用于一些独立于用例之间的准备工作。
+比如两个用例都需要读取数据库里的用户A信息，但第一个用例会删除这个用户A，而第二个用例需要修改用户A。那么可以用@BeforeClass创建数据库连接。用@Before来插入一条用户A信息。
+注：必须是public void，不能为static。不止运行一次，根据用例数而定。
+@After：与@Before对应。
+@Runwith
+概念：测试方法、测试类、测试集、测试运行器。
+测试方法：就是用@Test注解的一些函数。
+测试类是包含一个或多个测试方法的一个Test.java文件。
+测试集是一个suite，可能包含多个测试类。
+测试运行器则决定了用什么方式偏好去运行这些测试集/类/方法。
+@Runwith是放在测试类名之前，用来确定这个类怎么运行的。也可以不标注，会使用默认运行器。
+常见运行器：
+@RunWith(Parameterized.class) 参数化运行器，配合@Parameters使用junit的参数化功能 @RunWith(Suite.class) @SuiteClasses({ATest.class,BTest.class,CTest.class})测试集运行器配合使用测试集功能 @RunWith(JUnit4.class) JUnit4的默认运行器 @RunWith(JUnit38ClassRunner.class) 用于兼容JUnit3.8的运行器 其它运行器具备更多功能。例如@RunWith(SpringJUnit4ClassRunner.class)集成了spring的一些功能 @Parameters： 用于使用参数化功能。
+测试的生命周期 **@BeforeClass**注解修饰的方法（该方法要用static修饰）会在所有方法运行前被执行，且只执行一次，通常用来为后面测试方法的准备工作，如加载配置、进行数据库的连接等。父类的@BeforeClass注解方法会在子类的@BeforeClass注解方法执行前执行。
+**@Before**注解修饰的方法会在每个测试方法执行前执行一次，父类@Before修饰的方法会在子类@Before修饰的方法执行前执行。
+**@After**注解修饰的方法会在每个测试方法执行后执行一次，父类@After修饰的方法会在子类@After修饰的方法执行后执行。
+**@AfterClass**注解修饰的方法（该方法要用static修饰）会在所有方法执行结束后执行一次，且也只执行一次，通常用来对资源进行释放，比如数据库连接的关闭等，无论测试用例里的其他方法有没有抛出异常，该方法最终都会被执行。而且父类中的被@AfterClass注解方法修饰的方法会在子类的@AfterClass注解修饰的方法执行之后才会被执行。
+jar包 导入jar包的方法：</description>
+    </item>
+    
+    <item>
+      <title>设计模式</title>
+      <link>https://bruisesl.github.io/post/java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description>设计模式（Design pattern）代表了最佳的实践，通常被有经验的面向对象的软件开发人员所采用。设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案。这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的。
+根据设计模式的参考书 **Design Patterns - Elements of Reusable Object-Oriented Software（中文译名：设计模式 - 可复用的面向对象软件元素）**中所提到的，总共有 23 种设计模式。这些模式可以分为三大类：创建型模式（Creational Patterns）、结构型模式（Structural Patterns）、行为型模式（Behavioral Patterns）。当然，我们还会讨论另一类设计模式：J2EE 设计模式。
+设计模式的六大原则 开闭原则（Open Close Principle） 开闭原则的意思是：对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。简言之，是为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，需要使用接口和抽象类。
+里氏代换原则（Liskov Substitution Principle） 里氏代换原则是面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。LSP 是继承复用的基石，只有当派生类可以替换掉基类，且软件单位的功能不受到影响时，基类才能真正被复用，而派生类也能够在基类的基础上增加新的行为。里氏代换原则是对开闭原则的补充。实现开闭原则的关键步骤就是抽象化，而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。
+依赖倒转原则（Dependence Inversion Principle） 这个原则是开闭原则的基础，具体内容：针对接口编程，依赖于抽象而不依赖于具体。
+接口隔离原则（Interface Segregation Principle） 这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。它还有另外一个意思是：降低类之间的耦合度。由此可见，设计模式就是从大型软件架构出发、便于升级和维护的软件设计思想，它强调降低依赖，降低耦合。
+迪米特法则，又称最少知道原则（Demeter Principle） 最少知道原则是指：一个实体应当尽量少地与其他实体之间发生相互作用，使得系统功能模块相对独立。
+合成复用原则（Composite Reuse Principle） 合成复用原则是指：尽量使用合成/聚合的方式，而不是使用继承。
+设计模式分类 创建型模式：这些设计模式提供了一种在创建对象的同时隐藏创建逻辑的方式，而不是使用 new 运算符直接实例化对象。这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活。
+单例模式（Singleton Pattern） 工厂模式（Factory Pattern） 抽象工厂模式（Abstract Factory Pattern） 建造者模式（Builder Pattern） 原型模式（Prototype Pattern） 结构型模式：这些设计模式关注类和对象的组合。继承的概念被用来组合接口和定义组合对象获得新功能的方式。
+适配器模式（Adapter Pattern） 桥接模式（Bridge Pattern） 过滤器模式（Filter、Criteria Pattern） 组合模式（Composite Pattern） 装饰器模式（Decorator Pattern） 外观模式（Facade Pattern） 享元模式（Flyweight Pattern） 代理模式（Proxy Pattern） 行为型模式：这些设计模式特别关注对象之间的通信。</description>
+    </item>
+    
     <item>
       <title>流(Stream)、文件(File)和IO</title>
       <link>https://bruisesl.github.io/post/%E6%B5%81stream%E6%96%87%E4%BB%B6file%E5%92%8Cio/</link>
       <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
       
       <guid>https://bruisesl.github.io/post/%E6%B5%81stream%E6%96%87%E4%BB%B6file%E5%92%8Cio/</guid>
-      <description>流(Stream) 文件(File) 计算机文件是以计算机硬盘为载体存储在计算机上的信息集合，对于计算机磁盘的文件和目录，Java提供了对应的一个类File来描述。
-构造方法： File(String pathname) 通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例。
-File(String parent, String child) 从父路径名字符串和子路径名字符串创建新的 File实例。
-File(File parent, String child) 从父抽象路径名和子路径名字符串创建新的 File实例。
-常用方法：
-方法 描述 String getName() 返回由此抽象路径名表示的文件或目录的名称。 String getParent() 返回此抽象路径名的父路径名的路径名字符串，如果此路径名没有指定父目录，则返回 null。 File getParentFile() 返回此抽象路径名的父路径名的抽象路径名，如果此路径名没有指定父目录，则返回 null。 String getPath() 将此抽象路径名转换为一个路径名字符串。 boolean isAbsolute() 测试此抽象路径名是否为绝对路径名。 String getAbsolutePath() 返回抽象路径名的绝对路径名字符串。 boolean canRead() 测试应用程序是否可以读取此抽象路径名表示的文件。 boolean canWrite() 测试应用程序是否可以修改此抽象路径名表示的文件。 boolean exists() 测试此抽象路径名表示的文件或目录是否存在。 boolean isDirectory() 测试此抽象路径名表示的文件是否是一个目录。 boolean isFile() 测试此抽象路径名表示的文件是否是一个标准文件。 long lastModified() 返回此抽象路径名表示的文件最后一次被修改的时间。 long length() 返回由此抽象路径名表示的文件的长度。 boolean createNewFile() 当且仅当不存在具有此抽象路径名指定的名称的文件时，原子地创建由此抽象路径名指定的一个新的空文件。 boolean delete() 删除此抽象路径名表示的文件或目录。 void deleteOnExit() 在虚拟机终止时，请求删除此抽象路径名表示的文件或目录。 String[] list() 返回由此抽象路径名所表示的目录中的文件和目录的名称所组成字符串数组。 String[] list(FilenameFilter filter) 返回由包含在目录中的文件和目录的名称所组成的字符串数组，这一目录是通过满足指定过滤器的抽象路径名来表示的。 File[] listFiles() 返回一个抽象路径名数组，这些路径名表示此抽象路径名所表示目录中的文件。 File[] listFiles(FileFilter filter) 返回表示此抽象路径名所表示目录中的文件和目录的抽象路径名数组，这些路径名满足特定过滤器。 boolean mkdir() 创建此抽象路径名指定的目录。 boolean mkdirs() 创建此抽象路径名指定的目录，包括创建必需但不存在的父目录。 boolean renameTo(File dest) 重新命名此抽象路径名表示的文件。 boolean setLastModified(long time) 设置由此抽象路径名所指定的文件或目录的最后一次修改时间。 boolean setReadOnly() 标记此抽象路径名指定的文件或目录，以便只可对其进行读操作。 static File createTempFile(String prefix, String suffix, File directory) 在指定目录中创建一个新的空文件，使用给定的前缀和后缀字符串生成其名称。 static File createTempFile(String prefix, String suffix) 在默认临时文件目录中创建一个空文件，使用给定前缀和后缀生成其名称。 int compareTo(File pathname) 按字母顺序比较两个抽象路径名。 int compareTo(Object o) 按字母顺序比较抽象路径名与给定对象。 boolean equals(Object obj) 测试此抽象路径名与给定对象是否相等。 String toString() 返回此抽象路径名的路径名字符串。 // boolean mkdir() 创建由此抽象路径名命名的目录。 File f1 = new File(&amp;#34;C:\\Users\\admin\\Desktop\\2&amp;#34;); if (!</description>
+      <description>流(Stream) Java 8 API添加了一个新的抽象称为流Stream，可以以一种声明的方式处理数据。
+Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象。
+元素流在管道中经过中间操作（intermediate operation）的处理，最后由最终操作（terminal operation）得到前面处理的结果。
++--------------------+ +------+ +------+ +---+ +-------+ | stream of elements +-----&amp;gt; |filter+-&amp;gt; |sorted+-&amp;gt; |map+-&amp;gt; |collect| +--------------------+ +------+ +------+ +---+ +-------+ 以上的流程转换为 Java 代码为：
+List&amp;lt;Integer&amp;gt; transactionsIds = widgets.stream() .filter(b -&amp;gt; b.getColor() == RED) .sorted((x,y) -&amp;gt; x.getWeight() - y.getWeight()) .mapToInt(Widget::getWeight) .sum(); Stream是一个来自数据源的元素队列并支持聚合操作：
+元素是特定类型的对象，形成一个队列。 Java中的Stream并不会存储元素，而是按需计算。 数据源流的来源。 可以是集合，数组，I/O channel， 产生器generator 等。 聚合操作类似SQL语句一样的操作， 比如filter, map, reduce, find, match, sorted等。 Stream操作有两个基础的特征：
+Pipelining: 中间操作都会返回流对象本身。 这样多个操作可以串联成一个管道， 如同流式风格（fluent style）。 这样做可以对操作进行优化， 比如延迟执行laziness和短路short-circuiting。 内部迭代： 以前对集合遍历都是通过Iterator或者For-Each的方式, 显式的在集合外部进行迭代， 这叫做外部迭代。 Stream提供了内部迭代的方式， 通过访问者模式Visitor实现。 生成流 在 Java 8 中, 集合接口有两个方法来生成流：</description>
     </item>
     
     <item>

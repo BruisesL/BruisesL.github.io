@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>单元测试与文件解析 - BruisesL&#39;s blog</title>
+
+  
+  
+  <meta name="description" content="单元测试 测试的目的是尽可能多的发现软件中存在的BUG，而不是为了隐藏BUG。事实上测试有很多种类，比如：边界测试，压力测试，性能测试等。
+测试的分类：
+黑盒测试：
+黑盒测试也叫功能测试，主要关注软件每个功能是否实现，并不关注软件代码是否有错误。测试人员完全不考虑程序内部的逻辑结构和内部特性。
+白盒测试：
+白盒测试与黑盒测试相反，白盒测试主要检查软件内部逻辑结构、设计等是否符合规定。
+用代码来测试你的代码。
+灰盒测试：
+灰盒测试是介于黑盒和白盒之间的一种测试，既关注功能也关注内部逻辑的实现，但并没有白盒测试那么细致。需要灰盒测试的目的是因为白盒测试效率较低。
+单元测试：
+单元测试是开发者编写的一小段代码，用于检验被测代码的一个很小的、很明确的功能是否正确。比如一个方法是否正确，比如是否达到想要的效果等。也是最常用的一种方式。实际开发中，需要严格要求单元测试必须约束到最小颗粒（最小的业务逻辑）。
+JUnit是一个开源的Java语言的单元测试框架，专门针对Java设计，使用最广泛。JUnit是事实上的单元测试的标准框架，任何Java开发者都应当学习并使用JUnit编写单元测试。JUnit是给开发者提供的工具类，单元测试目前有JUnit3、JUnit4、JUnit5三个版本，每个版本测试方法有微小区别，目前使用最广泛的就是JUnit4。
+官网地址 官方入门文档 官方github
+编写规范 单元测试代码本身必须非常简单，能一下看明白，决不能再为测试代码编写测试； 每个单元测试应当互相独立，不依赖运行的顺序； 测试时不但要覆盖常用测试用例，还要特别注意测试边界条件，例如输入为0，null，空字符串&quot;&quot;等情况。 常用注解 @Test
+在JUnit3中，是通过对测试类和测试方法的命名来确定是否是测试，且所有的测试类必须继承JUnit的测试基类。在JUnit4中，定义一个测试方法变得简单很多，只需要在方法前加上@Test就行了。
+注：测试方法必须是public void，即公共、无返回数据。可以抛出异常。
+@Ignore
+当暂时不运行某些测试方法\测试类，可以在方法前加上这个注解。在运行结果中，JUnit会统计忽略的用例数，来提醒你。但是不建议经常这么做，因为这样的坏处是，容易忘记去更新这些测试方法，导致代码不够干净，用例遗漏。使用此标注的时候不能与其它标注一起使用，如：和@Test 标注一起使用，那就没用了。
+@BeforeClass
+当运行几个有关联的用例时，可能会在数据准备或其它前期准备中执行一些相同的命令，这个时候为了让代码更清晰，更少冗余，可以将公用的部分提取出来，放在一个方法里，并为这个方法注解@BeforeClass。意思是在测试类里所有用例运行之前，运行一次这个方法。例如创建数据库连接、读取文件等。
+注：方法名必须是public static void，即公开、静态、无返回。这个方法只会运行一次。
+@AfterClass
+跟@BeforeClass对应，在测试类里所有用例运行之后，运行一次。用于处理一些测试后续工作，例如清理数据，恢复现场。
+注：方法必须是public static void，即公开、静态、无返回。这个方法只会运行一次。
+@Before
+与@BeforeClass的区别在于，@Before不止运行一次，它会在每个用例运行之前都运行一次。主要用于一些独立于用例之间的准备工作。
+比如两个用例都需要读取数据库里的用户A信息，但第一个用例会删除这个用户A，而第二个用例需要修改用户A。那么可以用@BeforeClass创建数据库连接。用@Before来插入一条用户A信息。
+注：必须是public void，不能为static。不止运行一次，根据用例数而定。
+@After：与@Before对应。
+@Runwith
+概念：测试方法、测试类、测试集、测试运行器。
+测试方法：就是用@Test注解的一些函数。
+测试类是包含一个或多个测试方法的一个Test.java文件。
+测试集是一个suite，可能包含多个测试类。
+测试运行器则决定了用什么方式偏好去运行这些测试集/类/方法。
+@Runwith是放在测试类名之前，用来确定这个类怎么运行的。也可以不标注，会使用默认运行器。
+常见运行器：
+@RunWith(Parameterized.class) 参数化运行器，配合@Parameters使用junit的参数化功能 @RunWith(Suite.class) @SuiteClasses({ATest.class,BTest.class,CTest.class})测试集运行器配合使用测试集功能 @RunWith(JUnit4.class) JUnit4的默认运行器 @RunWith(JUnit38ClassRunner.class) 用于兼容JUnit3.8的运行器 其它运行器具备更多功能。例如@RunWith(SpringJUnit4ClassRunner.class)集成了spring的一些功能 @Parameters： 用于使用参数化功能。
+测试的生命周期 **@BeforeClass**注解修饰的方法（该方法要用static修饰）会在所有方法运行前被执行，且只执行一次，通常用来为后面测试方法的准备工作，如加载配置、进行数据库的连接等。父类的@BeforeClass注解方法会在子类的@BeforeClass注解方法执行前执行。
+**@Before**注解修饰的方法会在每个测试方法执行前执行一次，父类@Before修饰的方法会在子类@Before修饰的方法执行前执行。
+**@After**注解修饰的方法会在每个测试方法执行后执行一次，父类@After修饰的方法会在子类@After修饰的方法执行后执行。
+**@AfterClass**注解修饰的方法（该方法要用static修饰）会在所有方法执行结束后执行一次，且也只执行一次，通常用来对资源进行释放，比如数据库连接的关闭等，无论测试用例里的其他方法有没有抛出异常，该方法最终都会被执行。而且父类中的被@AfterClass注解方法修饰的方法会在子类的@AfterClass注解修饰的方法执行之后才会被执行。
+jar包 导入jar包的方法：" />
+  <meta name="author" content="BruisesL" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://bruisesl.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/theme.png" />
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/github.svg" />
+  
+
+  
+  <link rel="icon" href="https://bruisesl.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://bruisesl.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.110.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="单元测试与文件解析" />
+<meta property="og:description" content="单元测试 测试的目的是尽可能多的发现软件中存在的BUG，而不是为了隐藏BUG。事实上测试有很多种类，比如：边界测试，压力测试，性能测试等。
+测试的分类：
+黑盒测试：
+黑盒测试也叫功能测试，主要关注软件每个功能是否实现，并不关注软件代码是否有错误。测试人员完全不考虑程序内部的逻辑结构和内部特性。
+白盒测试：
+白盒测试与黑盒测试相反，白盒测试主要检查软件内部逻辑结构、设计等是否符合规定。
+用代码来测试你的代码。
+灰盒测试：
+灰盒测试是介于黑盒和白盒之间的一种测试，既关注功能也关注内部逻辑的实现，但并没有白盒测试那么细致。需要灰盒测试的目的是因为白盒测试效率较低。
+单元测试：
+单元测试是开发者编写的一小段代码，用于检验被测代码的一个很小的、很明确的功能是否正确。比如一个方法是否正确，比如是否达到想要的效果等。也是最常用的一种方式。实际开发中，需要严格要求单元测试必须约束到最小颗粒（最小的业务逻辑）。
+JUnit是一个开源的Java语言的单元测试框架，专门针对Java设计，使用最广泛。JUnit是事实上的单元测试的标准框架，任何Java开发者都应当学习并使用JUnit编写单元测试。JUnit是给开发者提供的工具类，单元测试目前有JUnit3、JUnit4、JUnit5三个版本，每个版本测试方法有微小区别，目前使用最广泛的就是JUnit4。
+官网地址 官方入门文档 官方github
+编写规范 单元测试代码本身必须非常简单，能一下看明白，决不能再为测试代码编写测试； 每个单元测试应当互相独立，不依赖运行的顺序； 测试时不但要覆盖常用测试用例，还要特别注意测试边界条件，例如输入为0，null，空字符串&quot;&quot;等情况。 常用注解 @Test
+在JUnit3中，是通过对测试类和测试方法的命名来确定是否是测试，且所有的测试类必须继承JUnit的测试基类。在JUnit4中，定义一个测试方法变得简单很多，只需要在方法前加上@Test就行了。
+注：测试方法必须是public void，即公共、无返回数据。可以抛出异常。
+@Ignore
+当暂时不运行某些测试方法\测试类，可以在方法前加上这个注解。在运行结果中，JUnit会统计忽略的用例数，来提醒你。但是不建议经常这么做，因为这样的坏处是，容易忘记去更新这些测试方法，导致代码不够干净，用例遗漏。使用此标注的时候不能与其它标注一起使用，如：和@Test 标注一起使用，那就没用了。
+@BeforeClass
+当运行几个有关联的用例时，可能会在数据准备或其它前期准备中执行一些相同的命令，这个时候为了让代码更清晰，更少冗余，可以将公用的部分提取出来，放在一个方法里，并为这个方法注解@BeforeClass。意思是在测试类里所有用例运行之前，运行一次这个方法。例如创建数据库连接、读取文件等。
+注：方法名必须是public static void，即公开、静态、无返回。这个方法只会运行一次。
+@AfterClass
+跟@BeforeClass对应，在测试类里所有用例运行之后，运行一次。用于处理一些测试后续工作，例如清理数据，恢复现场。
+注：方法必须是public static void，即公开、静态、无返回。这个方法只会运行一次。
+@Before
+与@BeforeClass的区别在于，@Before不止运行一次，它会在每个用例运行之前都运行一次。主要用于一些独立于用例之间的准备工作。
+比如两个用例都需要读取数据库里的用户A信息，但第一个用例会删除这个用户A，而第二个用例需要修改用户A。那么可以用@BeforeClass创建数据库连接。用@Before来插入一条用户A信息。
+注：必须是public void，不能为static。不止运行一次，根据用例数而定。
+@After：与@Before对应。
+@Runwith
+概念：测试方法、测试类、测试集、测试运行器。
+测试方法：就是用@Test注解的一些函数。
+测试类是包含一个或多个测试方法的一个Test.java文件。
+测试集是一个suite，可能包含多个测试类。
+测试运行器则决定了用什么方式偏好去运行这些测试集/类/方法。
+@Runwith是放在测试类名之前，用来确定这个类怎么运行的。也可以不标注，会使用默认运行器。
+常见运行器：
+@RunWith(Parameterized.class) 参数化运行器，配合@Parameters使用junit的参数化功能 @RunWith(Suite.class) @SuiteClasses({ATest.class,BTest.class,CTest.class})测试集运行器配合使用测试集功能 @RunWith(JUnit4.class) JUnit4的默认运行器 @RunWith(JUnit38ClassRunner.class) 用于兼容JUnit3.8的运行器 其它运行器具备更多功能。例如@RunWith(SpringJUnit4ClassRunner.class)集成了spring的一些功能 @Parameters： 用于使用参数化功能。
+测试的生命周期 **@BeforeClass**注解修饰的方法（该方法要用static修饰）会在所有方法运行前被执行，且只执行一次，通常用来为后面测试方法的准备工作，如加载配置、进行数据库的连接等。父类的@BeforeClass注解方法会在子类的@BeforeClass注解方法执行前执行。
+**@Before**注解修饰的方法会在每个测试方法执行前执行一次，父类@Before修饰的方法会在子类@Before修饰的方法执行前执行。
+**@After**注解修饰的方法会在每个测试方法执行后执行一次，父类@After修饰的方法会在子类@After修饰的方法执行后执行。
+**@AfterClass**注解修饰的方法（该方法要用static修饰）会在所有方法执行结束后执行一次，且也只执行一次，通常用来对资源进行释放，比如数据库连接的关闭等，无论测试用例里的其他方法有没有抛出异常，该方法最终都会被执行。而且父类中的被@AfterClass注解方法修饰的方法会在子类的@AfterClass注解修饰的方法执行之后才会被执行。
+jar包 导入jar包的方法：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bruisesl.github.io/post/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B8%8E%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-02-23T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="单元测试与文件解析">
+<meta itemprop="description" content="单元测试 测试的目的是尽可能多的发现软件中存在的BUG，而不是为了隐藏BUG。事实上测试有很多种类，比如：边界测试，压力测试，性能测试等。
+测试的分类：
+黑盒测试：
+黑盒测试也叫功能测试，主要关注软件每个功能是否实现，并不关注软件代码是否有错误。测试人员完全不考虑程序内部的逻辑结构和内部特性。
+白盒测试：
+白盒测试与黑盒测试相反，白盒测试主要检查软件内部逻辑结构、设计等是否符合规定。
+用代码来测试你的代码。
+灰盒测试：
+灰盒测试是介于黑盒和白盒之间的一种测试，既关注功能也关注内部逻辑的实现，但并没有白盒测试那么细致。需要灰盒测试的目的是因为白盒测试效率较低。
+单元测试：
+单元测试是开发者编写的一小段代码，用于检验被测代码的一个很小的、很明确的功能是否正确。比如一个方法是否正确，比如是否达到想要的效果等。也是最常用的一种方式。实际开发中，需要严格要求单元测试必须约束到最小颗粒（最小的业务逻辑）。
+JUnit是一个开源的Java语言的单元测试框架，专门针对Java设计，使用最广泛。JUnit是事实上的单元测试的标准框架，任何Java开发者都应当学习并使用JUnit编写单元测试。JUnit是给开发者提供的工具类，单元测试目前有JUnit3、JUnit4、JUnit5三个版本，每个版本测试方法有微小区别，目前使用最广泛的就是JUnit4。
+官网地址 官方入门文档 官方github
+编写规范 单元测试代码本身必须非常简单，能一下看明白，决不能再为测试代码编写测试； 每个单元测试应当互相独立，不依赖运行的顺序； 测试时不但要覆盖常用测试用例，还要特别注意测试边界条件，例如输入为0，null，空字符串&quot;&quot;等情况。 常用注解 @Test
+在JUnit3中，是通过对测试类和测试方法的命名来确定是否是测试，且所有的测试类必须继承JUnit的测试基类。在JUnit4中，定义一个测试方法变得简单很多，只需要在方法前加上@Test就行了。
+注：测试方法必须是public void，即公共、无返回数据。可以抛出异常。
+@Ignore
+当暂时不运行某些测试方法\测试类，可以在方法前加上这个注解。在运行结果中，JUnit会统计忽略的用例数，来提醒你。但是不建议经常这么做，因为这样的坏处是，容易忘记去更新这些测试方法，导致代码不够干净，用例遗漏。使用此标注的时候不能与其它标注一起使用，如：和@Test 标注一起使用，那就没用了。
+@BeforeClass
+当运行几个有关联的用例时，可能会在数据准备或其它前期准备中执行一些相同的命令，这个时候为了让代码更清晰，更少冗余，可以将公用的部分提取出来，放在一个方法里，并为这个方法注解@BeforeClass。意思是在测试类里所有用例运行之前，运行一次这个方法。例如创建数据库连接、读取文件等。
+注：方法名必须是public static void，即公开、静态、无返回。这个方法只会运行一次。
+@AfterClass
+跟@BeforeClass对应，在测试类里所有用例运行之后，运行一次。用于处理一些测试后续工作，例如清理数据，恢复现场。
+注：方法必须是public static void，即公开、静态、无返回。这个方法只会运行一次。
+@Before
+与@BeforeClass的区别在于，@Before不止运行一次，它会在每个用例运行之前都运行一次。主要用于一些独立于用例之间的准备工作。
+比如两个用例都需要读取数据库里的用户A信息，但第一个用例会删除这个用户A，而第二个用例需要修改用户A。那么可以用@BeforeClass创建数据库连接。用@Before来插入一条用户A信息。
+注：必须是public void，不能为static。不止运行一次，根据用例数而定。
+@After：与@Before对应。
+@Runwith
+概念：测试方法、测试类、测试集、测试运行器。
+测试方法：就是用@Test注解的一些函数。
+测试类是包含一个或多个测试方法的一个Test.java文件。
+测试集是一个suite，可能包含多个测试类。
+测试运行器则决定了用什么方式偏好去运行这些测试集/类/方法。
+@Runwith是放在测试类名之前，用来确定这个类怎么运行的。也可以不标注，会使用默认运行器。
+常见运行器：
+@RunWith(Parameterized.class) 参数化运行器，配合@Parameters使用junit的参数化功能 @RunWith(Suite.class) @SuiteClasses({ATest.class,BTest.class,CTest.class})测试集运行器配合使用测试集功能 @RunWith(JUnit4.class) JUnit4的默认运行器 @RunWith(JUnit38ClassRunner.class) 用于兼容JUnit3.8的运行器 其它运行器具备更多功能。例如@RunWith(SpringJUnit4ClassRunner.class)集成了spring的一些功能 @Parameters： 用于使用参数化功能。
+测试的生命周期 **@BeforeClass**注解修饰的方法（该方法要用static修饰）会在所有方法运行前被执行，且只执行一次，通常用来为后面测试方法的准备工作，如加载配置、进行数据库的连接等。父类的@BeforeClass注解方法会在子类的@BeforeClass注解方法执行前执行。
+**@Before**注解修饰的方法会在每个测试方法执行前执行一次，父类@Before修饰的方法会在子类@Before修饰的方法执行前执行。
+**@After**注解修饰的方法会在每个测试方法执行后执行一次，父类@After修饰的方法会在子类@After修饰的方法执行后执行。
+**@AfterClass**注解修饰的方法（该方法要用static修饰）会在所有方法执行结束后执行一次，且也只执行一次，通常用来对资源进行释放，比如数据库连接的关闭等，无论测试用例里的其他方法有没有抛出异常，该方法最终都会被执行。而且父类中的被@AfterClass注解方法修饰的方法会在子类的@AfterClass注解修饰的方法执行之后才会被执行。
+jar包 导入jar包的方法："><meta itemprop="datePublished" content="2023-02-23T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-02-23T00:00:00+00:00" />
+<meta itemprop="wordCount" content="255">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="单元测试与文件解析"/>
+<meta name="twitter:description" content="单元测试 测试的目的是尽可能多的发现软件中存在的BUG，而不是为了隐藏BUG。事实上测试有很多种类，比如：边界测试，压力测试，性能测试等。
+测试的分类：
+黑盒测试：
+黑盒测试也叫功能测试，主要关注软件每个功能是否实现，并不关注软件代码是否有错误。测试人员完全不考虑程序内部的逻辑结构和内部特性。
+白盒测试：
+白盒测试与黑盒测试相反，白盒测试主要检查软件内部逻辑结构、设计等是否符合规定。
+用代码来测试你的代码。
+灰盒测试：
+灰盒测试是介于黑盒和白盒之间的一种测试，既关注功能也关注内部逻辑的实现，但并没有白盒测试那么细致。需要灰盒测试的目的是因为白盒测试效率较低。
+单元测试：
+单元测试是开发者编写的一小段代码，用于检验被测代码的一个很小的、很明确的功能是否正确。比如一个方法是否正确，比如是否达到想要的效果等。也是最常用的一种方式。实际开发中，需要严格要求单元测试必须约束到最小颗粒（最小的业务逻辑）。
+JUnit是一个开源的Java语言的单元测试框架，专门针对Java设计，使用最广泛。JUnit是事实上的单元测试的标准框架，任何Java开发者都应当学习并使用JUnit编写单元测试。JUnit是给开发者提供的工具类，单元测试目前有JUnit3、JUnit4、JUnit5三个版本，每个版本测试方法有微小区别，目前使用最广泛的就是JUnit4。
+官网地址 官方入门文档 官方github
+编写规范 单元测试代码本身必须非常简单，能一下看明白，决不能再为测试代码编写测试； 每个单元测试应当互相独立，不依赖运行的顺序； 测试时不但要覆盖常用测试用例，还要特别注意测试边界条件，例如输入为0，null，空字符串&quot;&quot;等情况。 常用注解 @Test
+在JUnit3中，是通过对测试类和测试方法的命名来确定是否是测试，且所有的测试类必须继承JUnit的测试基类。在JUnit4中，定义一个测试方法变得简单很多，只需要在方法前加上@Test就行了。
+注：测试方法必须是public void，即公共、无返回数据。可以抛出异常。
+@Ignore
+当暂时不运行某些测试方法\测试类，可以在方法前加上这个注解。在运行结果中，JUnit会统计忽略的用例数，来提醒你。但是不建议经常这么做，因为这样的坏处是，容易忘记去更新这些测试方法，导致代码不够干净，用例遗漏。使用此标注的时候不能与其它标注一起使用，如：和@Test 标注一起使用，那就没用了。
+@BeforeClass
+当运行几个有关联的用例时，可能会在数据准备或其它前期准备中执行一些相同的命令，这个时候为了让代码更清晰，更少冗余，可以将公用的部分提取出来，放在一个方法里，并为这个方法注解@BeforeClass。意思是在测试类里所有用例运行之前，运行一次这个方法。例如创建数据库连接、读取文件等。
+注：方法名必须是public static void，即公开、静态、无返回。这个方法只会运行一次。
+@AfterClass
+跟@BeforeClass对应，在测试类里所有用例运行之后，运行一次。用于处理一些测试后续工作，例如清理数据，恢复现场。
+注：方法必须是public static void，即公开、静态、无返回。这个方法只会运行一次。
+@Before
+与@BeforeClass的区别在于，@Before不止运行一次，它会在每个用例运行之前都运行一次。主要用于一些独立于用例之间的准备工作。
+比如两个用例都需要读取数据库里的用户A信息，但第一个用例会删除这个用户A，而第二个用例需要修改用户A。那么可以用@BeforeClass创建数据库连接。用@Before来插入一条用户A信息。
+注：必须是public void，不能为static。不止运行一次，根据用例数而定。
+@After：与@Before对应。
+@Runwith
+概念：测试方法、测试类、测试集、测试运行器。
+测试方法：就是用@Test注解的一些函数。
+测试类是包含一个或多个测试方法的一个Test.java文件。
+测试集是一个suite，可能包含多个测试类。
+测试运行器则决定了用什么方式偏好去运行这些测试集/类/方法。
+@Runwith是放在测试类名之前，用来确定这个类怎么运行的。也可以不标注，会使用默认运行器。
+常见运行器：
+@RunWith(Parameterized.class) 参数化运行器，配合@Parameters使用junit的参数化功能 @RunWith(Suite.class) @SuiteClasses({ATest.class,BTest.class,CTest.class})测试集运行器配合使用测试集功能 @RunWith(JUnit4.class) JUnit4的默认运行器 @RunWith(JUnit38ClassRunner.class) 用于兼容JUnit3.8的运行器 其它运行器具备更多功能。例如@RunWith(SpringJUnit4ClassRunner.class)集成了spring的一些功能 @Parameters： 用于使用参数化功能。
+测试的生命周期 **@BeforeClass**注解修饰的方法（该方法要用static修饰）会在所有方法运行前被执行，且只执行一次，通常用来为后面测试方法的准备工作，如加载配置、进行数据库的连接等。父类的@BeforeClass注解方法会在子类的@BeforeClass注解方法执行前执行。
+**@Before**注解修饰的方法会在每个测试方法执行前执行一次，父类@Before修饰的方法会在子类@Before修饰的方法执行前执行。
+**@After**注解修饰的方法会在每个测试方法执行后执行一次，父类@After修饰的方法会在子类@After修饰的方法执行后执行。
+**@AfterClass**注解修饰的方法（该方法要用static修饰）会在所有方法执行结束后执行一次，且也只执行一次，通常用来对资源进行释放，比如数据库连接的关闭等，无论测试用例里的其他方法有没有抛出异常，该方法最终都会被执行。而且父类中的被@AfterClass注解方法修饰的方法会在子类的@AfterClass注解修饰的方法执行之后才会被执行。
+jar包 导入jar包的方法："/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://bruisesl.github.io">BruisesL&#39;s blog</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
+    
+    <a class="" href="/about/">About</a>
+    
+  </nav>
+  
+
+  
+  <nav class="social">
+    
+    <a
+      class="github"
+      style="--url: url(./github.svg)"
+      href="https://github.com/BruisesL"
+      target="_blank"
+    ></a>
+    
+  </nav>
+  
+</header>
+
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <aside>
+      <time>February 23, 2023</time>
+      
+      <span>BruisesL</span>
+      
+    </aside>
+    <h1>单元测试与文件解析</h1>
+  </header>
+  <section class="post-content"><h2 id="单元测试">单元测试</h2>
+<p>测试的目的是尽可能多的发现软件中存在的BUG，而不是为了隐藏BUG。事实上测试有很多种类，比如：边界测试，压力测试，性能测试等。</p>
+<p><strong>测试的分类</strong>：</p>
+<ul>
+<li>
+<p>黑盒测试：</p>
+<p>黑盒测试也叫功能测试，主要关注软件每个功能是否实现，并不关注软件代码是否有错误。测试人员完全不考虑程序内部的逻辑结构和内部特性。</p>
+</li>
+<li>
+<p>白盒测试：</p>
+<p>白盒测试与黑盒测试相反，白盒测试主要检查软件内部逻辑结构、设计等是否符合规定。</p>
+<p>用代码来测试你的代码。</p>
+</li>
+<li>
+<p>灰盒测试：</p>
+<p>灰盒测试是介于黑盒和白盒之间的一种测试，既关注功能也关注内部逻辑的实现，但并没有白盒测试那么细致。需要灰盒测试的目的是因为白盒测试效率较低。</p>
+</li>
+</ul>
+<p><strong>单元测试</strong>：</p>
+<p>单元测试是开发者编写的一小段代码，用于检验被测代码的一个很小的、很明确的功能是否正确。比如一个方法是否正确，比如是否达到想要的效果等。也是最常用的一种方式。实际开发中，需要严格要求单元测试必须约束到最小颗粒（最小的业务逻辑）。</p>
+<p><code>JUnit</code>是一个开源的Java语言的单元测试框架，专门针对Java设计，使用最广泛。JUnit是事实上的单元测试的标准框架，任何Java开发者都应当学习并使用<code>JUnit</code>编写单元测试。<code>JUnit</code>是给开发者提供的工具类，单元测试目前有<code>JUnit3</code>、<code>JUnit4</code>、<code>JUnit5</code>三个版本，每个版本测试方法有微小区别，目前使用最广泛的就是<code>JUnit4</code>。</p>
+<blockquote>
+<p><a href="https://junit.org/junit4/">官网地址</a>
+<a href="https://github.com/junit-team/junit4/wiki/Assertions">官方入门文档</a>
+<a href="https://github.com/junit-team">官方github</a></p>
+</blockquote>
+<h3 id="编写规范">编写规范</h3>
+<ol>
+<li>单元测试代码本身必须非常简单，能一下看明白，决不能再为测试代码编写测试；</li>
+<li>每个单元测试应当互相独立，不依赖运行的顺序；</li>
+<li>测试时不但要覆盖常用测试用例，还要特别注意测试边界条件，例如输入为<code>0</code>，<code>null</code>，空字符串<code>&quot;&quot;</code>等情况。</li>
+</ol>
+<h3 id="常用注解">常用注解</h3>
+<ul>
+<li>
+<p><strong><code>@Test</code></strong></p>
+<p>在<code>JUnit3</code>中，是通过对测试类和测试方法的命名来确定是否是测试，且所有的测试类必须继承<code>JUnit</code>的测试基类。在<code>JUnit4</code>中，定义一个测试方法变得简单很多，只需要在方法前加上<code>@Test</code>就行了。</p>
+<p><strong>注</strong>：测试方法必须是<code>public void</code>，即公共、无返回数据。可以抛出异常。</p>
+</li>
+<li>
+<p><strong><code>@Ignore</code></strong></p>
+<p>当<strong>暂时不运行某些测试方法\测试类</strong>，可以在方法前加上这个注解。在运行结果中，<code>JUnit</code>会统计忽略的用例数，来提醒你。但是不建议经常这么做，因为这样的坏处是，容易忘记去更新这些测试方法，导致代码不够干净，用例遗漏。使用此标注的时候不能与其它标注一起使用，如：和<code>@Test</code> 标注一起使用，那就没用了。</p>
+</li>
+<li>
+<p><strong><code>@BeforeClass</code></strong></p>
+<p>当运行几个有关联的用例时，可能会在数据准备或其它前期准备中执行一些相同的命令，这个时候为了让代码更清晰，更少冗余，可以将公用的部分提取出来，放在一个方法里，并为这个方法注解<code>@BeforeClass</code>。意思是在测试类里<strong>所有用例运行之前，运行一次</strong>这个方法。例如创建数据库连接、读取文件等。</p>
+<p><strong>注</strong>：方法名必须是<code>public static void</code>，即公开、静态、无返回。这个方法只会运行一次。</p>
+</li>
+<li>
+<p><strong><code>@AfterClass</code></strong></p>
+<p>跟<code>@BeforeClass</code>对应，在测试类里所有用例运行之后，运行一次。用于处理一些测试后续工作，例如清理数据，恢复现场。</p>
+<p><strong>注</strong>：方法必须是<code>public static void</code>，即公开、静态、无返回。这个方法只会运行一次。</p>
+</li>
+<li>
+<p><strong><code>@Before</code></strong></p>
+<p>与<code>@BeforeClass</code>的区别在于，<code>@Before</code>不止运行一次，它会在<strong>每个用例运行之前都运行一次</strong>。主要用于一些独立于用例之间的准备工作。</p>
+<p>比如两个用例都需要读取数据库里的用户A信息，但第一个用例会删除这个用户A，而第二个用例需要修改用户A。那么可以用<code>@BeforeClass</code>创建数据库连接。用<code>@Before</code>来插入一条用户A信息。</p>
+<p><strong>注</strong>：必须是<code>public void</code>，<strong>不能为<code>static</code></strong>。不止运行一次，根据用例数而定。</p>
+</li>
+<li>
+<p><strong><code>@After</code></strong>：与<code>@Before</code>对应。</p>
+</li>
+<li>
+<p><strong><code>@Runwith</code></strong></p>
+<p>概念：测试方法、测试类、测试集、测试运行器。</p>
+<p><strong>测试方法</strong>：就是用<code>@Test</code>注解的一些函数。</p>
+<p><strong>测试类</strong>是包含一个或多个测试方法的一个Test.java文件。</p>
+<p><strong>测试集</strong>是一个suite，可能包含多个测试类。</p>
+<p><strong>测试运行器</strong>则决定了用什么方式偏好去运行这些测试集/类/方法。</p>
+<p><code>@Runwith</code>是放在测试类名之前，用来<strong>确定这个类怎么运行</strong>的。也可以不标注，会使用默认运行器。</p>
+<p><strong>常见运行器</strong>：</p>
+<ul>
+<li><code>@RunWith(Parameterized.class)</code> 参数化运行器，配合@Parameters使用junit的参数化功能</li>
+<li><code>@RunWith(Suite.class) @SuiteClasses({ATest.class,BTest.class,CTest.class})</code>测试集运行器配合使用测试集功能</li>
+<li><code>@RunWith(JUnit4.class)</code> <code>JUnit4</code>的默认运行器</li>
+<li><code>@RunWith(JUnit38ClassRunner.class)</code> 用于兼容JUnit3.8的运行器</li>
+<li>其它运行器具备更多功能。例如<code>@RunWith(SpringJUnit4ClassRunner.class)</code>集成了spring的一些功能</li>
+</ul>
+</li>
+<li>
+<p><strong>@Parameters</strong>： 用于使用参数化功能。</p>
+</li>
+</ul>
+<h3 id="测试的生命周期">测试的生命周期</h3>
+<ul>
+<li>
+<p>**<code>@BeforeClass</code>**注解修饰的方法（该方法要用<code>static</code>修饰）会在所有方法运行前被执行，且只执行一次，通常用来为后面测试方法的准备工作，如加载配置、进行数据库的连接等。父类的<code>@BeforeClass</code>注解方法会在子类的<code>@BeforeClass</code>注解方法执行前执行。</p>
+</li>
+<li>
+<p>**<code>@Before</code>**注解修饰的方法会在每个测试方法执行前执行一次，<strong>父类<code>@Before</code>修饰的方法会在子类<code>@Before</code>修饰的方法执行前执行</strong>。</p>
+</li>
+<li>
+<p>**<code>@After</code>**注解修饰的方法会在每个测试方法执行后执行一次，<strong>父类<code>@After</code>修饰的方法会在子类<code>@After</code>修饰的方法执行后执行</strong>。</p>
+</li>
+<li>
+<p>**<code>@AfterClass</code>**注解修饰的方法（该方法要用<code>static</code>修饰）会在所有方法执行结束后执行一次，且也只执行一次，通常用来对资源进行释放，比如数据库连接的关闭等，无论测试用例里的其他方法有没有抛出异常，该方法最终都会被执行。而且父类中的被<code>@AfterClass</code>注解方法修饰的方法会在子类的<code>@AfterClass</code>注解修饰的方法执行之后才会被执行。</p>
+</li>
+</ul>
+<h2 id="jar包">jar包</h2>
+<p><strong>导入jar包的方法</strong>：</p>
+<ol>
+<li>在java项目中新建一个文件夹lib，并将需要导入的jar包复制到lib文件夹中；</li>
+<li>选中lib文件夹中的jar包，并配置环境变量（右键选择【Build Path】→【Add to Build Path】）。</li>
+</ol>
+<h2 id="文件解析">文件解析</h2>
+<p>配置文件一般通过<code>.properties</code>形式和<code>.xml</code>形式的文件保存。</p>
+<p>properties文件中数据的存储是以键值对的形式存在，每一行为一条数据，<strong>只能存储字符串形式的数</strong>
+<strong>据</strong>，Properties文件中值的部分任意字符都会被当做值的一部分，尤其是空格。</p>
+<ul>
+<li>创建资源文件：</li>
+</ul>
+<ol>
+<li>
+<p>在工程src中新建后缀为.properties的文件</p>
+</li>
+<li>
+<p>编写内容：</p>
+<p>内容以<code>key=value</code>的方式呈现，<code>=</code> 左右两边不要有空白，key值抵拢，value后没有符号，key和value值不能使用引号，通过 <code>＃</code> 修饰代表注释。</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>解析资源文件：</p>
+<p>针对properties文件的读取是使用JDK中的Properties类进行数据读取。</p>
+<p><strong>读取步骤</strong>：</p>
+<ol>
+<li>
+<p>创建Properties对象</p>
+<p><code>Properties prop = new Properties();</code></p>
+</li>
+<li>
+<p>加载资源文件流（有三种方式）</p>
+<p><strong>方式一：传统IO流</strong></p>
+<p><code>prop.load(new FileInputStream(path))</code> 输入流加载资源文件</p>
+<p><strong>方式二：字节码对象获取流</strong></p>
+<p><code>类名.class. getResourceAsStream(/包路径/文件名)</code>
+注：字节码对象获取流参数的规则是前必须带<code>/</code>，若资源文件没有在包中，包的路径可以省略，其底层本质还是调用类加载器实现。</p>
+<p><strong>方式三：类加载器获取流（效率最高）</strong></p>
+<p>类加载器是JVM内部专门设计用于加载字节码文件到内存的一个工具</p>
+<p>步骤：</p>
+<ol>
+<li>
+<p>得到类加载器</p>
+<p><code>字节码对象.getClassLoader()</code> 字节码对象方式获取类加载器</p>
+<p><code>Thread.currentThread().getContextClassLoader()</code> 线程方式获取类加载器</p>
+</li>
+<li>
+<p>获取流</p>
+<p><code>类加载器对象.getResourceAsStream(包名/文件名）</code></p>
+<p>注：<strong>类加载器获取流的时候，路径最前方不需要书写<code>/</code></strong></p>
+</li>
+</ol>
+</li>
+<li>
+<p>读取数据</p>
+<p><code>prop.getProperty(key)</code> 返回资源文件中对应key中的值字符串，若key不存在则返回<code>null</code></p>
+<p><code>prop.getProperty(key,默认值)</code> 返回资源文件中对应key中的值字符串，若key不存在则返回默认值</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MysqlPropertiesTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 方法一：传统IO流获取流
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testProperties1</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> FileNotFoundException<span style="color:#f92672">,</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 1.创建一个Properties的对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		Properties prop <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Properties<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 2.通过1oad方法进行加载到内存
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		prop<span style="color:#f92672">.</span><span style="color:#a6e22e">load</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;src/mysql.properties&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 3.通过getProperty(key）获取对应的value值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		String ip <span style="color:#f92672">=</span> prop<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ip&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		String port <span style="color:#f92672">=</span> prop<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;port&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		String username <span style="color:#f92672">=</span> prop<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;username&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		String password <span style="color:#f92672">=</span> prop<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>ip<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;:&#34;</span><span style="color:#f92672">+</span>port<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">+</span>username<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;:&#34;</span><span style="color:#f92672">+</span>password<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 方法二：字节码对象获取流
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testProperties2</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> FileNotFoundException<span style="color:#f92672">,</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 1.创建一个Properties的对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		Properties prop <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Properties<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 2.通过1oad方法进行加载到内存
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		InputStream rs <span style="color:#f92672">=</span> MysqlPropertiesTest<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getResourceAsStream</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/src/mysql.properties&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		prop<span style="color:#f92672">.</span><span style="color:#a6e22e">load</span><span style="color:#f92672">(</span>rs<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 3.通过getProperty(key）获取对应的value值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		String ip <span style="color:#f92672">=</span> prop<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ip&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		String port <span style="color:#f92672">=</span> prop<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;port&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		String username <span style="color:#f92672">=</span> prop<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;username&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		String password <span style="color:#f92672">=</span> prop<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>ip<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;:&#34;</span><span style="color:#f92672">+</span>port<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">+</span>username<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;:&#34;</span><span style="color:#f92672">+</span>password<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 方法三：类加载器获取流
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testProperties3</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> FileNotFoundException<span style="color:#f92672">,</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 1.创建一个Properties的对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		Properties prop <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Properties<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 2.通过1oad方法进行加载到内存
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		InputStream rs <span style="color:#f92672">=</span> MysqlPropertiesTest<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getResourceAsStream</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;src/mysql.properties&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		prop<span style="color:#f92672">.</span><span style="color:#a6e22e">load</span><span style="color:#f92672">(</span>rs<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 3.通过getProperty(key）获取对应的value值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		String ip <span style="color:#f92672">=</span> prop<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ip&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		String port <span style="color:#f92672">=</span> prop<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;port&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		String username <span style="color:#f92672">=</span> prop<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;username&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		String password <span style="color:#f92672">=</span> prop<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>ip<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;:&#34;</span><span style="color:#f92672">+</span>port<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">+</span>username<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;:&#34;</span><span style="color:#f92672">+</span>password<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav class="post-nav">
+     
+    <a class="next" href="https://bruisesl.github.io/post/java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span>设计模式</span><span>→</span></a>
+    
+  </nav>
+  
+
+  
+  
+</article>
+
+</main>
+
+    <footer class="footer">
+  <p>&copy; 2023 <a href="https://bruisesl.github.io">BruisesL&#39;s blog</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
+
+  </body>
+</html>
