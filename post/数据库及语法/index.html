@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>数据库概述 - BruisesL&#39;s blog</title>
+
+  
+  
+  <meta name="description" content="数据库概述 数据库，简而言之可视为电子化的文件柜——存储电子文件的处所，用户可以对文件中的资料执行新增、截取、更新、删除等操作。
+所谓数据库是以一定方式储存在一起、能予多个用户共享、具有尽可能小的冗余度、与应用程序彼此独立的数据集合。一个数据库由多个表空间（Tablespace）构成，底层。
+数据库管理系统 数据库管理系统（Database Management System，简称DBMS）是为管理数据库而设计的电脑软件系统，一般具有存储、截取、安全保障、备份等基础功能。数据库管理系统可以依据它所支持的数据库模型来作分类，例如关系式、XML；或依据所支持的电脑类型来作分类，例如服务器聚类、移动电话；或依据所用查询语言来作分类，例如SQL、XQuery；或依据性能冲量重点来作分类，例如最大规模、最高执行速度；亦或其他的分类方式。不论使用哪种分类方式，一些DBMS能够跨类别，例如，同时支持多种查询语言。
+数据库的分类 随着数据库技术与其他分支学科技术的结合，出现了多种新型数据库，例如：与分布处理技术结合产生的分布式数据库、与并行处理技术结合产生的并行数据库、与人工智能结合产生的演绎数据库、与多媒体技术结合产生的多媒体数据库。另外，数据库技术应用于特定的领域，出现了工程数据库、 地理数据库、统计数据库、空间数据库等特定领域数据库。
+关系数据库：
+关系型数据库是信息的集合，它以预定义的关系组织数据，数据存储在一个或多个由列和行构成的表（或“关系”）中，用户可以轻松查看和理解不同数据结构之间的关系。 关系是不同表之间的逻辑连接，根据这些表之间的交互建立。
+MySQL
+MariaDB（MySQL的代替品）
+Percona Server（MySQL的代替品）
+PostgreSQL
+Microsoft Access
+Microsoft SQL Server
+Google Fusion Tables
+FileMaker
+Oracle数据库
+Sybase
+dBASE
+Clipper
+FoxPro
+foshub
+几乎所有的数据库管理系统都配备了一个开放式数据库连接（ODBC）驱动程序，令各个数据库之间得以互相集成。
+非关系型数据库（NoSQL）：
+Not only SQL，是对不同于传统的关系数据库的数据库管理系统的统称，其数据存储可以不需要固定的表格模式以及元数据（metadata），也经常会避免使用SQL的JOIN操作，一般有水平可扩展性的特征。
+BigTable（Google）
+Cassandra
+MongoDB
+CouchDB
+Redis
+键值数据库：
+Apache Cassandra（为Facebook所使用）：高度可扩展
+Dynamo
+LevelDB（Google）
+数据库模型 物件模型
+层次模型（轻量级数据访问协议）
+网状模型（大型数据储存）
+满足下面两个条件的基本层次联系的集合为网状模型。
+允许一个以上的结点无双亲； 一个结点可以有多于一个的双亲。 关系模型
+面向对象模型
+半结构化模型
+平面模型（表格模型，一般在形式上是一个二维阵列。如表格模型数据Excel)
+架构 (Schema) 资料库的架构可以大致区分为三个概括层次：内层、概念层和外层。
+内层：最接近实际储存体，亦即有关资料的实际储存方式。 外层：最接近使用者，即有关个别使用者观看资料的方式。 概念层：介于两者之间的间接层。[9] 数据库索引 资料索引的观念由来已久，像是一本书前面几页都有目录，目录也算是索引的一种，只是它的分类较广，例如车牌、身份证字号、条码等，都是一个索引的号码，当我们看到号码时，可以从号码中看出其中的端倪，若是要找的人、车或物品，也只要提供相关的号码，即可迅速查到正确的人事物。
+另外，索引跟栏位有著相应的关系，索引即是由栏位而来，其中栏位有所谓的关键栏位（Key Field），该栏位具有唯一性，即其值不可重复，且不可为&quot;空值null&quot;。例如：在合并资料时，索引便是扮演欲附加栏位资料之指向性用途的角色。故此索引为不可重复性且不可为空。
+数据库事务 事务（transaction）包含一组数据库操作的逻辑工作单元，在事务中包含的数据库操作是不可分割的整体，这些操作要么一起做，要么一起回滚（Roll Back）到执行前的状态。 事务的ACID特性：" />
+  <meta name="author" content="BruisesL" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://bruisesl.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/theme.png" />
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/github.svg" />
+  
+
+  
+  <link rel="icon" href="https://bruisesl.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://bruisesl.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.110.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="数据库概述" />
+<meta property="og:description" content="数据库概述 数据库，简而言之可视为电子化的文件柜——存储电子文件的处所，用户可以对文件中的资料执行新增、截取、更新、删除等操作。
+所谓数据库是以一定方式储存在一起、能予多个用户共享、具有尽可能小的冗余度、与应用程序彼此独立的数据集合。一个数据库由多个表空间（Tablespace）构成，底层。
+数据库管理系统 数据库管理系统（Database Management System，简称DBMS）是为管理数据库而设计的电脑软件系统，一般具有存储、截取、安全保障、备份等基础功能。数据库管理系统可以依据它所支持的数据库模型来作分类，例如关系式、XML；或依据所支持的电脑类型来作分类，例如服务器聚类、移动电话；或依据所用查询语言来作分类，例如SQL、XQuery；或依据性能冲量重点来作分类，例如最大规模、最高执行速度；亦或其他的分类方式。不论使用哪种分类方式，一些DBMS能够跨类别，例如，同时支持多种查询语言。
+数据库的分类 随着数据库技术与其他分支学科技术的结合，出现了多种新型数据库，例如：与分布处理技术结合产生的分布式数据库、与并行处理技术结合产生的并行数据库、与人工智能结合产生的演绎数据库、与多媒体技术结合产生的多媒体数据库。另外，数据库技术应用于特定的领域，出现了工程数据库、 地理数据库、统计数据库、空间数据库等特定领域数据库。
+关系数据库：
+关系型数据库是信息的集合，它以预定义的关系组织数据，数据存储在一个或多个由列和行构成的表（或“关系”）中，用户可以轻松查看和理解不同数据结构之间的关系。 关系是不同表之间的逻辑连接，根据这些表之间的交互建立。
+MySQL
+MariaDB（MySQL的代替品）
+Percona Server（MySQL的代替品）
+PostgreSQL
+Microsoft Access
+Microsoft SQL Server
+Google Fusion Tables
+FileMaker
+Oracle数据库
+Sybase
+dBASE
+Clipper
+FoxPro
+foshub
+几乎所有的数据库管理系统都配备了一个开放式数据库连接（ODBC）驱动程序，令各个数据库之间得以互相集成。
+非关系型数据库（NoSQL）：
+Not only SQL，是对不同于传统的关系数据库的数据库管理系统的统称，其数据存储可以不需要固定的表格模式以及元数据（metadata），也经常会避免使用SQL的JOIN操作，一般有水平可扩展性的特征。
+BigTable（Google）
+Cassandra
+MongoDB
+CouchDB
+Redis
+键值数据库：
+Apache Cassandra（为Facebook所使用）：高度可扩展
+Dynamo
+LevelDB（Google）
+数据库模型 物件模型
+层次模型（轻量级数据访问协议）
+网状模型（大型数据储存）
+满足下面两个条件的基本层次联系的集合为网状模型。
+允许一个以上的结点无双亲； 一个结点可以有多于一个的双亲。 关系模型
+面向对象模型
+半结构化模型
+平面模型（表格模型，一般在形式上是一个二维阵列。如表格模型数据Excel)
+架构 (Schema) 资料库的架构可以大致区分为三个概括层次：内层、概念层和外层。
+内层：最接近实际储存体，亦即有关资料的实际储存方式。 外层：最接近使用者，即有关个别使用者观看资料的方式。 概念层：介于两者之间的间接层。[9] 数据库索引 资料索引的观念由来已久，像是一本书前面几页都有目录，目录也算是索引的一种，只是它的分类较广，例如车牌、身份证字号、条码等，都是一个索引的号码，当我们看到号码时，可以从号码中看出其中的端倪，若是要找的人、车或物品，也只要提供相关的号码，即可迅速查到正确的人事物。
+另外，索引跟栏位有著相应的关系，索引即是由栏位而来，其中栏位有所谓的关键栏位（Key Field），该栏位具有唯一性，即其值不可重复，且不可为&quot;空值null&quot;。例如：在合并资料时，索引便是扮演欲附加栏位资料之指向性用途的角色。故此索引为不可重复性且不可为空。
+数据库事务 事务（transaction）包含一组数据库操作的逻辑工作单元，在事务中包含的数据库操作是不可分割的整体，这些操作要么一起做，要么一起回滚（Roll Back）到执行前的状态。 事务的ACID特性：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8A%E8%AF%AD%E6%B3%95/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-02-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-02-26T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="数据库概述">
+<meta itemprop="description" content="数据库概述 数据库，简而言之可视为电子化的文件柜——存储电子文件的处所，用户可以对文件中的资料执行新增、截取、更新、删除等操作。
+所谓数据库是以一定方式储存在一起、能予多个用户共享、具有尽可能小的冗余度、与应用程序彼此独立的数据集合。一个数据库由多个表空间（Tablespace）构成，底层。
+数据库管理系统 数据库管理系统（Database Management System，简称DBMS）是为管理数据库而设计的电脑软件系统，一般具有存储、截取、安全保障、备份等基础功能。数据库管理系统可以依据它所支持的数据库模型来作分类，例如关系式、XML；或依据所支持的电脑类型来作分类，例如服务器聚类、移动电话；或依据所用查询语言来作分类，例如SQL、XQuery；或依据性能冲量重点来作分类，例如最大规模、最高执行速度；亦或其他的分类方式。不论使用哪种分类方式，一些DBMS能够跨类别，例如，同时支持多种查询语言。
+数据库的分类 随着数据库技术与其他分支学科技术的结合，出现了多种新型数据库，例如：与分布处理技术结合产生的分布式数据库、与并行处理技术结合产生的并行数据库、与人工智能结合产生的演绎数据库、与多媒体技术结合产生的多媒体数据库。另外，数据库技术应用于特定的领域，出现了工程数据库、 地理数据库、统计数据库、空间数据库等特定领域数据库。
+关系数据库：
+关系型数据库是信息的集合，它以预定义的关系组织数据，数据存储在一个或多个由列和行构成的表（或“关系”）中，用户可以轻松查看和理解不同数据结构之间的关系。 关系是不同表之间的逻辑连接，根据这些表之间的交互建立。
+MySQL
+MariaDB（MySQL的代替品）
+Percona Server（MySQL的代替品）
+PostgreSQL
+Microsoft Access
+Microsoft SQL Server
+Google Fusion Tables
+FileMaker
+Oracle数据库
+Sybase
+dBASE
+Clipper
+FoxPro
+foshub
+几乎所有的数据库管理系统都配备了一个开放式数据库连接（ODBC）驱动程序，令各个数据库之间得以互相集成。
+非关系型数据库（NoSQL）：
+Not only SQL，是对不同于传统的关系数据库的数据库管理系统的统称，其数据存储可以不需要固定的表格模式以及元数据（metadata），也经常会避免使用SQL的JOIN操作，一般有水平可扩展性的特征。
+BigTable（Google）
+Cassandra
+MongoDB
+CouchDB
+Redis
+键值数据库：
+Apache Cassandra（为Facebook所使用）：高度可扩展
+Dynamo
+LevelDB（Google）
+数据库模型 物件模型
+层次模型（轻量级数据访问协议）
+网状模型（大型数据储存）
+满足下面两个条件的基本层次联系的集合为网状模型。
+允许一个以上的结点无双亲； 一个结点可以有多于一个的双亲。 关系模型
+面向对象模型
+半结构化模型
+平面模型（表格模型，一般在形式上是一个二维阵列。如表格模型数据Excel)
+架构 (Schema) 资料库的架构可以大致区分为三个概括层次：内层、概念层和外层。
+内层：最接近实际储存体，亦即有关资料的实际储存方式。 外层：最接近使用者，即有关个别使用者观看资料的方式。 概念层：介于两者之间的间接层。[9] 数据库索引 资料索引的观念由来已久，像是一本书前面几页都有目录，目录也算是索引的一种，只是它的分类较广，例如车牌、身份证字号、条码等，都是一个索引的号码，当我们看到号码时，可以从号码中看出其中的端倪，若是要找的人、车或物品，也只要提供相关的号码，即可迅速查到正确的人事物。
+另外，索引跟栏位有著相应的关系，索引即是由栏位而来，其中栏位有所谓的关键栏位（Key Field），该栏位具有唯一性，即其值不可重复，且不可为&quot;空值null&quot;。例如：在合并资料时，索引便是扮演欲附加栏位资料之指向性用途的角色。故此索引为不可重复性且不可为空。
+数据库事务 事务（transaction）包含一组数据库操作的逻辑工作单元，在事务中包含的数据库操作是不可分割的整体，这些操作要么一起做，要么一起回滚（Roll Back）到执行前的状态。 事务的ACID特性："><meta itemprop="datePublished" content="2021-02-26T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-02-26T00:00:00+00:00" />
+<meta itemprop="wordCount" content="447">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数据库概述"/>
+<meta name="twitter:description" content="数据库概述 数据库，简而言之可视为电子化的文件柜——存储电子文件的处所，用户可以对文件中的资料执行新增、截取、更新、删除等操作。
+所谓数据库是以一定方式储存在一起、能予多个用户共享、具有尽可能小的冗余度、与应用程序彼此独立的数据集合。一个数据库由多个表空间（Tablespace）构成，底层。
+数据库管理系统 数据库管理系统（Database Management System，简称DBMS）是为管理数据库而设计的电脑软件系统，一般具有存储、截取、安全保障、备份等基础功能。数据库管理系统可以依据它所支持的数据库模型来作分类，例如关系式、XML；或依据所支持的电脑类型来作分类，例如服务器聚类、移动电话；或依据所用查询语言来作分类，例如SQL、XQuery；或依据性能冲量重点来作分类，例如最大规模、最高执行速度；亦或其他的分类方式。不论使用哪种分类方式，一些DBMS能够跨类别，例如，同时支持多种查询语言。
+数据库的分类 随着数据库技术与其他分支学科技术的结合，出现了多种新型数据库，例如：与分布处理技术结合产生的分布式数据库、与并行处理技术结合产生的并行数据库、与人工智能结合产生的演绎数据库、与多媒体技术结合产生的多媒体数据库。另外，数据库技术应用于特定的领域，出现了工程数据库、 地理数据库、统计数据库、空间数据库等特定领域数据库。
+关系数据库：
+关系型数据库是信息的集合，它以预定义的关系组织数据，数据存储在一个或多个由列和行构成的表（或“关系”）中，用户可以轻松查看和理解不同数据结构之间的关系。 关系是不同表之间的逻辑连接，根据这些表之间的交互建立。
+MySQL
+MariaDB（MySQL的代替品）
+Percona Server（MySQL的代替品）
+PostgreSQL
+Microsoft Access
+Microsoft SQL Server
+Google Fusion Tables
+FileMaker
+Oracle数据库
+Sybase
+dBASE
+Clipper
+FoxPro
+foshub
+几乎所有的数据库管理系统都配备了一个开放式数据库连接（ODBC）驱动程序，令各个数据库之间得以互相集成。
+非关系型数据库（NoSQL）：
+Not only SQL，是对不同于传统的关系数据库的数据库管理系统的统称，其数据存储可以不需要固定的表格模式以及元数据（metadata），也经常会避免使用SQL的JOIN操作，一般有水平可扩展性的特征。
+BigTable（Google）
+Cassandra
+MongoDB
+CouchDB
+Redis
+键值数据库：
+Apache Cassandra（为Facebook所使用）：高度可扩展
+Dynamo
+LevelDB（Google）
+数据库模型 物件模型
+层次模型（轻量级数据访问协议）
+网状模型（大型数据储存）
+满足下面两个条件的基本层次联系的集合为网状模型。
+允许一个以上的结点无双亲； 一个结点可以有多于一个的双亲。 关系模型
+面向对象模型
+半结构化模型
+平面模型（表格模型，一般在形式上是一个二维阵列。如表格模型数据Excel)
+架构 (Schema) 资料库的架构可以大致区分为三个概括层次：内层、概念层和外层。
+内层：最接近实际储存体，亦即有关资料的实际储存方式。 外层：最接近使用者，即有关个别使用者观看资料的方式。 概念层：介于两者之间的间接层。[9] 数据库索引 资料索引的观念由来已久，像是一本书前面几页都有目录，目录也算是索引的一种，只是它的分类较广，例如车牌、身份证字号、条码等，都是一个索引的号码，当我们看到号码时，可以从号码中看出其中的端倪，若是要找的人、车或物品，也只要提供相关的号码，即可迅速查到正确的人事物。
+另外，索引跟栏位有著相应的关系，索引即是由栏位而来，其中栏位有所谓的关键栏位（Key Field），该栏位具有唯一性，即其值不可重复，且不可为&quot;空值null&quot;。例如：在合并资料时，索引便是扮演欲附加栏位资料之指向性用途的角色。故此索引为不可重复性且不可为空。
+数据库事务 事务（transaction）包含一组数据库操作的逻辑工作单元，在事务中包含的数据库操作是不可分割的整体，这些操作要么一起做，要么一起回滚（Roll Back）到执行前的状态。 事务的ACID特性："/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://bruisesl.github.io">BruisesL&#39;s blog</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
+    
+    <a class="" href="/about/">About</a>
+    
+  </nav>
+  
+
+  
+  <nav class="social">
+    
+    <a
+      class="github"
+      style="--url: url(./github.svg)"
+      href="https://github.com/BruisesL"
+      target="_blank"
+    ></a>
+    
+  </nav>
+  
+</header>
+
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <aside>
+      <time>February 26, 2021</time>
+      
+      <span>BruisesL</span>
+      
+    </aside>
+    <h1>数据库概述</h1>
+  </header>
+  <section class="post-content"><h2 id="数据库概述">数据库概述</h2>
+<p>数据库，简而言之可视为电子化的文件柜——存储电子文件的处所，用户可以对文件中的资料执行新增、截取、更新、删除等操作。</p>
+<p>所谓数据库是以一定方式储存在一起、能予多个用户共享、具有尽可能小的冗余度、与应用程序彼此独立的数据集合。一个数据库由多个表空间（Tablespace）构成，底层。</p>
+<h3 id="数据库管理系统">数据库管理系统</h3>
+<p>数据库管理系统（Database Management System，简称DBMS）是为管理数据库而设计的电脑软件系统，一般具有存储、截取、安全保障、备份等基础功能。数据库管理系统可以依据它所支持的数据库模型来作分类，例如关系式、XML；或依据所支持的电脑类型来作分类，例如服务器聚类、移动电话；或依据所用查询语言来作分类，例如SQL、XQuery；或依据性能冲量重点来作分类，例如最大规模、最高执行速度；亦或其他的分类方式。不论使用哪种分类方式，一些DBMS能够跨类别，例如，同时支持多种查询语言。</p>
+<h3 id="数据库的分类">数据库的分类</h3>
+<p>随着数据库技术与其他分支学科技术的结合，出现了多种新型数据库，例如：与分布处理技术结合产生的分布式数据库、与并行处理技术结合产生的并行数据库、与人工智能结合产生的演绎数据库、与多媒体技术结合产生的多媒体数据库。另外，数据库技术应用于特定的领域，出现了工程数据库、 地理数据库、统计数据库、空间数据库等特定领域数据库。</p>
+<p><strong>关系数据库</strong>：</p>
+<p>关系型数据库是信息的集合，它以预定义的关系组织数据，数据存储在一个或多个由列和行构成的表（或“关系”）中，用户可以轻松查看和理解不同数据结构之间的关系。 关系是不同表之间的逻辑连接，根据这些表之间的交互建立。</p>
+<ul>
+<li>
+<p>MySQL</p>
+<ul>
+<li>
+<p>MariaDB（MySQL的代替品）</p>
+</li>
+<li>
+<p>Percona Server（MySQL的代替品）</p>
+</li>
+</ul>
+</li>
+<li>
+<p>PostgreSQL</p>
+</li>
+<li>
+<p>Microsoft Access</p>
+</li>
+<li>
+<p>Microsoft SQL Server</p>
+</li>
+<li>
+<p>Google Fusion Tables</p>
+</li>
+<li>
+<p>FileMaker</p>
+</li>
+<li>
+<p>Oracle数据库</p>
+</li>
+<li>
+<p>Sybase</p>
+</li>
+<li>
+<p>dBASE</p>
+</li>
+<li>
+<p>Clipper</p>
+</li>
+<li>
+<p>FoxPro</p>
+</li>
+<li>
+<p>foshub</p>
+</li>
+</ul>
+<p>几乎所有的数据库管理系统都配备了一个开放式数据库连接（ODBC）驱动程序，令各个数据库之间得以互相集成。</p>
+<p><strong>非关系型数据库（NoSQL）</strong>：</p>
+<p>Not only SQL，是对不同于传统的关系数据库的数据库管理系统的统称，其数据存储可以不需要固定的表格模式以及元数据（metadata），也经常会避免使用SQL的JOIN操作，一般有水平可扩展性的特征。</p>
+<ul>
+<li>
+<p>BigTable（Google）</p>
+</li>
+<li>
+<p>Cassandra</p>
+</li>
+<li>
+<p>MongoDB</p>
+</li>
+<li>
+<p>CouchDB</p>
+</li>
+<li>
+<p>Redis</p>
+<p><strong>键值数据库</strong>：</p>
+</li>
+<li>
+<p>Apache Cassandra（为Facebook所使用）：高度可扩展</p>
+</li>
+<li>
+<p>Dynamo</p>
+</li>
+<li>
+<p>LevelDB（Google）</p>
+</li>
+</ul>
+<h3 id="数据库模型">数据库模型</h3>
+<ul>
+<li>
+<p>物件模型</p>
+</li>
+<li>
+<p>层次模型（轻量级数据访问协议）</p>
+</li>
+<li>
+<p>网状模型（大型数据储存）</p>
+<p>满足下面两个条件的基本层次联系的集合为网状模型。</p>
+<ol>
+<li>允许一个以上的结点无双亲；</li>
+<li>一个结点可以有多于一个的双亲。</li>
+</ol>
+</li>
+<li>
+<p>关系模型</p>
+</li>
+<li>
+<p>面向对象模型</p>
+</li>
+<li>
+<p>半结构化模型</p>
+</li>
+<li>
+<p>平面模型（表格模型，一般在形式上是一个二维阵列。如表格模型数据Excel)</p>
+</li>
+</ul>
+<h3 id="架构-schema">架构 (Schema)</h3>
+<p>资料库的架构可以大致区分为三个概括层次：内层、概念层和外层。</p>
+<ul>
+<li>内层：最接近实际储存体，亦即有关资料的实际储存方式。</li>
+<li>外层：最接近使用者，即有关个别使用者观看资料的方式。</li>
+<li>概念层：介于两者之间的间接层。[9]</li>
+</ul>
+<h3 id="数据库索引">数据库索引</h3>
+<p>资料索引的观念由来已久，像是一本书前面几页都有目录，目录也算是索引的一种，只是它的分类较广，例如车牌、身份证字号、条码等，都是一个索引的号码，当我们看到号码时，可以从号码中看出其中的端倪，若是要找的人、车或物品，也只要提供相关的号码，即可迅速查到正确的人事物。</p>
+<p>另外，索引跟栏位有著相应的关系，索引即是由栏位而来，其中栏位有所谓的关键栏位（Key Field），该栏位具有唯一性，即其值不可重复，且不可为&quot;空值<code>null</code>&quot;。例如：在合并资料时，索引便是扮演欲附加栏位资料之指向性用途的角色。故此索引为不可重复性且不可为空。</p>
+<h3 id="数据库事务">数据库事务</h3>
+<p>事务（transaction）包含一组数据库操作的逻辑工作单元，在事务中包含的数据库操作是不可分割的整体，这些操作要么一起做，要么一起回滚（Roll Back）到执行前的状态。 事务的ACID特性：</p>
+<ul>
+<li>
+<p>原子性（atomicity）</p>
+</li>
+<li>
+<p>一致性（consistency）</p>
+</li>
+<li>
+<p>隔离性（isolation）</p>
+</li>
+<li>
+<p>持续性（durability）</p>
+</li>
+</ul>
+<p>事务的并发性是指多个事务的并行操作轮流交叉运行，事务的并发可能会存取和存储不正确的数据，破坏交易的隔离性和数据库的一致性。</p>
+<h2 id="sql语法">SQL语法</h2>
+<ul>
+<li>
+<p><strong>DDL(Data Definition Language) 数据定义语言</strong>，用来定义数据库对象：数据库，表，列等。DDL就是用来操作数据库，表等；其语句包括动词<strong>CREATE</strong>和<strong>DROP</strong>。在数据库中创建新表或删除表（<strong>CREAT TABLE</strong> 或 <strong>DROP TABLE</strong>）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 查询所有的数据库
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SHOW</span> DATABASES;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 创建数据库
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span> <span style="color:#960050;background-color:#1e0010">数据库名称</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 当存在对应名字的数据库，先删库再新建
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> <span style="color:#960050;background-color:#1e0010">数据库名称</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 使用数据库
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>USE <span style="color:#960050;background-color:#1e0010">数据库名称</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">DATABASE</span>();
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 删除数据库
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">DATABASE</span> <span style="color:#960050;background-color:#1e0010">数据库名称</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">DATABASE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">EXISTS</span> <span style="color:#960050;background-color:#1e0010">数据库名称</span>;
+</span></span></code></pre></div></li>
+<li>
+<p><strong>DML(Data Manipulation Language) 数据操作语言</strong>，用来对数据库中表的数据进行增删改</p>
+<p>DML简单理解就是对表中<strong>数据进行增删改</strong>；其语句包括动词<strong>INSERT</strong>，<strong>UPDATE</strong>和<strong>DELETE</strong>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 查询数据库表
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SHOW</span> TABLES;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 查看表结构
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">DESC</span> <span style="color:#960050;background-color:#1e0010">表名称</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 建表
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span> (
+</span></span><span style="display:flex;"><span> <span style="color:#960050;background-color:#1e0010">字段名</span><span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">数据类型</span><span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span> <span style="color:#960050;background-color:#1e0010">字段名</span><span style="color:#ae81ff">2</span> <span style="color:#960050;background-color:#1e0010">数据类型</span><span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span> <span style="color:#960050;background-color:#1e0010">…</span>
+</span></span><span style="display:flex;"><span> <span style="color:#960050;background-color:#1e0010">字段名</span>n <span style="color:#960050;background-color:#1e0010">数据类型</span>n
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> EXITS <span style="color:#960050;background-color:#1e0010">表名</span> (
+</span></span><span style="display:flex;"><span> <span style="color:#960050;background-color:#1e0010">字段名</span><span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">数据类型</span><span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span> <span style="color:#960050;background-color:#1e0010">字段名</span><span style="color:#ae81ff">2</span> <span style="color:#960050;background-color:#1e0010">数据类型</span><span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span> <span style="color:#960050;background-color:#1e0010">…</span>
+</span></span><span style="display:flex;"><span> <span style="color:#960050;background-color:#1e0010">字段名</span>n <span style="color:#960050;background-color:#1e0010">数据类型</span>n
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 删表
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">EXISTS</span> <span style="color:#960050;background-color:#1e0010">表名</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 改表名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">RENAME</span> <span style="color:#66d9ef">TO</span> <span style="color:#960050;background-color:#1e0010">新的表名</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 加字段
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">ADD</span> <span style="color:#960050;background-color:#1e0010">列名</span> <span style="color:#960050;background-color:#1e0010">数据类型</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 改字段类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">MODIFY</span> <span style="color:#960050;background-color:#1e0010">列名</span> <span style="color:#960050;background-color:#1e0010">新数据类型</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 修改字段名及字段类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span> CHANGE <span style="color:#960050;background-color:#1e0010">列名</span> <span style="color:#960050;background-color:#1e0010">新列名</span> <span style="color:#960050;background-color:#1e0010">新数据类型</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 删字段
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">DROP</span> <span style="color:#960050;background-color:#1e0010">列名</span>;
+</span></span></code></pre></div></li>
+<li>
+<p><strong>DQL(Data Query Language) 数据查询语言</strong>，用来查询数据库中表的记录(数据),动词：<strong>SELECT</strong></p>
+<p>DQL简单理解就是对<strong>数据进行查询</strong>操作。从数据库表中查询到我们想要的数据。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 查询数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#960050;background-color:#1e0010">字段列表</span> <span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">表名</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">表名</span>; 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 查询对应字段并去重
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">DISTINCT</span> <span style="color:#960050;background-color:#1e0010">字段列表</span> <span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">表名</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 条件查询
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#960050;background-color:#1e0010">字段列表</span> <span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">WHERE</span> <span style="color:#960050;background-color:#1e0010">条件列表</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 排序查询，ASC：升序排列（默认值）DESC：降序排列
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#960050;background-color:#1e0010">字段列表</span> <span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> <span style="color:#960050;background-color:#1e0010">排序字段名</span><span style="color:#ae81ff">1</span> [<span style="color:#960050;background-color:#1e0010">排序方式</span><span style="color:#ae81ff">1</span>],<span style="color:#960050;background-color:#1e0010">排序字段名</span><span style="color:#ae81ff">2</span> [<span style="color:#960050;background-color:#1e0010">排序方式</span><span style="color:#ae81ff">2</span>] <span style="color:#960050;background-color:#1e0010">…</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 分页查询，起始索引 = (当前页码 - 1) * 每页显示的条数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#960050;background-color:#1e0010">字段列表</span> <span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">LIMIT</span> <span style="color:#960050;background-color:#1e0010">起始索引</span> , <span style="color:#960050;background-color:#1e0010">查询条目数</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 聚合函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#960050;background-color:#1e0010">聚合函数名</span>(<span style="color:#960050;background-color:#1e0010">列名</span>) <span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">表</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 分组查询
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#960050;background-color:#1e0010">字段列表</span> <span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">表名</span> [<span style="color:#66d9ef">WHERE</span> <span style="color:#960050;background-color:#1e0010">分组前条件限定</span>] <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> <span style="color:#960050;background-color:#1e0010">分组字段名</span> [<span style="color:#66d9ef">HAVING</span> <span style="color:#960050;background-color:#1e0010">分组后条件过滤</span>];
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 拼表查询，得到的结果是笛卡尔积，比如表1数据为a,b，表2数据为1,2,3，则积为{a,1},{a,2},{a,3},{b,1},{b,2},{b,3}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">表名</span><span style="color:#ae81ff">1</span>, <span style="color:#960050;background-color:#1e0010">表名</span><span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 隐式内连接
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#960050;background-color:#1e0010">字段列表</span> <span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">表</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">表</span><span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">…</span> <span style="color:#66d9ef">WHERE</span> <span style="color:#960050;background-color:#1e0010">条件</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 显示内连接，多表查询的时候join更优where
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#960050;background-color:#1e0010">字段列表</span> <span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">表</span><span style="color:#ae81ff">1</span> [<span style="color:#66d9ef">INNER</span>] <span style="color:#66d9ef">JOIN</span> <span style="color:#960050;background-color:#1e0010">表</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">ON</span> <span style="color:#960050;background-color:#1e0010">条件</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 左外连接 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#960050;background-color:#1e0010">字段列表</span> <span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">表</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">LEFT</span> [<span style="color:#66d9ef">OUTER</span>] <span style="color:#66d9ef">JOIN</span> <span style="color:#960050;background-color:#1e0010">表</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">ON</span> <span style="color:#960050;background-color:#1e0010">条件</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 右外连接
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#960050;background-color:#1e0010">字段列表</span> <span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">表</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">RIGHT</span> [<span style="color:#66d9ef">OUTER</span>] <span style="color:#66d9ef">JOIN</span> <span style="color:#960050;background-color:#1e0010">表</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">ON</span> <span style="color:#960050;background-color:#1e0010">条件</span>;
+</span></span></code></pre></div><p>![SQL JOINS](/SQL JOINS.jpg)</p>
+</li>
+<li>
+<p><strong>DCL(Data Control Language) 数据控制语言</strong>，用来定义数据库的访问权限和安全级别，及创建用户；</p>
+<p>DCL简单理解就是对数据库进行权限控制。比如我让某一个数据库表只能让某一个用户进行操作等。</p>
+<p>以及其他的一些CCL（指针控制语言），TPL（事务处理语言）等</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 给指定列添加数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#960050;background-color:#1e0010">表名</span>(<span style="color:#960050;background-color:#1e0010">列名</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">列名</span><span style="color:#ae81ff">2</span>,<span style="color:#960050;background-color:#1e0010">…</span>) <span style="color:#66d9ef">VALUES</span>(<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">2</span>,<span style="color:#960050;background-color:#1e0010">…</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 给全部列添加数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">2</span>,<span style="color:#960050;background-color:#1e0010">…</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 批量添加数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#960050;background-color:#1e0010">表名</span>(<span style="color:#960050;background-color:#1e0010">列名</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">列名</span><span style="color:#ae81ff">2</span>,<span style="color:#960050;background-color:#1e0010">…</span>) <span style="color:#66d9ef">VALUES</span>(<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">2</span>,<span style="color:#960050;background-color:#1e0010">…</span>),(<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">2</span>,<span style="color:#960050;background-color:#1e0010">…</span>),(<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">2</span>,<span style="color:#960050;background-color:#1e0010">…</span>)<span style="color:#960050;background-color:#1e0010">…</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">2</span>,<span style="color:#960050;background-color:#1e0010">…</span>),(<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">2</span>,<span style="color:#960050;background-color:#1e0010">…</span>),(<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">2</span>,<span style="color:#960050;background-color:#1e0010">…</span>)<span style="color:#960050;background-color:#1e0010">…</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 修改表数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">UPDATE</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">SET</span> <span style="color:#960050;background-color:#1e0010">列名</span><span style="color:#ae81ff">1</span><span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">列名</span><span style="color:#ae81ff">2</span><span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">2</span>,<span style="color:#960050;background-color:#1e0010">…</span> [<span style="color:#66d9ef">WHERE</span> <span style="color:#960050;background-color:#1e0010">条件</span>];
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 删除数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">表名</span> [<span style="color:#66d9ef">WHERE</span> <span style="color:#960050;background-color:#1e0010">条件</span>];
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="sql-函数">SQL 函数</h3>
+<ul>
+<li>
+<p><strong>聚合函数</strong></p>
+<p>聚集/聚合函数作用于一组数据，并对一组数据返回一个值，聚集函数会忽略NULL值；</p>
+<p><code>COUNT</code>：统计结果记录数，如果列的值为NULL，不会计算在内的，即会忽略NULL值</p>
+<p><code>MAX</code>： 统计计算最大值</p>
+<p><code>MIN</code>： 统计计算最小值</p>
+<p><code>SUM</code>： 统计计算求和</p>
+<p><code>AVG</code>： 统计计算平均值，如果列的值为NULL，不会计算在内的，即会忽略NULL值</p>
+</li>
+<li>
+<p><strong>类型转化函数</strong></p>
+<p><code>CAST(value AS type)</code>, <code>CONVERT(value, type)</code> ：用来获取一个类型的值，并产生另一个类型</p>
+<p>的值；</p>
+<p><strong>可装换的数据类型</strong>：</p>
+<ol>
+<li>二进制，同带binary前缀的效果 : <code>BINARY</code></li>
+<li>字符型，可带参数 : <code>CHAR()</code></li>
+<li>日期 : <code>DATE</code></li>
+<li>时间: <code>TIME(5)</code></li>
+<li>日期时间型 : <code>DATETIME</code></li>
+<li>浮点数 : <code>DECIMAL</code></li>
+<li>整数 : <code>SIGNED</code></li>
+<li>无符号整数 : <code>UNSIGNED</code></li>
+</ol>
+</li>
+<li>
+<p><strong>字符串函数</strong></p>
+<p><code>LENGTH(s)</code>：返回字符串s的长度（字节数）</p>
+<p><code>CONCAT(s1,s2,...)</code>：将字符串s1，s2等多个字符串合并为一个字符串。如果有任何参数为null</p>
+<p>，则函数返回null。如果参数是数字，则自动转换为字符串。</p>
+<p><code>UPPER(s)</code>：将字符串s的所有字母变成大写字母</p>
+<p><code>LOWER(s)</code>：将字符串s的所有字母变成小写字母</p>
+<p><code>TRIM(s)</code>：去掉字符串s开始和结尾处的空格</p>
+</li>
+<li>
+<p><strong>日期函数</strong></p>
+<p><code>CURDATE()</code>,<code>CURRENT_DATE()</code>,<code>CURRENT_DATE</code>：返回当前日期</p>
+<p><code>CURTIME()</code>,<code>CURRENT_TIME()</code>,<code>CURRENT_TIME</code>：返回当前时间</p>
+<p><code>NOW()</code>,<code>CURRENT_TIMESTAMP()</code>,<code>LOCALTIME()</code>,<code>SYSDATE()</code>,<code>LOCALTIMESTAMP()</code>：返回当</p>
+<p>前日期和时间</p>
+<p><code>YEAR(d)</code>：接受date参数，并返回日期的年份</p>
+</li>
+<li>
+<p><strong>控制流程函数</strong></p>
+<p><code>IF(test,arg1,arg2)</code> ：如果test是真，返回t；否则返回f</p>
+<p><code>IFNULL(arg1,arg2)</code>：如果arg1不是空，返回arg1，否则返回arg2</p>
+</li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav class="post-nav">
+    
+    <a class="prev" href="https://bruisesl.github.io/post/dos%E5%91%BD%E4%BB%A4/"><span>←</span><span>DOS命令</span></a>
+     
+    <a class="next" href="https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><span>数据结构</span><span>→</span></a>
+    
+  </nav>
+  
+
+  
+  
+</article>
+
+</main>
+
+    <footer class="footer">
+  <p>&copy; 2023 <a href="https://bruisesl.github.io">BruisesL&#39;s blog</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>JaveEE 介绍 - BruisesL&#39;s blog</title>
+
+  
+  
+  <meta name="description" content="Java EE，Java 平台企业版（Java Platform Enterprise Edition），之前称为Java 2 Platform, Enterprise Edition (J2EE)，2018年3月更名为 Jakarta EE(这个名称应该还没有得到群众认可)。狭义的 Java EE 是 Sun 公司为企业级应用推出的标准平台，用来开发B/S架构软件，可以说是一个框架，也可以说是一种规范。广义的 Java EE 包含各种框架，其中最重要的就是 Spring 全家桶。Spring 诞生之初是为了改进 Java EE 开发的体验，后来逐渐成为了 Java Web 开发的实际标准。
+JavaEE主要技术 JavaEE 目前有十三种核心技术。它们分别是：JDBC、JNDI、EJB、RMI、Servlet、JSP、XML、JMS、Java IDL、JTS、JTA、JavaMail和JAF。
+简单介绍下需要重点关注的技术。
+JDBC Java 数据库连接，（Java Database Connectivity，JDBC）是 Java 语言中用来规范客户端程序如何来访问数据库的应用程序接口，提供了诸如查询和更新数据库中数据的方法。
+JNDI Java 命名和目录接口（Java Naming and Directory Interface，JNDI），是 Java 的一个目录服务应用程序界面（API），它提供一个目录系统，并将服务名称与对象关联起来，从而使得开发人员在开发过程中可以使用名称来访问对象。
+EJB 企业级 JavaBean（Enterprise JavaBean, EJB）是一个用来构筑企业级应用的服务器端可被管理组件。不过这个东西在 Spring 问世后便被替代了。
+Servlet Servlet（Server Applet），是用 Java 编写的服务器端程序。其主要功能在于交互式地浏览和修改数据，生成动态 Web 内容。
+狭义的 Servlet 是指 Java 语言实现的一个接口，广义的 Servlet 是指任何实现了这个 Servlet 接口的类，一般情况下，人们将 Servlet 理解为后者。" />
+  <meta name="author" content="BruisesL" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://bruisesl.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/theme.png" />
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/github.svg" />
+  
+
+  
+  <link rel="icon" href="https://bruisesl.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://bruisesl.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.110.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="JaveEE 介绍" />
+<meta property="og:description" content="Java EE，Java 平台企业版（Java Platform Enterprise Edition），之前称为Java 2 Platform, Enterprise Edition (J2EE)，2018年3月更名为 Jakarta EE(这个名称应该还没有得到群众认可)。狭义的 Java EE 是 Sun 公司为企业级应用推出的标准平台，用来开发B/S架构软件，可以说是一个框架，也可以说是一种规范。广义的 Java EE 包含各种框架，其中最重要的就是 Spring 全家桶。Spring 诞生之初是为了改进 Java EE 开发的体验，后来逐渐成为了 Java Web 开发的实际标准。
+JavaEE主要技术 JavaEE 目前有十三种核心技术。它们分别是：JDBC、JNDI、EJB、RMI、Servlet、JSP、XML、JMS、Java IDL、JTS、JTA、JavaMail和JAF。
+简单介绍下需要重点关注的技术。
+JDBC Java 数据库连接，（Java Database Connectivity，JDBC）是 Java 语言中用来规范客户端程序如何来访问数据库的应用程序接口，提供了诸如查询和更新数据库中数据的方法。
+JNDI Java 命名和目录接口（Java Naming and Directory Interface，JNDI），是 Java 的一个目录服务应用程序界面（API），它提供一个目录系统，并将服务名称与对象关联起来，从而使得开发人员在开发过程中可以使用名称来访问对象。
+EJB 企业级 JavaBean（Enterprise JavaBean, EJB）是一个用来构筑企业级应用的服务器端可被管理组件。不过这个东西在 Spring 问世后便被替代了。
+Servlet Servlet（Server Applet），是用 Java 编写的服务器端程序。其主要功能在于交互式地浏览和修改数据，生成动态 Web 内容。
+狭义的 Servlet 是指 Java 语言实现的一个接口，广义的 Servlet 是指任何实现了这个 Servlet 接口的类，一般情况下，人们将 Servlet 理解为后者。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bruisesl.github.io/post/javaee%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-03-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-03-01T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="JaveEE 介绍">
+<meta itemprop="description" content="Java EE，Java 平台企业版（Java Platform Enterprise Edition），之前称为Java 2 Platform, Enterprise Edition (J2EE)，2018年3月更名为 Jakarta EE(这个名称应该还没有得到群众认可)。狭义的 Java EE 是 Sun 公司为企业级应用推出的标准平台，用来开发B/S架构软件，可以说是一个框架，也可以说是一种规范。广义的 Java EE 包含各种框架，其中最重要的就是 Spring 全家桶。Spring 诞生之初是为了改进 Java EE 开发的体验，后来逐渐成为了 Java Web 开发的实际标准。
+JavaEE主要技术 JavaEE 目前有十三种核心技术。它们分别是：JDBC、JNDI、EJB、RMI、Servlet、JSP、XML、JMS、Java IDL、JTS、JTA、JavaMail和JAF。
+简单介绍下需要重点关注的技术。
+JDBC Java 数据库连接，（Java Database Connectivity，JDBC）是 Java 语言中用来规范客户端程序如何来访问数据库的应用程序接口，提供了诸如查询和更新数据库中数据的方法。
+JNDI Java 命名和目录接口（Java Naming and Directory Interface，JNDI），是 Java 的一个目录服务应用程序界面（API），它提供一个目录系统，并将服务名称与对象关联起来，从而使得开发人员在开发过程中可以使用名称来访问对象。
+EJB 企业级 JavaBean（Enterprise JavaBean, EJB）是一个用来构筑企业级应用的服务器端可被管理组件。不过这个东西在 Spring 问世后便被替代了。
+Servlet Servlet（Server Applet），是用 Java 编写的服务器端程序。其主要功能在于交互式地浏览和修改数据，生成动态 Web 内容。
+狭义的 Servlet 是指 Java 语言实现的一个接口，广义的 Servlet 是指任何实现了这个 Servlet 接口的类，一般情况下，人们将 Servlet 理解为后者。"><meta itemprop="datePublished" content="2023-03-01T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-03-01T00:00:00+00:00" />
+<meta itemprop="wordCount" content="165">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JaveEE 介绍"/>
+<meta name="twitter:description" content="Java EE，Java 平台企业版（Java Platform Enterprise Edition），之前称为Java 2 Platform, Enterprise Edition (J2EE)，2018年3月更名为 Jakarta EE(这个名称应该还没有得到群众认可)。狭义的 Java EE 是 Sun 公司为企业级应用推出的标准平台，用来开发B/S架构软件，可以说是一个框架，也可以说是一种规范。广义的 Java EE 包含各种框架，其中最重要的就是 Spring 全家桶。Spring 诞生之初是为了改进 Java EE 开发的体验，后来逐渐成为了 Java Web 开发的实际标准。
+JavaEE主要技术 JavaEE 目前有十三种核心技术。它们分别是：JDBC、JNDI、EJB、RMI、Servlet、JSP、XML、JMS、Java IDL、JTS、JTA、JavaMail和JAF。
+简单介绍下需要重点关注的技术。
+JDBC Java 数据库连接，（Java Database Connectivity，JDBC）是 Java 语言中用来规范客户端程序如何来访问数据库的应用程序接口，提供了诸如查询和更新数据库中数据的方法。
+JNDI Java 命名和目录接口（Java Naming and Directory Interface，JNDI），是 Java 的一个目录服务应用程序界面（API），它提供一个目录系统，并将服务名称与对象关联起来，从而使得开发人员在开发过程中可以使用名称来访问对象。
+EJB 企业级 JavaBean（Enterprise JavaBean, EJB）是一个用来构筑企业级应用的服务器端可被管理组件。不过这个东西在 Spring 问世后便被替代了。
+Servlet Servlet（Server Applet），是用 Java 编写的服务器端程序。其主要功能在于交互式地浏览和修改数据，生成动态 Web 内容。
+狭义的 Servlet 是指 Java 语言实现的一个接口，广义的 Servlet 是指任何实现了这个 Servlet 接口的类，一般情况下，人们将 Servlet 理解为后者。"/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://bruisesl.github.io">BruisesL&#39;s blog</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
+    
+    <a class="" href="/about/">About</a>
+    
+  </nav>
+  
+
+  
+  <nav class="social">
+    
+    <a
+      class="github"
+      style="--url: url(./github.svg)"
+      href="https://github.com/BruisesL"
+      target="_blank"
+    ></a>
+    
+  </nav>
+  
+</header>
+
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <aside>
+      <time>March 1, 2023</time>
+      
+      <span>BruisesL</span>
+      
+    </aside>
+    <h1>JaveEE 介绍</h1>
+  </header>
+  <section class="post-content"><p>Java EE，Java 平台企业版（Java Platform Enterprise Edition），之前称为Java 2 Platform, Enterprise Edition (J2EE)，2018年3月更名为 Jakarta EE(这个名称应该还没有得到群众认可)。狭义的 Java EE 是 Sun 公司为企业级应用推出的标准平台，用来开发B/S架构软件，可以说是一个框架，也可以说是一种规范。广义的 Java EE 包含各种框架，其中最重要的就是 Spring 全家桶。Spring 诞生之初是为了改进 Java EE 开发的体验，后来逐渐成为了 Java Web 开发的实际标准。</p>
+<h2 id="javaee主要技术">JavaEE主要技术</h2>
+<p>JavaEE 目前有<strong>十三种</strong>核心技术。它们分别是：JDBC、JNDI、EJB、RMI、Servlet、JSP、XML、JMS、Java IDL、JTS、JTA、JavaMail和JAF。</p>
+<p>简单介绍下需要重点关注的技术。</p>
+<ul>
+<li>
+<p>JDBC
+Java 数据库连接，（Java Database Connectivity，JDBC）是 Java 语言中用来规范客户端程序如何来访问数据库的应用程序接口，提供了诸如查询和更新数据库中数据的方法。</p>
+</li>
+<li>
+<p>JNDI
+Java 命名和目录接口（Java Naming and Directory Interface，JNDI），是 Java 的一个目录服务应用程序界面（API），它提供一个目录系统，并将服务名称与对象关联起来，从而使得开发人员在开发过程中可以使用名称来访问对象。</p>
+</li>
+<li>
+<p>EJB
+企业级 JavaBean（Enterprise JavaBean, EJB）是一个用来构筑企业级应用的服务器端可被管理组件。不过这个东西在 Spring 问世后便被替代了。</p>
+</li>
+<li>
+<p>Servlet
+Servlet（Server Applet），是用 Java 编写的服务器端程序。其主要功能在于交互式地浏览和修改数据，生成动态 Web 内容。</p>
+<p>狭义的 Servlet 是指 Java 语言实现的一个接口，广义的 Servlet 是指任何实现了这个 Servlet 接口的类，一般情况下，人们将 Servlet 理解为后者。</p>
+</li>
+<li>
+<p>JSP
+JSP（全称JavaServer Pages）是由 Sun 公司主导创建的一种动态网页技术标准。JSP 部署于网络服务器上，可以响应客户端发送的请求，并根据请求内容动态地生成 HTML、XML 或其他格式文档的 Web 网页，然后返回给请求者。</p>
+</li>
+</ul>
+<h2 id="javeee的三层架构">JaveEE的三层架构</h2>
+<p>所谓系统架构是指，整合应用系统程序大的结构。经常提到的系统结构有两种：三层架构与 MVC。这两种结构既有区别，又有联系。但这两种结构的使用，均是为了降低系统模块间的耦合度。</p>
+<p>三层架构是指：视图层 View、服务层 Service，与持久层 DAO。它们分别完成不同的功能。</p>
+<ul>
+<li>View 层：用于接收用户提交请求的代码</li>
+<li>Service 层：系统的业务逻辑主要在这里完成</li>
+<li>DAO 层：直接操作数据库的代码</li>
+</ul>
+<p><img src="/JavaEE%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84.png" alt="JavaEE三层架构"></p>
+<p>为了更好的降低各层间的耦合度，在三层架构程序设计中，采用面向抽象编程。即上层对下层的调用，是通过接口实现的。而下层对上层的真正服务提供者，是下层接口的实现类。服务标准（接口）是相同的，服务提供者（实现类）可以更换。这就实现了层间解耦合。</p>
+<p><strong>完善DAO层的步骤</strong>：分层需要一个媒介来进行传输：<code>domain</code>（域对象）</p>
+<ol>
+<li>先创建一个<code>domain</code>包 ,在包里面创建相应的实体类（例如：Student）</li>
+</ol>
+<p>2 在<code>domain</code>包的同一级,建一个<code>dao</code>包,这个包里面写接口。</p>
+<p>接口名称命名： <code>IXxxDAO</code>、<code>XxxDao</code></p>
+<ol start="3">
+<li>
+<p>在dao这个包里面再建一个包: <code>impl</code>包</p>
+<p>这个包里面实现dao包里面的接口，这个impl包在dao包里面一层</p>
+<p>这个包类的名称：XxxDAOImpl/XxxDaoImpl</p>
+</li>
+</ol>
+<h2 id="javaee框架">JavaEE框架</h2>
+<p>JavaEE 拥有广泛市场的原因之一就是可以使用多种框架来使开发变得简单。对于框架的选择多种多样，目前比较常见的框架组合有 SSH和SSM。在后面的章节中会作详细介绍。另外Spring本身也提供了多种层次的框架供选择，可以到Spring官网了解详情。</p>
+<ul>
+<li>
+<p>Spring</p>
+<p>Spring 是一个开源框架，是为了解决企业应用程序开发复杂性而创建的。框架的主要优势之一就是其<strong>分层架构</strong>，分层架构允许选择使用哪一个组件，同时为 J2EE 应用程序开发提供集成的框架。Spring使用基本的JavaBean来完成以前只可能由EJB完成的事情。任何 Java 应用都可以从 Spring 中受益。Spring 的核心是控制反转（IOC）和面向切面（AOP）。简单来说，Spring 是一个分层的 JavaSE/EE full-stack(一站式) <strong>轻量级开源框架</strong>。</p>
+</li>
+<li>
+<p>SpringMVC</p>
+<p>SpringMVC在项目中拦截用户请求，它的核心Servlet即DispatcherServlet承担中介或是前台这样的职责，将用户请求通过HandlerMapping去匹配Controller，Controller就是具体对应请求所执行的操作。SpringMVC相当于SSH框架中struts。</p>
+</li>
+<li>
+<p>mybatis</p>
+<p>mybatis是对jdbc的封装，它让数据库底层操作变的透明。mybatis的操作都是围绕一个sqlSessionFactory实例展开的。mybatis通过配置文件关联到各实体类的Mapper文件，Mapper文件中配置了每个类对数据库所需进行的sql语句映射。在每次与数据库交互时，通过sqlSessionFactory拿到一个sqlSession，再执行sql命令。</p>
+</li>
+<li>
+<p>Struts</p>
+<p>Struts是一个基于Sun J2EE平台的MVC框架，主要是采用Servlet和JSP技术来实现的。Struts能充分满足应用开发的需求，简单易用，敏捷迅速。Struts把Servlet、JSP、自定义标签和信息资源(message resources)整合到一个统一的框架中，开发人员利用其进行开发时不用再自己编码实现全套MVC模式，极大的节省了时间。</p>
+</li>
+<li>
+<p>Hibernate</p>
+<p>Hibernate是一个开放源代码的对象关系映射框架，它对JDBC进行了非常轻量级的对象封装，使得Java程序员可以随心所欲的使用对象编程思维来操纵数据库。 Hibernate可以应用在任何使用JDBC的场合，既可以在Java的客户端程序实用，也可以在Servlet/JSP的Web应用中使用，最具革命意义的是，Hibernate可以在应用EJB的J2EE架构中取代CMP，完成数据持久化的重任。</p>
+</li>
+</ul>
+<h3 id="ssh">SSH</h3>
+<p>SSH（Struts+Spring+Hibernate） 是一个集成框架，是目前较流行的一种JAVA Web应用程序开源框架。</p>
+<p><strong>SSH架构</strong>：</p>
+<p>Struts负责Web层：ActionFormBean接收网页中表单提交的数据，然后通过Action进行处理，再Forward到对应的网页，在Struts-config.xml中定义了<code>&lt;action-mapping&gt;</code>，ActionServlet会加载进来。</p>
+<p>Spring负责业务层管理，即Service：Service为Action提供统一的调用接口，封装持久层的DAO，并集成Hibernate，Spring可对JavaBean和事物进行统一管理。</p>
+<p>Hibernate负责持久层，完成数据库的CRUD操作：Hibernate有一组hbm.xml文件和PO，是与数据库中的表相对应的，然后定义DAO，这些是与数据库打交道的类。</p>
+<p>在Struts+Spring+Hibernate系统中，<strong>对象之间的调用流程</strong>如下：</p>
+<p><code>Struts—&gt;Spring—&gt;Hibernate</code></p>
+<p><code>JSP—&gt;Action—&gt;Service—&gt;DAO—&gt;Hibernate</code></p>
+<h3 id="ssm">SSM</h3>
+<p>SSM（Spring+SpringMVC+MyBatis）框架集由Spring、MyBatis两个开源框架整合而成（SpringMVC是Spring中的部分内容），常作为数据源较简单的web项目的框架。</p>
+<p>持久层（MyBatis）: Dao层（Mapper）主要是做数据持久层的工作,负责与数据库进行联络的一些任务都封装在此。其设计首先是设计DAO接口，然后在 Spring配置文件中定义此接口的实现类，然后就可在模块调用此接口来进行数据业务的处理，而不用关心此接口的具体实现类是哪个类，显得结构非常清晰。DAO层的数据源配置，以及有关数据库连接的参数都在 Spring的配置文件中进行配置。</p>
+<p>业务层（Spring）:Service层主要负责业务模块的逻辑应用设计。首先设计接口，再设计其实现的类；接着再在 Spring的配置文件中配置其实现的关联。这样我们就可以在应用中调用 Service接口来进行业务处理。Service层的业务实现,具体要调用到已定义的DAO层的接口。封装 Service层的业务逻辑有利于通用的业务逻辑的独立性和重复利用性，程序显得非常简洁。</p>
+<p>表现层（SpringMVC）:Controller层负责具体的业务模块流程的控制。在Controller层里面要调用 Service层的接口来控制业务流程。控制的配置也同样是在 Spring的配置文件里面进行，针对具体的业务流程，会有不同的控制器，我们具体的设计过程中可以将流程进行抽象归纳，设计出可以重复利用的子单元流程模块，这样不仅使程序结构变得清晰，也大大减少了代码量。</p>
+<p>视图层：View层与控制层结合比较紧密，需要二者结合起来协同工发。View层主要负责前台sp页面的表示。</p>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav class="post-nav">
+    
+    <a class="prev" href="https://bruisesl.github.io/post/javaee--jdbc/"><span>←</span><span>JavaEE -- JDBC</span></a>
+     
+    <a class="next" href="https://bruisesl.github.io/post/javabean/"><span>JavaBean</span><span>→</span></a>
+    
+  </nav>
+  
+
+  
+  
+</article>
+
+</main>
+
+    <footer class="footer">
+  <p>&copy; 2023 <a href="https://bruisesl.github.io">BruisesL&#39;s blog</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
+
+  </body>
+</html>

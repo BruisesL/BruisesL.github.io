@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>JavaBean - BruisesL&#39;s blog</title>
+
+  
+  
+  <meta name="description" content="JavaBean JavaBean 既不是 Applet，也不是 Application，从本质上来说，JavaBean 就是一组用于构建可重用组件的 Java 类库。与其他任何 Java 类一样，JavaBean 也是由属性和方法组成的。
+JavaBean 的属性都具有 private 特性，方法具有 public 特性，方法是 JavaBean 的对外接口。
+规范：
+必须有domain包，编程规范/良好的编程习惯。
+必须是具体的和公共的，访问权限最大化，非抽象的。
+必须有公有无参构造，方便框架或底层通过反射创建对象。
+必须有相应公有的setter、getter方法，方便设置和获取属性/el表达式。
+建议对象属性私有化，控制直接操作对象属性。
+建议对象属性使用包装类，控制直接操作对象属性。
+一般JavaBean属性以小写字母开头，驼峰命名格式，相应的 getter/setter 方法是 get/set 接上首字母大写的属性名。例如：属性名为userName，其对应的 getter/setter 方法是 getUserName/setUserName。
+但是，还有一些特殊情况：
+如果属性名的第二个字母大写，那么该属性名直接用作 getter/setter 方法中 get/set 的后部分，就是说大小写不变。例如属性名为uName，方法是 getuName/setuName。
+如果前两个字母是大写（一般的专有名词和缩略词都会大写），也是属性名直接用作 getter/setter 方法中 get/set 的后部分。例如属性名为URL，方法是 getURL/setURL。
+如果首字母大写，也是属性名直接用作 getter/setter 方法中 get/set 的后部分。例如属性名为Name，方法是getName/setName，这种是最糟糕的情况，会找不到属性出错，因为默认的属性名是name。
+属性名/类型 getter 方法 setter 方法 xcoordinate/Double public Double getXcoordinate() public void setXcoordinate(Double newValue) xCoordinate/Double public Double getxCoordinate() public void setxCoordinate(Double newValue) XCoordinate/Double public Double getXCoordinate() public void setXCoordinate(Double newValue) Xcoordinate/Double 不允许 不允许 注：类中的属性为对象属性（字段），getter和setter⽅法上的属性为Bean属性（JavaBean属性），其中getter⽅法上的属性称之为可读属性，setter⽅法上⾯的属性称之为可写属性。" />
+  <meta name="author" content="BruisesL" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://bruisesl.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/theme.png" />
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/github.svg" />
+  
+
+  
+  <link rel="icon" href="https://bruisesl.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://bruisesl.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.110.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="JavaBean" />
+<meta property="og:description" content="JavaBean JavaBean 既不是 Applet，也不是 Application，从本质上来说，JavaBean 就是一组用于构建可重用组件的 Java 类库。与其他任何 Java 类一样，JavaBean 也是由属性和方法组成的。
+JavaBean 的属性都具有 private 特性，方法具有 public 特性，方法是 JavaBean 的对外接口。
+规范：
+必须有domain包，编程规范/良好的编程习惯。
+必须是具体的和公共的，访问权限最大化，非抽象的。
+必须有公有无参构造，方便框架或底层通过反射创建对象。
+必须有相应公有的setter、getter方法，方便设置和获取属性/el表达式。
+建议对象属性私有化，控制直接操作对象属性。
+建议对象属性使用包装类，控制直接操作对象属性。
+一般JavaBean属性以小写字母开头，驼峰命名格式，相应的 getter/setter 方法是 get/set 接上首字母大写的属性名。例如：属性名为userName，其对应的 getter/setter 方法是 getUserName/setUserName。
+但是，还有一些特殊情况：
+如果属性名的第二个字母大写，那么该属性名直接用作 getter/setter 方法中 get/set 的后部分，就是说大小写不变。例如属性名为uName，方法是 getuName/setuName。
+如果前两个字母是大写（一般的专有名词和缩略词都会大写），也是属性名直接用作 getter/setter 方法中 get/set 的后部分。例如属性名为URL，方法是 getURL/setURL。
+如果首字母大写，也是属性名直接用作 getter/setter 方法中 get/set 的后部分。例如属性名为Name，方法是getName/setName，这种是最糟糕的情况，会找不到属性出错，因为默认的属性名是name。
+属性名/类型 getter 方法 setter 方法 xcoordinate/Double public Double getXcoordinate() public void setXcoordinate(Double newValue) xCoordinate/Double public Double getxCoordinate() public void setxCoordinate(Double newValue) XCoordinate/Double public Double getXCoordinate() public void setXCoordinate(Double newValue) Xcoordinate/Double 不允许 不允许 注：类中的属性为对象属性（字段），getter和setter⽅法上的属性为Bean属性（JavaBean属性），其中getter⽅法上的属性称之为可读属性，setter⽅法上⾯的属性称之为可写属性。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bruisesl.github.io/post/javabean/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-02-24T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="JavaBean">
+<meta itemprop="description" content="JavaBean JavaBean 既不是 Applet，也不是 Application，从本质上来说，JavaBean 就是一组用于构建可重用组件的 Java 类库。与其他任何 Java 类一样，JavaBean 也是由属性和方法组成的。
+JavaBean 的属性都具有 private 特性，方法具有 public 特性，方法是 JavaBean 的对外接口。
+规范：
+必须有domain包，编程规范/良好的编程习惯。
+必须是具体的和公共的，访问权限最大化，非抽象的。
+必须有公有无参构造，方便框架或底层通过反射创建对象。
+必须有相应公有的setter、getter方法，方便设置和获取属性/el表达式。
+建议对象属性私有化，控制直接操作对象属性。
+建议对象属性使用包装类，控制直接操作对象属性。
+一般JavaBean属性以小写字母开头，驼峰命名格式，相应的 getter/setter 方法是 get/set 接上首字母大写的属性名。例如：属性名为userName，其对应的 getter/setter 方法是 getUserName/setUserName。
+但是，还有一些特殊情况：
+如果属性名的第二个字母大写，那么该属性名直接用作 getter/setter 方法中 get/set 的后部分，就是说大小写不变。例如属性名为uName，方法是 getuName/setuName。
+如果前两个字母是大写（一般的专有名词和缩略词都会大写），也是属性名直接用作 getter/setter 方法中 get/set 的后部分。例如属性名为URL，方法是 getURL/setURL。
+如果首字母大写，也是属性名直接用作 getter/setter 方法中 get/set 的后部分。例如属性名为Name，方法是getName/setName，这种是最糟糕的情况，会找不到属性出错，因为默认的属性名是name。
+属性名/类型 getter 方法 setter 方法 xcoordinate/Double public Double getXcoordinate() public void setXcoordinate(Double newValue) xCoordinate/Double public Double getxCoordinate() public void setxCoordinate(Double newValue) XCoordinate/Double public Double getXCoordinate() public void setXCoordinate(Double newValue) Xcoordinate/Double 不允许 不允许 注：类中的属性为对象属性（字段），getter和setter⽅法上的属性为Bean属性（JavaBean属性），其中getter⽅法上的属性称之为可读属性，setter⽅法上⾯的属性称之为可写属性。"><meta itemprop="datePublished" content="2023-02-24T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-02-24T00:00:00+00:00" />
+<meta itemprop="wordCount" content="143">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaBean"/>
+<meta name="twitter:description" content="JavaBean JavaBean 既不是 Applet，也不是 Application，从本质上来说，JavaBean 就是一组用于构建可重用组件的 Java 类库。与其他任何 Java 类一样，JavaBean 也是由属性和方法组成的。
+JavaBean 的属性都具有 private 特性，方法具有 public 特性，方法是 JavaBean 的对外接口。
+规范：
+必须有domain包，编程规范/良好的编程习惯。
+必须是具体的和公共的，访问权限最大化，非抽象的。
+必须有公有无参构造，方便框架或底层通过反射创建对象。
+必须有相应公有的setter、getter方法，方便设置和获取属性/el表达式。
+建议对象属性私有化，控制直接操作对象属性。
+建议对象属性使用包装类，控制直接操作对象属性。
+一般JavaBean属性以小写字母开头，驼峰命名格式，相应的 getter/setter 方法是 get/set 接上首字母大写的属性名。例如：属性名为userName，其对应的 getter/setter 方法是 getUserName/setUserName。
+但是，还有一些特殊情况：
+如果属性名的第二个字母大写，那么该属性名直接用作 getter/setter 方法中 get/set 的后部分，就是说大小写不变。例如属性名为uName，方法是 getuName/setuName。
+如果前两个字母是大写（一般的专有名词和缩略词都会大写），也是属性名直接用作 getter/setter 方法中 get/set 的后部分。例如属性名为URL，方法是 getURL/setURL。
+如果首字母大写，也是属性名直接用作 getter/setter 方法中 get/set 的后部分。例如属性名为Name，方法是getName/setName，这种是最糟糕的情况，会找不到属性出错，因为默认的属性名是name。
+属性名/类型 getter 方法 setter 方法 xcoordinate/Double public Double getXcoordinate() public void setXcoordinate(Double newValue) xCoordinate/Double public Double getxCoordinate() public void setxCoordinate(Double newValue) XCoordinate/Double public Double getXCoordinate() public void setXCoordinate(Double newValue) Xcoordinate/Double 不允许 不允许 注：类中的属性为对象属性（字段），getter和setter⽅法上的属性为Bean属性（JavaBean属性），其中getter⽅法上的属性称之为可读属性，setter⽅法上⾯的属性称之为可写属性。"/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://bruisesl.github.io">BruisesL&#39;s blog</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
+    
+    <a class="" href="/about/">About</a>
+    
+  </nav>
+  
+
+  
+  <nav class="social">
+    
+    <a
+      class="github"
+      style="--url: url(./github.svg)"
+      href="https://github.com/BruisesL"
+      target="_blank"
+    ></a>
+    
+  </nav>
+  
+</header>
+
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <aside>
+      <time>February 24, 2023</time>
+      
+      <span>BruisesL</span>
+      
+    </aside>
+    <h1>JavaBean</h1>
+  </header>
+  <section class="post-content"><h2 id="javabean">JavaBean</h2>
+<p>JavaBean 既不是 Applet，也不是 Application，从本质上来说，JavaBean 就是一组用于构建可重用组件的 Java 类库。与其他任何 Java 类一样，JavaBean 也是由属性和方法组成的。</p>
+<p>JavaBean 的属性都具有 <code>private</code> 特性，方法具有 <code>public</code> 特性，方法是 JavaBean 的对外接口。</p>
+<p>规范：</p>
+<ol>
+<li>
+<p>必须有<code>domain</code>包，编程规范/良好的编程习惯。</p>
+</li>
+<li>
+<p>必须是具体的和公共的，<strong>访问权限最大化，非抽象的</strong>。</p>
+</li>
+<li>
+<p>必须有<strong>公有无参构造</strong>，方便框架或底层通过反射创建对象。</p>
+</li>
+<li>
+<p>必须有相应<strong>公有的setter、getter方法</strong>，方便设置和获取属性/el表达式。</p>
+</li>
+<li>
+<p>建议<strong>对象属性私有化</strong>，控制直接操作对象属性。</p>
+</li>
+<li>
+<p>建议<strong>对象属性使用包装类</strong>，控制直接操作对象属性。</p>
+</li>
+</ol>
+<p>一般JavaBean属性以小写字母开头，驼峰命名格式，相应的 <code>getter/setter</code> 方法是 <code>get/set</code> 接上首字母大写的属性名。例如：属性名为<code>userName</code>，其对应的 getter/setter 方法是 <code>getUserName/setUserName</code>。</p>
+<p>但是，还有一些<strong>特殊情况</strong>：</p>
+<ol>
+<li>
+<p>如果属性名的第二个字母大写，那么该属性名直接用作 <code>getter/setter</code> 方法中 <code>get/set</code> 的后部分，就是说大小写不变。例如属性名为<code>uName</code>，方法是 <code>getuName/setuName</code>。</p>
+</li>
+<li>
+<p>如果前两个字母是大写（一般的专有名词和缩略词都会大写），也是属性名直接用作 <code>getter/setter</code> 方法中 <code>get/set</code> 的后部分。例如属性名为URL，方法是 <code>getURL/setURL</code>。</p>
+</li>
+<li>
+<p>如果首字母大写，也是属性名直接用作 <code>getter/setter</code> 方法中 <code>get/set</code> 的后部分。例如属性名为<code>Name</code>，方法是<code>getName/setName</code>，这种是最糟糕的情况，会找不到属性出错，因为默认的属性名是<code>name</code>。</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>属性名/类型</th>
+<th><code>getter</code> 方法</th>
+<th><code>setter</code> 方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>xcoordinate</code>/<code>Double</code></td>
+<td><code>public Double getXcoordinate()</code></td>
+<td><code>public void setXcoordinate(Double newValue)</code></td>
+</tr>
+<tr>
+<td><code>xCoordinate</code>/<code>Double</code></td>
+<td><code>public Double getxCoordinate()</code></td>
+<td><code>public void setxCoordinate(Double newValue)</code></td>
+</tr>
+<tr>
+<td><code>XCoordinate</code>/<code>Double</code></td>
+<td><code>public Double getXCoordinate()</code></td>
+<td><code>public void setXCoordinate(Double newValue)</code></td>
+</tr>
+<tr>
+<td><code>Xcoordinate</code>/<code>Double</code></td>
+<td>不允许</td>
+<td>不允许</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注</strong>：类中的属性为对象属性（字段），<code>getter</code>和<code>setter</code>⽅法上的属性为Bean属性（JavaBean属性），其中<code>getter</code>⽅法上的属性称之为可读属性，<code>setter</code>⽅法上⾯的属性称之为可写属性。</p>
+<h2 id="beanutils">BeanUtils</h2>
+<p>需要的jar包：</p>
+<p><code>commons-beanutils-1.9.2.jar</code></p>
+<p><code>commons-logging-1.2.jar</code></p>
+<p><code>commons-collections-3.1.jar</code></p>
+<p><strong>常用方法</strong>：</p>
+<ul>
+<li>
+<p><code>copyProperties(Object dest, Object orig)</code></p>
+<p>用法一：同⼀个类之间的属性拷⻉</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Student stu1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>Student stu2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 将stu1的Bean属性复制给stu2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>BeanUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">copyProperties</span><span style="color:#f92672">(</span>stu2<span style="color:#f92672">,</span> stu1<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>用法二：不同类之间属性拷⻉</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Student stu <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>Teacher tea <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Teacher<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 将tea与stu相同的Bean属性复制给stu
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>BeanUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">copyProperties</span><span style="color:#f92672">(</span>stu<span style="color:#f92672">,</span> tea<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>用法三：把Map⾥⾯的元素拷⻉到对象中去（但是不能把对象的元素拷⻉到</p>
+<p>map）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Student stu <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>Map m <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>m<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;Alex&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>m<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;age&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;30&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 将map
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>BeanUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">copyProperties</span><span style="color:#f92672">(</span>stu<span style="color:#f92672">,</span> m<span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav class="post-nav">
+    
+    <a class="prev" href="https://bruisesl.github.io/post/javaee%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF/"><span>←</span><span>JaveEE 介绍</span></a>
+     
+    <a class="next" href="https://bruisesl.github.io/post/%E5%8F%8D%E5%B0%84%E4%B8%8E%E6%B3%A8%E8%A7%A3/"><span>反射与注解</span><span>→</span></a>
+    
+  </nav>
+  
+
+  
+  
+</article>
+
+</main>
+
+    <footer class="footer">
+  <p>&copy; 2023 <a href="https://bruisesl.github.io">BruisesL&#39;s blog</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
+
+  </body>
+</html>

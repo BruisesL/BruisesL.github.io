@@ -7,7 +7,96 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2008–2019, Steve Francia and the lee.so; all rights reserved.</copyright>
-    <lastBuildDate>Thu, 23 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaEE -- JDBC</title>
+      <link>https://bruisesl.github.io/post/javaee--jdbc/</link>
+      <pubDate>Wed, 01 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/javaee--jdbc/</guid>
+      <description>JDBC是Java DataBase Connectivity的缩写，它是Java程序访问数据库的标准接口，用于执行SQL语句。使用Java程序访问数据库时，Java代码并不是直接通过TCP连接去访问数据库，而是通过JDBC接口来访问，而JDBC接口则通过JDBC驱动来实现真正对数据库的访问。在Java中，数据库存取技术只能通过JDBC访问数据。
+JDBC访问数据库的方式：
+直接使用JDBC的API去访问数据库服务器(MySQL/Oracle) 间接地使用JDBC的API去访问数据库服务器 public class JDBCTest1 { @Test public void testCreatJDBC() throws SQLException, ClassNotFoundException { final String URL = &amp;#34;jdbc:mysql:///test&amp;#34;; final String user = &amp;#34;root&amp;#34;; final String password = &amp;#34;root123456&amp;#34;; // 1.注册加载驱动程序 // 使用反射注册,源码中有静态代码块new Driver对象 Class.forName(&amp;#34;com.mysql.jdbc.Driver&amp;#34;); // 在mySQL 5 版本后，会自动注册，不需要手动注册 // 2.获得数据库连接 Connection connection = DriverManager.getConnection(URL, user, password); // 3.获取执行对象 Statement stmt = connection.createStatement(); // 4.执行sql查询语句，返回结果集 ResultSet rs = stmt.executeQuery(&amp;#34;SELECT * FROM emp&amp;#34;); // 5.如果有数据，rs.next()返回true while (rs.next()){ System.</description>
+    </item>
+    
+    <item>
+      <title>JaveEE 介绍</title>
+      <link>https://bruisesl.github.io/post/javaee%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF/</link>
+      <pubDate>Wed, 01 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/javaee%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF/</guid>
+      <description>Java EE，Java 平台企业版（Java Platform Enterprise Edition），之前称为Java 2 Platform, Enterprise Edition (J2EE)，2018年3月更名为 Jakarta EE(这个名称应该还没有得到群众认可)。狭义的 Java EE 是 Sun 公司为企业级应用推出的标准平台，用来开发B/S架构软件，可以说是一个框架，也可以说是一种规范。广义的 Java EE 包含各种框架，其中最重要的就是 Spring 全家桶。Spring 诞生之初是为了改进 Java EE 开发的体验，后来逐渐成为了 Java Web 开发的实际标准。
+JavaEE主要技术 JavaEE 目前有十三种核心技术。它们分别是：JDBC、JNDI、EJB、RMI、Servlet、JSP、XML、JMS、Java IDL、JTS、JTA、JavaMail和JAF。
+简单介绍下需要重点关注的技术。
+JDBC Java 数据库连接，（Java Database Connectivity，JDBC）是 Java 语言中用来规范客户端程序如何来访问数据库的应用程序接口，提供了诸如查询和更新数据库中数据的方法。
+JNDI Java 命名和目录接口（Java Naming and Directory Interface，JNDI），是 Java 的一个目录服务应用程序界面（API），它提供一个目录系统，并将服务名称与对象关联起来，从而使得开发人员在开发过程中可以使用名称来访问对象。
+EJB 企业级 JavaBean（Enterprise JavaBean, EJB）是一个用来构筑企业级应用的服务器端可被管理组件。不过这个东西在 Spring 问世后便被替代了。
+Servlet Servlet（Server Applet），是用 Java 编写的服务器端程序。其主要功能在于交互式地浏览和修改数据，生成动态 Web 内容。
+狭义的 Servlet 是指 Java 语言实现的一个接口，广义的 Servlet 是指任何实现了这个 Servlet 接口的类，一般情况下，人们将 Servlet 理解为后者。</description>
+    </item>
+    
+    <item>
+      <title>JavaBean</title>
+      <link>https://bruisesl.github.io/post/javabean/</link>
+      <pubDate>Fri, 24 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/javabean/</guid>
+      <description>JavaBean JavaBean 既不是 Applet，也不是 Application，从本质上来说，JavaBean 就是一组用于构建可重用组件的 Java 类库。与其他任何 Java 类一样，JavaBean 也是由属性和方法组成的。
+JavaBean 的属性都具有 private 特性，方法具有 public 特性，方法是 JavaBean 的对外接口。
+规范：
+必须有domain包，编程规范/良好的编程习惯。
+必须是具体的和公共的，访问权限最大化，非抽象的。
+必须有公有无参构造，方便框架或底层通过反射创建对象。
+必须有相应公有的setter、getter方法，方便设置和获取属性/el表达式。
+建议对象属性私有化，控制直接操作对象属性。
+建议对象属性使用包装类，控制直接操作对象属性。
+一般JavaBean属性以小写字母开头，驼峰命名格式，相应的 getter/setter 方法是 get/set 接上首字母大写的属性名。例如：属性名为userName，其对应的 getter/setter 方法是 getUserName/setUserName。
+但是，还有一些特殊情况：
+如果属性名的第二个字母大写，那么该属性名直接用作 getter/setter 方法中 get/set 的后部分，就是说大小写不变。例如属性名为uName，方法是 getuName/setuName。
+如果前两个字母是大写（一般的专有名词和缩略词都会大写），也是属性名直接用作 getter/setter 方法中 get/set 的后部分。例如属性名为URL，方法是 getURL/setURL。
+如果首字母大写，也是属性名直接用作 getter/setter 方法中 get/set 的后部分。例如属性名为Name，方法是getName/setName，这种是最糟糕的情况，会找不到属性出错，因为默认的属性名是name。
+属性名/类型 getter 方法 setter 方法 xcoordinate/Double public Double getXcoordinate() public void setXcoordinate(Double newValue) xCoordinate/Double public Double getxCoordinate() public void setxCoordinate(Double newValue) XCoordinate/Double public Double getXCoordinate() public void setXCoordinate(Double newValue) Xcoordinate/Double 不允许 不允许 注：类中的属性为对象属性（字段），getter和setter⽅法上的属性为Bean属性（JavaBean属性），其中getter⽅法上的属性称之为可读属性，setter⽅法上⾯的属性称之为可写属性。</description>
+    </item>
+    
+    <item>
+      <title>反射与注解</title>
+      <link>https://bruisesl.github.io/post/%E5%8F%8D%E5%B0%84%E4%B8%8E%E6%B3%A8%E8%A7%A3/</link>
+      <pubDate>Fri, 24 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/%E5%8F%8D%E5%B0%84%E4%B8%8E%E6%B3%A8%E8%A7%A3/</guid>
+      <description>反射 Java的反射（reflection）机制是指在程序的运行状态中，可以构造任意一个类的对象，可以了解任意一个对象所属的类，可以了解任意一个类的成员变量和方法，可以调用任意一个对象的属性和方法。这种动态获取程序信息以及动态调用对象的功能称为Java语言的反射机制，反射被视为动态语言的关键。
+注：字节码对象其实就是类加载到java虚拟机中的⼀种状态/另⼀种表现形式（因为jvm不能直接运⾏自己写的类，所以需要转换字节码Class）
+Java反射的原理就是获取Class对象（类在运⾏时叫字节码对象java.lang.Class）然后使用java.lang.reflect里提供的方法操作Class对象，Class与java.lang.reflect构成了java的反射技术，反射代码的⼊⼝就是字节码对象，所以如何获取到字节码对象是关键。
+优点：
+⾮常灵活，功能强⼤（可以获取私有的信息，破坏别⼈代码）
+缺点：
+破坏封装（单例），影响性能（反射的效率要⽐⾮反射操作要低）
+反射的使用 字节码对象的获取⽅式：
+类名.class
+对象名.getClass()
+Class.forName(全类名)
+public class TestReflect { /** * Constructor&amp;lt;?&amp;gt;[] getConstructors()：返回所有公共构造方法对象的数组 */ @Test public void testContructor1() throws Exception { //1.获取Student类的Class对象 Class&amp;lt;?&amp;gt; clazz = Class.forName(&amp;#34;reflect.constructor.Student&amp;#34;); //2.获取clazz的所有的公有构造方法 Constructor&amp;lt;?&amp;gt;[] constructors = clazz.getConstructors(); //3.遍历打印所有的构造方法 for (Constructor&amp;lt;?&amp;gt; constructor:constructors) { System.out.println(constructor); } } /** * Constructor&amp;lt;?&amp;gt;[] getDeclaredConstructors()：返回所有构造方法对象的数组(包括私有) */ @Test public void testContructor2() throws Exception { //1.获取Student类的Class对象 Class&amp;lt;?&amp;gt; clazz = Class.forName(&amp;#34;reflect.constructor.Student&amp;#34;); //2.获取clazz的所有的公有构造方法 Constructor&amp;lt;?&amp;gt;[] Constructors = clazz.getDeclaredConstructors(); //3.遍历打印所有的构造方法 for (Constructor&amp;lt;?</description>
+    </item>
+    
+    <item>
+      <title>Java设计模式</title>
+      <link>https://bruisesl.github.io/post/%E5%BE%85%E5%AE%8C%E5%96%84java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/%E5%BE%85%E5%AE%8C%E5%96%84java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description>设计模式（Design pattern）代表了最佳的实践，通常被有经验的面向对象的软件开发人员所采用。设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案。这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的。
+根据设计模式的参考书 **Design Patterns - Elements of Reusable Object-Oriented Software（中文译名：设计模式 - 可复用的面向对象软件元素）**中所提到的，总共有 23 种设计模式。这些模式可以分为三大类：创建型模式（Creational Patterns）、结构型模式（Structural Patterns）、行为型模式（Behavioral Patterns）。当然，我们还会讨论另一类设计模式：J2EE 设计模式。
+设计模式的六大原则 开闭原则（Open Close Principle） 开闭原则的意思是：对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。简言之，是为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，需要使用接口和抽象类。
+里氏代换原则（Liskov Substitution Principle） 里氏代换原则是面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。LSP 是继承复用的基石，只有当派生类可以替换掉基类，且软件单位的功能不受到影响时，基类才能真正被复用，而派生类也能够在基类的基础上增加新的行为。里氏代换原则是对开闭原则的补充。实现开闭原则的关键步骤就是抽象化，而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。
+依赖倒转原则（Dependence Inversion Principle） 这个原则是开闭原则的基础，具体内容：针对接口编程，依赖于抽象而不依赖于具体。
+接口隔离原则（Interface Segregation Principle） 这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。它还有另外一个意思是：降低类之间的耦合度。由此可见，设计模式就是从大型软件架构出发、便于升级和维护的软件设计思想，它强调降低依赖，降低耦合。
+迪米特法则，又称最少知道原则（Demeter Principle） 最少知道原则是指：一个实体应当尽量少地与其他实体之间发生相互作用，使得系统功能模块相对独立。
+合成复用原则（Composite Reuse Principle） 合成复用原则是指：尽量使用合成/聚合的方式，而不是使用继承。
+设计模式分类 创建型模式：这些设计模式提供了一种在创建对象的同时隐藏创建逻辑的方式，而不是使用 new 运算符直接实例化对象。这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活。
+单例模式（Singleton Pattern） 工厂模式（Factory Pattern） 抽象工厂模式（Abstract Factory Pattern） 建造者模式（Builder Pattern） 原型模式（Prototype Pattern） 结构型模式：这些设计模式关注类和对象的组合。继承的概念被用来组合接口和定义组合对象获得新功能的方式。
+适配器模式（Adapter Pattern） 桥接模式（Bridge Pattern） 过滤器模式（Filter、Criteria Pattern） 组合模式（Composite Pattern） 装饰器模式（Decorator Pattern） 外观模式（Facade Pattern） 享元模式（Flyweight Pattern） 代理模式（Proxy Pattern） 行为型模式：这些设计模式特别关注对象之间的通信。</description>
+    </item>
+    
     <item>
       <title>单元测试与文件解析</title>
       <link>https://bruisesl.github.io/post/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%B8%8E%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/</link>
@@ -60,25 +149,6 @@ jar包 导入jar包的方法：</description>
     </item>
     
     <item>
-      <title>设计模式</title>
-      <link>https://bruisesl.github.io/post/java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://bruisesl.github.io/post/java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
-      <description>设计模式（Design pattern）代表了最佳的实践，通常被有经验的面向对象的软件开发人员所采用。设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案。这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的。
-根据设计模式的参考书 **Design Patterns - Elements of Reusable Object-Oriented Software（中文译名：设计模式 - 可复用的面向对象软件元素）**中所提到的，总共有 23 种设计模式。这些模式可以分为三大类：创建型模式（Creational Patterns）、结构型模式（Structural Patterns）、行为型模式（Behavioral Patterns）。当然，我们还会讨论另一类设计模式：J2EE 设计模式。
-设计模式的六大原则 开闭原则（Open Close Principle） 开闭原则的意思是：对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。简言之，是为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，需要使用接口和抽象类。
-里氏代换原则（Liskov Substitution Principle） 里氏代换原则是面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。LSP 是继承复用的基石，只有当派生类可以替换掉基类，且软件单位的功能不受到影响时，基类才能真正被复用，而派生类也能够在基类的基础上增加新的行为。里氏代换原则是对开闭原则的补充。实现开闭原则的关键步骤就是抽象化，而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。
-依赖倒转原则（Dependence Inversion Principle） 这个原则是开闭原则的基础，具体内容：针对接口编程，依赖于抽象而不依赖于具体。
-接口隔离原则（Interface Segregation Principle） 这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。它还有另外一个意思是：降低类之间的耦合度。由此可见，设计模式就是从大型软件架构出发、便于升级和维护的软件设计思想，它强调降低依赖，降低耦合。
-迪米特法则，又称最少知道原则（Demeter Principle） 最少知道原则是指：一个实体应当尽量少地与其他实体之间发生相互作用，使得系统功能模块相对独立。
-合成复用原则（Composite Reuse Principle） 合成复用原则是指：尽量使用合成/聚合的方式，而不是使用继承。
-设计模式分类 创建型模式：这些设计模式提供了一种在创建对象的同时隐藏创建逻辑的方式，而不是使用 new 运算符直接实例化对象。这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活。
-单例模式（Singleton Pattern） 工厂模式（Factory Pattern） 抽象工厂模式（Abstract Factory Pattern） 建造者模式（Builder Pattern） 原型模式（Prototype Pattern） 结构型模式：这些设计模式关注类和对象的组合。继承的概念被用来组合接口和定义组合对象获得新功能的方式。
-适配器模式（Adapter Pattern） 桥接模式（Bridge Pattern） 过滤器模式（Filter、Criteria Pattern） 组合模式（Composite Pattern） 装饰器模式（Decorator Pattern） 外观模式（Facade Pattern） 享元模式（Flyweight Pattern） 代理模式（Proxy Pattern） 行为型模式：这些设计模式特别关注对象之间的通信。</description>
-    </item>
-    
-    <item>
       <title>流(Stream)、文件(File)和IO</title>
       <link>https://bruisesl.github.io/post/%E6%B5%81stream%E6%96%87%E4%BB%B6file%E5%92%8Cio/</link>
       <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
@@ -118,10 +188,10 @@ Java 程序通常不捕获错误。错误一般发生在严重故障时，它们
     
     <item>
       <title>集合框架</title>
-      <link>https://bruisesl.github.io/post/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</link>
+      <link>https://bruisesl.github.io/post/%E5%BE%85%E5%AE%8C%E5%96%84%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</link>
       <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://bruisesl.github.io/post/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</guid>
+      <guid>https://bruisesl.github.io/post/%E5%BE%85%E5%AE%8C%E5%96%84%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</guid>
       <description>集合框架 早在 Java 2 中之前，Java 就提供了特设类。比如：Dictionary, Vector, Stack, 和 Properties 这些类用来存储和操作对象组。
 虽然这些类都非常有用，但是它们缺少一个核心的，统一的主题。由于这个原因，使用 Vector 类的方式和使用 Properties 类的方式有着很大不同。
 集合框架被设计成要满足以下几个目标：
@@ -235,7 +305,7 @@ public class Student{ /** String name : 姓名 成员变量 */ String name; /** 
       <pubDate>Sat, 14 Jan 2023 00:00:00 +0000</pubDate>
       
       <guid>https://bruisesl.github.io/post/java-%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/</guid>
-      <description>Java 方法详解 什么是方法 Java 方法是语句的集合，他们在一起执行一个功能
+      <description>什么是方法 Java 方法是语句的集合，他们在一起执行一个功能
 方法是解决一类问题的步骤的 有序组合
 方法包含于 类 或 对象 中
 方法在程序中被创建，在其他地方被引用
@@ -351,6 +421,58 @@ https://www.azul.com/downloads/?package=jdk#download-openjdk</description>
     </item>
     
     <item>
+      <title>数据库概述</title>
+      <link>https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8A%E8%AF%AD%E6%B3%95/</link>
+      <pubDate>Fri, 26 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8A%E8%AF%AD%E6%B3%95/</guid>
+      <description>数据库概述 数据库，简而言之可视为电子化的文件柜——存储电子文件的处所，用户可以对文件中的资料执行新增、截取、更新、删除等操作。
+所谓数据库是以一定方式储存在一起、能予多个用户共享、具有尽可能小的冗余度、与应用程序彼此独立的数据集合。一个数据库由多个表空间（Tablespace）构成，底层。
+数据库管理系统 数据库管理系统（Database Management System，简称DBMS）是为管理数据库而设计的电脑软件系统，一般具有存储、截取、安全保障、备份等基础功能。数据库管理系统可以依据它所支持的数据库模型来作分类，例如关系式、XML；或依据所支持的电脑类型来作分类，例如服务器聚类、移动电话；或依据所用查询语言来作分类，例如SQL、XQuery；或依据性能冲量重点来作分类，例如最大规模、最高执行速度；亦或其他的分类方式。不论使用哪种分类方式，一些DBMS能够跨类别，例如，同时支持多种查询语言。
+数据库的分类 随着数据库技术与其他分支学科技术的结合，出现了多种新型数据库，例如：与分布处理技术结合产生的分布式数据库、与并行处理技术结合产生的并行数据库、与人工智能结合产生的演绎数据库、与多媒体技术结合产生的多媒体数据库。另外，数据库技术应用于特定的领域，出现了工程数据库、 地理数据库、统计数据库、空间数据库等特定领域数据库。
+关系数据库：
+关系型数据库是信息的集合，它以预定义的关系组织数据，数据存储在一个或多个由列和行构成的表（或“关系”）中，用户可以轻松查看和理解不同数据结构之间的关系。 关系是不同表之间的逻辑连接，根据这些表之间的交互建立。
+MySQL
+MariaDB（MySQL的代替品）
+Percona Server（MySQL的代替品）
+PostgreSQL
+Microsoft Access
+Microsoft SQL Server
+Google Fusion Tables
+FileMaker
+Oracle数据库
+Sybase
+dBASE
+Clipper
+FoxPro
+foshub
+几乎所有的数据库管理系统都配备了一个开放式数据库连接（ODBC）驱动程序，令各个数据库之间得以互相集成。
+非关系型数据库（NoSQL）：
+Not only SQL，是对不同于传统的关系数据库的数据库管理系统的统称，其数据存储可以不需要固定的表格模式以及元数据（metadata），也经常会避免使用SQL的JOIN操作，一般有水平可扩展性的特征。
+BigTable（Google）
+Cassandra
+MongoDB
+CouchDB
+Redis
+键值数据库：
+Apache Cassandra（为Facebook所使用）：高度可扩展
+Dynamo
+LevelDB（Google）
+数据库模型 物件模型
+层次模型（轻量级数据访问协议）
+网状模型（大型数据储存）
+满足下面两个条件的基本层次联系的集合为网状模型。
+允许一个以上的结点无双亲； 一个结点可以有多于一个的双亲。 关系模型
+面向对象模型
+半结构化模型
+平面模型（表格模型，一般在形式上是一个二维阵列。如表格模型数据Excel)
+架构 (Schema) 资料库的架构可以大致区分为三个概括层次：内层、概念层和外层。
+内层：最接近实际储存体，亦即有关资料的实际储存方式。 外层：最接近使用者，即有关个别使用者观看资料的方式。 概念层：介于两者之间的间接层。[9] 数据库索引 资料索引的观念由来已久，像是一本书前面几页都有目录，目录也算是索引的一种，只是它的分类较广，例如车牌、身份证字号、条码等，都是一个索引的号码，当我们看到号码时，可以从号码中看出其中的端倪，若是要找的人、车或物品，也只要提供相关的号码，即可迅速查到正确的人事物。
+另外，索引跟栏位有著相应的关系，索引即是由栏位而来，其中栏位有所谓的关键栏位（Key Field），该栏位具有唯一性，即其值不可重复，且不可为&amp;quot;空值null&amp;quot;。例如：在合并资料时，索引便是扮演欲附加栏位资料之指向性用途的角色。故此索引为不可重复性且不可为空。
+数据库事务 事务（transaction）包含一组数据库操作的逻辑工作单元，在事务中包含的数据库操作是不可分割的整体，这些操作要么一起做，要么一起回滚（Roll Back）到执行前的状态。 事务的ACID特性：</description>
+    </item>
+    
+    <item>
       <title>数据结构</title>
       <link>https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
       <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
@@ -375,10 +497,10 @@ int[] arr2 = {1,3,5,8,9}; // 静态创建了一个长度为5，int类型的数�
     
     <item>
       <title>算法</title>
-      <link>https://bruisesl.github.io/post/%E7%AE%97%E6%B3%95/</link>
+      <link>https://bruisesl.github.io/post/%E5%BE%85%E5%AE%8C%E5%96%84%E7%AE%97%E6%B3%95/</link>
       <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://bruisesl.github.io/post/%E7%AE%97%E6%B3%95/</guid>
+      <guid>https://bruisesl.github.io/post/%E5%BE%85%E5%AE%8C%E5%96%84%E7%AE%97%E6%B3%95/</guid>
       <description>算法 算法定义：
 「算法 Algorithm」是在有限时间内解决问题的一组指令或操作步骤。算法具有以下特性：
 问题是明确的，需要拥有明确的输入和输出定义。 解具有确定性，即给定相同输入时，输出一定相同。 具有可行性，可在有限步骤、有限时间、有限内存空间下完成。 独立于编程语言，即可用多种语言实现。 数据结构定义：
