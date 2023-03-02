@@ -21,10 +21,10 @@ JDBC访问数据库的方式：
     
     <item>
       <title>JaveEE 介绍</title>
-      <link>https://bruisesl.github.io/post/javaee%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF/</link>
+      <link>https://bruisesl.github.io/post/javaee%E4%BB%8B%E7%BB%8D/</link>
       <pubDate>Wed, 01 Mar 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://bruisesl.github.io/post/javaee%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF/</guid>
+      <guid>https://bruisesl.github.io/post/javaee%E4%BB%8B%E7%BB%8D/</guid>
       <description>Java EE，Java 平台企业版（Java Platform Enterprise Edition），之前称为Java 2 Platform, Enterprise Edition (J2EE)，2018年3月更名为 Jakarta EE(这个名称应该还没有得到群众认可)。狭义的 Java EE 是 Sun 公司为企业级应用推出的标准平台，用来开发B/S架构软件，可以说是一个框架，也可以说是一种规范。广义的 Java EE 包含各种框架，其中最重要的就是 Spring 全家桶。Spring 诞生之初是为了改进 Java EE 开发的体验，后来逐渐成为了 Java Web 开发的实际标准。
 JavaEE主要技术 JavaEE 目前有十三种核心技术。它们分别是：JDBC、JNDI、EJB、RMI、Servlet、JSP、XML、JMS、Java IDL、JTS、JTA、JavaMail和JAF。
 简单介绍下需要重点关注的技术。
