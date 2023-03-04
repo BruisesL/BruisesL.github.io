@@ -7,7 +7,30 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2008–2019, Steve Francia and the lee.so; all rights reserved.</copyright>
-    <lastBuildDate>Wed, 01 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaEE--XML</title>
+      <link>https://bruisesl.github.io/post/javaee--xml/</link>
+      <pubDate>Sat, 04 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/javaee--xml/</guid>
+      <description>XML的全称为(EXtensible Markup Language)，是一种可扩展的标记语言: 通过标签来描述数据的一门语言（标签有时也称为元素），标签的名字是可以自定义的，XML文件是由很多标签组成的。而标签名是可以自定义的。
+XML 不会做任何事情。XML 被设计用来结构化、存储以及传输信息，例如 Jani 写给 Tove 的便签，存储为 XML。
+&amp;lt;note&amp;gt; &amp;lt;to&amp;gt;Tove&amp;lt;/to&amp;gt; &amp;lt;from&amp;gt;Jani&amp;lt;/from&amp;gt; &amp;lt;heading&amp;gt;Reminder&amp;lt;/heading&amp;gt; &amp;lt;body&amp;gt;Don&amp;#39;t forget me this weekend!&amp;lt;/body&amp;gt; &amp;lt;/note&amp;gt; XML 语言没有预定义的标签，而HTML 中使用的标签都是预定义的。HTML 文档只能使用在 HTML 标准中定义过的标签（如 &amp;lt;p&amp;gt;、&amp;lt;h1&amp;gt; 等等）。XML 允许创作者定义自己的标签和自己的文档结构。
+XML 的作用：
+把数据从 HTML 分离
+通过 XML，数据能够存储在独立的 XML 文件中。这样就可以专注于使用 HTML/CSS 进行显示和布局，并确保修改底层数据不再需要对 HTML 进行任何的改变。通过使用几行 JavaScript 代码，就可以读取一个外部 XML 文件，并更新网页的数据内容。
+简化数据共享
+XML 数据以纯文本格式进行存储，因此提供了一种独立于软件和硬件的数据存储方法。这让创建不同应用程序可以共享的数据变得更加容易。
+简化数据传输
+由于可以通过各种不兼容的应用程序来读取数据，以 XML 交换数据降低了这种复杂性。
+使数据更有用
+不同的应用程序都能够访问数据，不仅仅在 HTML 页中，也可以从 XML 数据源中进行访问。通过 XML，数据可供各种阅读设备使用（掌上计算机、语音设备、新闻阅读器等），还可以供盲人或其他残障人士使用。
+用于创建新的互联网语言
+很多新的互联网语言是通过 XML 创建的。例如：
+XHTML 用于描述可用的 Web 服务 的 WSDL 作为手持设备的标记语言的 WAP 和 WML 用于新闻 feed 的 RSS 语言 描述资本和本体的 RDF 和 OWL 用于描述针对 Web 的多媒体 的 SMIL XML的树结构 XML 文档必须包含根元素。该元素是所有其他元素的父元素。XML 文档中的元素形成了一棵文档树。这棵树从根部开始，并扩展到树的最底端，所有的元素都可以有子元素，父、子以及同胞等术语用于描述元素之间的关系。父元素拥有子元素。相同层级上的子元素成为同胞（兄弟或姐妹）。所有的元素都可以有文本内容和属性（类似 HTML 中）。</description>
+    </item>
+    
     <item>
       <title>JavaEE -- JDBC</title>
       <link>https://bruisesl.github.io/post/javaee--jdbc/</link>
@@ -16,7 +39,7 @@
       <guid>https://bruisesl.github.io/post/javaee--jdbc/</guid>
       <description>JDBC是Java DataBase Connectivity的缩写，它是Java程序访问数据库的标准接口，用于执行SQL语句。使用Java程序访问数据库时，Java代码并不是直接通过TCP连接去访问数据库，而是通过JDBC接口来访问，而JDBC接口则通过JDBC驱动来实现真正对数据库的访问。在Java中，数据库存取技术只能通过JDBC访问数据。
 JDBC访问数据库的方式：
-直接使用JDBC的API去访问数据库服务器(MySQL/Oracle) 间接地使用JDBC的API去访问数据库服务器 public class JDBCTest1 { @Test public void testCreatJDBC() throws SQLException, ClassNotFoundException { final String URL = &amp;#34;jdbc:mysql:///test&amp;#34;; final String user = &amp;#34;root&amp;#34;; final String password = &amp;#34;root123456&amp;#34;; // 1.注册加载驱动程序 // 使用反射注册,源码中有静态代码块new Driver对象 Class.forName(&amp;#34;com.mysql.jdbc.Driver&amp;#34;); // 在mySQL 5 版本后，会自动注册，不需要手动注册 // 2.获得数据库连接 Connection connection = DriverManager.getConnection(URL, user, password); // 3.获取执行对象 Statement stmt = connection.createStatement(); // 4.执行sql查询语句，返回结果集 ResultSet rs = stmt.executeQuery(&amp;#34;SELECT * FROM emp&amp;#34;); // 5.如果有数据，rs.next()返回true while (rs.next()){ System.</description>
+直接使用JDBC的API去访问数据库服务器(MySQL/Oracle) 间接地使用JDBC的API去访问数据库服务器 JDBC步骤 注册加载驱动程序 获得数据库连接 获取执行对象 执行sql语句 释放资源 public class JDBCTest1 { @Test public void testCreatJDBC() throws SQLException, ClassNotFoundException { final String URL = &amp;#34;jdbc:mysql:///test&amp;#34;; final String user = &amp;#34;root&amp;#34;; final String password = &amp;#34;root123456&amp;#34;; // 1.注册加载驱动程序 // 使用反射注册,源码中有静态代码块new Driver对象 Class.forName(&amp;#34;com.mysql.jdbc.Driver&amp;#34;); // 在mySQL 5 版本后，会自动注册，不需要手动注册 // 2.获得数据库连接 Connection connection = DriverManager.getConnection(URL, user, password); // 3.获取执行对象 Statement stmt = connection.createStatement(); // 4.执行sql查询语句，返回结果集 ResultSet rs = stmt.executeQuery(&amp;#34;SELECT * FROM emp&amp;#34;); // 5.</description>
     </item>
     
     <item>

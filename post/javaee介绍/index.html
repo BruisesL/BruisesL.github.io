@@ -100,7 +100,7 @@ EJB 企业级 JavaBean（Enterprise JavaBean, EJB）是一个用来构筑企业�
 Servlet Servlet（Server Applet），是用 Java 编写的服务器端程序。其主要功能在于交互式地浏览和修改数据，生成动态 Web 内容。
 狭义的 Servlet 是指 Java 语言实现的一个接口，广义的 Servlet 是指任何实现了这个 Servlet 接口的类，一般情况下，人们将 Servlet 理解为后者。"><meta itemprop="datePublished" content="2023-03-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2023-03-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="181">
+<meta itemprop="wordCount" content="180">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
@@ -210,9 +210,9 @@ JSP（全称JavaServer Pages）是由 Sun 公司主导创建的一种动态网�
 </ul>
 <h2 id="javeee的三层架构">JaveEE的三层架构</h2>
 <p>所谓系统架构是指，整合应用系统程序大的结构。经常提到的系统结构有两种：三层架构与 MVC。这两种结构既有区别，又有联系。但这两种结构的使用，均是为了降低系统模块间的耦合度。</p>
-<p>三层架构是指：视图层 View、服务层 Service，与持久层 DAO。它们分别完成不同的功能。</p>
+<p>三层架构是指：视图层 Controller、服务层 Service，与持久层 DAO。它们分别完成不同的功能。</p>
 <ul>
-<li>View 层：用于接收用户提交请求的代码</li>
+<li>Controller 层：用于接收用户提交请求的代码</li>
 <li>Service 层：系统的业务逻辑主要在这里完成</li>
 <li>DAO 层：直接操作数据库的代码</li>
 </ul>
@@ -235,21 +235,20 @@ JSP（全称JavaServer Pages）是由 Sun 公司主导创建的一种动态网�
 <p>实现类：XxxServiceImpl</p>
 </li>
 <li>
-<p>视图层（View 层）：</p>
+<p>视图层（Controller 层）：</p>
 <p>包名：项目根目录.controller</p>
 </li>
 </ul>
-<p><strong>完善DAO层的步骤</strong>：分层需要一个媒介来进行传输：<code>domain</code>（域对象）</p>
+<p><strong>完善三层架构层的步骤</strong>：分层需要一个媒介来进行传输<code>domain</code>（域对象）</p>
 <ol>
 <li>先创建一个<code>domain</code>包 ,在包里面创建相应的实体类（例如：Student）</li>
 </ol>
-<p>2 在<code>domain</code>包的<strong>同一级</strong>,建一个<code>dao</code>包,这个包里面写接口。</p>
-<p>接口名称命名： <code>IXxxDAO</code>、<code>XxxDao</code></p>
+<p>2 在<code>domain</code>包的<strong>同一级</strong>,建<code>dao</code>、<code>service</code>、<code>controller</code>包，每个包里都需要写接口。</p>
+<p>接口名称命名： <code>IXxxDAO</code>、<code>XxxDao</code>、<code>IXxxService</code>、<code>XxxService</code>、<code>IXxxController</code>、<code>XxxController</code></p>
 <ol start="3">
 <li>
-<p>在dao这个包里面再建一个包: <code>impl</code>包</p>
-<p>这个包里面实现dao包里面的接口，这个impl包在dao包里面一层</p>
-<p>这个包类的名称：XxxDAOImpl/XxxDaoImpl</p>
+<p>在每层的包里面再建一个包用于存储对应接口的实现类: <code>impl</code>包</p>
+<p>这个包类的名称：<code>XxxDAOImpl</code>/<code>XxxDaoImpl</code></p>
 </li>
 </ol>
 <h2 id="javaee框架">JavaEE框架</h2>

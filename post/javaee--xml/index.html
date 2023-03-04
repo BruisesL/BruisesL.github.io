@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>JavaEE--XML - BruisesL&#39;s blog</title>
+
+  
+  
+  <meta name="description" content="XML的全称为(EXtensible Markup Language)，是一种可扩展的标记语言: 通过标签来描述数据的一门语言（标签有时也称为元素），标签的名字是可以自定义的，XML文件是由很多标签组成的。而标签名是可以自定义的。
+XML 不会做任何事情。XML 被设计用来结构化、存储以及传输信息，例如 Jani 写给 Tove 的便签，存储为 XML。
+&lt;note&gt; &lt;to&gt;Tove&lt;/to&gt; &lt;from&gt;Jani&lt;/from&gt; &lt;heading&gt;Reminder&lt;/heading&gt; &lt;body&gt;Don&#39;t forget me this weekend!&lt;/body&gt; &lt;/note&gt; XML 语言没有预定义的标签，而HTML 中使用的标签都是预定义的。HTML 文档只能使用在 HTML 标准中定义过的标签（如 &lt;p&gt;、&lt;h1&gt; 等等）。XML 允许创作者定义自己的标签和自己的文档结构。
+XML 的作用：
+把数据从 HTML 分离
+通过 XML，数据能够存储在独立的 XML 文件中。这样就可以专注于使用 HTML/CSS 进行显示和布局，并确保修改底层数据不再需要对 HTML 进行任何的改变。通过使用几行 JavaScript 代码，就可以读取一个外部 XML 文件，并更新网页的数据内容。
+简化数据共享
+XML 数据以纯文本格式进行存储，因此提供了一种独立于软件和硬件的数据存储方法。这让创建不同应用程序可以共享的数据变得更加容易。
+简化数据传输
+由于可以通过各种不兼容的应用程序来读取数据，以 XML 交换数据降低了这种复杂性。
+使数据更有用
+不同的应用程序都能够访问数据，不仅仅在 HTML 页中，也可以从 XML 数据源中进行访问。通过 XML，数据可供各种阅读设备使用（掌上计算机、语音设备、新闻阅读器等），还可以供盲人或其他残障人士使用。
+用于创建新的互联网语言
+很多新的互联网语言是通过 XML 创建的。例如：
+XHTML 用于描述可用的 Web 服务 的 WSDL 作为手持设备的标记语言的 WAP 和 WML 用于新闻 feed 的 RSS 语言 描述资本和本体的 RDF 和 OWL 用于描述针对 Web 的多媒体 的 SMIL XML的树结构 XML 文档必须包含根元素。该元素是所有其他元素的父元素。XML 文档中的元素形成了一棵文档树。这棵树从根部开始，并扩展到树的最底端，所有的元素都可以有子元素，父、子以及同胞等术语用于描述元素之间的关系。父元素拥有子元素。相同层级上的子元素成为同胞（兄弟或姐妹）。所有的元素都可以有文本内容和属性（类似 HTML 中）。" />
+  <meta name="author" content="BruisesL" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://bruisesl.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/theme.png" />
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/github.svg" />
+  
+
+  
+  <link rel="icon" href="https://bruisesl.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://bruisesl.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.110.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="JavaEE--XML" />
+<meta property="og:description" content="XML的全称为(EXtensible Markup Language)，是一种可扩展的标记语言: 通过标签来描述数据的一门语言（标签有时也称为元素），标签的名字是可以自定义的，XML文件是由很多标签组成的。而标签名是可以自定义的。
+XML 不会做任何事情。XML 被设计用来结构化、存储以及传输信息，例如 Jani 写给 Tove 的便签，存储为 XML。
+&lt;note&gt; &lt;to&gt;Tove&lt;/to&gt; &lt;from&gt;Jani&lt;/from&gt; &lt;heading&gt;Reminder&lt;/heading&gt; &lt;body&gt;Don&#39;t forget me this weekend!&lt;/body&gt; &lt;/note&gt; XML 语言没有预定义的标签，而HTML 中使用的标签都是预定义的。HTML 文档只能使用在 HTML 标准中定义过的标签（如 &lt;p&gt;、&lt;h1&gt; 等等）。XML 允许创作者定义自己的标签和自己的文档结构。
+XML 的作用：
+把数据从 HTML 分离
+通过 XML，数据能够存储在独立的 XML 文件中。这样就可以专注于使用 HTML/CSS 进行显示和布局，并确保修改底层数据不再需要对 HTML 进行任何的改变。通过使用几行 JavaScript 代码，就可以读取一个外部 XML 文件，并更新网页的数据内容。
+简化数据共享
+XML 数据以纯文本格式进行存储，因此提供了一种独立于软件和硬件的数据存储方法。这让创建不同应用程序可以共享的数据变得更加容易。
+简化数据传输
+由于可以通过各种不兼容的应用程序来读取数据，以 XML 交换数据降低了这种复杂性。
+使数据更有用
+不同的应用程序都能够访问数据，不仅仅在 HTML 页中，也可以从 XML 数据源中进行访问。通过 XML，数据可供各种阅读设备使用（掌上计算机、语音设备、新闻阅读器等），还可以供盲人或其他残障人士使用。
+用于创建新的互联网语言
+很多新的互联网语言是通过 XML 创建的。例如：
+XHTML 用于描述可用的 Web 服务 的 WSDL 作为手持设备的标记语言的 WAP 和 WML 用于新闻 feed 的 RSS 语言 描述资本和本体的 RDF 和 OWL 用于描述针对 Web 的多媒体 的 SMIL XML的树结构 XML 文档必须包含根元素。该元素是所有其他元素的父元素。XML 文档中的元素形成了一棵文档树。这棵树从根部开始，并扩展到树的最底端，所有的元素都可以有子元素，父、子以及同胞等术语用于描述元素之间的关系。父元素拥有子元素。相同层级上的子元素成为同胞（兄弟或姐妹）。所有的元素都可以有文本内容和属性（类似 HTML 中）。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bruisesl.github.io/post/javaee--xml/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-03-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-03-04T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="JavaEE--XML">
+<meta itemprop="description" content="XML的全称为(EXtensible Markup Language)，是一种可扩展的标记语言: 通过标签来描述数据的一门语言（标签有时也称为元素），标签的名字是可以自定义的，XML文件是由很多标签组成的。而标签名是可以自定义的。
+XML 不会做任何事情。XML 被设计用来结构化、存储以及传输信息，例如 Jani 写给 Tove 的便签，存储为 XML。
+&lt;note&gt; &lt;to&gt;Tove&lt;/to&gt; &lt;from&gt;Jani&lt;/from&gt; &lt;heading&gt;Reminder&lt;/heading&gt; &lt;body&gt;Don&#39;t forget me this weekend!&lt;/body&gt; &lt;/note&gt; XML 语言没有预定义的标签，而HTML 中使用的标签都是预定义的。HTML 文档只能使用在 HTML 标准中定义过的标签（如 &lt;p&gt;、&lt;h1&gt; 等等）。XML 允许创作者定义自己的标签和自己的文档结构。
+XML 的作用：
+把数据从 HTML 分离
+通过 XML，数据能够存储在独立的 XML 文件中。这样就可以专注于使用 HTML/CSS 进行显示和布局，并确保修改底层数据不再需要对 HTML 进行任何的改变。通过使用几行 JavaScript 代码，就可以读取一个外部 XML 文件，并更新网页的数据内容。
+简化数据共享
+XML 数据以纯文本格式进行存储，因此提供了一种独立于软件和硬件的数据存储方法。这让创建不同应用程序可以共享的数据变得更加容易。
+简化数据传输
+由于可以通过各种不兼容的应用程序来读取数据，以 XML 交换数据降低了这种复杂性。
+使数据更有用
+不同的应用程序都能够访问数据，不仅仅在 HTML 页中，也可以从 XML 数据源中进行访问。通过 XML，数据可供各种阅读设备使用（掌上计算机、语音设备、新闻阅读器等），还可以供盲人或其他残障人士使用。
+用于创建新的互联网语言
+很多新的互联网语言是通过 XML 创建的。例如：
+XHTML 用于描述可用的 Web 服务 的 WSDL 作为手持设备的标记语言的 WAP 和 WML 用于新闻 feed 的 RSS 语言 描述资本和本体的 RDF 和 OWL 用于描述针对 Web 的多媒体 的 SMIL XML的树结构 XML 文档必须包含根元素。该元素是所有其他元素的父元素。XML 文档中的元素形成了一棵文档树。这棵树从根部开始，并扩展到树的最底端，所有的元素都可以有子元素，父、子以及同胞等术语用于描述元素之间的关系。父元素拥有子元素。相同层级上的子元素成为同胞（兄弟或姐妹）。所有的元素都可以有文本内容和属性（类似 HTML 中）。"><meta itemprop="datePublished" content="2023-03-04T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-03-04T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1023">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaEE--XML"/>
+<meta name="twitter:description" content="XML的全称为(EXtensible Markup Language)，是一种可扩展的标记语言: 通过标签来描述数据的一门语言（标签有时也称为元素），标签的名字是可以自定义的，XML文件是由很多标签组成的。而标签名是可以自定义的。
+XML 不会做任何事情。XML 被设计用来结构化、存储以及传输信息，例如 Jani 写给 Tove 的便签，存储为 XML。
+&lt;note&gt; &lt;to&gt;Tove&lt;/to&gt; &lt;from&gt;Jani&lt;/from&gt; &lt;heading&gt;Reminder&lt;/heading&gt; &lt;body&gt;Don&#39;t forget me this weekend!&lt;/body&gt; &lt;/note&gt; XML 语言没有预定义的标签，而HTML 中使用的标签都是预定义的。HTML 文档只能使用在 HTML 标准中定义过的标签（如 &lt;p&gt;、&lt;h1&gt; 等等）。XML 允许创作者定义自己的标签和自己的文档结构。
+XML 的作用：
+把数据从 HTML 分离
+通过 XML，数据能够存储在独立的 XML 文件中。这样就可以专注于使用 HTML/CSS 进行显示和布局，并确保修改底层数据不再需要对 HTML 进行任何的改变。通过使用几行 JavaScript 代码，就可以读取一个外部 XML 文件，并更新网页的数据内容。
+简化数据共享
+XML 数据以纯文本格式进行存储，因此提供了一种独立于软件和硬件的数据存储方法。这让创建不同应用程序可以共享的数据变得更加容易。
+简化数据传输
+由于可以通过各种不兼容的应用程序来读取数据，以 XML 交换数据降低了这种复杂性。
+使数据更有用
+不同的应用程序都能够访问数据，不仅仅在 HTML 页中，也可以从 XML 数据源中进行访问。通过 XML，数据可供各种阅读设备使用（掌上计算机、语音设备、新闻阅读器等），还可以供盲人或其他残障人士使用。
+用于创建新的互联网语言
+很多新的互联网语言是通过 XML 创建的。例如：
+XHTML 用于描述可用的 Web 服务 的 WSDL 作为手持设备的标记语言的 WAP 和 WML 用于新闻 feed 的 RSS 语言 描述资本和本体的 RDF 和 OWL 用于描述针对 Web 的多媒体 的 SMIL XML的树结构 XML 文档必须包含根元素。该元素是所有其他元素的父元素。XML 文档中的元素形成了一棵文档树。这棵树从根部开始，并扩展到树的最底端，所有的元素都可以有子元素，父、子以及同胞等术语用于描述元素之间的关系。父元素拥有子元素。相同层级上的子元素成为同胞（兄弟或姐妹）。所有的元素都可以有文本内容和属性（类似 HTML 中）。"/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://bruisesl.github.io">BruisesL&#39;s blog</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
+    
+    <a class="" href="/about/">About</a>
+    
+  </nav>
+  
+
+  
+  <nav class="social">
+    
+    <a
+      class="github"
+      style="--url: url(./github.svg)"
+      href="https://github.com/BruisesL"
+      target="_blank"
+    ></a>
+    
+  </nav>
+  
+</header>
+
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <aside>
+      <time>March 4, 2023</time>
+      
+      <span>BruisesL</span>
+      
+    </aside>
+    <h1>JavaEE--XML</h1>
+  </header>
+  <section class="post-content"><p>XML的全称为(EXtensible Markup Language)，是一种可扩展的标记语言: 通过<strong>标签</strong>来<strong>描述数据</strong>的一门语言（标签有时也称为元素），<strong>标签的名字是可以自定义的</strong>，XML文件是由很多标签组成的。而标签名是可以自定义的。</p>
+<p>XML <strong>不会做任何事情</strong>。XML 被设计用来结构化、存储以及传输信息，例如 Jani 写给 Tove 的便签，存储为 XML。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;note&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;to&gt;</span>Tove<span style="color:#f92672">&lt;/to&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;from&gt;</span>Jani<span style="color:#f92672">&lt;/from&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;heading&gt;</span>Reminder<span style="color:#f92672">&lt;/heading&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;body&gt;</span>Don&#39;t forget me this weekend!<span style="color:#f92672">&lt;/body&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/note&gt;</span>
+</span></span></code></pre></div><p>XML 语言没有预定义的标签，而HTML 中使用的标签都是预定义的。HTML 文档只能使用在 HTML 标准中定义过的标签（如 <code>&lt;p&gt;</code>、<code>&lt;h1&gt;</code> 等等）。XML 允许创作者定义自己的标签和自己的文档结构。</p>
+<p><strong>XML 的作用</strong>：</p>
+<ol>
+<li>
+<p>把数据从 HTML 分离</p>
+<p>通过 XML，数据能够存储在独立的 XML 文件中。这样就可以专注于使用 HTML/CSS 进行显示和布局，并确保修改底层数据不再需要对 HTML 进行任何的改变。通过使用几行 JavaScript 代码，就可以读取一个外部 XML 文件，并更新网页的数据内容。</p>
+</li>
+<li>
+<p>简化数据共享</p>
+<p>XML 数据以纯文本格式进行存储，因此提供了一种独立于软件和硬件的数据存储方法。这让创建不同应用程序可以共享的数据变得更加容易。</p>
+</li>
+<li>
+<p>简化数据传输</p>
+<p>由于可以通过各种不兼容的应用程序来读取数据，以 XML 交换数据降低了这种复杂性。</p>
+</li>
+<li>
+<p>使数据更有用</p>
+<p>不同的应用程序都能够访问数据，不仅仅在 HTML 页中，也可以从 XML 数据源中进行访问。通过 XML，数据可供各种阅读设备使用（掌上计算机、语音设备、新闻阅读器等），还可以供盲人或其他残障人士使用。</p>
+</li>
+<li>
+<p>用于创建新的互联网语言</p>
+<p>很多新的互联网语言是通过 XML 创建的。例如：</p>
+<ul>
+<li>XHTML</li>
+<li>用于描述可用的 Web 服务 的 WSDL</li>
+<li>作为手持设备的标记语言的 WAP 和 WML</li>
+<li>用于新闻 feed 的 RSS 语言</li>
+<li>描述资本和本体的 RDF 和 OWL</li>
+<li>用于描述针对 Web 的多媒体 的 SMIL</li>
+</ul>
+</li>
+</ol>
+<h2 id="xml的树结构">XML的树结构</h2>
+<p>XML 文档必须包含<strong>根元素</strong>。该元素是所有其他元素的父元素。XML 文档中的元素形成了一棵文档树。这棵树从根部开始，并扩展到树的最底端，所有的元素都可以有子元素，父、子以及同胞等术语用于描述元素之间的关系。父元素拥有子元素。相同层级上的子元素成为同胞（兄弟或姐妹）。所有的元素都可以有文本内容和属性（类似 HTML 中）。</p>
+<p><img src="/XML%E6%A0%91%E7%BB%93%E6%9E%84.png" alt="XML树结构"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;bookstore&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;book</span> <span style="color:#a6e22e">category=</span><span style="color:#e6db74">&#34;COOKING&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;title</span> <span style="color:#a6e22e">lang=</span><span style="color:#e6db74">&#34;en&#34;</span><span style="color:#f92672">&gt;</span>Everyday Italian<span style="color:#f92672">&lt;/title&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;author&gt;</span>Giada De Laurentiis<span style="color:#f92672">&lt;/author&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;year&gt;</span>2005<span style="color:#f92672">&lt;/year&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;price&gt;</span>30.00<span style="color:#f92672">&lt;/price&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/book&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;book</span> <span style="color:#a6e22e">category=</span><span style="color:#e6db74">&#34;CHILDREN&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;title</span> <span style="color:#a6e22e">lang=</span><span style="color:#e6db74">&#34;en&#34;</span><span style="color:#f92672">&gt;</span>Harry Potter<span style="color:#f92672">&lt;/title&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;author&gt;</span>J K. Rowling<span style="color:#f92672">&lt;/author&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;year&gt;</span>2005<span style="color:#f92672">&lt;/year&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;price&gt;</span>29.99<span style="color:#f92672">&lt;/price&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/book&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;book</span> <span style="color:#a6e22e">category=</span><span style="color:#e6db74">&#34;WEB&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;title</span> <span style="color:#a6e22e">lang=</span><span style="color:#e6db74">&#34;en&#34;</span><span style="color:#f92672">&gt;</span>Learning XML<span style="color:#f92672">&lt;/title&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;author&gt;</span>Erik T. Ray<span style="color:#f92672">&lt;/author&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;year&gt;</span>2003<span style="color:#f92672">&lt;/year&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;price&gt;</span>39.95<span style="color:#f92672">&lt;/price&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/book&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/bookstore&gt;</span>
+</span></span></code></pre></div><blockquote>
+<p>实例中的根元素是 <code>&lt;bookstore&gt;</code>。文档中的所有 <code>&lt;book&gt;</code> 元素都被包含在 <code>&lt;bookstore&gt;</code> 中。<code>&lt;book&gt;</code> 元素有 4 个子元素：<code>&lt;title&gt;</code>、<code>&lt;author&gt;</code>、<code>&lt;year&gt;</code>、<code>&lt;price&gt;</code>。</p>
+</blockquote>
+<h2 id="xml语法">XML语法</h2>
+<ul>
+<li>
+<p>XML 声明</p>
+<p>XML 声明文件的可选部分，如果存在需要放在文档的<strong>第一行第一列</strong>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+</span></span></code></pre></div><p><code>version</code> 该属性是必须存在的</p>
+<p><code>encoding</code> 该属性不是必须的。打开当前xml文件的时候应该是使用什么字符编码表(一般取值都是UTF-8)
+文档声明的字符编码必需和文档本身的编码一致</p>
+<p><code>standalone</code>该属性不是必须的，描述XML文件是否依赖其他的xml文件，取值为yes/no</p>
+<blockquote>
+<p>以上实例包含 XML 版本（
+UTF-8 也是 HTML5, CSS, JavaScript, PHP, 和 SQL 的默认编码。</p>
+</blockquote>
+</li>
+<li>
+<p>根元素</p>
+<p>XML 必须包含根元素，它是所有其他元素的父元素。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;note&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;to&gt;</span>Tove<span style="color:#f92672">&lt;/to&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;from&gt;</span>Jani<span style="color:#f92672">&lt;/from&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;heading&gt;</span>Reminder<span style="color:#f92672">&lt;/heading&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;body&gt;</span>Don&#39;t forget me this weekend!<span style="color:#f92672">&lt;/body&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/note&gt;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>关闭标签</p>
+<p>在 HTML 中，某些元素不必有一个关闭标签：</p>
+<pre tabindex="0"><code>&lt;p&gt;This is a paragraph.
+&lt;br&gt;
+</code></pre><p>在 XML 中，省略关闭标签是<strong>非法</strong>的。所有元素都<strong>必须</strong>有关闭标签：</p>
+<pre tabindex="0"><code>&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;br /&gt;
+</code></pre></li>
+<li>
+<p>属性值</p>
+<p>与 HTML 类似，XML 元素也可拥有属性（名称/值的对）。在 XML 中，XML 的属性值必须加引号。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;note</span> <span style="color:#a6e22e">date=</span><span style="color:#e6db74">&#34;12/11/2007&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;to&gt;</span>Tove<span style="color:#f92672">&lt;/to&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;from&gt;</span>Jani<span style="color:#f92672">&lt;/from&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/note&gt;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>实体引用</p>
+<p>在 XML 中，一些字符拥有特殊的意义。例如把字符 &ldquo;&lt;&rdquo; 放在 XML 元素中，会发生错误，这是因为解析器会把它当作新元素的开始。在 XML 中，有 5 个预定义的实体引用：</p>
+<table>
+<thead>
+<tr>
+<th>引用</th>
+<th>被替代符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&amp;lt;</code></td>
+<td>&lt;</td>
+</tr>
+<tr>
+<td><code>&amp;gt;</code></td>
+<td>&gt;</td>
+</tr>
+<tr>
+<td><code>&amp;amp;</code></td>
+<td>&amp;</td>
+</tr>
+<tr>
+<td><code>&amp;apos;</code></td>
+<td>'</td>
+</tr>
+<tr>
+<td><code>&amp;quot;</code></td>
+<td>&quot;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注</strong>：在 XML 中，只有字符 &ldquo;&lt;&rdquo; 和 &ldquo;&amp;&rdquo; 确实是非法的。大于号是合法的，但是也有实体引用，建议全部都用实体引用表示。</p>
+</li>
+<li>
+<p>注释</p>
+<p>在 XML 中编写注释的语法与 HTML 的语法很相似。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- This is a comment --&gt;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>标签命名规则</p>
+<ul>
+<li>名称可以包含字母、数字以及其他的字符</li>
+<li>名称不能以数字或者标点符号开始</li>
+<li>名称不能以字母 xml（或者 XML、Xml 等等）开始</li>
+<li>名称不能包含空格</li>
+</ul>
+</li>
+<li>
+<p>标签的属性</p>
+<p>标准语法：<code>&lt;person id=&quot;1&quot;&gt;&lt;/person&gt;</code> id是属性名，1表示属性值，不管是数值还是其他都要使用引号引起来</p>
+<p>属性位置：写在<strong>单标记中</strong>或者写在<strong>双标记的开始标记中</strong></p>
+</li>
+<li>
+<p>注意事项</p>
+<ol>
+<li>
+<p>XML 标签大小写敏感</p>
+<p>XML 标签对大小写敏感。标签 <code>&lt;Letter&gt;</code>  与标签 <code> &lt;letter&gt;</code> 是不同的。必须使用相同的大小写来编写打开标签和关闭标签。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--由于大小写问题Message标签为被关闭--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;Message&gt;</span>这是错误的<span style="color:#f92672">&lt;/message&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;message&gt;</span>这是正确的<span style="color:#f92672">&lt;/message&gt;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>XML 可以嵌套使用，但是不可以交叉使用</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--错误的交叉使用--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;b&gt;&lt;i&gt;</span>This text is bold and italic<span style="color:#f92672">&lt;/b&gt;&lt;/i&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--正确的嵌套使用--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;b&gt;&lt;i&gt;</span>This text is bold and italic<span style="color:#f92672">&lt;/i&gt;&lt;/b&gt;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>XML 中的空格会被保留</p>
+<p>在 HTML 中会把多个连续的空格字符裁减（合并）为一个；在 XML 中，文档中的空格不会被删减。</p>
+</li>
+<li>
+<p>XML 以 LF 存储换行</p>
+<p>LF 换行即使用 <code>\n</code> 符号表示；还有一种换行 CR 换行，即用符号 <code>\r</code> 表示。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="xml解析">XML解析</h2>
+<p>DOM(Document Object Model)文档对象模型：就是把文档的各个组成部分看做成对应的对象。会把xml文件全部加载到内存，在内存中形成一个树形结构，再获取对应的值。</p>
+<ul>
+<li>
+<p>常见解析工具：</p>
+<p>JAXP：SUN公司提供的一套XML的解析的API</p>
+<p>JDOM：开源组织提供了一套XML的解析的API-jdom</p>
+<p><strong>DOM4J</strong>：开源组织提供了一套XML的解析的API-dom4j,全称：Dom For Java</p>
+<ol>
+<li>
+<p>SAX解析</p>
+<p>一边解析一边操作，可以解析比较大的文件。但是不能对文件进行修改</p>
+</li>
+<li>
+<p>Dom解析</p>
+<ul>
+<li>
+<p>将文件的所有内容读取到内存中形成DOM树，然后再解析。</p>
+</li>
+<li>
+<p>如果文件较大，影响性能。</p>
+</li>
+<li>
+<p>CRUD操作都是可以的</p>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p><strong>优点</strong>：</p>
+<ol>
+<li>大量使用了Java集合类，方便Java开发人员，同时提供一些提高性能的替代方法。</li>
+<li>支持XPath。</li>
+<li>有很好的性能。</li>
+</ol>
+</li>
+<li>
+<p><strong>缺点</strong>：大量使用了接口，API较为复杂。</p>
+</li>
+</ul>
+<p>pull：主要应用在Android手机端解析XML</p>
+</li>
+</ul>
+<h3 id="dom4j使用方法">dom4j使用方法</h3>
+<ol>
+<li>
+<p>创建SaxReader对象</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>SAXReader reader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SAXReader<span style="color:#f92672">();</span>
+</span></span></code></pre></div></li>
+<li>
+<p>设置命名空间 （如果XML使用约束且属性<code>elementFormDefault</code>值是：<code>qualified</code>，则必须要设置）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>HashMap<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;</span> hashMap <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;();</span>
+</span></span><span style="display:flex;"><span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;myKey&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;自定义命名空间名&#34;</span><span style="color:#f92672">);</span><span style="color:#75715e">// key的名字自己取
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>reader<span style="color:#f92672">.</span><span style="color:#a6e22e">getDocumentFactory</span><span style="color:#f92672">().</span><span style="color:#a6e22e">setXPathNamespaceURIs</span><span style="color:#f92672">(</span>map<span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>SAXReader对象调用read方法，将当前XML文件，转换为Document对象</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 获取字节流FileReader,用缓冲流包装一下BufferedReader
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Document document <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">缓冲流</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>获取根节点</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>root <span style="color:#f92672">=</span> document<span style="color:#f92672">.</span><span style="color:#a6e22e">getRootElement</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div></li>
+<li>
+<p>通过父签添加子标签（元素），再给子标签添加值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Element element <span style="color:#f92672">=</span> root<span style="color:#f92672">.</span><span style="color:#a6e22e">addElement</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;标签名&#34;</span><span style="color:#f92672">);</span><span style="color:#75715e">//返回值就是要添加的元素对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>element<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;标签值&#34;</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>添加属性，获取属性对象、属性值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 给当前标签添加属性：xxx ，值是：xxx
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Element attribute <span style="color:#f92672">=</span> linkman<span style="color:#f92672">.</span><span style="color:#a6e22e">addAttribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;属性名&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;值&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 通过当前元素获取属性对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>element<span style="color:#f92672">.</span><span style="color:#a6e22e">attribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;属性名&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 通过属性对象attribute获取属性值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>attribute<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;值&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 通过属性对象attribute获取属性值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String <span style="color:#960050;background-color:#1e0010">值</span> <span style="color:#f92672">=</span> attribute<span style="color:#f92672">.</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div></li>
+<li>
+<p>获取当前元素标签名与值</p>
+</li>
+</ol>
+<pre><code> ```java
+ String name = e.getName();
+ String text = e.getText();
+ ```
+</code></pre>
+<ol start="8">
+<li>获取子标签（元素）</li>
+</ol>
+<pre><code> ```java
+ // 获取指定名字的子标签（元素）
+ 当前标签.element(String name); 
+ // 获取所有子标签（元素）
+ 当前标签.elements();
+ ```
+</code></pre>
+<ol start="9">
+<li>删除子元素，必须通过父元素 <code>remove(子元素对象)</code> 完成</li>
+</ol>
+<pre><code> ```java
+ 父元素.remove(子元素对象); 
+ ```
+</code></pre>
+<ol start="10">
+<li>
+<p>在dom4j里面提供了两个方法，用来支持xpath</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 获取当前名字的多个节点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>selectNodes<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;xpath表达式&#34;</span><span style="color:#f92672">);</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 获取一个节点 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>selectSingleNode<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;xpath表达式&#34;</span><span style="color:#f92672">);</span> 
+</span></span></code></pre></div><p><strong>注</strong>：在多层级的xpath使用的语法：<code>//命名空间:a[@id='b1']/命名空间:元素</code></p>
+</li>
+</ol>
+<p><strong>案例</strong>：</p>
+<p>读取xml文件，删除、修改、新增节点</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;students&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;student</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;9527&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;name&gt;</span>刘德华<span style="color:#f92672">&lt;/name&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;age&gt;</span>62<span style="color:#f92672">&lt;/age&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;address&gt;</span>中国香港<span style="color:#f92672">&lt;/address&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/student&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;student</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;13&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;name&gt;</span>稻盛和夫<span style="color:#f92672">&lt;/name&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;age&gt;</span>90<span style="color:#f92672">&lt;/age&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;address&gt;</span>日本东京<span style="color:#f92672">&lt;/address&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/student&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;student</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;666&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;name&gt;</span>梅西<span style="color:#f92672">&lt;/name&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;age&gt;</span>35<span style="color:#f92672">&lt;/age&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;address&gt;</span>阿根廷<span style="color:#f92672">&lt;/address&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/student&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/students&gt;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">XMLRead</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        SAXReader reader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SAXReader<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        ArrayList<span style="color:#f92672">&lt;</span>Student<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            Document doc <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> BufferedReader<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileReader<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> File<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;src/studyDemo/xmlTest/students.xml&#34;</span><span style="color:#f92672">))));</span>
+</span></span><span style="display:flex;"><span>            Element root <span style="color:#f92672">=</span> doc<span style="color:#f92672">.</span><span style="color:#a6e22e">getRootElement</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            List<span style="color:#f92672">&lt;</span>Element<span style="color:#f92672">&gt;</span> rootElmts <span style="color:#f92672">=</span> root<span style="color:#f92672">.</span><span style="color:#a6e22e">elements</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Element re<span style="color:#f92672">:</span>rootElmts<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                Student student <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Student<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>                student<span style="color:#f92672">.</span><span style="color:#a6e22e">setId</span><span style="color:#f92672">(</span>Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>re<span style="color:#f92672">.</span><span style="color:#a6e22e">attributeValue</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;id&#34;</span><span style="color:#f92672">)));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                student<span style="color:#f92672">.</span><span style="color:#a6e22e">setName</span><span style="color:#f92672">(</span>re<span style="color:#f92672">.</span><span style="color:#a6e22e">element</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>                student<span style="color:#f92672">.</span><span style="color:#a6e22e">setAge</span><span style="color:#f92672">(</span>Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>re<span style="color:#f92672">.</span><span style="color:#a6e22e">element</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;age&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">()));</span>
+</span></span><span style="display:flex;"><span>                student<span style="color:#f92672">.</span><span style="color:#a6e22e">setAddress</span><span style="color:#f92672">(</span>re<span style="color:#f92672">.</span><span style="color:#a6e22e">element</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;address&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>                list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>student<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>DocumentException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>FileNotFoundException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">XMLModify</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        SAXReader reader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SAXReader<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 读取XML文件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            Document doc <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileReader<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;src/studyDemo/xmlTest/newstudents.xml&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>            Element root <span style="color:#f92672">=</span> doc<span style="color:#f92672">.</span><span style="color:#a6e22e">getRootElement</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 在根节点下增加新的节点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            Element stuEle <span style="color:#f92672">=</span> root<span style="color:#f92672">.</span><span style="color:#a6e22e">addElement</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;student&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            stuEle<span style="color:#f92672">.</span><span style="color:#a6e22e">addAttribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;id&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;991&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            Element nameEle <span style="color:#f92672">=</span> stuEle<span style="color:#f92672">.</span><span style="color:#a6e22e">addElement</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            nameEle<span style="color:#f92672">.</span><span style="color:#a6e22e">addText</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;木村拓哉&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            Element ageEle <span style="color:#f92672">=</span> stuEle<span style="color:#f92672">.</span><span style="color:#a6e22e">addElement</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;age&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            ageEle<span style="color:#f92672">.</span><span style="color:#a6e22e">addText</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;32&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            Element addEle <span style="color:#f92672">=</span> stuEle<span style="color:#f92672">.</span><span style="color:#a6e22e">addElement</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;address&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            addEle<span style="color:#f92672">.</span><span style="color:#a6e22e">addText</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;日本北海道&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 删除第二个节点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            root<span style="color:#f92672">.</span><span style="color:#a6e22e">elements</span><span style="color:#f92672">().</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 修改第一个节点的文本内容
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            Element stu0 <span style="color:#f92672">=</span> root<span style="color:#f92672">.</span><span style="color:#a6e22e">elements</span><span style="color:#f92672">().</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#ae81ff">0</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            Element age4stu0 <span style="color:#f92672">=</span> stu0<span style="color:#f92672">.</span><span style="color:#a6e22e">element</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;age&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            age4stu0<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;64&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 将doc写入XML文件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            XMLWriter writer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> XMLWriter<span style="color:#f92672">((</span><span style="color:#66d9ef">new</span> FileWriter<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;src/studyDemo/xmlTest/newstudents.xml&#34;</span><span style="color:#f92672">)));</span>
+</span></span><span style="display:flex;"><span>            writer<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>doc<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            writer<span style="color:#f92672">.</span><span style="color:#a6e22e">flush</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>DocumentException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>FileNotFoundException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h4 id="xpath">Xpath</h4>
+<p>XPath 是一门在 XML 文档中查找信息的语言。XPath 是 XSLT 中的主要元素。XQuery 和 XPointer 均构建于 XPath 表达式之上</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">&lt;!--实例xml文档--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;bookstore&gt;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;book&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;title</span> <span style="color:#a6e22e">lang=</span><span style="color:#e6db74">&#34;eng&#34;</span><span style="color:#f92672">&gt;</span>Harry Potter<span style="color:#f92672">&lt;/title&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;price&gt;</span>29.99<span style="color:#f92672">&lt;/price&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/book&gt;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;book&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;title</span> <span style="color:#a6e22e">lang=</span><span style="color:#e6db74">&#34;eng&#34;</span><span style="color:#f92672">&gt;</span>Learning XML<span style="color:#f92672">&lt;/title&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;price&gt;</span>39.95<span style="color:#f92672">&lt;/price&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/book&gt;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/bookstore&gt;</span>
+</span></span></code></pre></div><p><strong>选取节点</strong>：</p>
+<p>XPath 使用路径表达式在 XML 文档中选取节点。节点是通过沿着路径或者 step 来选取的。 下面列出了最有用的路径表达式：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">表达式</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">nodename</td>
+<td style="text-align:left">选取此节点的所有子节点。</td>
+</tr>
+<tr>
+<td style="text-align:left">/</td>
+<td style="text-align:left">从根节点选取（取子节点）。</td>
+</tr>
+<tr>
+<td style="text-align:left">//</td>
+<td style="text-align:left">从匹配选择的当前节点选择文档中的节点，而不考虑它们的位置（取子孙节点）。</td>
+</tr>
+<tr>
+<td style="text-align:left">.</td>
+<td style="text-align:left">选取当前节点。</td>
+</tr>
+<tr>
+<td style="text-align:left">..</td>
+<td style="text-align:left">选取当前节点的父节点。</td>
+</tr>
+<tr>
+<td style="text-align:left">@</td>
+<td style="text-align:left">选取属性。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">路径表达式</th>
+<th style="text-align:left">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">bookstore</td>
+<td style="text-align:left">选取 bookstore 元素的所有子节点。</td>
+</tr>
+<tr>
+<td style="text-align:left">/bookstore</td>
+<td style="text-align:left">选取根元素 bookstore。注释：假如路径起始于正斜杠( / )，则此路径始终代表到某元素的绝对路径！</td>
+</tr>
+<tr>
+<td style="text-align:left">bookstore/book</td>
+<td style="text-align:left">选取属于 bookstore 的子元素的所有 book 元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">//book</td>
+<td style="text-align:left">选取所有 book 子元素，而不管它们在文档中的位置。</td>
+</tr>
+<tr>
+<td style="text-align:left">bookstore//book</td>
+<td style="text-align:left">选择属于 bookstore 元素的后代的所有 book 元素，而不管它们位于 bookstore 之下的什么位置。</td>
+</tr>
+<tr>
+<td style="text-align:left">//@lang</td>
+<td style="text-align:left">选取名为 lang 的所有属性。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><strong>谓语（Predicates）</strong>：</p>
+<p>谓语用来查找某个特定的节点或者包含某个指定的值的节点。谓语被嵌在方括号中。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">路径表达式</th>
+<th style="text-align:left">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">/bookstore/book[1]</td>
+<td style="text-align:left">选取属于 bookstore 子元素的第一个 book 元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">/bookstore/book[last()]</td>
+<td style="text-align:left">选取属于 bookstore 子元素的最后一个 book 元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">/bookstore/book[last()-1]</td>
+<td style="text-align:left">选取属于 bookstore 子元素的倒数第二个 book 元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">/bookstore/book[position()&lt;3]</td>
+<td style="text-align:left">选取最前面的两个属于 bookstore 元素的子元素的 book 元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">//title[@lang]</td>
+<td style="text-align:left">选取所有拥有名为 lang 的属性的 title 元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">//title[@lang=&lsquo;eng&rsquo;]</td>
+<td style="text-align:left">选取所有 title 元素，且这些元素拥有值为 eng 的 lang 属性。</td>
+</tr>
+<tr>
+<td style="text-align:left">/bookstore/book[price&gt;35.00]</td>
+<td style="text-align:left">选取 bookstore 元素的所有 book 元素，且其中的 price 元素的值须大于 35.00。</td>
+</tr>
+<tr>
+<td style="text-align:left">/bookstore/book[price&gt;35.00]//title</td>
+<td style="text-align:left">选取 bookstore 元素中的 book 元素的所有 title 元素，且其中的 price 元素的值须大于 35.00。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><strong>选取未知节点</strong>：</p>
+<p>XPath 通配符可用来选取未知的 XML 元素。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">通配符</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">*</td>
+<td style="text-align:left">匹配任何元素节点。</td>
+</tr>
+<tr>
+<td style="text-align:left">@*</td>
+<td style="text-align:left">匹配任何属性节点。</td>
+</tr>
+<tr>
+<td style="text-align:left">node()</td>
+<td style="text-align:left">匹配任何类型的节点。</td>
+</tr>
+</tbody>
+</table>
+<p>在下面的表格中，我们列出了一些路径表达式，以及这些表达式的结果：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">路径表达式</th>
+<th style="text-align:left">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">/bookstore/*</td>
+<td style="text-align:left">选取 bookstore 元素的所有子元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">//*</td>
+<td style="text-align:left">选取文档中的所有元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">//title[@*]</td>
+<td style="text-align:left">选取所有带有属性的 title 元素。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><strong>选取若干路径</strong>：</p>
+<p>通过在路径表达式中使用 <code>|</code> 运算符，可以选取若干个路径。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">路径表达式</th>
+<th style="text-align:left">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">//book/title | //book/price</td>
+<td style="text-align:left">选取 book 元素的所有 title 和 price 元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">//title | //price</td>
+<td style="text-align:left">选取文档中的所有 title 和 price 元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">/bookstore/book/title | //price</td>
+<td style="text-align:left">选取属于 bookstore 元素的 book 元素的所有 title 元素，以及文档中所有的 price 元素。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="xml约束">XML约束</h2>
+<h3 id="dtd约束">DTD约束</h3>
+<p>DTD 的目的是定义 XML 文档的结构。它使用一系列合法的元素来定义文档结构。</p>
+<p><strong>定义元素</strong>的格式：<code>&lt;!ELEMENT 元素名 元素类型&gt;</code></p>
+<p><img src="/XML-DTD%E7%BA%A6%E6%9D%9F.jpg" alt="XML-DTD约束"></p>
+<p><strong>定义属性</strong>的格式：<code>&lt;!ATTLIST 元素名称 属性名称 属性的类型 属性的约束&gt;</code></p>
+<ul>
+<li>
+<p>属性的类型：</p>
+<p>CDATA类型：普通的字符串</p>
+</li>
+<li>
+<p>属性的约束:</p>
+<p><code>#REQUIRED </code>必须的</p>
+<p><code>#IMPLIED</code> 属性不是必需的</p>
+<p><code>#FIXED value</code> 属性值是固定的</p>
+</li>
+</ul>
+<p><strong>引入DTD约束</strong>：</p>
+<ul>
+<li>
+<p>引入本地dtd</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--这是persondtd.dtd文件中的内容,已经提前写好--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!ELEMENT persons (person)&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!ELEMENT person (name,age)&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!ELEMENT name (#PCDATA)&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!ELEMENT age (#PCDATA)&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--在person1.xml文件中引入persondtd.dtd约束--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE persons SYSTEM &#39;persondtd.dtd&#39;&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;persons&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;person&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;name&gt;</span>张三<span style="color:#f92672">&lt;/name&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;age&gt;</span>23<span style="color:#f92672">&lt;/age&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/person&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/persons&gt;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>在xml文件内部引入</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE persons [
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	&lt;!ELEMENT persons (person)&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">&lt;!ELEMENT person (name,age)&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">&lt;!ELEMENT name (#PCDATA)&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">&lt;!ELEMENT age (#PCDATA)&gt;</span>
+</span></span><span style="display:flex;"><span>]&gt;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;persons&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;person&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;name&gt;</span>张三<span style="color:#f92672">&lt;/name&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;age&gt;</span>23<span style="color:#f92672">&lt;/age&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/person&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/persons&gt;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>引入网络dtd</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE persons PUBLIC &#34;dtd文件的名称&#34; &#34;dtd文档的URL&#34;&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;persons&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;person&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;name&gt;</span>张三<span style="color:#f92672">&lt;/name&gt;</span>
+</span></span><span style="display:flex;"><span> 		<span style="color:#f92672">&lt;age&gt;</span>23<span style="color:#f92672">&lt;/age&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/person&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/persons&gt;</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="schema约束">schema约束</h3>
+<p><strong>schema和dtd的区别</strong>：</p>
+<ol>
+<li>schema约束文件也是一个xml文件，符合xml的语法，这个文件的后缀名.xsd</li>
+<li>一个xml中可以引用多个schema约束文件，多个schema使用名称空间区分（名称空间类似于java包名）</li>
+<li>dtd里面元素类型的取值比较单一常见的是PCDATA类型，但是在schema里面可以支持很多个数据类型</li>
+<li>schema 语法更加的复杂</li>
+</ol>
+<p><img src="/schema%E7%BA%A6%E6%9D%9F.jpg" alt="schema约束"></p>
+<p><strong>编写步骤</strong>：</p>
+<ol>
+<li>创建一个文件，这个文件的后缀名为.xsd。</li>
+<li>定义文档声明</li>
+<li>schema文件的根标签为：<code>&lt;schema&gt;</code></li>
+<li>在<code>&lt;schema&gt;</code>中定义属性：<code>xmlns=http://www.w3.org/2001/XMLSchema</code></li>
+<li>在<code>&lt;schema&gt;</code>中定义属性 ：<code>targetNamespace = 唯一的url地址</code>，指定当前这个schema文件的名称空间。</li>
+<li>在<code>&lt;schema&gt;</code>中定义属性 ：<code>elementFormDefault=&quot;qualified&quot;</code>，表示当前schema文件是一个质量良好的文件。</li>
+<li>通过element定义元素</li>
+<li>判断当前元素是简单元素还是复杂元素</li>
+</ol>
+<p><img src="/schema%E7%BA%A6%E6%9D%9F%E8%A7%84%E5%88%99.jpg" alt="schema约束规则"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;schema</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema&#34;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">targetNamespace=</span><span style="color:#e6db74">&#34;http://www.itsource.cn/javase&#34;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">elementFormDefault=</span><span style="color:#e6db74">&#34;qualified&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">&lt;!--定义persons复杂元素--&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;element</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;persons&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;complexType&gt;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&lt;sequence&gt;</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#75715e">&lt;!--定义person复杂元素--&gt;</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#f92672">&lt;element</span> <span style="color:#a6e22e">name =</span> <span style="color:#e6db74">&#34;person&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#f92672">&lt;complexType&gt;</span>
+</span></span><span style="display:flex;"><span>						<span style="color:#f92672">&lt;sequence&gt;</span>
+</span></span><span style="display:flex;"><span>							<span style="color:#75715e">&lt;!--定义name和age简单元素--&gt;</span>
+</span></span><span style="display:flex;"><span>							<span style="color:#f92672">&lt;element</span> <span style="color:#a6e22e">name =</span> <span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">type =</span> <span style="color:#e6db74">&#34;string&#34;</span><span style="color:#f92672">&gt;&lt;/element&gt;</span>
+</span></span><span style="display:flex;"><span>							<span style="color:#f92672">&lt;element</span> <span style="color:#a6e22e">name =</span> <span style="color:#e6db74">&#34;age&#34;</span> <span style="color:#a6e22e">type =</span> <span style="color:#e6db74">&#34;string&#34;</span><span style="color:#f92672">&gt;&lt;/element&gt;</span>
+</span></span><span style="display:flex;"><span>						<span style="color:#f92672">&lt;/sequence&gt;</span>
+</span></span><span style="display:flex;"><span>						<span style="color:#75715e">&lt;!--定义属性，required( 必须的)/optional( 可选的)--&gt;</span>
+</span></span><span style="display:flex;"><span>						<span style="color:#f92672">&lt;attribute</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;string&#34;</span> <span style="color:#a6e22e">use=</span><span style="color:#e6db74">&#34;required&#34;</span><span style="color:#f92672">&gt;&lt;/attribute&gt;</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#f92672">&lt;/complexType&gt;</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#f92672">&lt;/element&gt;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&lt;/sequence&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;/complexType&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/element&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/schema&gt;</span>
+</span></span></code></pre></div><p><strong>引入schema约束</strong>：</p>
+<ol>
+<li>
+<p>在根标签上定义属性<code>xmlns=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</code></p>
+</li>
+<li>
+<p>通过<code>xmlns</code>引入约束文件的名称空间</p>
+</li>
+<li>
+<p>给某一个<code>xmlns</code>属性添加一个标识，用于区分不同的名称空间</p>
+<p>格式为: <code>xmlns:标识=&quot;名称空间地址&quot;</code> ,标识可以是任意的，但是一般取值都是xsi</p>
+</li>
+<li>
+<p>通过<code>xsi:schemaLocation</code>指定名称空间所对应的约束文件路径</p>
+<p>格式为：<code>xsi:schemaLocation = &quot;名称空间url 文件路径&quot;</code></p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;persons</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">xmlns:xsi=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://www.itsource.cn/javase&#34;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">xsi:schemaLocation=</span><span style="color:#e6db74">&#34;http://www.itsource.cn/javase person.xsd&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;person</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;001&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;name&gt;</span>张三<span style="color:#f92672">&lt;/name&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;age&gt;</span>23<span style="color:#f92672">&lt;/age&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/person&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/persons&gt;</span>
+</span></span></code></pre></div></section>
+
+  
+  
+
+  
+  
+  
+  <nav class="post-nav">
+     
+    <a class="next" href="https://bruisesl.github.io/post/javaee--jdbc/"><span>JavaEE -- JDBC</span><span>→</span></a>
+    
+  </nav>
+  
+
+  
+  
+</article>
+
+</main>
+
+    <footer class="footer">
+  <p>&copy; 2023 <a href="https://bruisesl.github.io">BruisesL&#39;s blog</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
+
+  </body>
+</html>

@@ -25,7 +25,7 @@
   
   <meta name="description" content="JDBC是Java DataBase Connectivity的缩写，它是Java程序访问数据库的标准接口，用于执行SQL语句。使用Java程序访问数据库时，Java代码并不是直接通过TCP连接去访问数据库，而是通过JDBC接口来访问，而JDBC接口则通过JDBC驱动来实现真正对数据库的访问。在Java中，数据库存取技术只能通过JDBC访问数据。
 JDBC访问数据库的方式：
-直接使用JDBC的API去访问数据库服务器(MySQL/Oracle) 间接地使用JDBC的API去访问数据库服务器 public class JDBCTest1 { @Test public void testCreatJDBC() throws SQLException, ClassNotFoundException { final String URL = &#34;jdbc:mysql:///test&#34;; final String user = &#34;root&#34;; final String password = &#34;root123456&#34;; // 1.注册加载驱动程序 // 使用反射注册,源码中有静态代码块new Driver对象 Class.forName(&#34;com.mysql.jdbc.Driver&#34;); // 在mySQL 5 版本后，会自动注册，不需要手动注册 // 2.获得数据库连接 Connection connection = DriverManager.getConnection(URL, user, password); // 3.获取执行对象 Statement stmt = connection.createStatement(); // 4.执行sql查询语句，返回结果集 ResultSet rs = stmt.executeQuery(&#34;SELECT * FROM emp&#34;); // 5.如果有数据，rs.next()返回true while (rs.next()){ System." />
+直接使用JDBC的API去访问数据库服务器(MySQL/Oracle) 间接地使用JDBC的API去访问数据库服务器 JDBC步骤 注册加载驱动程序 获得数据库连接 获取执行对象 执行sql语句 释放资源 public class JDBCTest1 { @Test public void testCreatJDBC() throws SQLException, ClassNotFoundException { final String URL = &#34;jdbc:mysql:///test&#34;; final String user = &#34;root&#34;; final String password = &#34;root123456&#34;; // 1.注册加载驱动程序 // 使用反射注册,源码中有静态代码块new Driver对象 Class.forName(&#34;com.mysql.jdbc.Driver&#34;); // 在mySQL 5 版本后，会自动注册，不需要手动注册 // 2.获得数据库连接 Connection connection = DriverManager.getConnection(URL, user, password); // 3.获取执行对象 Statement stmt = connection.createStatement(); // 4.执行sql查询语句，返回结果集 ResultSet rs = stmt.executeQuery(&#34;SELECT * FROM emp&#34;); // 5." />
   <meta name="author" content="BruisesL" />
   
 
@@ -73,7 +73,7 @@ JDBC访问数据库的方式：
   <meta property="og:title" content="JavaEE -- JDBC" />
 <meta property="og:description" content="JDBC是Java DataBase Connectivity的缩写，它是Java程序访问数据库的标准接口，用于执行SQL语句。使用Java程序访问数据库时，Java代码并不是直接通过TCP连接去访问数据库，而是通过JDBC接口来访问，而JDBC接口则通过JDBC驱动来实现真正对数据库的访问。在Java中，数据库存取技术只能通过JDBC访问数据。
 JDBC访问数据库的方式：
-直接使用JDBC的API去访问数据库服务器(MySQL/Oracle) 间接地使用JDBC的API去访问数据库服务器 public class JDBCTest1 { @Test public void testCreatJDBC() throws SQLException, ClassNotFoundException { final String URL = &#34;jdbc:mysql:///test&#34;; final String user = &#34;root&#34;; final String password = &#34;root123456&#34;; // 1.注册加载驱动程序 // 使用反射注册,源码中有静态代码块new Driver对象 Class.forName(&#34;com.mysql.jdbc.Driver&#34;); // 在mySQL 5 版本后，会自动注册，不需要手动注册 // 2.获得数据库连接 Connection connection = DriverManager.getConnection(URL, user, password); // 3.获取执行对象 Statement stmt = connection.createStatement(); // 4.执行sql查询语句，返回结果集 ResultSet rs = stmt.executeQuery(&#34;SELECT * FROM emp&#34;); // 5.如果有数据，rs.next()返回true while (rs.next()){ System." />
+直接使用JDBC的API去访问数据库服务器(MySQL/Oracle) 间接地使用JDBC的API去访问数据库服务器 JDBC步骤 注册加载驱动程序 获得数据库连接 获取执行对象 执行sql语句 释放资源 public class JDBCTest1 { @Test public void testCreatJDBC() throws SQLException, ClassNotFoundException { final String URL = &#34;jdbc:mysql:///test&#34;; final String user = &#34;root&#34;; final String password = &#34;root123456&#34;; // 1.注册加载驱动程序 // 使用反射注册,源码中有静态代码块new Driver对象 Class.forName(&#34;com.mysql.jdbc.Driver&#34;); // 在mySQL 5 版本后，会自动注册，不需要手动注册 // 2.获得数据库连接 Connection connection = DriverManager.getConnection(URL, user, password); // 3.获取执行对象 Statement stmt = connection.createStatement(); // 4.执行sql查询语句，返回结果集 ResultSet rs = stmt.executeQuery(&#34;SELECT * FROM emp&#34;); // 5." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://bruisesl.github.io/post/javaee--jdbc/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-03-01T00:00:00+00:00" />
@@ -83,16 +83,16 @@ JDBC访问数据库的方式：
   <meta itemprop="name" content="JavaEE -- JDBC">
 <meta itemprop="description" content="JDBC是Java DataBase Connectivity的缩写，它是Java程序访问数据库的标准接口，用于执行SQL语句。使用Java程序访问数据库时，Java代码并不是直接通过TCP连接去访问数据库，而是通过JDBC接口来访问，而JDBC接口则通过JDBC驱动来实现真正对数据库的访问。在Java中，数据库存取技术只能通过JDBC访问数据。
 JDBC访问数据库的方式：
-直接使用JDBC的API去访问数据库服务器(MySQL/Oracle) 间接地使用JDBC的API去访问数据库服务器 public class JDBCTest1 { @Test public void testCreatJDBC() throws SQLException, ClassNotFoundException { final String URL = &#34;jdbc:mysql:///test&#34;; final String user = &#34;root&#34;; final String password = &#34;root123456&#34;; // 1.注册加载驱动程序 // 使用反射注册,源码中有静态代码块new Driver对象 Class.forName(&#34;com.mysql.jdbc.Driver&#34;); // 在mySQL 5 版本后，会自动注册，不需要手动注册 // 2.获得数据库连接 Connection connection = DriverManager.getConnection(URL, user, password); // 3.获取执行对象 Statement stmt = connection.createStatement(); // 4.执行sql查询语句，返回结果集 ResultSet rs = stmt.executeQuery(&#34;SELECT * FROM emp&#34;); // 5.如果有数据，rs.next()返回true while (rs.next()){ System."><meta itemprop="datePublished" content="2023-03-01T00:00:00+00:00" />
+直接使用JDBC的API去访问数据库服务器(MySQL/Oracle) 间接地使用JDBC的API去访问数据库服务器 JDBC步骤 注册加载驱动程序 获得数据库连接 获取执行对象 执行sql语句 释放资源 public class JDBCTest1 { @Test public void testCreatJDBC() throws SQLException, ClassNotFoundException { final String URL = &#34;jdbc:mysql:///test&#34;; final String user = &#34;root&#34;; final String password = &#34;root123456&#34;; // 1.注册加载驱动程序 // 使用反射注册,源码中有静态代码块new Driver对象 Class.forName(&#34;com.mysql.jdbc.Driver&#34;); // 在mySQL 5 版本后，会自动注册，不需要手动注册 // 2.获得数据库连接 Connection connection = DriverManager.getConnection(URL, user, password); // 3.获取执行对象 Statement stmt = connection.createStatement(); // 4.执行sql查询语句，返回结果集 ResultSet rs = stmt.executeQuery(&#34;SELECT * FROM emp&#34;); // 5."><meta itemprop="datePublished" content="2023-03-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2023-03-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="74">
+<meta itemprop="wordCount" content="512">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JavaEE -- JDBC"/>
 <meta name="twitter:description" content="JDBC是Java DataBase Connectivity的缩写，它是Java程序访问数据库的标准接口，用于执行SQL语句。使用Java程序访问数据库时，Java代码并不是直接通过TCP连接去访问数据库，而是通过JDBC接口来访问，而JDBC接口则通过JDBC驱动来实现真正对数据库的访问。在Java中，数据库存取技术只能通过JDBC访问数据。
 JDBC访问数据库的方式：
-直接使用JDBC的API去访问数据库服务器(MySQL/Oracle) 间接地使用JDBC的API去访问数据库服务器 public class JDBCTest1 { @Test public void testCreatJDBC() throws SQLException, ClassNotFoundException { final String URL = &#34;jdbc:mysql:///test&#34;; final String user = &#34;root&#34;; final String password = &#34;root123456&#34;; // 1.注册加载驱动程序 // 使用反射注册,源码中有静态代码块new Driver对象 Class.forName(&#34;com.mysql.jdbc.Driver&#34;); // 在mySQL 5 版本后，会自动注册，不需要手动注册 // 2.获得数据库连接 Connection connection = DriverManager.getConnection(URL, user, password); // 3.获取执行对象 Statement stmt = connection.createStatement(); // 4.执行sql查询语句，返回结果集 ResultSet rs = stmt.executeQuery(&#34;SELECT * FROM emp&#34;); // 5.如果有数据，rs.next()返回true while (rs.next()){ System."/>
+直接使用JDBC的API去访问数据库服务器(MySQL/Oracle) 间接地使用JDBC的API去访问数据库服务器 JDBC步骤 注册加载驱动程序 获得数据库连接 获取执行对象 执行sql语句 释放资源 public class JDBCTest1 { @Test public void testCreatJDBC() throws SQLException, ClassNotFoundException { final String URL = &#34;jdbc:mysql:///test&#34;; final String user = &#34;root&#34;; final String password = &#34;root123456&#34;; // 1.注册加载驱动程序 // 使用反射注册,源码中有静态代码块new Driver对象 Class.forName(&#34;com.mysql.jdbc.Driver&#34;); // 在mySQL 5 版本后，会自动注册，不需要手动注册 // 2.获得数据库连接 Connection connection = DriverManager.getConnection(URL, user, password); // 3.获取执行对象 Statement stmt = connection.createStatement(); // 4.执行sql查询语句，返回结果集 ResultSet rs = stmt.executeQuery(&#34;SELECT * FROM emp&#34;); // 5."/>
 
   
   
@@ -167,6 +167,14 @@ JDBC访问数据库的方式：
 <li>直接使用JDBC的API去访问数据库服务器(MySQL/Oracle)</li>
 <li>间接地使用JDBC的API去访问数据库服务器</li>
 </ol>
+<h2 id="jdbc步骤">JDBC步骤</h2>
+<ol>
+<li>注册加载驱动程序</li>
+<li>获得数据库连接</li>
+<li>获取执行对象</li>
+<li>执行sql语句</li>
+<li>释放资源</li>
+</ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JDBCTest1</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Test</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testCreatJDBC</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> SQLException<span style="color:#f92672">,</span> ClassNotFoundException <span style="color:#f92672">{</span>
@@ -193,7 +201,247 @@ JDBC访问数据库的方式：
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div></section>
+</span></span></code></pre></div><h3 id="注册加载驱动程序">注册加载驱动程序</h3>
+<p>在mySQL5版本前，需要注册驱动后才可以连接数据库，在之后的版本mySQL的jar包中新的<code>Driver()</code>方法会自动注册。</p>
+<p>注册加载驱动程序有多种方法：</p>
+<ol>
+<li>
+<p>使用DriverManager注册，看起来比较直观的一种方式，注册相应的db的jdbc驱动，在编译时需要导入对应的lib</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>DriverManager<span style="color:#f92672">.</span><span style="color:#a6e22e">register</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> com<span style="color:#f92672">.</span><span style="color:#a6e22e">mysql</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jdbc</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Driver</span><span style="color:#f92672">());</span>
+</span></span></code></pre></div></li>
+<li>
+<p>使用放射方法注册</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">“</span>com<span style="color:#f92672">.</span><span style="color:#a6e22e">mysql</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jdbc</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Driver</span><span style="color:#960050;background-color:#1e0010">”</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>通过系统的属性设置</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">setProperty</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">“</span>jdbc<span style="color:#f92672">.</span><span style="color:#a6e22e">driver</span><span style="color:#960050;background-color:#1e0010">”</span><span style="color:#f92672">,</span><span style="color:#960050;background-color:#1e0010">”</span>com<span style="color:#f92672">.</span><span style="color:#a6e22e">mysql</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jdbc</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Driver</span><span style="color:#960050;background-color:#1e0010">”</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="获得数据库连接">获得数据库连接</h3>
+<p>获取数据库连接分为两种方式：普通连接、通过连接池进行连接。</p>
+<ul>
+<li>
+<p>普通连接</p>
+<ol>
+<li>使用Driver连接</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//获取Driver实现类对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Driver driver <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> com<span style="color:#f92672">.</span><span style="color:#a6e22e">mysql</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jdbc</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Driver</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>String url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jdbc:mysql://localhost:3306/jdbc&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>Properties info <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Properties<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>info<span style="color:#f92672">.</span><span style="color:#a6e22e">setProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;root&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>info<span style="color:#f92672">.</span><span style="color:#a6e22e">setProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;root123456&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Connection connection <span style="color:#f92672">=</span> driver<span style="color:#f92672">.</span><span style="color:#a6e22e">connect</span><span style="color:#f92672">(</span>url<span style="color:#f92672">,</span>info<span style="color:#f92672">);</span>
+</span></span></code></pre></div><ol start="2">
+<li>使用DriverManager连接</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Connection connection <span style="color:#f92672">=</span> DriverManager<span style="color:#f92672">.</span><span style="color:#a6e22e">getConnection</span><span style="color:#f92672">(</span>url<span style="color:#f92672">,</span> user<span style="color:#f92672">,</span> password<span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>连接池连接</p>
+<p>数据库连接是一种关键的有限的昂贵的资源，这一点在多用户的网页应用程序中体现得尤为突出。  一个数据库连接对象均对应一个物理数据库连接，每次操作都打开一个物理连接，使用完都关闭连接，这样造成系统的性能低下。</p>
+<p>数据库连接池的解决方案是在应用程序启动时建立足够的数据库连接，并将这些连接组成一个连接池，由<strong>应用程序动态地对池中的连接进行申请、使用和释放</strong>。</p>
+<p>对于多于连接池中连接数的并发请求，应该在请求队列中排队等待。并且应用程序可以根据池中连接的使用率，动态增加或减少池中的连接数。连接池技术尽可能多地重用了消耗内存地资源，大大节省了内存，提高了服务器地服务效率，能够支持更多的客户服务。通过使用连接池，将大大提高程序运行效率，同时可以通过其自身的管理机制来监视数据库连接的数量、使用情况等。</p>
+<p><strong>数据库连接池负责分配、管理和释放数据库连接，它允许应用程序重复使用一个现有的数据库连接，而不是再重新建立一个</strong>。</p>
+<ul>
+<li><strong>连接池的工作原理</strong>：</li>
+</ul>
+<p>连接池的工作原理主要由三部分组成，分别为连接池的建立、连接池中连接的使用管理、连接池的关闭。</p>
+<ol>
+<li>
+<p>连接池的建立。一般在系统初始化时，连接池会根据系统配置建立，并在池中创建了几个连接对象，以便使用时能从连接池中获取。连接池中的连接不能随意创建和关闭，这样避免了连接随意建立和关闭造成的系统开销。Java中提供了很多容器类可以方便的构建连接池，例如Vector、Stack等。</p>
+</li>
+<li>
+<p>连接池的管理。连接池管理策略是连接池机制的核心，连接池内连接的分配和释放对系统的性能有很大的影响。其管理策略是： 当客户请求数据库连接时，首先查看连接池中是否有空闲连接，如果存在空闲连接，则将连接分配给客户使用；如果没有空闲连接，则查看当前所开的连接数是否已经达到最大连接数，如果没达到就重新创建一个连接给请求的客户；如果达到就按设定的最大等待时间进行等待，如果超出最大等待时间，则抛出异常给客户。</p>
+<p>当客户释放数据库连接时，先判断该连接的引用次数是否超过了规定值，如果超过就从连接池中删除该连接，否则保留为其他客户服务。
+该策略保证了数据库连接的有效复用，避免频繁的建立、释放连接所带来的系统资源开销。</p>
+</li>
+<li>
+<p>连接池的关闭。当应用程序退出时，关闭连接池中所有的连接，释放连接池相关的资源，该过程正好与创建相反。</p>
+</li>
+</ol>
+<ul>
+<li>
+<p><strong>常见的连接池</strong>：</p>
+<p>DBCP: Spring推荐的（Spring框架已经集成DBCP）</p>
+<p>C3P0: Hibernate推荐的(早期)（Hibernate框架已经集成C3P0）</p>
+<p>Hikari：HikariCP可能是目前业内最快的数据库连接池，而且轻量的连接池</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 1.导包
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// slf4j-api.jar
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// HikariCP.jar
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 2.创建连接池对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>HikariDataSource pool <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HikariDataSource<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 3.设置连接数据库的参数和连接池本身的属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>pool<span style="color:#f92672">.</span><span style="color:#a6e22e">setJdbcUrl</span><span style="color:#f92672">(</span>url<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>pool<span style="color:#f92672">.</span><span style="color:#a6e22e">setUsername</span><span style="color:#f92672">(</span>username<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>pool<span style="color:#f92672">.</span><span style="color:#a6e22e">setPassword</span><span style="color:#f92672">(</span>password<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>Druid ：Druid是阿里巴巴开源的“为监控而生的数据库连接池！”。 性能测试过程略低于HikariCP，但是提供了强大的监</p>
+<p>控和扩展功能，支持psCache。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="获取执行对象">获取执行对象</h3>
+<p>执行sql时需要有对应的执行对象，Java中提供了两种类执行sql</p>
+<ol>
+<li>
+<p><code>Statement</code>这个类会存在sql注入的问题，比如在输入的密码中拼接sql的关键字 <code>or 1=1</code>，以达到通过校验的目的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>     			Connection connect <span style="color:#f92672">=</span> JDBCUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">getConnect</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>          Statement statement <span style="color:#f92672">=</span> connect<span style="color:#f92672">.</span><span style="color:#a6e22e">createStatement</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     <span style="color:#75715e">// 定义sql语句
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>     String sql <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;insert into emp(empno,ename,job,mgr,hiredate,sal,comm,deptno) value(&#34;</span><span style="color:#f92672">+</span>emp<span style="color:#f92672">.</span><span style="color:#a6e22e">getEmpno</span><span style="color:#f92672">()+</span><span style="color:#e6db74">&#34;,&#39;&#34;</span><span style="color:#f92672">+</span>emp<span style="color:#f92672">.</span><span style="color:#a6e22e">getEname</span><span style="color:#f92672">()+</span><span style="color:#e6db74">&#34;&#39;,&#39;&#34;</span><span style="color:#f92672">+</span>emp<span style="color:#f92672">.</span><span style="color:#a6e22e">getJob</span><span style="color:#f92672">()+</span><span style="color:#e6db74">&#34;&#39;,&#34;</span><span style="color:#f92672">+</span>emp<span style="color:#f92672">.</span><span style="color:#a6e22e">getMgr</span><span style="color:#f92672">()+</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">+</span>emp<span style="color:#f92672">.</span><span style="color:#a6e22e">getHiredate</span><span style="color:#f92672">()+</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">+</span>emp<span style="color:#f92672">.</span><span style="color:#a6e22e">getSal</span><span style="color:#f92672">()+</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">+</span>emp<span style="color:#f92672">.</span><span style="color:#a6e22e">getComm</span><span style="color:#f92672">()+</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">+</span>emp<span style="color:#f92672">.</span><span style="color:#a6e22e">getDeptno</span><span style="color:#f92672">()+</span><span style="color:#e6db74">&#34;)&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#75715e">// 使用statement对象执行sql语句
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>     statement<span style="color:#f92672">.</span><span style="color:#a6e22e">execute</span><span style="color:#f92672">(</span>sql<span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p><code>PrepareStatement</code> 这个类使用占位符 <code>?</code> 替代需要入参的位置，后续将对应位置的值设置好进行执行。与 <code>Statement</code> 的区别是 <code>PrepareStatement</code> 是接收参数前编译sql，而 <code>Statement</code> 是接收参数后编译sql。</p>
+<p>在设置值时，第一个参数是占位符的参数角标，从1开始。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">try</span><span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>     			<span style="color:#75715e">// 1.获取数据库连接
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>          Connection connect <span style="color:#f92672">=</span> JDBCUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">getConnect</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e">// 2.建立PreparedStatement对象执行sql
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>          PreparedStatement preparedStatement <span style="color:#f92672">=</span> connect<span style="color:#f92672">.</span><span style="color:#a6e22e">prepareStatement</span><span style="color:#f92672">(</span>sql<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// 3.设置sql中占位符的值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      preparedStatement<span style="color:#f92672">.</span><span style="color:#a6e22e">setString</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> user<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>      preparedStatement<span style="color:#f92672">.</span><span style="color:#a6e22e">setString</span><span style="color:#f92672">(</span><span style="color:#ae81ff">2</span><span style="color:#f92672">,</span> user<span style="color:#f92672">.</span><span style="color:#a6e22e">getPwd</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// 4.执行sql，获得返回集
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      resultSet <span style="color:#f92672">=</span> preparedStatement<span style="color:#f92672">.</span><span style="color:#a6e22e">executeQuery</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="获取主键">获取主键</h3>
+<p>在创建表时有<strong>自增长主键</strong>。在添加数据后，之前是可以在数据库表中看见自增的主键的。使用Java代码也可获取对应的自增长主键，后续涉及到多表操作时通常会获取自增长的id值。</p>
+<p>获取方式根据执行sql的对象进行区分：</p>
+<ol>
+<li>
+<p><code>Statement</code>通过 <code>Statement</code> 接口实现：</p>
+<p><code>int executeUpdate(sql语句,int autoGeneratedKeys)</code> 执行指定语句，通过标识决定是否获取自动生成的主键，标识取值于statement接口中的字段</p>
+<p><code>ResultSet getGeneratedKeys()</code> 获取返回的自动生成的主键</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test1</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> SQLException<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	Connection conn <span style="color:#f92672">=</span> JDBCUtil2<span style="color:#f92672">.</span><span style="color:#a6e22e">getConnection</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 	Statement st <span style="color:#f92672">=</span> conn<span style="color:#f92672">.</span><span style="color:#a6e22e">createStatement</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 	String sql <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;insert into account(name,money) values(&#39;刘备&#39;,100)&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 	st<span style="color:#f92672">.</span><span style="color:#a6e22e">executeUpdate</span><span style="color:#f92672">(</span>sql<span style="color:#f92672">,</span> Statement<span style="color:#f92672">.</span><span style="color:#a6e22e">RETURN_GENERATED_KEYS</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#75715e">//通过这种方式拿到主键
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	ResultSet rs <span style="color:#f92672">=</span> st<span style="color:#f92672">.</span><span style="color:#a6e22e">getGeneratedKeys</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#66d9ef">while</span><span style="color:#f92672">(</span>rs<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">()){</span>
+</span></span><span style="display:flex;"><span> 		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;新增的主键为：&#34;</span><span style="color:#f92672">+</span>rs<span style="color:#f92672">.</span><span style="color:#a6e22e">getLong</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p><code>PreparedStatement</code> 通过 <code>Connection</code> 接口和 <code>PreparedStatement</code> 接口实现：</p>
+<p><code>Connection</code> 接口：</p>
+<p><code>PreparedStatement preparedStatement(sql语句,是否返回id的标识)</code> 创建预编译对象，该对象包含一个是否返回主键的标识</p>
+<p><code>PreparedStatement</code> 接口：</p>
+<p><code>ResultSet getGeneratedKeys()</code> 获取ID值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test2</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> SQLException<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 	Connection conn <span style="color:#f92672">=</span> JDBCUtil2<span style="color:#f92672">.</span><span style="color:#a6e22e">getConnection</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 	String sql <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;insert into account(name,money) values(&#39;貂蝉&#39;,1100)&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 	PreparedStatement st <span style="color:#f92672">=</span> conn<span style="color:#f92672">.</span><span style="color:#a6e22e">prepareStatement</span><span style="color:#f92672">(</span>sql<span style="color:#f92672">,</span>Statement<span style="color:#f92672">.</span><span style="color:#a6e22e">RETURN_GENERATED_KEYS</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 	st<span style="color:#f92672">.</span><span style="color:#a6e22e">executeUpdate</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#75715e">//通过这种方式拿到主键
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	ResultSet rs <span style="color:#f92672">=</span> st<span style="color:#f92672">.</span><span style="color:#a6e22e">getGeneratedKeys</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#66d9ef">while</span><span style="color:#f92672">(</span>rs<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">()){</span>
+</span></span><span style="display:flex;"><span> 		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;新增的主键为：&#34;</span><span style="color:#f92672">+</span>rs<span style="color:#f92672">.</span><span style="color:#a6e22e">getLong</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ol>
+<h2 id="事务">事务</h2>
+<p>数据库的事务（Transaction）是一种机制、一个操作序列，包含了<strong>一组数据库操作命令</strong>。事务把所有的命令作为一个整体一起向系统提交或撤销操作请求，即这一组数据库命令，<strong>要么同时成功</strong>，<strong>要么同时失败</strong>。事务是一个不可分割的工作逻辑单元。</p>
+<h3 id="事务四大特征">事务四大特征</h3>
+<ul>
+<li>
+<p>原子性（Atomicity）事务是不可分割的最小操作单位，要么同时成功，要么同时失败</p>
+</li>
+<li>
+<p>一致性（Consistency）事务完成时，必须使所有的数据都保持一致状态</p>
+<p>例子：拿转账来说，假设用户A和用户B两者的钱加起来一共是5000，那么不管A和B之间如何转账，转几次账，事务结束后两个用户的钱相加起来应该还得是5000，这就是事务的一致性；</p>
+</li>
+<li>
+<p>隔离性（Isolation）多个事务之间需要相互隔离</p>
+</li>
+<li>
+<p>持久性（Durability）事务一旦提交或回滚，它对数据库中的数据的改变就是永久的</p>
+</li>
+</ul>
+<p><strong>注</strong>：在JDBC和mysql中，事务是默认提交的，在执行一个DML/DDL操作的时候，就已经提交事务了。</p>
+<h3 id="事务语法">事务语法</h3>
+<p>分别通过Mysql与Java中的语法说明：</p>
+<ol>
+<li>Mysql中的命令：在Mysql中默认都是自动提交事务，SQL只要一提交，就执行。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#75715e"># 开启事务
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>START TRANSACTION;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>BEGIN;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 提交事务
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>commit;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 回滚事务
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>rollback;
+</span></span></code></pre></div><ol start="2">
+<li>
+<p>Java中的 <code>Connection</code> 接口：</p>
+<p><code>void setAutoCommit(Boolean autoCommit)</code> 设定是否自动提交数据，在执行操作之前；</p>
+<p><code>autoCommit</code> 表示是否自动提交事务，<code>true</code>表示自动提交事务，<code>false</code>表示手动提交事务。而开启事务需要将该参数设为为<code>false</code>。</p>
+<p><code>void commit()</code> 提交事务，在执行操作之后；</p>
+<p><code>void rollback()</code> 回滚事务；</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JDBCTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 1. 注册驱动
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// Class.forName(&#34;com.mysql.jdbc.Driver&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        String url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jdbc:mysql:///java1125&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        String username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;root&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        String password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;123456&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        Connection conn <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        Statement stmt <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 2. 获取连接：如果连接的是本机mysql并且端口是默认的 3306 可以简化书写
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            conn <span style="color:#f92672">=</span> DriverManager<span style="color:#f92672">.</span><span style="color:#a6e22e">getConnection</span><span style="color:#f92672">(</span>url<span style="color:#f92672">,</span> username<span style="color:#f92672">,</span> password<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 3. 获取执行sql的对象 Statement
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            stmt <span style="color:#f92672">=</span> conn<span style="color:#f92672">.</span><span style="color:#a6e22e">createStatement</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 4. 定义sql
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            String sql1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;update account set money = money - 500 where id = 1&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            String sql2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;update account set money = money + 500 where id = 2&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// ============开启事务==========
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            conn<span style="color:#f92672">.</span><span style="color:#a6e22e">setAutoCommit</span><span style="color:#f92672">(</span><span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 5. 执行sql
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">int</span> count1 <span style="color:#f92672">=</span> stmt<span style="color:#f92672">.</span><span style="color:#a6e22e">executeUpdate</span><span style="color:#f92672">(</span>sql1<span style="color:#f92672">);</span><span style="color:#75715e">// 受影响的行数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// 6. 处理结果
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>count1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 5. 执行sql
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">int</span> count2 <span style="color:#f92672">=</span> stmt<span style="color:#f92672">.</span><span style="color:#a6e22e">executeUpdate</span><span style="color:#f92672">(</span>sql2<span style="color:#f92672">);</span><span style="color:#75715e">// 受影响的行数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// 6. 处理结果
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>count2<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// ============提交事务==========
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// 程序运行到此处，说明没有出现任何问题，则需求提交事务
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            conn<span style="color:#f92672">.</span><span style="color:#a6e22e">commit</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// ============回滚事务==========
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// 程序在出现异常时会执行到这个地方，此时就需要回滚事务
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>conn<span style="color:#f92672">!=</span><span style="color:#66d9ef">null</span><span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>                    conn<span style="color:#f92672">.</span><span style="color:#a6e22e">rollback</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>                    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;事务已回滚&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>SQLException e1<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                e1<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ol>
+</section>
 
   
   
@@ -202,6 +450,8 @@ JDBC访问数据库的方式：
   
   
   <nav class="post-nav">
+    
+    <a class="prev" href="https://bruisesl.github.io/post/javaee--xml/"><span>←</span><span>JavaEE--XML</span></a>
      
     <a class="next" href="https://bruisesl.github.io/post/javaee%E4%BB%8B%E7%BB%8D/"><span>JaveEE 介绍</span><span>→</span></a>
     
