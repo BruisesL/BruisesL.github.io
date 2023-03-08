@@ -7,13 +7,73 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2008–2019, Steve Francia and the lee.so; all rights reserved.</copyright>
-    <lastBuildDate>Sat, 04 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>JavaEE--XML</title>
-      <link>https://bruisesl.github.io/post/javaee--xml/</link>
+      <title>JavaWeb-HTML</title>
+      <link>https://bruisesl.github.io/post/javaweb-html/</link>
+      <pubDate>Tue, 07 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/javaweb-html/</guid>
+      <description>HTML（Hyper Text Markup Language）中文全名叫做超文本标记语言，超文本标记语言就是能够在文本内插入图片，音频，视频，超链接等。HTML是网页内容的载体。内容就是网页制作者放在页面上想要让用户浏览的信息，可以包含文字、图片、视频等。
+HTML的特点：
+HTML标签不区分大小写，&amp;lt;h1&amp;gt;和&amp;lt;H1&amp;gt;是一样的。HTML的解析是从上至下的。HTML具有一定的容错性，也就是如果我们输入的代码有一部分是错误的，系统不会报错，反而会按照他自己的思维修改你的错误。
+文档结构：
+一个网页对应多个HTML文件，超文本标记语言文件以.htm为扩展名或.html为扩展名。可以使用任何能够生成TXT类型源文件的文本编辑器来产生超文本标记语言文件，只用修改文件后缀即可。
+标准的超文本标记语言文件都具有一个基本的整体结构，标记一般都是成对出现（部分标记除外例如：&amp;lt;br/&amp;gt;），即超文本标记语言文件的开头与结尾标志和超文本标记语言的头部与实体两大部分。有三个双标记符用于页面整体结构的确认。
+&amp;lt;html&amp;gt; &amp;lt;head&amp;gt;...&amp;lt;/head&amp;gt; &amp;lt;body&amp;gt;...&amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; &amp;lt;html&amp;gt;&amp;lt;/html&amp;gt;称为根标签，所有的网页标签都在&amp;lt;html&amp;gt;&amp;lt;/html&amp;gt;中。这2个标记符分别表示头部信息的开始和结尾。头部中包含的标记是页面的标题、序言、说明等内容，它本身不作为内容来显示，但影响网页显示的效果。
+声明 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;!DOCTYPE HTML&amp;gt; &amp;lt;!doctype html&amp;gt; &amp;lt;!Doctype Html&amp;gt; 通用声明 HTML5 HTML 4.01 XHTML 1.0 查看完整网页声明类型 DOCTYPE 参考手册。
+中文编码 目前在大部分浏览器中，直接输出中文会出现中文乱码的情况，这时候我们就需要在头部将字符声明为 UTF-8 或 GBK。
+HTML 实例 </description>
+    </item>
+    
+    <item>
+      <title>Java日志</title>
+      <link>https://bruisesl.github.io/post/java%E6%97%A5%E5%BF%97/</link>
+      <pubDate>Tue, 07 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/java%E6%97%A5%E5%BF%97/</guid>
+      <description>日志框架是用来记录程序的运行信息的。而对于一个成熟的Java应用，这个是必不可少的。在开发和调试阶段，日志可以帮助我们更快的定位问题；而在应用的运维过程中，日志系统又可以帮助我们记录大部分的异常信息，通常很多企业会通过收集日志信息来对系统的运行状态进行实时监控预警。
+常见的日志框架 Log4j
+Apache Log4j 是一个基于 Java 的日志记录工具。它是由 Ceki Gülcü首创的，现在则是 Apache 软件基金会的一个项目。 Log4j 是几种 Java 日志框架之一。
+Log4j2
+Apache Log4j 2 是 apache 开发的一款 Log4j 的升级产品。
+Commons Logging
+Apache 基金会所属的项目，是一套 Java 日志接口，之前叫 Jakarta Commons Logging，后更名为 Commons Logging。
+Slf4j
+类似于 Commons Logging，是一套简易 Java 日志门面，本身并无日志的实现。（Simple Logging Facade for Java，缩写 Slf4j）。
+Logback
+一套日志组件的实现(Slf4j 阵营)。
+Jul (Java Util Logging)
+自 Java1.4 以来的官方日志实现。
+历史与选择 历史：
+1996 年早期，欧洲安全电子市场项目组决定编写它自己的程序跟踪 API(Tracing API)。经过不断的完善，这个 API 终于成为一个十分受欢迎的 Java 日志软件包，即 Log4j。后来 Log4j 成为 Apache 基金会项目中的一员。</description>
+    </item>
+    
+    <item>
+      <title>MyBatis</title>
+      <link>https://bruisesl.github.io/post/mybatis/</link>
+      <pubDate>Sun, 05 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/mybatis/</guid>
+      <description>MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。MyBatis 可以通过简单的XML或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。MyBatis 本是 Apache 的一个开源项目iBatis，2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis 。2013年11月迁移到Github。
+MyBatis 是一个半自动化的ORM框架 (Object Relationship Mapping) ，ORM是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。
+Mybatis优势：
+基于XML文件配置开发，不是硬编码 SQL语句和代码分离 优化JDBC的使用，高效开发，以及可以自动映射结果集，包括参数的优化（反射） 支持动态SQL。SQL语句的条件很有可能是不确定的，需要动态根据需求来进行查询或操作。 框架就是一个半成品软件，是一套可重用的、通用的、软件基础代码模型，在框架的基础之上构建软件编写更加高效、规范、通用、可扩展。
+思路流程 搭建环境
+导包：Mysql连接驱动包mysql-connector-j-8.0.32.jar 与 Mybatis包mybatis-3.5.11.jar
+拷贝Mybatis核心配置文件，并编写配置信息文件jdbc.properties与映射XxxMapper.xml文件
+Mybatis-Config.xml
+将连接mysql的具体配置信息抽取到jdbc.properties，在核心配置文件中通过&amp;lt;properties resource=&amp;quot;jdbc.properties&amp;quot;/&amp;gt; 关联到jdbc.properties。
+再关联扫描的Mapper文件，Mapper文件用于存储需要执行的sql语句。
+&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34; ?&amp;gt; &amp;lt;!DOCTYPE configuration PUBLIC &amp;#34;-//mybatis.org//DTD Config 3.0//EN&amp;#34; &amp;#34;http://mybatis.org/dtd/mybatis-3-config.dtd&amp;#34;&amp;gt; &amp;lt;!--核心配置文件--&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;!-- 引入配置文件信息,这里不能加classpath:。 resource:引入类路径下的资源,即classpath，所以不需要写classpath: url:引入网络路径或磁盘路径下的资源 --&amp;gt; &amp;lt;properties resource=&amp;#34;db.properties&amp;#34;&amp;gt;&amp;lt;/properties&amp;gt; &amp;lt;!-- environments：配置数据库连接环境信息。可以配置多个environment， 通过default属性切换不同的environment. --&amp;gt; &amp;lt;environments default=&amp;#34;development&amp;#34;&amp;gt; &amp;lt;!</description>
+    </item>
+    
+    <item>
+      <title>JavaEE-XML</title>
+      <link>https://bruisesl.github.io/post/javaee-xml/</link>
       <pubDate>Sat, 04 Mar 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://bruisesl.github.io/post/javaee--xml/</guid>
+      <guid>https://bruisesl.github.io/post/javaee-xml/</guid>
       <description>XML的全称为(EXtensible Markup Language)，是一种可扩展的标记语言: 通过标签来描述数据的一门语言（标签有时也称为元素），标签的名字是可以自定义的，XML文件是由很多标签组成的。而标签名是可以自定义的。
 XML 不会做任何事情。XML 被设计用来结构化、存储以及传输信息，例如 Jani 写给 Tove 的便签，存储为 XML。
 &amp;lt;note&amp;gt; &amp;lt;to&amp;gt;Tove&amp;lt;/to&amp;gt; &amp;lt;from&amp;gt;Jani&amp;lt;/from&amp;gt; &amp;lt;heading&amp;gt;Reminder&amp;lt;/heading&amp;gt; &amp;lt;body&amp;gt;Don&amp;#39;t forget me this weekend!&amp;lt;/body&amp;gt; &amp;lt;/note&amp;gt; XML 语言没有预定义的标签，而HTML 中使用的标签都是预定义的。HTML 文档只能使用在 HTML 标准中定义过的标签（如 &amp;lt;p&amp;gt;、&amp;lt;h1&amp;gt; 等等）。XML 允许创作者定义自己的标签和自己的文档结构。
@@ -32,11 +92,11 @@ XHTML 用于描述可用的 Web 服务 的 WSDL 作为手持设备的标记语�
     </item>
     
     <item>
-      <title>JavaEE -- JDBC</title>
-      <link>https://bruisesl.github.io/post/javaee--jdbc/</link>
+      <title>JavaEE-JDBC</title>
+      <link>https://bruisesl.github.io/post/javaee-jdbc/</link>
       <pubDate>Wed, 01 Mar 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://bruisesl.github.io/post/javaee--jdbc/</guid>
+      <guid>https://bruisesl.github.io/post/javaee-jdbc/</guid>
       <description>JDBC是Java DataBase Connectivity的缩写，它是Java程序访问数据库的标准接口，用于执行SQL语句。使用Java程序访问数据库时，Java代码并不是直接通过TCP连接去访问数据库，而是通过JDBC接口来访问，而JDBC接口则通过JDBC驱动来实现真正对数据库的访问。在Java中，数据库存取技术只能通过JDBC访问数据。
 JDBC访问数据库的方式：
 直接使用JDBC的API去访问数据库服务器(MySQL/Oracle) 间接地使用JDBC的API去访问数据库服务器 JDBC步骤 注册加载驱动程序 获得数据库连接 获取执行对象 执行sql语句 释放资源 public class JDBCTest1 { @Test public void testCreatJDBC() throws SQLException, ClassNotFoundException { final String URL = &amp;#34;jdbc:mysql:///test&amp;#34;; final String user = &amp;#34;root&amp;#34;; final String password = &amp;#34;root123456&amp;#34;; // 1.注册加载驱动程序 // 使用反射注册,源码中有静态代码块new Driver对象 Class.forName(&amp;#34;com.mysql.jdbc.Driver&amp;#34;); // 在mySQL 5 版本后，会自动注册，不需要手动注册 // 2.获得数据库连接 Connection connection = DriverManager.getConnection(URL, user, password); // 3.获取执行对象 Statement stmt = connection.createStatement(); // 4.执行sql查询语句，返回结果集 ResultSet rs = stmt.executeQuery(&amp;#34;SELECT * FROM emp&amp;#34;); // 5.</description>

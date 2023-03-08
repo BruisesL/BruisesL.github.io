@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>MyBatis - BruisesL&#39;s blog</title>
+
+  
+  
+  <meta name="description" content="MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。MyBatis 可以通过简单的XML或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。MyBatis 本是 Apache 的一个开源项目iBatis，2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis 。2013年11月迁移到Github。
+MyBatis 是一个半自动化的ORM框架 (Object Relationship Mapping) ，ORM是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。
+Mybatis优势：
+基于XML文件配置开发，不是硬编码 SQL语句和代码分离 优化JDBC的使用，高效开发，以及可以自动映射结果集，包括参数的优化（反射） 支持动态SQL。SQL语句的条件很有可能是不确定的，需要动态根据需求来进行查询或操作。 框架就是一个半成品软件，是一套可重用的、通用的、软件基础代码模型，在框架的基础之上构建软件编写更加高效、规范、通用、可扩展。
+思路流程 搭建环境
+导包：Mysql连接驱动包mysql-connector-j-8.0.32.jar 与 Mybatis包mybatis-3.5.11.jar
+拷贝Mybatis核心配置文件，并编写配置信息文件jdbc.properties与映射XxxMapper.xml文件
+Mybatis-Config.xml
+将连接mysql的具体配置信息抽取到jdbc.properties，在核心配置文件中通过&lt;properties resource=&quot;jdbc.properties&quot;/&gt; 关联到jdbc.properties。
+再关联扫描的Mapper文件，Mapper文件用于存储需要执行的sql语句。
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt; &lt;!DOCTYPE configuration PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt; &lt;!--核心配置文件--&gt; &lt;configuration&gt; &lt;!-- 引入配置文件信息,这里不能加classpath:。 resource:引入类路径下的资源,即classpath，所以不需要写classpath: url:引入网络路径或磁盘路径下的资源 --&gt; &lt;properties resource=&#34;db.properties&#34;&gt;&lt;/properties&gt; &lt;!-- environments：配置数据库连接环境信息。可以配置多个environment， 通过default属性切换不同的environment. --&gt; &lt;environments default=&#34;development&#34;&gt; &lt;!" />
+  <meta name="author" content="BruisesL" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://bruisesl.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/theme.png" />
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/github.svg" />
+  
+
+  
+  <link rel="icon" href="https://bruisesl.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://bruisesl.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.110.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="MyBatis" />
+<meta property="og:description" content="MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。MyBatis 可以通过简单的XML或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。MyBatis 本是 Apache 的一个开源项目iBatis，2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis 。2013年11月迁移到Github。
+MyBatis 是一个半自动化的ORM框架 (Object Relationship Mapping) ，ORM是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。
+Mybatis优势：
+基于XML文件配置开发，不是硬编码 SQL语句和代码分离 优化JDBC的使用，高效开发，以及可以自动映射结果集，包括参数的优化（反射） 支持动态SQL。SQL语句的条件很有可能是不确定的，需要动态根据需求来进行查询或操作。 框架就是一个半成品软件，是一套可重用的、通用的、软件基础代码模型，在框架的基础之上构建软件编写更加高效、规范、通用、可扩展。
+思路流程 搭建环境
+导包：Mysql连接驱动包mysql-connector-j-8.0.32.jar 与 Mybatis包mybatis-3.5.11.jar
+拷贝Mybatis核心配置文件，并编写配置信息文件jdbc.properties与映射XxxMapper.xml文件
+Mybatis-Config.xml
+将连接mysql的具体配置信息抽取到jdbc.properties，在核心配置文件中通过&lt;properties resource=&quot;jdbc.properties&quot;/&gt; 关联到jdbc.properties。
+再关联扫描的Mapper文件，Mapper文件用于存储需要执行的sql语句。
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt; &lt;!DOCTYPE configuration PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt; &lt;!--核心配置文件--&gt; &lt;configuration&gt; &lt;!-- 引入配置文件信息,这里不能加classpath:。 resource:引入类路径下的资源,即classpath，所以不需要写classpath: url:引入网络路径或磁盘路径下的资源 --&gt; &lt;properties resource=&#34;db.properties&#34;&gt;&lt;/properties&gt; &lt;!-- environments：配置数据库连接环境信息。可以配置多个environment， 通过default属性切换不同的environment. --&gt; &lt;environments default=&#34;development&#34;&gt; &lt;!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bruisesl.github.io/post/mybatis/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-03-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-03-05T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="MyBatis">
+<meta itemprop="description" content="MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。MyBatis 可以通过简单的XML或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。MyBatis 本是 Apache 的一个开源项目iBatis，2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis 。2013年11月迁移到Github。
+MyBatis 是一个半自动化的ORM框架 (Object Relationship Mapping) ，ORM是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。
+Mybatis优势：
+基于XML文件配置开发，不是硬编码 SQL语句和代码分离 优化JDBC的使用，高效开发，以及可以自动映射结果集，包括参数的优化（反射） 支持动态SQL。SQL语句的条件很有可能是不确定的，需要动态根据需求来进行查询或操作。 框架就是一个半成品软件，是一套可重用的、通用的、软件基础代码模型，在框架的基础之上构建软件编写更加高效、规范、通用、可扩展。
+思路流程 搭建环境
+导包：Mysql连接驱动包mysql-connector-j-8.0.32.jar 与 Mybatis包mybatis-3.5.11.jar
+拷贝Mybatis核心配置文件，并编写配置信息文件jdbc.properties与映射XxxMapper.xml文件
+Mybatis-Config.xml
+将连接mysql的具体配置信息抽取到jdbc.properties，在核心配置文件中通过&lt;properties resource=&quot;jdbc.properties&quot;/&gt; 关联到jdbc.properties。
+再关联扫描的Mapper文件，Mapper文件用于存储需要执行的sql语句。
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt; &lt;!DOCTYPE configuration PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt; &lt;!--核心配置文件--&gt; &lt;configuration&gt; &lt;!-- 引入配置文件信息,这里不能加classpath:。 resource:引入类路径下的资源,即classpath，所以不需要写classpath: url:引入网络路径或磁盘路径下的资源 --&gt; &lt;properties resource=&#34;db.properties&#34;&gt;&lt;/properties&gt; &lt;!-- environments：配置数据库连接环境信息。可以配置多个environment， 通过default属性切换不同的environment. --&gt; &lt;environments default=&#34;development&#34;&gt; &lt;!"><meta itemprop="datePublished" content="2023-03-05T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-03-05T00:00:00+00:00" />
+<meta itemprop="wordCount" content="453">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MyBatis"/>
+<meta name="twitter:description" content="MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。MyBatis 可以通过简单的XML或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。MyBatis 本是 Apache 的一个开源项目iBatis，2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis 。2013年11月迁移到Github。
+MyBatis 是一个半自动化的ORM框架 (Object Relationship Mapping) ，ORM是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。
+Mybatis优势：
+基于XML文件配置开发，不是硬编码 SQL语句和代码分离 优化JDBC的使用，高效开发，以及可以自动映射结果集，包括参数的优化（反射） 支持动态SQL。SQL语句的条件很有可能是不确定的，需要动态根据需求来进行查询或操作。 框架就是一个半成品软件，是一套可重用的、通用的、软件基础代码模型，在框架的基础之上构建软件编写更加高效、规范、通用、可扩展。
+思路流程 搭建环境
+导包：Mysql连接驱动包mysql-connector-j-8.0.32.jar 与 Mybatis包mybatis-3.5.11.jar
+拷贝Mybatis核心配置文件，并编写配置信息文件jdbc.properties与映射XxxMapper.xml文件
+Mybatis-Config.xml
+将连接mysql的具体配置信息抽取到jdbc.properties，在核心配置文件中通过&lt;properties resource=&quot;jdbc.properties&quot;/&gt; 关联到jdbc.properties。
+再关联扫描的Mapper文件，Mapper文件用于存储需要执行的sql语句。
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt; &lt;!DOCTYPE configuration PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt; &lt;!--核心配置文件--&gt; &lt;configuration&gt; &lt;!-- 引入配置文件信息,这里不能加classpath:。 resource:引入类路径下的资源,即classpath，所以不需要写classpath: url:引入网络路径或磁盘路径下的资源 --&gt; &lt;properties resource=&#34;db.properties&#34;&gt;&lt;/properties&gt; &lt;!-- environments：配置数据库连接环境信息。可以配置多个environment， 通过default属性切换不同的environment. --&gt; &lt;environments default=&#34;development&#34;&gt; &lt;!"/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://bruisesl.github.io">BruisesL&#39;s blog</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
+    
+    <a class="" href="/about/">About</a>
+    
+  </nav>
+  
+
+  
+  <nav class="social">
+    
+    <a
+      class="github"
+      style="--url: url(./github.svg)"
+      href="https://github.com/BruisesL"
+      target="_blank"
+    ></a>
+    
+  </nav>
+  
+</header>
+
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <aside>
+      <time>March 5, 2023</time>
+      
+      <span>BruisesL</span>
+      
+    </aside>
+    <h1>MyBatis</h1>
+  </header>
+  <section class="post-content"><p><a href="http://www.mybatis.org/mybatis-3/zh/index.html">MyBatis</a> 是一款优秀的<strong>持久层框架</strong>，它支持自定义 SQL、存储过程以及高级映射。<strong>MyBatis 免除了几乎所有的</strong> <strong>JDBC 代码以及设置参数和获取结果集的工作</strong>。MyBatis 可以通过<strong>简单的XML或注解来配置</strong>和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。MyBatis 本是 Apache 的一个开源项目<strong>iBatis</strong>，2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis 。2013年11月迁移到<a href="https://github.com/mybatis/mybatis-3">Github</a>。</p>
+<p>MyBatis 是一个半自动化的<strong>ORM框架 (Object Relationship Mapping)</strong> ，ORM是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。</p>
+<p><strong>Mybatis优势</strong>：</p>
+<ol>
+<li>基于XML文件配置开发，不是硬编码</li>
+<li>SQL语句和代码分离</li>
+<li>优化JDBC的使用，高效开发，以及可以自动映射结果集，包括参数的优化（反射）</li>
+<li>支持动态SQL。SQL语句的条件很有可能是不确定的，需要动态根据需求来进行查询或操作。</li>
+</ol>
+<p>框架就是一个<strong>半成品软件</strong>，是一套<strong>可重用的、通用的、软件基础代码模型</strong>，在框架的基础之上构建软件编写更加<strong>高效、规范、通用、可扩展</strong>。</p>
+<h2 id="思路流程">思路流程</h2>
+<p><img src="/MyBatis%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.jpg" alt="MyBatis执行流程"></p>
+<ol>
+<li>
+<p>搭建环境</p>
+<p>导包：Mysql连接驱动包<code>mysql-connector-j-8.0.32.jar</code> 与 Mybatis包<code>mybatis-3.5.11.jar</code></p>
+</li>
+<li>
+<p>拷贝Mybatis核心配置文件，并编写配置信息文件jdbc.properties与映射XxxMapper.xml文件</p>
+<p>Mybatis-Config.xml</p>
+<p>将连接mysql的具体配置信息抽取到jdbc.properties，在核心配置文件中通过<code>&lt;properties resource=&quot;jdbc.properties&quot;/&gt;</code> 关联到jdbc.properties。</p>
+<p>再关联扫描的Mapper文件，Mapper文件用于存储需要执行的sql语句。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE configuration
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--核心配置文件--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;configuration&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 引入配置文件信息,这里不能加classpath:。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    resource:引入类路径下的资源,即classpath，所以不需要写classpath:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    url:引入网络路径或磁盘路径下的资源 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;properties</span> <span style="color:#a6e22e">resource=</span><span style="color:#e6db74">&#34;db.properties&#34;</span><span style="color:#f92672">&gt;&lt;/properties&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!--
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    environments：配置数据库连接环境信息。可以配置多个environment，
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    通过default属性切换不同的environment.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;environments</span> <span style="color:#a6e22e">default=</span><span style="color:#e6db74">&#34;development&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">&lt;!-- 一个环境 id:为这个环境取唯一一个id名称 --&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;environment</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;development&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">&lt;!-- 事务管理 type:JDBC(支持事务)/MANAGED(什么都不做) --&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;transactionManager</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;JDBC&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">&lt;!-- 数据源, 连接池 type(POOLED):MyBatis自带的连接池 --&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;dataSource</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;POOLED&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">&lt;!-- 连接数据库的参数：直接写死的方式 --&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">&lt;!--
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                &lt;property name=&#34;driver&#34; value=&#34;com.mysql.jdbc.Driver&#34; /&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                &lt;property name=&#34;url&#34; value=&#34;jdbc:mysql:///mydb&#34; /&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                &lt;property name=&#34;username&#34; value=&#34;root&#34; /&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                &lt;property name=&#34;password&#34; value=&#34;admin&#34; /&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                --&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">&lt;!-- 连接数据库的参数：使用属性文件的方式 --&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;driver&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;${driver}&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;url&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;${url}&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;username&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;${username}&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;${password}&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;/dataSource&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/environment&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/environments&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!--加载sql映射文件--&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;mappers&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;mapper</span> <span style="color:#a6e22e">resource=</span><span style="color:#e6db74">&#34;cn/itsource/domain/ProductMapper.xml&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/mappers&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/configuration&gt;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--属性文件：jdbc.properties--&gt;</span>
+</span></span><span style="display:flex;"><span>driver=com.mysql.jdbc.Driver
+</span></span><span style="display:flex;"><span>url=jdbc:mysql:///java1125
+</span></span><span style="display:flex;"><span>username=root
+</span></span><span style="display:flex;"><span>password=admin
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!--Mapper映射文件--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE mapper PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> 这个Mapper的主要功能就是写sql
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> mapper：根
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> namespace：命令空间 （用来确定唯一）以前这个是可以不加的，现在必需加
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> namespace的值：接口的完全限定名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;mapper</span> <span style="color:#a6e22e">namespace=</span><span style="color:#e6db74">&#34;cn.itsource.dao.ProductDao&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    select ：这里面写查询语句
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    id：用来确定这条sql语句的唯一,以后我们确定唯一,也就是找sql语句 : namespace + id
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    例: cn.itsource.dao.ProductDao.findAll
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    resultType : 结果类型（第一条数据返回的对象类型）自己的对象一定是完全限定类名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;select</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;findAll&#34;</span> <span style="color:#a6e22e">resultType=</span><span style="color:#e6db74">&#34;cn.itsource.domain.Product&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        select * from product
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/select&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/mapper&gt;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>编写代码，获得SqlSession执行对应文件的sql</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>Product p<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    InputStream is<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    SqlSession sqlSession <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      	<span style="color:#75715e">// 1. 加载mybatis的核心配置文件，获取 SqlSessionFactory
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        is <span style="color:#f92672">=</span> Resources<span style="color:#f92672">.</span><span style="color:#a6e22e">getResourceAsStream</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;mybatis-config.xml&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        SqlSessionFactory factory <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SqlSessionFactoryBuilder<span style="color:#f92672">().</span><span style="color:#a6e22e">build</span><span style="color:#f92672">(</span>is<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>      	<span style="color:#75715e">// openSession()方法默认参数为false，表示不开启自动提交，传参true表示自动提交
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      	sqlSession <span style="color:#f92672">=</span> factory<span style="color:#f92672">.</span><span style="color:#a6e22e">openSession</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 2. 执行sql
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">insert</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ProductDao.save&#34;</span><span style="color:#f92672">,</span>p<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;添加数据成功！&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">finally</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 3.释放资源
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>sqlSession <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>测试编写的代码是否实现。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testFindAll</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Product<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> dao<span style="color:#f92672">.</span><span style="color:#a6e22e">findAll</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>list<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">::</span>println<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="使用mapper映射器优化">使用Mapper映射器优化</h3>
+<p>不实用Mapper映射器存在一定的问题。</p>
+<p><strong>存在问题</strong>：</p>
+<ol>
+<li>
+<p>DAO中其实都是在调用SqlSession中的CRUD方法</p>
+</li>
+<li>
+<p>session中的CRUD规则都是一样的</p>
+<p>第一个参数：必须是namespace+id，<strong>都一样，且是硬编码</strong></p>
+<p>第二个参数：如果需要传入的参数，则传入第二个参数</p>
+</li>
+</ol>
+<p><strong>解决方案</strong>：</p>
+<p>使用动态代理机制，在内存中动态生成一个DAO的实现类，其底层基于反射实现。</p>
+<p><strong>实现方式</strong>：</p>
+<ol>
+<li>
+<p>根据需求，在Mapper包中创建模型相关的Mapper接口，例如：UserMapper；</p>
+</li>
+<li>
+<p>在同包下编写映射文件，例如：UserMapper.xml；</p>
+<p>Mapper映射文件的命名空间，必须和接口的&quot;完全限定名&quot;一致；</p>
+<p>定义sql标签的id，需要和&quot;接口的方法名&quot;一致；</p>
+</li>
+<li>
+<p>在Mybatis核心配置文件中配置（或注册）Mapper映射文件；</p>
+</li>
+<li>
+<p>获取SqlSession调用<code>getMapper(Class&lt;T&gt; clazz)</code>方法（传入需要执行的接口字节码对象）获得当前接口的实现类的对象（该实现类为映射器动态生成的），使用该对象调用方法。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>SqlSession session <span style="color:#f92672">=</span> MyBatisUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">getSqlSession</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>UserMapper mapper <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span><span style="color:#a6e22e">getMapper</span><span style="color:#f92672">(</span>UserMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>mapper<span style="color:#f92672">.</span><span style="color:#a6e22e">findUser</span><span style="color:#f92672">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>测试。</p>
+</li>
+</ol>
+<h3 id="别名优化">别名优化</h3>
+<p>在Mybatis中，通过在mybatis-config.xml文件中配置typeAlias来设置你自己的别名，将实体类的名称简化，方便开发，别名分为内置别名和自定义别名。</p>
+<p>内置别名是Mybatis提供的，可以直接使用。</p>
+<p><img src="/%E5%86%85%E7%BD%AE%E5%88%AB%E5%90%8D.jpg" alt="内置别名"></p>
+<p>自定义别名，在mybatis核心配置文件中配置，未知在<code>&lt;properties/&gt;</code>标签下。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;typeAliases&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 单个配置：在映射文件中就可以直接使用&#34;Product&#34;代替&#34;cn.itsource.domain.Product&#34; --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;typeAlias</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;cn.itsource.domain.Product&#34;</span> <span style="color:#a6e22e">alias=</span><span style="color:#e6db74">&#34;Product&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 包的配置：使用package标签配置一个你要扫描的包，
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">				 该标签会注册该包下所有的 Java Bean 到 MyBatis 中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    		 项目中使用，添加了包之后，类名或类名首字母小写就是别名 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">		--&gt;</span>                
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;package</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;cn.itsource.domain&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/typeAliases&gt;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE mapper PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;mapper</span> <span style="color:#a6e22e">namespace=</span><span style="color:#e6db74">&#34;cn.itsource.dao.ProductDao&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;select</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;findAll&#34;</span> <span style="color:#a6e22e">resultType=</span><span style="color:#e6db74">&#34;Product&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        select * from product
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/select&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/mapper&gt;</span>
+</span></span></code></pre></div><h3 id="传参优化">传参优化</h3>
+<p>在需要动态指定表名或字段名的场景可以使用对应的<code>$</code>和<code>#</code>。</p>
+<p><code>$</code>和<code>#</code>的区别：</p>
+<ol>
+<li>
+<p><code>#</code>：MyBatis会把<code>#{}</code>表达式使用<code>?</code>（占位符）替换，作为一个sql参数使用，故不会有sql注入问题。</p>
+<p>比如name的值为:</p>
+<p>定义SQL: select * from t_user where name = #{name}</p>
+<p>最终SQL: select * from t_user where name = ?</p>
+</li>
+<li>
+<p><code>$</code>：MyBatis会把<code>${}</code>表达式的值替换到sql中，作为sql的组成部分。把获取到值直接<strong>拼接</strong>到SQL中。</p>
+</li>
+</ol>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>
+<p>在Mapper映射文件中配置sql语句时使用对应字符动态配置字段与值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;select</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;findAllByCondition&#34;</span> <span style="color:#a6e22e">parameterType=</span><span style="color:#e6db74">&#34;map&#34;</span> <span style="color:#a6e22e">resultType=</span><span style="color:#e6db74">&#34;product&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">&lt;!-- 如果要动态指定列名，请使用${} --&gt;</span>
+</span></span><span style="display:flex;"><span>		select * from product where ${columnName} = #{value} limit #{index},#{num}
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/select&gt;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>执行sql时使用Map传参</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">findAllByCondition</span><span style="color:#f92672">(){</span>
+</span></span><span style="display:flex;"><span>    HashMap<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> Object<span style="color:#f92672">&gt;</span> map <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>    map<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;column&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;product_name&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    map<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;value&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;罗技G9X&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>  	map<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;index&#34;</span><span style="color:#f92672">,</span><span style="color:#ae81ff">0</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>  	map<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;num&#34;</span><span style="color:#f92672">,</span><span style="color:#ae81ff">5</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Product<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> mapper<span style="color:#f92672">.</span><span style="color:#a6e22e">findAllByCondition</span><span style="color:#f92672">(</span>map<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">::</span>println<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ol>
+<h2 id="获取自增主键">获取自增主键</h2>
+<p>当数据库字段设置了自增长后，可以通过该方法获取到自增长的主键，与其他参数一并传入对象内。获取的方式分为两种。</p>
+<p><strong>方法一</strong>：</p>
+<p>通过在XxxMapper映射文件给编写sql的标签设置属性实现：</p>
+<p><code>useGeneratedKeys</code>：true/false：这个属性的意思就是，是否开启返回自增长的ID</p>
+<p><code>keyProperty</code>：这个属性的意思就是自增长的ID返回之后，放在你插入的对象中哪一个字段</p>
+<p><code>keyColumn</code>：数据库中的主键id是哪个，如果主键是第一列那么可以省略不写，如果不是第一列那么必须写</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;insert</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;save&#34;</span> <span style="color:#a6e22e">useGeneratedKeys=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">keyProperty=</span><span style="color:#e6db74">&#34;id&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">parameterType=</span><span style="color:#e6db74">&#34;cn.itsource.domain.Product&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 注意：如果没有指定例名，请严格按照表中的字段顺序进行占位 --&gt;</span>
+</span></span><span style="display:flex;"><span>        insert into product values(#{id},#{productName},#{dir_id},#{salePrice},#{supplier},#{brand},#{cutoff},#{costPrice})
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/insert&gt;</span>
+</span></span></code></pre></div><p><strong>方法二</strong>：</p>
+<p>该方法不常用，如果需要给id设置一个随机数或者唯一值，开发中最常用的方式是在Java代码中通过UUID这个方式进行生成。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;insert</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;add&#34;</span> <span style="color:#a6e22e">parameterType=</span><span style="color:#e6db74">&#34;cn.itsource.domain.Product&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 将插入数据的主键返回，返回到product对象中 SELECT LAST_INSERT_ID():得到刚insert进去记录的主键
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        值，只适用于自增主键
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        keyProperty：selectKey 语句结果应该被设置到的目标属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        resultType:指定SELECT LAST_INSERT_ID()的结果类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        order属性指定执行查询主键值SQL语句是在插入语句执行之前还是之后(可取值:after和before)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        注：mysql用after，oracle用before --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;selectKey</span> <span style="color:#a6e22e">keyProperty=</span><span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#a6e22e">resultType=</span><span style="color:#e6db74">&#34;java.lang.Long&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">order=</span><span style="color:#e6db74">&#34;AFTER&#34;</span> <span style="color:#a6e22e">statementType=</span><span style="color:#e6db74">&#34;PREPARED&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        SELECT LAST_INSERT_ID()
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/selectKey&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 注意：如果没有指定例名，请严格按照表中的字段顺序进行占位 --&gt;</span>
+</span></span><span style="display:flex;"><span>        insert into product values(#{id},#{productName},#{dir_id},#{salePrice},#{supplier},#{brand},#{cutoff},#{costPrice})
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/insert&gt;</span>
+</span></span></code></pre></div></section>
+
+  
+  
+
+  
+  
+  
+  <nav class="post-nav">
+    
+    <a class="prev" href="https://bruisesl.github.io/post/java%E6%97%A5%E5%BF%97/"><span>←</span><span>Java日志</span></a>
+     
+    <a class="next" href="https://bruisesl.github.io/post/javaee-xml/"><span>JavaEE-XML</span><span>→</span></a>
+    
+  </nav>
+  
+
+  
+  
+</article>
+
+</main>
+
+    <footer class="footer">
+  <p>&copy; 2023 <a href="https://bruisesl.github.io">BruisesL&#39;s blog</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
+
+  </body>
+</html>
