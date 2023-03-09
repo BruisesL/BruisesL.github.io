@@ -17,13 +17,17 @@
       <description>HTML（Hyper Text Markup Language）中文全名叫做超文本标记语言，超文本标记语言就是能够在文本内插入图片，音频，视频，超链接等。HTML是网页内容的载体。内容就是网页制作者放在页面上想要让用户浏览的信息，可以包含文字、图片、视频等。
 HTML的特点：
 HTML标签不区分大小写，&amp;lt;h1&amp;gt;和&amp;lt;H1&amp;gt;是一样的。HTML的解析是从上至下的。HTML具有一定的容错性，也就是如果我们输入的代码有一部分是错误的，系统不会报错，反而会按照他自己的思维修改你的错误。
-文档结构：
+HTML骨架格式：
 一个网页对应多个HTML文件，超文本标记语言文件以.htm为扩展名或.html为扩展名。可以使用任何能够生成TXT类型源文件的文本编辑器来产生超文本标记语言文件，只用修改文件后缀即可。
 标准的超文本标记语言文件都具有一个基本的整体结构，标记一般都是成对出现（部分标记除外例如：&amp;lt;br/&amp;gt;），即超文本标记语言文件的开头与结尾标志和超文本标记语言的头部与实体两大部分。有三个双标记符用于页面整体结构的确认。
-&amp;lt;html&amp;gt; &amp;lt;head&amp;gt;...&amp;lt;/head&amp;gt; &amp;lt;body&amp;gt;...&amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; &amp;lt;html&amp;gt;&amp;lt;/html&amp;gt;称为根标签，所有的网页标签都在&amp;lt;html&amp;gt;&amp;lt;/html&amp;gt;中。这2个标记符分别表示头部信息的开始和结尾。头部中包含的标记是页面的标题、序言、说明等内容，它本身不作为内容来显示，但影响网页显示的效果。
-声明 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;!DOCTYPE HTML&amp;gt; &amp;lt;!doctype html&amp;gt; &amp;lt;!Doctype Html&amp;gt; 通用声明 HTML5 HTML 4.01 XHTML 1.0 查看完整网页声明类型 DOCTYPE 参考手册。
-中文编码 目前在大部分浏览器中，直接输出中文会出现中文乱码的情况，这时候我们就需要在头部将字符声明为 UTF-8 或 GBK。
-HTML 实例 </description>
+&amp;lt;!-- 页面中最大的标签 根标签 --&amp;gt; &amp;lt;html&amp;gt; &amp;lt;!-- 头部标签 --&amp;gt; &amp;lt;head&amp;gt; &amp;lt;!-- 标题标签 --&amp;gt; &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;!-- 文档的主体 --&amp;gt; &amp;lt;body&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 常用标签 标题标签 使网页语义化（分为六个等级 &amp;lt;h1&amp;gt; 到 &amp;lt;h6&amp;gt;）
+段落和换行标签 段落：
+在网页中，要把文字有条理地显示出来，就需要将这些文字分段显示。 在HTML标签中，标签用于定义段落，它可以将整个网页分为若干个段落。
+&amp;lt;p&amp;gt;HTML的全称为超文本标记语言......&amp;lt;/p&amp;gt; &amp;lt;p&amp;gt;HTML文本是由HTML命令组成的描述性文本......&amp;lt;/p&amp;gt; 强制换行:
+&amp;lt;br/&amp;gt;
+图像标签 &amp;lt;img src = &amp;#34;地址&amp;#34; alt = &amp;#34;替换文本&amp;#34; /&amp;gt; 前面是标签，后面是属性
+特殊字符和注释 &amp;lt;!-- 注释 --&amp;gt; 特殊字符：
+空格	&amp;amp;nbsp; &amp;lt;	&amp;amp;lt; &amp;gt; &amp;amp;gt; &amp;amp;	&amp;amp;amp; ¥	&amp;amp;yen; ©	&amp;amp;copy ®	&amp;amp;reg; °	&amp;amp;deg; ±	&amp;amp;plusmn; ×	&amp;amp;times; ÷	&amp;amp;divide; ²（平方）	&amp;amp;sup2; ³（立方）	&amp;amp;sup3; 表格 &amp;lt;!</description>
     </item>
     
     <item>
