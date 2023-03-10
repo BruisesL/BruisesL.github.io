@@ -508,6 +508,36 @@ https://www.azul.com/downloads/?package=jdk#download-openjdk</description>
     </item>
     
     <item>
+      <title>JavaWeb-网络编程与服务器</title>
+      <link>https://bruisesl.github.io/post/javaweb-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/javaweb-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>网络编程 计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，实现资源共享和信息传递的计算机系统；
+Java中专门提供java.net包，方便开发网络程序。Java的网络编程包括了两种通信协议：
+TCP(Transmission Control Protocal)：传输控制协议 UDP(User Datagram Protocol)：用户数据协议 相关术语 两台计算机进行网络通信需要满足一下条件：
+两台主机需要有一个唯一的标识：也就是IP地址，用来表示所处的身份和位置 需要有共同的语言：协议（TCP/IP） 都需要有相应的端口号：port 一台主机上可以运行多个应用程序，如何辨别不同应用程序的通信，就是通过端口号port来进行区分。
+IP地址 为实现网络中不同计算机之间的通信，每台计算器都必须有一个唯一的标识，那就是IP地址（公网IP），这就相当于每个人的手机号码一样。例如：192.168.0.1
+IP分以下两个大类：
+IPv4：32位，分4段，（每段的范围0-255）0~255之间的十进制表示。使用4个8位的二进制数据表示,每8位之间使用圆点隔开，每个8位整数可以转换成一个0~255的十进制整数，因此一般看到的IP地址类似：192.168.1.1 这4段组成的个数有限度（42.28亿），可能会不够用，就出现了Ipv6。 IPv6：128位，分8段，0000~FFFF的十六进制数值，冒号分割，如：1080:0:0:0:8:800:200C:417A IP地址号段分类：A类留给政府机构，B类分配给中等规模的公司，C类分配给任意需要的人，D类用于组播，E类用于实验，各类可容纳的地址数目不同：
+注：
+外网IP是全世界唯一的IP地址，仅分配给一个网络设备（计算机、交互机、路由器、打印机、光纤等）。而内网IP是由路由器分配给每一部内部使用的IP地址，而内网的所有用户都是通过同一个外网IP地址进行上网的；
+内网的IP地址每个人的都不一样，Internet上的用户也无法直接访问到内网用户。简单来说呢，外网IP就是标示了在整个互联网上的地址，就相当于小区的地址，而内网IP呢，就是标识着在局域网里面的地址，也就是小区内的几栋几楼几号房子；
+在局域网中，每台电脑都可以自己分配自己的IP，这个IP只在局域网中有效。而如果将电脑连接到互联网，网络提供商（ISP）的服务器会分配一个IP地址，这个IP地址才是在外网的IP。两个IP同时存在，一个对内，一个对外；
+区分内网和公网IP的区别，公网IP是全球唯一的，而内网IP只是在局域网内有效，不具有公网IP的作用。查询公网IP地址：www.ip138.com
+Port端口 端口port用来区分不同的应用程序，端口号范围为0~65535，其中0~1023被系统所保留，如果自定义端口号，建议为1023以后的；
+注：同一台机器上不能有两个程序使用同一个端口，会冲突；tomcat：8080/80，mysql：3306
+URL&amp;amp;URI URL(Uniform Resource Locator)统一资源定位符，可以直接使用此类找到互联网上的资源如一个简单的网页。一般由：协议名，资源所在主机，端口，资源名等部分组成。如：https://stackoverflow.com/questions/75698432/angular-ngrx-combinelatest-unwanted-emit
+URI(Uniform Resource Identifier) 是统一资源标识符，俗称请求资源路径。http://localhost:808/myweb/hello.html
+区别：URL包含URI，URI只是URL的一部分
+URL类中的常用方法：
+URL(String protocol, String host, int port, String file)
+URL(String url)
+InputStream openStream() 打开到此 URL 的连接并返回一个用于从该连接读入的 InputStream；
+public void testURL() throws Exception { // java要通过URL地址操作网页，可以通过URL对象来操作 // 创建URL的方式有很多种 // 第一种：就是通过网站的URL地址创建URL对象 //URL url = new URL(&amp;#34;https://itsource.</description>
+    </item>
+    
+    <item>
       <title>数据库概述</title>
       <link>https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8A%E8%AF%AD%E6%B3%95/</link>
       <pubDate>Fri, 26 Feb 2021 00:00:00 +0000</pubDate>

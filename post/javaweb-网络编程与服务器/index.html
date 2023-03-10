@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>JavaWeb-网络编程与服务器 - BruisesL&#39;s blog</title>
+
+  
+  
+  <meta name="description" content="网络编程 计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，实现资源共享和信息传递的计算机系统；
+Java中专门提供java.net包，方便开发网络程序。Java的网络编程包括了两种通信协议：
+TCP(Transmission Control Protocal)：传输控制协议 UDP(User Datagram Protocol)：用户数据协议 相关术语 两台计算机进行网络通信需要满足一下条件：
+两台主机需要有一个唯一的标识：也就是IP地址，用来表示所处的身份和位置 需要有共同的语言：协议（TCP/IP） 都需要有相应的端口号：port 一台主机上可以运行多个应用程序，如何辨别不同应用程序的通信，就是通过端口号port来进行区分。
+IP地址 为实现网络中不同计算机之间的通信，每台计算器都必须有一个唯一的标识，那就是IP地址（公网IP），这就相当于每个人的手机号码一样。例如：192.168.0.1
+IP分以下两个大类：
+IPv4：32位，分4段，（每段的范围0-255）0~255之间的十进制表示。使用4个8位的二进制数据表示,每8位之间使用圆点隔开，每个8位整数可以转换成一个0~255的十进制整数，因此一般看到的IP地址类似：192.168.1.1 这4段组成的个数有限度（42.28亿），可能会不够用，就出现了Ipv6。 IPv6：128位，分8段，0000~FFFF的十六进制数值，冒号分割，如：1080:0:0:0:8:800:200C:417A IP地址号段分类：A类留给政府机构，B类分配给中等规模的公司，C类分配给任意需要的人，D类用于组播，E类用于实验，各类可容纳的地址数目不同：
+注：
+外网IP是全世界唯一的IP地址，仅分配给一个网络设备（计算机、交互机、路由器、打印机、光纤等）。而内网IP是由路由器分配给每一部内部使用的IP地址，而内网的所有用户都是通过同一个外网IP地址进行上网的；
+内网的IP地址每个人的都不一样，Internet上的用户也无法直接访问到内网用户。简单来说呢，外网IP就是标示了在整个互联网上的地址，就相当于小区的地址，而内网IP呢，就是标识着在局域网里面的地址，也就是小区内的几栋几楼几号房子；
+在局域网中，每台电脑都可以自己分配自己的IP，这个IP只在局域网中有效。而如果将电脑连接到互联网，网络提供商（ISP）的服务器会分配一个IP地址，这个IP地址才是在外网的IP。两个IP同时存在，一个对内，一个对外；
+区分内网和公网IP的区别，公网IP是全球唯一的，而内网IP只是在局域网内有效，不具有公网IP的作用。查询公网IP地址：www.ip138.com
+Port端口 端口port用来区分不同的应用程序，端口号范围为0~65535，其中0~1023被系统所保留，如果自定义端口号，建议为1023以后的；
+注：同一台机器上不能有两个程序使用同一个端口，会冲突；tomcat：8080/80，mysql：3306
+URL&amp;URI URL(Uniform Resource Locator)统一资源定位符，可以直接使用此类找到互联网上的资源如一个简单的网页。一般由：协议名，资源所在主机，端口，资源名等部分组成。如：https://stackoverflow.com/questions/75698432/angular-ngrx-combinelatest-unwanted-emit
+URI(Uniform Resource Identifier) 是统一资源标识符，俗称请求资源路径。http://localhost:808/myweb/hello.html
+区别：URL包含URI，URI只是URL的一部分
+URL类中的常用方法：
+URL(String protocol, String host, int port, String file)
+URL(String url)
+InputStream openStream() 打开到此 URL 的连接并返回一个用于从该连接读入的 InputStream；
+public void testURL() throws Exception { // java要通过URL地址操作网页，可以通过URL对象来操作 // 创建URL的方式有很多种 // 第一种：就是通过网站的URL地址创建URL对象 //URL url = new URL(&#34;https://itsource." />
+  <meta name="author" content="BruisesL" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://bruisesl.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/theme.png" />
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/github.svg" />
+  
+
+  
+  <link rel="icon" href="https://bruisesl.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://bruisesl.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.110.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="JavaWeb-网络编程与服务器" />
+<meta property="og:description" content="网络编程 计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，实现资源共享和信息传递的计算机系统；
+Java中专门提供java.net包，方便开发网络程序。Java的网络编程包括了两种通信协议：
+TCP(Transmission Control Protocal)：传输控制协议 UDP(User Datagram Protocol)：用户数据协议 相关术语 两台计算机进行网络通信需要满足一下条件：
+两台主机需要有一个唯一的标识：也就是IP地址，用来表示所处的身份和位置 需要有共同的语言：协议（TCP/IP） 都需要有相应的端口号：port 一台主机上可以运行多个应用程序，如何辨别不同应用程序的通信，就是通过端口号port来进行区分。
+IP地址 为实现网络中不同计算机之间的通信，每台计算器都必须有一个唯一的标识，那就是IP地址（公网IP），这就相当于每个人的手机号码一样。例如：192.168.0.1
+IP分以下两个大类：
+IPv4：32位，分4段，（每段的范围0-255）0~255之间的十进制表示。使用4个8位的二进制数据表示,每8位之间使用圆点隔开，每个8位整数可以转换成一个0~255的十进制整数，因此一般看到的IP地址类似：192.168.1.1 这4段组成的个数有限度（42.28亿），可能会不够用，就出现了Ipv6。 IPv6：128位，分8段，0000~FFFF的十六进制数值，冒号分割，如：1080:0:0:0:8:800:200C:417A IP地址号段分类：A类留给政府机构，B类分配给中等规模的公司，C类分配给任意需要的人，D类用于组播，E类用于实验，各类可容纳的地址数目不同：
+注：
+外网IP是全世界唯一的IP地址，仅分配给一个网络设备（计算机、交互机、路由器、打印机、光纤等）。而内网IP是由路由器分配给每一部内部使用的IP地址，而内网的所有用户都是通过同一个外网IP地址进行上网的；
+内网的IP地址每个人的都不一样，Internet上的用户也无法直接访问到内网用户。简单来说呢，外网IP就是标示了在整个互联网上的地址，就相当于小区的地址，而内网IP呢，就是标识着在局域网里面的地址，也就是小区内的几栋几楼几号房子；
+在局域网中，每台电脑都可以自己分配自己的IP，这个IP只在局域网中有效。而如果将电脑连接到互联网，网络提供商（ISP）的服务器会分配一个IP地址，这个IP地址才是在外网的IP。两个IP同时存在，一个对内，一个对外；
+区分内网和公网IP的区别，公网IP是全球唯一的，而内网IP只是在局域网内有效，不具有公网IP的作用。查询公网IP地址：www.ip138.com
+Port端口 端口port用来区分不同的应用程序，端口号范围为0~65535，其中0~1023被系统所保留，如果自定义端口号，建议为1023以后的；
+注：同一台机器上不能有两个程序使用同一个端口，会冲突；tomcat：8080/80，mysql：3306
+URL&amp;URI URL(Uniform Resource Locator)统一资源定位符，可以直接使用此类找到互联网上的资源如一个简单的网页。一般由：协议名，资源所在主机，端口，资源名等部分组成。如：https://stackoverflow.com/questions/75698432/angular-ngrx-combinelatest-unwanted-emit
+URI(Uniform Resource Identifier) 是统一资源标识符，俗称请求资源路径。http://localhost:808/myweb/hello.html
+区别：URL包含URI，URI只是URL的一部分
+URL类中的常用方法：
+URL(String protocol, String host, int port, String file)
+URL(String url)
+InputStream openStream() 打开到此 URL 的连接并返回一个用于从该连接读入的 InputStream；
+public void testURL() throws Exception { // java要通过URL地址操作网页，可以通过URL对象来操作 // 创建URL的方式有很多种 // 第一种：就是通过网站的URL地址创建URL对象 //URL url = new URL(&#34;https://itsource." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bruisesl.github.io/post/javaweb-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-03-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-03-10T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="JavaWeb-网络编程与服务器">
+<meta itemprop="description" content="网络编程 计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，实现资源共享和信息传递的计算机系统；
+Java中专门提供java.net包，方便开发网络程序。Java的网络编程包括了两种通信协议：
+TCP(Transmission Control Protocal)：传输控制协议 UDP(User Datagram Protocol)：用户数据协议 相关术语 两台计算机进行网络通信需要满足一下条件：
+两台主机需要有一个唯一的标识：也就是IP地址，用来表示所处的身份和位置 需要有共同的语言：协议（TCP/IP） 都需要有相应的端口号：port 一台主机上可以运行多个应用程序，如何辨别不同应用程序的通信，就是通过端口号port来进行区分。
+IP地址 为实现网络中不同计算机之间的通信，每台计算器都必须有一个唯一的标识，那就是IP地址（公网IP），这就相当于每个人的手机号码一样。例如：192.168.0.1
+IP分以下两个大类：
+IPv4：32位，分4段，（每段的范围0-255）0~255之间的十进制表示。使用4个8位的二进制数据表示,每8位之间使用圆点隔开，每个8位整数可以转换成一个0~255的十进制整数，因此一般看到的IP地址类似：192.168.1.1 这4段组成的个数有限度（42.28亿），可能会不够用，就出现了Ipv6。 IPv6：128位，分8段，0000~FFFF的十六进制数值，冒号分割，如：1080:0:0:0:8:800:200C:417A IP地址号段分类：A类留给政府机构，B类分配给中等规模的公司，C类分配给任意需要的人，D类用于组播，E类用于实验，各类可容纳的地址数目不同：
+注：
+外网IP是全世界唯一的IP地址，仅分配给一个网络设备（计算机、交互机、路由器、打印机、光纤等）。而内网IP是由路由器分配给每一部内部使用的IP地址，而内网的所有用户都是通过同一个外网IP地址进行上网的；
+内网的IP地址每个人的都不一样，Internet上的用户也无法直接访问到内网用户。简单来说呢，外网IP就是标示了在整个互联网上的地址，就相当于小区的地址，而内网IP呢，就是标识着在局域网里面的地址，也就是小区内的几栋几楼几号房子；
+在局域网中，每台电脑都可以自己分配自己的IP，这个IP只在局域网中有效。而如果将电脑连接到互联网，网络提供商（ISP）的服务器会分配一个IP地址，这个IP地址才是在外网的IP。两个IP同时存在，一个对内，一个对外；
+区分内网和公网IP的区别，公网IP是全球唯一的，而内网IP只是在局域网内有效，不具有公网IP的作用。查询公网IP地址：www.ip138.com
+Port端口 端口port用来区分不同的应用程序，端口号范围为0~65535，其中0~1023被系统所保留，如果自定义端口号，建议为1023以后的；
+注：同一台机器上不能有两个程序使用同一个端口，会冲突；tomcat：8080/80，mysql：3306
+URL&amp;URI URL(Uniform Resource Locator)统一资源定位符，可以直接使用此类找到互联网上的资源如一个简单的网页。一般由：协议名，资源所在主机，端口，资源名等部分组成。如：https://stackoverflow.com/questions/75698432/angular-ngrx-combinelatest-unwanted-emit
+URI(Uniform Resource Identifier) 是统一资源标识符，俗称请求资源路径。http://localhost:808/myweb/hello.html
+区别：URL包含URI，URI只是URL的一部分
+URL类中的常用方法：
+URL(String protocol, String host, int port, String file)
+URL(String url)
+InputStream openStream() 打开到此 URL 的连接并返回一个用于从该连接读入的 InputStream；
+public void testURL() throws Exception { // java要通过URL地址操作网页，可以通过URL对象来操作 // 创建URL的方式有很多种 // 第一种：就是通过网站的URL地址创建URL对象 //URL url = new URL(&#34;https://itsource."><meta itemprop="datePublished" content="2021-03-10T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-03-10T00:00:00+00:00" />
+<meta itemprop="wordCount" content="706">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaWeb-网络编程与服务器"/>
+<meta name="twitter:description" content="网络编程 计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，实现资源共享和信息传递的计算机系统；
+Java中专门提供java.net包，方便开发网络程序。Java的网络编程包括了两种通信协议：
+TCP(Transmission Control Protocal)：传输控制协议 UDP(User Datagram Protocol)：用户数据协议 相关术语 两台计算机进行网络通信需要满足一下条件：
+两台主机需要有一个唯一的标识：也就是IP地址，用来表示所处的身份和位置 需要有共同的语言：协议（TCP/IP） 都需要有相应的端口号：port 一台主机上可以运行多个应用程序，如何辨别不同应用程序的通信，就是通过端口号port来进行区分。
+IP地址 为实现网络中不同计算机之间的通信，每台计算器都必须有一个唯一的标识，那就是IP地址（公网IP），这就相当于每个人的手机号码一样。例如：192.168.0.1
+IP分以下两个大类：
+IPv4：32位，分4段，（每段的范围0-255）0~255之间的十进制表示。使用4个8位的二进制数据表示,每8位之间使用圆点隔开，每个8位整数可以转换成一个0~255的十进制整数，因此一般看到的IP地址类似：192.168.1.1 这4段组成的个数有限度（42.28亿），可能会不够用，就出现了Ipv6。 IPv6：128位，分8段，0000~FFFF的十六进制数值，冒号分割，如：1080:0:0:0:8:800:200C:417A IP地址号段分类：A类留给政府机构，B类分配给中等规模的公司，C类分配给任意需要的人，D类用于组播，E类用于实验，各类可容纳的地址数目不同：
+注：
+外网IP是全世界唯一的IP地址，仅分配给一个网络设备（计算机、交互机、路由器、打印机、光纤等）。而内网IP是由路由器分配给每一部内部使用的IP地址，而内网的所有用户都是通过同一个外网IP地址进行上网的；
+内网的IP地址每个人的都不一样，Internet上的用户也无法直接访问到内网用户。简单来说呢，外网IP就是标示了在整个互联网上的地址，就相当于小区的地址，而内网IP呢，就是标识着在局域网里面的地址，也就是小区内的几栋几楼几号房子；
+在局域网中，每台电脑都可以自己分配自己的IP，这个IP只在局域网中有效。而如果将电脑连接到互联网，网络提供商（ISP）的服务器会分配一个IP地址，这个IP地址才是在外网的IP。两个IP同时存在，一个对内，一个对外；
+区分内网和公网IP的区别，公网IP是全球唯一的，而内网IP只是在局域网内有效，不具有公网IP的作用。查询公网IP地址：www.ip138.com
+Port端口 端口port用来区分不同的应用程序，端口号范围为0~65535，其中0~1023被系统所保留，如果自定义端口号，建议为1023以后的；
+注：同一台机器上不能有两个程序使用同一个端口，会冲突；tomcat：8080/80，mysql：3306
+URL&amp;URI URL(Uniform Resource Locator)统一资源定位符，可以直接使用此类找到互联网上的资源如一个简单的网页。一般由：协议名，资源所在主机，端口，资源名等部分组成。如：https://stackoverflow.com/questions/75698432/angular-ngrx-combinelatest-unwanted-emit
+URI(Uniform Resource Identifier) 是统一资源标识符，俗称请求资源路径。http://localhost:808/myweb/hello.html
+区别：URL包含URI，URI只是URL的一部分
+URL类中的常用方法：
+URL(String protocol, String host, int port, String file)
+URL(String url)
+InputStream openStream() 打开到此 URL 的连接并返回一个用于从该连接读入的 InputStream；
+public void testURL() throws Exception { // java要通过URL地址操作网页，可以通过URL对象来操作 // 创建URL的方式有很多种 // 第一种：就是通过网站的URL地址创建URL对象 //URL url = new URL(&#34;https://itsource."/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://bruisesl.github.io">BruisesL&#39;s blog</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
+    
+    <a class="" href="/about/">About</a>
+    
+  </nav>
+  
+
+  
+  <nav class="social">
+    
+    <a
+      class="github"
+      style="--url: url(./github.svg)"
+      href="https://github.com/BruisesL"
+      target="_blank"
+    ></a>
+    
+  </nav>
+  
+</header>
+
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <aside>
+      <time>March 10, 2021</time>
+      
+      <span>BruisesL</span>
+      
+    </aside>
+    <h1>JavaWeb-网络编程与服务器</h1>
+  </header>
+  <section class="post-content"><h2 id="网络编程">网络编程</h2>
+<p>计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，实现<strong>资源共享</strong>和<strong>信息传递</strong>的计算机系统；</p>
+<p>Java中专门提供java.net包，方便开发网络程序。Java的网络编程包括了两种<strong>通信协议</strong>：</p>
+<ol>
+<li><strong>TCP(Transmission Control Protocal)：传输控制协议</strong></li>
+<li>UDP(User Datagram Protocol)：用户数据协议</li>
+</ol>
+<h3 id="相关术语">相关术语</h3>
+<p>两台计算机进行网络通信需要满足一下条件：</p>
+<ul>
+<li>两台主机需要有一个唯一的标识：也就是IP地址，用来表示所处的身份和位置</li>
+<li>需要有共同的语言：协议（TCP/IP）</li>
+<li>都需要有相应的端口号：port</li>
+</ul>
+<p>一台主机上可以运行多个应用程序，如何辨别不同应用程序的通信，就是通过端口号port来进行区分。</p>
+<h4 id="ip地址">IP地址</h4>
+<p>为实现网络中不同计算机之间的通信，每台计算器都必须有一个唯一的标识，那就是IP地址（公网IP），这就相当于每个人的手机号码一样。例如：192.168.0.1</p>
+<p>IP分以下两个大类：</p>
+<ul>
+<li>IPv4：32位，分4段，（每段的范围0-255）0~255之间的十进制表示。使用4个8位的二进制数据表示,每8位之间使用圆点隔开，每个8位整数可以转换成一个0~255的十进制整数，因此一般看到的IP地址类似：192.168.1.1      这4段组成的个数有限度（42.28亿），可能会不够用，就出现了Ipv6。</li>
+<li>IPv6：128位，分8段，0000~FFFF的十六进制数值，冒号分割，如：1080:0:0:0:8:800:200C:417A</li>
+</ul>
+<p>IP地址号段分类：A类留给政府机构，B类分配给中等规模的公司，C类分配给任意需要的人，D类用于组播，E类用于实验，各类可容纳的地址数目不同：</p>
+<p><img src="/ip%E5%9C%B0%E5%9D%80%E5%88%86%E7%B1%BB.jpg" alt="ip地址分类"></p>
+<p><strong>注</strong>：</p>
+<ol>
+<li>
+<p>外网IP是全世界唯一的IP地址，仅分配给一个网络设备（计算机、交互机、路由器、打印机、光纤等）。而内网IP是由路由器分配给每一部内部使用的IP地址，而内网的所有用户都是通过同一个外网IP地址进行上网的；</p>
+</li>
+<li>
+<p>内网的IP地址每个人的都不一样，Internet上的用户也无法直接访问到内网用户。简单来说呢，外网IP就是标示了在整个互联网上的地址，就相当于小区的地址，而内网IP呢，就是标识着在局域网里面的地址，也就是小区内的几栋几楼几号房子；</p>
+</li>
+<li>
+<p>在局域网中，每台电脑都可以自己分配自己的IP，这个IP只在局域网中有效。而如果将电脑连接到互联网，网络提供商（ISP）的服务器会分配一个IP地址，这个IP地址才是在外网的IP。两个IP同时存在，一个对内，一个对外；</p>
+</li>
+<li>
+<p>区分内网和公网IP的区别，公网IP是全球唯一的，而内网IP只是在局域网内有效，不具有公网IP的作用。查询公网IP地址：www.ip138.com</p>
+</li>
+</ol>
+<h4 id="port端口">Port端口</h4>
+<p>端口port用来区分不同的应用程序，端口号范围为0~65535，其中0~1023被系统所保留，如果自定义端口号，建议为1023以后的；</p>
+<p><strong>注</strong>：同一台机器上不能有两个程序使用同一个端口，会冲突；tomcat：8080/80，mysql：3306</p>
+<h4 id="urluri">URL&amp;URI</h4>
+<p>URL(Uniform Resource Locator)统一资源定位符，可以直接使用此类找到互联网上的资源如一个简单的网页。一般由：协议名，资源所在主机，端口，资源名等部分组成。如：https://stackoverflow.com/questions/75698432/angular-ngrx-combinelatest-unwanted-emit</p>
+<p>URI(Uniform Resource Identifier) 是统一资源标识符，俗称请求资源路径。http://localhost:808/myweb/hello.html</p>
+<p>区别：<strong>URL包含URI，URI只是URL的一部分</strong></p>
+<p><strong>URL类中的常用方法</strong>：</p>
+<p><code>URL(String protocol, String host, int port, String file)</code></p>
+<p><code>URL(String url)</code></p>
+<p><code>InputStream openStream()</code> 打开到此 URL 的连接并返回一个用于从该连接读入的 InputStream；</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testURL</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#75715e">// java要通过URL地址操作网页，可以通过URL对象来操作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	<span style="color:#75715e">// 创建URL的方式有很多种
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	<span style="color:#75715e">// 第一种：就是通过网站的URL地址创建URL对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	<span style="color:#75715e">//URL url = new URL(&#34;https://itsource.cn/javaWeb.htm&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	<span style="color:#75715e">// 第二种：就是通过https+ip+端口号+页面地址创建url对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	URL url <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> URL<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;itsource.cn&#34;</span><span style="color:#f92672">,</span><span style="color:#ae81ff">443</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;/javaWeb.htm&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#75715e">// 通过URL对象获取网页的输入流
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	InputStream openStream <span style="color:#f92672">=</span> url<span style="color:#f92672">.</span><span style="color:#a6e22e">openStream</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#75715e">// 转换为缓冲输入流
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	BufferedInputStream bis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedInputStream<span style="color:#f92672">(</span>openStream<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	 
+</span></span><span style="display:flex;"><span> 	<span style="color:#75715e">// 创建缓冲输出流
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	BufferedOutputStream bos <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedOutputStream<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileOutputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;b.html&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#75715e">// 创建byte,每次输出1KB
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	<span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> bytes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#75715e">// 标识符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	<span style="color:#66d9ef">int</span> let<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#66d9ef">while</span> <span style="color:#f92672">((</span>let <span style="color:#f92672">=</span> bis<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">(</span>bytes<span style="color:#f92672">))</span> <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 		bos<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>bytes<span style="color:#f92672">,</span><span style="color:#ae81ff">0</span><span style="color:#f92672">,</span>let<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 		bos<span style="color:#f92672">.</span><span style="color:#a6e22e">flush</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 	bos<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 	bis<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><strong>URLEncoder与URLDecoder</strong>：</p>
+<p>编码与解码，如果有中文的场景，那么可以使用编码解决。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test01</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#75715e">// 编码与解码主要针对中文，编码必须一致
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	<span style="color:#75715e">// URL地址的编码与解码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	String str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;www.baidu.com?usernam=源码官网&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#75715e">// 对URL地址编码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	String encode <span style="color:#f92672">=</span> URLEncoder<span style="color:#f92672">.</span><span style="color:#a6e22e">encode</span><span style="color:#f92672">(</span>str<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;UTF-8&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>encode<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 对URL地址解码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  String decode <span style="color:#f92672">=</span> URLDecoder<span style="color:#f92672">.</span><span style="color:#a6e22e">decode</span><span style="color:#f92672">(</span>encode<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;UTF-8&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>  System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>decode<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h4 id="tcp传输控制协议与udp用户传输协议">TCP传输控制协议与UDP用户传输协议</h4>
+<p>TCP协议是Transmission Control Protocol传输控制协议，TCP是一种面向连接的、可靠的、<strong>基于字节流的传输层（Transport layer）通信协议</strong>。当客户和服务器彼此传递数据前，必须先在双方之间建立一个TCP连接，之后才能传输数据；当客户和服务器彼此交互数据前，必须先在双方之间建立一个TCP连接，之后才能传输数据，TCP 协议使用超时重传、数据确认等方式来确保数据包被正确地发送至目的端，故而<strong>效率低，速度慢</strong>；</p>
+<p><strong>TCP可靠传输协议，不丢包，经常用来传输文件</strong>（回值内部处理），<strong>缺点是效率低，慢，而且占用资源</strong>，相当于打电话；</p>
+<p>UDP(User Datagram Protocol)是一种无连接、不可靠、<strong>基于数据报的用户数据协议</strong>。UDP在传输数据报前不用在客户和服务器之间建立一个连接。它只是把数据报发送出去，但是并不能保证他们能到达目的，并且没有超时重发机制，故而<strong>传输速度很快</strong>；UDP不可靠传输协议，<strong>容易丢包</strong>。但是<strong>效率高，快，占用资源少</strong>。一般游戏中数据采用UDP传输数据，相当于快递；</p>
+<p><strong>区别</strong>：</p>
+<ol>
+<li>首先它们都是传输层的协议；</li>
+<li>TCP 协议可靠，UDP 协议不可靠。可靠即指数据由A发送到B，是否能确保数据真的有送达到B；TCP 协议使用超时重传、数据确认等方式来确保数据包被正确地发送至目的端。而 UDP 协议无法保证数据从发送端正确传送到目的端，如果数据在传输过程中丢失或者目的端通过数据检验发现数据错误，则UDP协议只是简单地通知应用程序发送失败。对于 TCP 协议拥有的超时重传、数据确认等需要应用程序自己来处理这些逻辑；</li>
+<li>TCP 是面向连接的，UDP 是无连接的。这也比较好理解，因为 TCP 连接需要经历&quot;三次握手&quot;；</li>
+<li><strong>TCP 服务是基于流的，而UDP是基于数据报的</strong>，基于流的数据没有边界（长度）限制，而基于数据报的服务，每个UDP数据报都有一个长度，接收端必须以该长度为最小单位将其所有内容一次性读出；</li>
+<li>TCP 协议为应用层提供可靠的、面向连接的、基于流的服务。而 UDP 协议则与 TCP 协议完全相反，它为应用层提供不可靠、无连接和基于数据报的服务；</li>
+</ol>
+<h3 id="socket编程">Socket编程</h3>
+<p>网络编程实现了客户端与服务端之间的沟通（接收和发送数据），而在网络编程中使用最多的就是Socket，应用程序可以通过它发送或接收数据。像QQ，MSN这些网络应用都使用了Socket技术；</p>
+<p>Socket通常称作&quot;套接字&quot;，用于描述IP地址和端口。应用程序通常通过&quot;套接字&quot;向网络发出请求或者应答网络请求；Socket是Java实现数据通信的API，而TCP/UPD是通信协议。用Socket可以实现TCP(或者UDP)通信。 但是TCP或者UDP通信也可以不用Socket实现；</p>
+<p>Java平台为我们提供了一组强大的类，方便我们使用Socket进行网络程序的开发；Socket和ServerSocket类库位于java.net包中。ServerSocket是服务端套接字，Socket是客户端套接字。在连接成功时，应用程序两端都会产生一个Socket实例，操作这个实例，完成所需的会话；</p>
+<h4 id="tcp编程">TCP编程</h4>
+<p><img src="/TCP%E7%BC%96%E7%A8%8B%E6%B5%81%E7%A8%8B.jpg" alt="TCP编程流程"></p>
+<p><strong>编写步骤</strong>：</p>
+<ol>
+<li>
+<p>服务端创建ServerSocket；</p>
+</li>
+<li>
+<p>通过调用ServerSocket的accept方法监听客户端的连接；</p>
+</li>
+<li>
+<p>客户端创建Socket并指定服务端的地址以及端口来建立与服务端的连接；</p>
+</li>
+<li>
+<p>当服务端accept发现客户端连接后，获取对应该客户端的Socket；</p>
+</li>
+<li>
+<p>双方通过Socket分别获取对应的输入与输出流进行数据通讯；</p>
+</li>
+<li>
+<p>通讯结束后关闭连接；</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 这是socket的服务器端
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ServerSocket</span> <span style="color:#f92672">{</span> 
+</span></span><span style="display:flex;"><span> 	<span style="color:#75715e">// 像这种有客户端和服务器端的程序，一般都是先启动服务器端，因为必须要进行监听
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;1111111&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 		<span style="color:#75715e">// 根据端口号创建socket服务器端
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 		java<span style="color:#f92672">.</span><span style="color:#a6e22e">net</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ServerSocket</span> serverSocket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> java<span style="color:#f92672">.</span><span style="color:#a6e22e">net</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ServerSocket</span><span style="color:#f92672">(</span><span style="color:#ae81ff">8888</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 		<span style="color:#75715e">// 服务器端中有个方法，就是会监听客户端的请求，只要客户端请求进来了就会继续执行后面的代码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 		Socket accept <span style="color:#f92672">=</span> serverSocket<span style="color:#f92672">.</span><span style="color:#a6e22e">accept</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;22222222&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 		<span style="color:#75715e">// 服务器端获取客户端传递的数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 		InputStream inputStream <span style="color:#f92672">=</span> accept<span style="color:#f92672">.</span><span style="color:#a6e22e">getInputStream</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 		<span style="color:#75715e">// 将字节输入流转换为字符缓冲流
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 		BufferedReader bufferedReader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> InputStreamReader<span style="color:#f92672">(</span>inputStream<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span> 		<span style="color:#75715e">// 读取一行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 		String readLine <span style="color:#f92672">=</span> bufferedReader<span style="color:#f92672">.</span><span style="color:#a6e22e">readLine</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 		<span style="color:#75715e">// 打印
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>readLine<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 		<span style="color:#75715e">// 发送数据到客户端
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 		OutputStream outputStream <span style="color:#f92672">=</span> accept<span style="color:#f92672">.</span><span style="color:#a6e22e">getOutputStream</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 		outputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;我是服务器端\n&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 这是socket的客户端
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClientSocket</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 		<span style="color:#75715e">// 根据IP+端口号连接服务器端
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 		Socket socket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Socket<span style="color:#f92672">(</span>InetAddress<span style="color:#f92672">.</span><span style="color:#a6e22e">getLocalHost</span><span style="color:#f92672">(),</span> <span style="color:#ae81ff">8888</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 		<span style="color:#75715e">// 从socket中获取输出流，往服务器传传递数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 		OutputStream outputStream <span style="color:#f92672">=</span> socket<span style="color:#f92672">.</span><span style="color:#a6e22e">getOutputStream</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 		outputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;我是客户端\n&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span> 		<span style="color:#75715e">// 获取服务器端传递的数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 		InputStream inputStream <span style="color:#f92672">=</span> socket<span style="color:#f92672">.</span><span style="color:#a6e22e">getInputStream</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 		BufferedReader bufferedReader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> InputStreamReader<span style="color:#f92672">(</span>inputStream<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span> 		<span style="color:#75715e">// 此方法是读取一行，他是需要遇到空格才停止，但是我们在发送数据的时候，并没有空格，他就不知道到底需不需要停止
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 		String readLine <span style="color:#f92672">=</span> bufferedReader<span style="color:#f92672">.</span><span style="color:#a6e22e">readLine</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>readLine<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="http协议">HTTP协议</h2>
+<p>HTTP（超文本传输协议），是利用TCP在两台电脑（通常是Web服务器和客户端）之间传输信息的协议。客户端使用Web浏览器发起HTTP请求给Web服务器，Web服务器发送响应的信息给客户端或浏览器；HTTP协议：主要定义通信规则，基于TCP协议进行封装。浏览器发送请求给服务器，服务器响应数据给浏览器，这整个过程都需要遵守一定的规则。</p>
+<p>TCP/IP协议是传输层协议，主要解决数据如何在网络中传输，而HTTP是应用层协议，主要解决如何包装数据。</p>
+<p>HTTP协议是基于TCP之上的，当浏览器须要从server获取网页数据的时候，会发出一次HTTP请求。HTTP会通过TCP建立起一个到server的连接通道。当本次请求须要的数据完成后，HTTP会马上将TCP连接断开，这个过程是非常短的。所以HTTP连接是一种短连接，是一种无状态的连接。所谓的无状态，是指浏览器每次向server发起请求的时候，不是通过一个连接，而是每次都需要建立一个新的连接。</p>
+<p>在传输数据时，可以只使用（传输层）TCP/IP协议，但如果没有应用层，便无法识别数据内容，如果想要使传输的数据有意义，则必须使用到应用层协议，应用层协议有很多，比如HTTP、FTP、TELNET等。</p>
+<p><strong>注</strong>：浏览器给服务器发送数据是一次请求(request)。服务器给浏览器反馈数据是一次响应(response)。</p>
+<h3 id="http报文">HTTP报文</h3>
+<p>协议是用来定义数据传输的格式，那么按照一定格式形成的数据包即报文，也可以叫数据报；</p>
+<p>HTTP 报文分<strong>三个部分</strong>：起始行（请求行 &ndash; 响应行/状态行），头部（请求头/消息头 &ndash; 响应头/消息头），主体（请求体/实体内容 &ndash; 响应体/实体内容）。HTTP 报文分为请求报文和响应报文。</p>
+<p><img src="/HTTP%E6%8A%A5%E6%96%87.jpg" alt="HTTP报文"></p>
+<ul>
+<li>
+<p>请求报文</p>
+<p><img src="/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.jpg" alt="请求报文"></p>
+<p><strong>请求方法</strong>：也叫请求方式，有很多，后期需要掌握get和post两种即可；</p>
+<p>与Http1.0不同（连接一次，请求一次，响应一次。响应完毕，马上断开连接。如果还需要请求，需要重新连接），从HTTP/1.1（连接一次，请求多次，响应多次）起，默认都开启了Keep-Alive，保持连接特性，简单地说，当一个网页打开完毕后。client和server之间用于传输HTTP数据的TCP连接不会关闭，假设client再次访问这个server上的网页，会继续使用这一条已经建立的连接。但Keep-Alive不会永久保持连接。它有一个保持时间。能够在不同的server软件（如Apache）中设定这个时间；</p>
+<p><a href="https://www.ruanyifeng.com/blog/2016/08/http.html">HTTP不同版本具有不同的特点</a></p>
+<p><strong>部分消息头</strong>：</p>
+<p>Accept：告诉服务器能够发送哪些媒体类型；</p>
+<p>Referer：告诉服务器该网页是从哪个页面链接过来的；</p>
+<p>Accept-Language：告诉服务器能够发送哪些语言；</p>
+<p>User-Agent：告诉网站服务器，访问者是通过什么工具来请求的，如果是爬虫请求，一般会拒绝，如果是用户浏览器，就会应答；</p>
+<p>Host：HTTP 1.1 协议中新增的一个请求头，主要用来实现虚拟主机技术。同一台服务器部署多个服务，可以依靠虚拟主机来区分，而Host 请求头决定着访问哪个虚拟主机；</p>
+<p>Content-type：用于描述该请求来自于表单默认的提交数据的格式（application/x-www-formurlencoded）；</p>
+<p>Connection：为keep-alive在很多情况下能够重用连接，减少资源消耗，缩短响应时间。所以在HTTP1.1中缺省就是支持keep-alive的；</p>
+<p>Content-Length：用于描述HTTP消息实体的传输长度；</p>
+<p>Cookie：客户端用它向服务器传送一个令牌。注意它并不是真正的安全首部，但确实隐含了安全功能；</p>
+</li>
+<li>
+<p>响应报文</p>
+<p><img src="/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87.jpg" alt="响应报文"></p>
+<p><strong>部分响应头</strong>：</p>
+<p>Server：服务器类型；</p>
+<p>Content-Type：响应的类型；</p>
+<p>Date：服务器产生响应的日期；</p>
+<p>Transfer-Encoding：传输编码；</p>
+<p><strong>状态码</strong>：</p>
+<p>100～199 &ndash; 信息性状态码</p>
+<p>200～299 &ndash; 成功状态码</p>
+<p>300～399 &ndash; 重定向状态码</p>
+<p>400～499 &ndash; 客户端错误状态码</p>
+<p>500～599 &ndash; 服务器错误状态码</p>
+<p><strong>常见的状态码</strong>：</p>
+<p>200 OK  &ndash; 处理成功；</p>
+<p>302 found &ndash; 重定向；</p>
+<p>400 Bad Request &ndash; 客户端请求有语法错误，不能被服务器所理解；</p>
+<p>403 Forbidden &ndash; 服务器收到请求，但是拒绝提供服务；</p>
+<p>404 Not Found  &ndash; 请求资源找不到；</p>
+<p>500 Internal Server Error &ndash; 服务端代码异常；</p>
+</li>
+</ul>
+<h3 id="自定义web服务器">自定义Web服务器</h3>
+<p>访问方式是通过file:///C:/Users/123/Desktop/login.html 即是通过文件协议访问本地的login.html 数据；index.html页面都需要放入服务器里面，然后浏览器通过http协议来访问页面，比如：http://ip地址:端口号/login.html来进行访问；如果需要实现这个种效果，需要通过socket可以模拟服务器；</p>
+<p>实现思路：首先必须通过socket开启监听端口服务，当在浏览器输入http://localhost:8088/login.html 这个时候就通过socket来接收，找到服务器的login.html页面 ，解析出来，把内容写到浏览器里面。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TomcatServer</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 		<span style="color:#75715e">// 创建服务器的socket
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 		ServerSocket serverSocket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ServerSocket<span style="color:#f92672">(</span><span style="color:#ae81ff">8088</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 创建监听,如果不想只监听一次，那么可以无限循环监听
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 监听
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			Socket accept <span style="color:#f92672">=</span> serverSocket<span style="color:#f92672">.</span><span style="color:#a6e22e">accept</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>			System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;访问进入了服务器......&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 将页面转换为流
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	  	File file <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;src/Demo1.html&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 			<span style="color:#75715e">// 根据文件流创建缓冲输入流
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			BufferedInputStream bufferedInputStream <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedInputStream<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span>file<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 从socket中获取输出流
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 			OutputStream outputStream <span style="color:#f92672">=</span> accept<span style="color:#f92672">.</span><span style="color:#a6e22e">getOutputStream</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 			<span style="color:#75715e">// 根据file文件创建输出流
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 			BufferedOutputStream bufferedOutputStream <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedOutputStream<span style="color:#f92672">(</span>outputStream<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 			<span style="color:#75715e">// 设置响应头
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 			<span style="color:#75715e">// 设置http协议版本，响应状态码，注意，必须换行，因为每个配置都是单独的
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 			bufferedOutputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;HTTP/1.1 200 OK\n&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span> 			<span style="color:#75715e">// 设置编码，以什么格式打开文件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 			bufferedOutputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Content-Type: text/html;charset=UTF-8\n&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>			bufferedOutputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 一次读1kb
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 			<span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> bytes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 创建标识符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">while</span> <span style="color:#f92672">((</span>len <span style="color:#f92672">=</span> bufferedInputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">(</span>bytes<span style="color:#f92672">))</span> <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#75715e">// 输出数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 				bufferedOutputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>bytes<span style="color:#f92672">,</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">,</span> len<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#75715e">// 刷新
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				bufferedOutputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">flush</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 	 		<span style="color:#75715e">// 关流
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	  	bufferedOutputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	  	bufferedInputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 	  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="服务器概述">服务器概述</h2>
+<p>上述的Web服务器功能比较弱，还有很多功能需要实现，其实我们不需要自己实现，已经有很多三方的Web服务器软件可以直接给我们使用。Tomcat就是其中一个，今天我们就来学习一下，首先<strong>Tomcat是一个Web服务器</strong>，所以我们先来看一下服务器相关的概念。</p>
+<p>常用的Javaweb服务器：</p>
+<ul>
+<li>WebLogic：WebLogic是Oracle公司的产品，是目前应用最广泛的Web服务器，支持JavaEE规范，而且不断的完善以适应新的开发要求</li>
+<li>WebSphere：另一个常用的Web服务器是IBM公司的WebSphere，支持JavaEE规范</li>
+<li>Jboss：大名鼎鼎的红帽的产品，原来属于开源组织Jboss，后被红帽收购。支持JavaEE规范，免费（产品免费，服务收费）</li>
+<li><strong>Tomcat</strong>：是一个开源免费，占用内存小的javaWeb服务器，我们要学的就是它</li>
+</ul>
+<h3 id="tomcat相关">Tomcat相关</h3>
+<p>Tomcat是一个<strong>开源免费</strong>的Web服务器，它是 Apache 软件基金会的一个顶级项目，由 Apache，Sun和其他一些公司及个人共同开发而成。Tomcat8 支持最新的 Servlet 3.1 和JSP2.3 规范。<strong>Tomcat用java语言开发</strong>，Tomcat是一个符合J2EE（Servlet规范）标准的WEB服务器。如果要运行Tomcat，<strong>必需要有java的运行环境</strong>。</p>
+<p><strong>注</strong>：在项目部署的时候，Web应用必须选择正确的Web服务器版本，否则可能不能正常运行</p>
+<p><strong>修改端口</strong>：Tomcat默认端口是8080，很把这个端口进行修改成80，则访问直接可以不用加端口号访问。80端口是为HTTP（HyperText Transport Protocol）即超文本传输协议开放的，是HTTP的默认端口号。配置文件是conf/server.xml。</p>
+<h2 id="javaweb项目">JavaWeb项目</h2>
+<p>开发JavaWeb的程序，必需要严格参照JavaWeb提供的规范来存放我们的资源。结构分析如下：</p>
+<p><img src="/JavaWeb%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84.jpg" alt="JavaWeb项目结构"></p>
+<p><strong>注</strong>：</p>
+<ol>
+<li>
+<p>WEB-INF里面的程序是不可见的，必需通过我们的程序访问；</p>
+</li>
+<li>
+<p>现在web.xml并不是必需的；如果项目中需要用到这个web.xml，建议可以从apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml拷贝；</p>
+</li>
+<li>
+<p>index是非常特殊的，我们访问到一个文件夹，如果没有确定是哪一个文件，它就会去找名称为index.html或者index.jsp的文件；</p>
+</li>
+</ol>
+<h3 id="部署流程">部署流程</h3>
+<ol>
+<li>
+<p>创建一个文件夹oa；</p>
+</li>
+<li>
+<p>在oa下面创建WEB-INF文件夹，在WEB-INF下面分别创建lib和classes文件夹；</p>
+</li>
+<li>
+<p>拷贝web.xml到WEB-INF下面。可以从\apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml拷贝；</p>
+</li>
+<li>
+<p>在oa文件夹下面创建一个hello.html；</p>
+</li>
+<li>
+<p>直接把文件夹放到Tomcat的webapps中</p>
+</li>
+<li>
+<p>在server.xml里面进行配置</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> docBase：项目的路径
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> path：项目访问的虚拟路径（可以为/代表没有）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;Context</span> <span style="color:#a6e22e">docBase=</span><span style="color:#e6db74">&#34;D:/oa&#34;</span> <span style="color:#a6e22e">path=</span><span style="color:#e6db74">&#34;myoa&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span></code></pre></div><p><strong>注</strong>：项目需要部署（将项目就交给tomcat保管）才能访问，以上两种部署方式：第一种将整个WebContent文件夹拖到tomcat的webapps下（不推荐，一般开发完项目可以这样做）。第二种使用server.xml配置（方便开发）。</p>
+<h2 id="servlet">Servlet</h2>
+<p>Servlet是一个<strong>接口</strong>，一个<strong>规范</strong>（sun公司并没有去实现它），它的实现就是由各大服务器厂商（Tomcat）去实现；Tomcat是一个javaweb服务器，也是一个Servlet容器；Servlet容器是<strong>管理所有Servlet对象的创建，运行，销毁</strong>的容器。而Servlet对象也只有在Servlet容器中才能使用。所以如果写了一个Servlet, 那么一定要记住，<strong>把这个Servlet交给Tomcat去管理</strong>。</p>
+<h3 id="servlet部署流程">Servlet部署流程</h3>
+<ol>
+<li>
+<p>访问之前一定要确保Tomcat服务要开启，并且要将项目部署到Tomcat，否则出现404错误；</p>
+</li>
+<li>
+<p>用户在浏览器端输入地址。例如：http://localhost:80/servlet/hello  该请求访问的是本地（localhost）端口号为80的程序，即tomcat；</p>
+</li>
+<li>
+<p>Tomcat会到webapps中去找到servlet这个程序或者到server.xml中根据上下文路径<code>&lt;Context&gt;</code>中的找到对应的项目</p>
+</li>
+<li>
+<p>然后Tomcat会去找到该项目的配置文件web.xml，然后查看有没有hello这个请求；</p>
+</li>
+<li>
+<p>请求：http://localhost:80/servlet/hello</p>
+<p><strong>注</strong>：当我们找到这个 /hello 的时候，也就相应的找到了Servlet的名字（servlet-name） : hello</p>
+</li>
+<li>
+<p>Tomcat会根据请求hello去匹配web.xml中的<code>&lt;url-pattern&gt;</code>中的值：</p>
+<ul>
+<li>
+<p>如果没有匹配上就去找这个项目默认web路径下有没有hello这个页面（html或jsp）：</p>
+<p>如果没有，404；</p>
+<p>如果有这个页面，显示页面的内容；</p>
+</li>
+<li>
+<p>如果匹配上了会根据<code>&lt;Servlet-name&gt;</code>标签找到相应的Servlet类：</p>
+</li>
+</ul>
+</li>
+<li>
+<p>找到相应的类之后，到缓存区里面去看这个类有没有相应的实例：</p>
+<ul>
+<li>
+<p>如果没有，通过反射创建一个实例，并将这个实例放到缓存区：</p>
+<p>执行构造方法</p>
+<p>执行初始化方法</p>
+</li>
+<li>
+<p>如果有，直接拿到这个实例；</p>
+</li>
+</ul>
+</li>
+<li>
+<p>调用实例的service方法执行业务逻辑处理；</p>
+</li>
+<li>
+<p>如果正常关闭的话，会执行destroy方法，必须要初始化了servlet才会执行destroy方法；</p>
+</li>
+</ol>
+<p><img src="/Servlet%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.jpg" alt="Servlet执行流程"></p>
+<h3 id="servlet生命周期">Servlet生命周期</h3>
+<ol>
+<li>Servlet容器调用无参构造创建对象：第一次访问 或 项目部署的时候</li>
+<li>Servlet容器调用初始化方法<code>init()</code> ：第一次访问 或 项目部署的时候</li>
+<li>Servlet容器调用服务方法<code>service()</code>、<code>doGet()</code>、<code>doPost()</code>：第n次访问</li>
+<li>对于Tomcat来说，Servlet只有一个（它是单例的，每次创建的Servlet实例都会缓存起来）</li>
+<li>当我们正常关闭Tomcat的时候，Servlet容器会自动调用销毁方法<code>destory()</code></li>
+<li>构造方法 &ndash;&gt; init方法 &ndash;&gt; service【每次请求都会执行】 &ndash;&gt; destory【正常关闭才执行】</li>
+</ol>
+<p><img src="/servlet%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.png" alt="servlet的执行流程"></p>
+<h3 id="servlet的实现方式">Servlet的实现方式</h3>
+<p>有两种实现方式：</p>
+<p>第一种是实现Servlet接口，重写其中的所有方法；第二种是继承服务器重写Servlet接口的实现类，例如Tomcat中的HttpServlet</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SecondServlet</span> <span style="color:#66d9ef">extends</span> HttpServlet<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">service</span><span style="color:#f92672">(</span>HttpServletRequest req<span style="color:#f92672">,</span> HttpServletResponse resp<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException<span style="color:#f92672">,</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 		<span style="color:#75715e">//写功能代码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="处理请求的方式">处理请求的方式</h3>
+<p><img src="/%E5%A4%84%E7%90%86%E8%AF%B7%E6%B1%82%E7%9A%84%E6%96%B9%E5%BC%8F.jpg" alt="处理请求的方式"></p>
+<p>Get请求与Post请求的区别：</p>
+<ol>
+<li>
+<p>get请求时，<strong>请求参数放在请求地址url后面</strong>，而post提交方式时，<strong>请求参数是放在请求数据包中的实体内容中传递</strong>；</p>
+</li>
+<li>
+<p>由于地址栏的数据有长度限制，所以Get请求传输的数据量小，一般不能大于2kb，Post请求传输的数据大小没有限制。所以一般文件上传下载使用的是Post请求；</p>
+</li>
+<li>
+<p>Post安全性相对Get较高；</p>
+</li>
+<li>
+<p>get请求的发送时间：</p>
+<ul>
+<li>直接输入网址</li>
+<li>点击链接</li>
+<li>设置表单的提交方式为get或表单的默认提交</li>
+</ul>
+<p>post请求的发送时间：</p>
+<ul>
+<li>设置表单提交方式为<code>post(method=&quot;post&quot;)</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="httpservlet中的request与response对象">HttpServlet中的Request与Response对象</h3>
+<h4 id="httpservletrequest">HttpServletRequest</h4>
+<p>HttpServletRequest对象是Servlet的请求对象，可以获取请求数据包/报文中的所有信息。</p>
+<p>常用方法：</p>
+<p><code>String getContextPath()</code>获取上下文路径，<code>&lt;Context path=&quot;上下文&quot; ../&gt;</code>；</p>
+<p><code>String getHeader(String headName)</code>根据指定的请求头获取对应的请求头的值；</p>
+<p><code>String getRequestURI()</code>返回当期请求的资源路径URI（上下文路径/资源名）；</p>
+<p><code>StringBuffer getRequestURL()</code>返回浏览器请求地址URL；</p>
+<p><code>String getRemoteAddr()</code>返回请求服务器的客户端的IP；</p>
+<p><code>String getServletPath()</code>返回请求，<code>&lt;url-pattern&gt;</code>中的值；</p>
+<p><code>String getParameter(String name)</code>根据参数名称,获取对应参数的值；</p>
+<p><code>String[] getParameterValues(String name)</code>根据参数名称,获取该参数的多个值；</p>
+<p><code>Map&lt;String,String[]&gt; getParameterMap()</code>返回请求参数组成的Map集合；</p>
+<p><code>void req.setCharacterEncoding(&quot;UTF-8&quot;)</code>能够正确获取post请求的中文参数而不出现乱码；</p>
+<p><code>String getProtocol()</code>获取协议版本HTTP/1.1</p>
+<p><code>String getMethod()</code>获取请求方式（GET or POST）</p>
+<p><code>int getServerPort()</code>获取端口号</p>
+<h4 id="httpservletresponse">HttpServletResponse</h4>
+<p>HttpServletResponse对象是Servlet的响应对象，可以设置响应的文件格式和编码格式，还可以获取输出流。</p>
+<p>常用方法：</p>
+<p><code>OutputStream getOutputStream()</code>获取流的方法一，获取字节输出流（上传下载用）</p>
+<p><code>resp.getWriter()</code>获取流的方法二，获取字符输出流（字符输出用此流，向页面输出）</p>
+<p><code>resp.setContentType(&quot;text/html;charset=UTF-8&quot;)</code>响应页面的文件格式和编码格式</p>
+<h4 id="乱码问题">乱码问题</h4>
+<ol>
+<li>
+<p>向页面输出中文</p>
+<p><code>resp.setContentType(&quot;text/html;charset=utf-8&quot;)</code>能够向页面输出中文，<code>&quot;&quot;</code>中的内容不要写错，否则浏览器不认识响应的类型，就会将问题抛给用户；</p>
+</li>
+<li>
+<p>获取表单提交的中文数据</p>
+<p>针对post请求（请求参数是在实体内容中）</p>
+<p>第一种：<code>req.setCharacterEncoding(&quot;utf-8&quot;)</code>必须写在获取参数前，因为如果获取了参数，设置编码无效</p>
+<p>第二种：<code>name = new String(name.getBytes(&quot;iso-8859-1&quot;), &quot;utf-8&quot;);</code>转码，缺点：太麻烦，每个数据都要转</p>
+<p><strong>注</strong>：两种只能用其一。</p>
+</li>
+<li>
+<p>针对get请求（请求参数是在地址栏上），tomcat8不做处理，如果是tomcat7及其以前：</p>
+<p>第一种：<code>name = new String(name.getBytes(&quot;iso-8859-1&quot;), &quot;utf-8&quot;);</code>转码</p>
+<p>第二种：修改服务器中的配置conf &ndash; server.xml &ndash; <code>&lt;Connector&gt;</code>标签中最后加上属性<code>URIEncoding=&quot;utf-8&quot;</code></p>
+<p><strong>注</strong>：两种只能用其一 ，以后服务器换了，还需重新配置一次；</p>
+</li>
+<li>
+<p>注意：</p>
+<ul>
+<li>
+<p>tomcat8.x之前的默认编码集为ISO-8859-1，tomcat8.x之后默认编码集为UTF-8；</p>
+</li>
+<li>
+<p>对于tomcat8.x以及之后的get请求不需要转码或配置，而Tomcat7需要配置；</p>
+</li>
+<li>
+<p>做项目的时候，项目部署不一定是tomcat，在不能修改web服务器的状态下，可以通过过滤器来解决；</p>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav class="post-nav">
+    
+    <a class="prev" href="https://bruisesl.github.io/post/dos%E5%91%BD%E4%BB%A4/"><span>←</span><span>DOS命令</span></a>
+     
+    <a class="next" href="https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8A%E8%AF%AD%E6%B3%95/"><span>数据库概述</span><span>→</span></a>
+    
+  </nav>
+  
+
+  
+  
+</article>
+
+</main>
+
+    <footer class="footer">
+  <p>&copy; 2023 <a href="https://bruisesl.github.io">BruisesL&#39;s blog</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
+
+  </body>
+</html>
