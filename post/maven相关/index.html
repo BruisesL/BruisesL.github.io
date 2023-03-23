@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>Maven相关 - BruisesL&#39;s blog</title>
+
+  
+  
+  <meta name="description" content="Maven 是一个项目管理和整合工具。Maven 为开发者提供了一套完整的构建生命周期框架。开发团队几乎不用花多少时间就能够自动完成工程的基础构建配置，因为 Maven 使用了一个标准的目录结构和一个默认的构建生命周期。在有多个开发团队环境的情况下，Maven 能够在很短的时间内使得每项工作都按照标准进行。因为大部分的工程配置操作都非常简单并且可复用，在创建报告、检查、构建和测试自动配置时，Maven可以让开发者的工作变得更简单。
+安装maven：
+解压Maven，解压缩后的⽬录结构如下：
+bin⽬录：存放的是可执⾏命令。
+conf⽬录：存放Maven的配置⽂件。 settings.xml 配置⽂件后期需要修改。
+lib⽬录：存放Maven依赖的jar包。Maven也是使⽤java开发的，所以它也依赖其他的jar包。
+配置环境变量 MAVEN_HOME 为安装路径的bin⽬录
+检查是否配置成功
+如果Maven出现JVM内存不足的情况，设置MAVEN_OPTS环境变量-Xms128m -Xmx512mJVM内存过小的问题解决JAVA_OPTS-Xms256m -Xmx1024m
+配置：
+配置本地仓库：
+在pom.xml配置需要下载的依赖时，Maven会自动添加相应的jar包：而这个jar包会先在本地仓库中查找，如果本地仓库中找不到，则会去Maven中央仓库去进行下载，并下载的本地仓库，进行引用。
+配置的方法是修改 conf/settings.xml 中的 &lt;1ocalRepository&gt;为一个指定目录作为本地仓库，用来存储jar包。
+&lt;localRepository&gt;/Users/bruises/software/apache-maven-3.6.1/mvn_resp&lt;/localRepository&gt; 配置私服
+中央仓库在国外，所以下载jar包速度可能比较慢，而阿里公司提供了一个远程仓库，里面基本也都有开源项目的jar包。 修改 conf/settings.xml 中的 标签，为其添加如下子标签：
+&lt;mirror&gt; &lt;id&gt;alimaven&lt;/id&gt; &lt;name&gt;aliyun maven&lt;/name&gt; &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;/mirror&gt; 配置JDK编译版本
+Mavan默认的编译版本是JDK1.5，为了避免每次在项目中进行手动配置，这里修改conf/settings.xml 中的内容如下：
+&lt;profile&gt; &lt;id&gt;jdk8&lt;/id&gt; &lt;activation&gt; &lt;activeByDefault&gt;true&lt;/activeByDefault&gt; &lt;jdk&gt;1.8&lt;/jdk&gt; &lt;/activation&gt; &lt;properties&gt; &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt; &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt; &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt; &lt;/properties&gt; &lt;/profile&gt; Maven的生命周期 Maven 构建项目生命周期描述的是一次构建过程经历经历了多少个事件，Maven 对项目构建的生命周期划分为3套：
+clean ：清理工作。 default ：核心工作，例如编译，测试，打包，安装等。 site ： 产生报告，发布站点等。 同一套生命周期内，执行后边的命令，前面的所有命令会自动执行。
+Maven坐标 Maven 中的坐标是资源的唯一标识，使用坐标来定义项目或引入项目中需要的依赖。" />
+  <meta name="author" content="BruisesL" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://bruisesl.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/theme.png" />
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/github.svg" />
+  
+
+  
+  <link rel="icon" href="https://bruisesl.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://bruisesl.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.110.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Maven相关" />
+<meta property="og:description" content="Maven 是一个项目管理和整合工具。Maven 为开发者提供了一套完整的构建生命周期框架。开发团队几乎不用花多少时间就能够自动完成工程的基础构建配置，因为 Maven 使用了一个标准的目录结构和一个默认的构建生命周期。在有多个开发团队环境的情况下，Maven 能够在很短的时间内使得每项工作都按照标准进行。因为大部分的工程配置操作都非常简单并且可复用，在创建报告、检查、构建和测试自动配置时，Maven可以让开发者的工作变得更简单。
+安装maven：
+解压Maven，解压缩后的⽬录结构如下：
+bin⽬录：存放的是可执⾏命令。
+conf⽬录：存放Maven的配置⽂件。 settings.xml 配置⽂件后期需要修改。
+lib⽬录：存放Maven依赖的jar包。Maven也是使⽤java开发的，所以它也依赖其他的jar包。
+配置环境变量 MAVEN_HOME 为安装路径的bin⽬录
+检查是否配置成功
+如果Maven出现JVM内存不足的情况，设置MAVEN_OPTS环境变量-Xms128m -Xmx512mJVM内存过小的问题解决JAVA_OPTS-Xms256m -Xmx1024m
+配置：
+配置本地仓库：
+在pom.xml配置需要下载的依赖时，Maven会自动添加相应的jar包：而这个jar包会先在本地仓库中查找，如果本地仓库中找不到，则会去Maven中央仓库去进行下载，并下载的本地仓库，进行引用。
+配置的方法是修改 conf/settings.xml 中的 &lt;1ocalRepository&gt;为一个指定目录作为本地仓库，用来存储jar包。
+&lt;localRepository&gt;/Users/bruises/software/apache-maven-3.6.1/mvn_resp&lt;/localRepository&gt; 配置私服
+中央仓库在国外，所以下载jar包速度可能比较慢，而阿里公司提供了一个远程仓库，里面基本也都有开源项目的jar包。 修改 conf/settings.xml 中的 标签，为其添加如下子标签：
+&lt;mirror&gt; &lt;id&gt;alimaven&lt;/id&gt; &lt;name&gt;aliyun maven&lt;/name&gt; &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;/mirror&gt; 配置JDK编译版本
+Mavan默认的编译版本是JDK1.5，为了避免每次在项目中进行手动配置，这里修改conf/settings.xml 中的内容如下：
+&lt;profile&gt; &lt;id&gt;jdk8&lt;/id&gt; &lt;activation&gt; &lt;activeByDefault&gt;true&lt;/activeByDefault&gt; &lt;jdk&gt;1.8&lt;/jdk&gt; &lt;/activation&gt; &lt;properties&gt; &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt; &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt; &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt; &lt;/properties&gt; &lt;/profile&gt; Maven的生命周期 Maven 构建项目生命周期描述的是一次构建过程经历经历了多少个事件，Maven 对项目构建的生命周期划分为3套：
+clean ：清理工作。 default ：核心工作，例如编译，测试，打包，安装等。 site ： 产生报告，发布站点等。 同一套生命周期内，执行后边的命令，前面的所有命令会自动执行。
+Maven坐标 Maven 中的坐标是资源的唯一标识，使用坐标来定义项目或引入项目中需要的依赖。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bruisesl.github.io/post/maven%E7%9B%B8%E5%85%B3/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-03-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-03-17T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="Maven相关">
+<meta itemprop="description" content="Maven 是一个项目管理和整合工具。Maven 为开发者提供了一套完整的构建生命周期框架。开发团队几乎不用花多少时间就能够自动完成工程的基础构建配置，因为 Maven 使用了一个标准的目录结构和一个默认的构建生命周期。在有多个开发团队环境的情况下，Maven 能够在很短的时间内使得每项工作都按照标准进行。因为大部分的工程配置操作都非常简单并且可复用，在创建报告、检查、构建和测试自动配置时，Maven可以让开发者的工作变得更简单。
+安装maven：
+解压Maven，解压缩后的⽬录结构如下：
+bin⽬录：存放的是可执⾏命令。
+conf⽬录：存放Maven的配置⽂件。 settings.xml 配置⽂件后期需要修改。
+lib⽬录：存放Maven依赖的jar包。Maven也是使⽤java开发的，所以它也依赖其他的jar包。
+配置环境变量 MAVEN_HOME 为安装路径的bin⽬录
+检查是否配置成功
+如果Maven出现JVM内存不足的情况，设置MAVEN_OPTS环境变量-Xms128m -Xmx512mJVM内存过小的问题解决JAVA_OPTS-Xms256m -Xmx1024m
+配置：
+配置本地仓库：
+在pom.xml配置需要下载的依赖时，Maven会自动添加相应的jar包：而这个jar包会先在本地仓库中查找，如果本地仓库中找不到，则会去Maven中央仓库去进行下载，并下载的本地仓库，进行引用。
+配置的方法是修改 conf/settings.xml 中的 &lt;1ocalRepository&gt;为一个指定目录作为本地仓库，用来存储jar包。
+&lt;localRepository&gt;/Users/bruises/software/apache-maven-3.6.1/mvn_resp&lt;/localRepository&gt; 配置私服
+中央仓库在国外，所以下载jar包速度可能比较慢，而阿里公司提供了一个远程仓库，里面基本也都有开源项目的jar包。 修改 conf/settings.xml 中的 标签，为其添加如下子标签：
+&lt;mirror&gt; &lt;id&gt;alimaven&lt;/id&gt; &lt;name&gt;aliyun maven&lt;/name&gt; &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;/mirror&gt; 配置JDK编译版本
+Mavan默认的编译版本是JDK1.5，为了避免每次在项目中进行手动配置，这里修改conf/settings.xml 中的内容如下：
+&lt;profile&gt; &lt;id&gt;jdk8&lt;/id&gt; &lt;activation&gt; &lt;activeByDefault&gt;true&lt;/activeByDefault&gt; &lt;jdk&gt;1.8&lt;/jdk&gt; &lt;/activation&gt; &lt;properties&gt; &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt; &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt; &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt; &lt;/properties&gt; &lt;/profile&gt; Maven的生命周期 Maven 构建项目生命周期描述的是一次构建过程经历经历了多少个事件，Maven 对项目构建的生命周期划分为3套：
+clean ：清理工作。 default ：核心工作，例如编译，测试，打包，安装等。 site ： 产生报告，发布站点等。 同一套生命周期内，执行后边的命令，前面的所有命令会自动执行。
+Maven坐标 Maven 中的坐标是资源的唯一标识，使用坐标来定义项目或引入项目中需要的依赖。"><meta itemprop="datePublished" content="2023-03-17T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-03-17T00:00:00+00:00" />
+<meta itemprop="wordCount" content="139">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Maven相关"/>
+<meta name="twitter:description" content="Maven 是一个项目管理和整合工具。Maven 为开发者提供了一套完整的构建生命周期框架。开发团队几乎不用花多少时间就能够自动完成工程的基础构建配置，因为 Maven 使用了一个标准的目录结构和一个默认的构建生命周期。在有多个开发团队环境的情况下，Maven 能够在很短的时间内使得每项工作都按照标准进行。因为大部分的工程配置操作都非常简单并且可复用，在创建报告、检查、构建和测试自动配置时，Maven可以让开发者的工作变得更简单。
+安装maven：
+解压Maven，解压缩后的⽬录结构如下：
+bin⽬录：存放的是可执⾏命令。
+conf⽬录：存放Maven的配置⽂件。 settings.xml 配置⽂件后期需要修改。
+lib⽬录：存放Maven依赖的jar包。Maven也是使⽤java开发的，所以它也依赖其他的jar包。
+配置环境变量 MAVEN_HOME 为安装路径的bin⽬录
+检查是否配置成功
+如果Maven出现JVM内存不足的情况，设置MAVEN_OPTS环境变量-Xms128m -Xmx512mJVM内存过小的问题解决JAVA_OPTS-Xms256m -Xmx1024m
+配置：
+配置本地仓库：
+在pom.xml配置需要下载的依赖时，Maven会自动添加相应的jar包：而这个jar包会先在本地仓库中查找，如果本地仓库中找不到，则会去Maven中央仓库去进行下载，并下载的本地仓库，进行引用。
+配置的方法是修改 conf/settings.xml 中的 &lt;1ocalRepository&gt;为一个指定目录作为本地仓库，用来存储jar包。
+&lt;localRepository&gt;/Users/bruises/software/apache-maven-3.6.1/mvn_resp&lt;/localRepository&gt; 配置私服
+中央仓库在国外，所以下载jar包速度可能比较慢，而阿里公司提供了一个远程仓库，里面基本也都有开源项目的jar包。 修改 conf/settings.xml 中的 标签，为其添加如下子标签：
+&lt;mirror&gt; &lt;id&gt;alimaven&lt;/id&gt; &lt;name&gt;aliyun maven&lt;/name&gt; &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;/mirror&gt; 配置JDK编译版本
+Mavan默认的编译版本是JDK1.5，为了避免每次在项目中进行手动配置，这里修改conf/settings.xml 中的内容如下：
+&lt;profile&gt; &lt;id&gt;jdk8&lt;/id&gt; &lt;activation&gt; &lt;activeByDefault&gt;true&lt;/activeByDefault&gt; &lt;jdk&gt;1.8&lt;/jdk&gt; &lt;/activation&gt; &lt;properties&gt; &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt; &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt; &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt; &lt;/properties&gt; &lt;/profile&gt; Maven的生命周期 Maven 构建项目生命周期描述的是一次构建过程经历经历了多少个事件，Maven 对项目构建的生命周期划分为3套：
+clean ：清理工作。 default ：核心工作，例如编译，测试，打包，安装等。 site ： 产生报告，发布站点等。 同一套生命周期内，执行后边的命令，前面的所有命令会自动执行。
+Maven坐标 Maven 中的坐标是资源的唯一标识，使用坐标来定义项目或引入项目中需要的依赖。"/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://bruisesl.github.io">BruisesL&#39;s blog</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
+    
+    <a class="" href="/about/">About</a>
+    
+  </nav>
+  
+
+  
+  <nav class="social">
+    
+    <a
+      class="github"
+      style="--url: url(./github.svg)"
+      href="https://github.com/BruisesL"
+      target="_blank"
+    ></a>
+    
+  </nav>
+  
+</header>
+
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <aside>
+      <time>March 17, 2023</time>
+      
+      <span>BruisesL</span>
+      
+    </aside>
+    <h1>Maven相关</h1>
+  </header>
+  <section class="post-content"><p>Maven 是一个项目管理和整合工具。Maven 为开发者提供了一套完整的构建生命周期框架。开发团队几乎不用花多少时间就能够自动完成工程的基础构建配置，因为 Maven 使用了一个标准的目录结构和一个默认的构建生命周期。在有多个开发团队环境的情况下，Maven 能够在很短的时间内使得每项工作都按照标准进行。因为大部分的工程配置操作都非常简单并且可复用，在创建报告、检查、构建和测试自动配置时，Maven可以让开发者的工作变得更简单。</p>
+<p><strong>安装maven</strong>：</p>
+<ol>
+<li>
+<p>解压Maven，解压缩后的⽬录结构如下：</p>
+<p>bin⽬录：存放的是可执⾏命令。</p>
+<p>conf⽬录：存放Maven的配置⽂件。 settings.xml 配置⽂件后期需要修改。</p>
+<p>lib⽬录：存放Maven依赖的jar包。Maven也是使⽤java开发的，所以它也依赖其他的jar包。</p>
+</li>
+<li>
+<p>配置环境变量 MAVEN_HOME 为安装路径的bin⽬录</p>
+<p><img src="/maven%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE.jpg" alt="maven环境变量配置"></p>
+</li>
+<li>
+<p>检查是否配置成功</p>
+<p><img src="/mvn-v.jpg" alt="mvn-v"></p>
+<blockquote>
+<p>如果Maven出现JVM内存不足的情况，设置MAVEN_OPTS环境变量-Xms128m -Xmx512mJVM内存过小的问题解决JAVA_OPTS-Xms256m -Xmx1024m</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>配置</strong>：</p>
+<ul>
+<li>
+<p>配置本地仓库：</p>
+<p>在pom.xml配置需要下载的依赖时，Maven会自动添加相应的jar包：而这个jar包会先在<strong>本地仓库</strong>中查找，如果本地仓库中找不到，则会去<strong>Maven中央仓库</strong>去进行下载，并下载的本地仓库，进行引用。</p>
+<p>配置的方法是修改 conf/settings.xml 中的 <code>&lt;1ocalRepository&gt;</code>为一个指定目录作为本地仓库，用来存储jar包。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;localRepository&gt;</span>/Users/bruises/software/apache-maven-3.6.1/mvn_resp<span style="color:#f92672">&lt;/localRepository&gt;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>配置私服</p>
+<p>中央仓库在国外，所以下载jar包速度可能比较慢，而阿里公司提供了一个远程仓库，里面基本也都有开源项目的jar包。
+修改 conf/settings.xml 中的 标签，为其添加如下子标签：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;mirror&gt;</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;id&gt;</span>alimaven<span style="color:#f92672">&lt;/id&gt;</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;name&gt;</span>aliyun maven<span style="color:#f92672">&lt;/name&gt;</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;url&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span style="color:#f92672">&lt;/url&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;mirrorOf&gt;</span>central<span style="color:#f92672">&lt;/mirrorOf&gt;</span>          
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/mirror&gt;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>配置JDK编译版本</p>
+<p>Mavan默认的编译版本是JDK1.5，为了避免每次在项目中进行手动配置，这里修改conf/settings.xml 中的内容如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;profile&gt;</span>   
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;id&gt;</span>jdk8<span style="color:#f92672">&lt;/id&gt;</span>   
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;activation&gt;</span>   
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;activeByDefault&gt;</span>true<span style="color:#f92672">&lt;/activeByDefault&gt;</span>   
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;jdk&gt;</span>1.8<span style="color:#f92672">&lt;/jdk&gt;</span>   
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/activation&gt;</span>   
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;properties&gt;</span>   
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;maven.compiler.source&gt;</span>1.8<span style="color:#f92672">&lt;/maven.compiler.source&gt;</span>   
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;maven.compiler.target&gt;</span>1.8<span style="color:#f92672">&lt;/maven.compiler.target&gt;</span>   
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;maven.compiler.compilerVersion&gt;</span>1.8<span style="color:#f92672">&lt;/maven.compiler.compilerVersion&gt;</span>   
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/properties&gt;</span>   
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/profile&gt;</span>
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="maven的生命周期">Maven的生命周期</h2>
+<p>Maven 构建项目生命周期描述的是一次构建过程经历经历了多少个事件，Maven 对项目构建的生命周期划分为3套：</p>
+<ul>
+<li>clean ：清理工作。</li>
+<li>default ：核心工作，例如编译，测试，打包，安装等。</li>
+<li>site ： 产生报告，发布站点等。</li>
+</ul>
+<blockquote>
+<p>同一套生命周期内，执行后边的命令，前面的所有命令会自动执行。</p>
+</blockquote>
+<h2 id="maven坐标">Maven坐标</h2>
+<p>Maven 中的坐标是资源的<strong>唯一标识</strong>，使用坐标来<strong>定义项目或引入项目中需要的依赖</strong>。</p>
+<p><strong>Maven 坐标主要组成</strong>：</p>
+<ul>
+<li>
+<p>groupId：定义当前Maven项目隶属组织名称（通常是域名反写，例如com.baidu）</p>
+</li>
+<li>
+<p>artifactId：定义当前Maven项目名称（通常是模块名称，例如 order-service、goods-service）</p>
+</li>
+<li>
+<p>version：定义当前项目版本号</p>
+</li>
+<li>
+<p>scope：可以设置对应jar包的作用范围（编译环境、测试环境、运行环境），如果引入坐标不指定 scope 标签时，默认就是 compile 值</p>
+<p>scope取值范围：</p>
+<table>
+<thead>
+<tr>
+<th><strong>依赖范围</strong></th>
+<th>编译classpath</th>
+<th>测试classpath</th>
+<th>运行classpath</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>compile</strong></td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>logback</td>
+</tr>
+<tr>
+<td><strong>test</strong></td>
+<td>-</td>
+<td>Y</td>
+<td>-</td>
+<td>Junit</td>
+</tr>
+<tr>
+<td><strong>provided</strong></td>
+<td>Y</td>
+<td>Y</td>
+<td>-</td>
+<td>servlet-api</td>
+</tr>
+<tr>
+<td><strong>runtime</strong></td>
+<td>-</td>
+<td>Y</td>
+<td>Y</td>
+<td>jdbc驱动</td>
+</tr>
+<tr>
+<td><strong>system</strong></td>
+<td>Y</td>
+<td>Y</td>
+<td>-</td>
+<td>存储在本地的jar包</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>compile：作用于编译环境、测试环境、运行环境。</li>
+<li>test：作用于测试环境。典型的就是Junit坐标，使用Junit时，都会将scope指定为该值。</li>
+<li>provided：作用于编译环境、测试环境。例如 <code>servlet-api</code> ，在使用它时，必须将 <code>scope</code> 设置为该值，不然运行时就会报错。</li>
+<li>runtime：作用于测试环境、运行环境。jdbc驱动一般将 <code>scope</code> 设置为该值，当然不设置也没有任何问题。</li>
+</ul>
+</li>
+</ul>
+<p><strong>使用坐标引入jar包的步骤：</strong></p>
+<ul>
+<li>在项目的 pom.xml 中编写<code>&lt;dependencies&gt;</code> 标签</li>
+<li>在 <code>&lt;dependencies&gt;</code> 标签中 使用 <code>&lt;dependency&gt;</code> 引入坐标</li>
+<li>定义坐标的 groupId，artifactId，version</li>
+</ul>
+<blockquote>
+<p>具体的坐标可以到 <a href="https://mvnrepository.com/">Maven中央仓库</a> 进行搜索</p>
+</blockquote>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav class="post-nav">
+    
+    <a class="prev" href="https://bruisesl.github.io/post/%E5%BE%85%E5%AE%8C%E6%88%90java-%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B/"><span>←</span><span>Java 双亲委派模型</span></a>
+     
+    <a class="next" href="https://bruisesl.github.io/post/javaweb-servlet%E4%B8%8Ejsp/"><span>JavaWeb-Servlet与JSP</span><span>→</span></a>
+    
+  </nav>
+  
+
+  
+  
+</article>
+
+</main>
+
+    <footer class="footer">
+  <p>&copy; 2023 <a href="https://bruisesl.github.io">BruisesL&#39;s blog</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
+
+  </body>
+</html>

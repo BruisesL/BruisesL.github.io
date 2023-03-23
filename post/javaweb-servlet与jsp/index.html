@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>JavaWeb-Servlet与JSP - BruisesL&#39;s blog</title>
+
+  
+  
+  <meta name="description" content="JavaWeb项目 开发JavaWeb的程序，必需要严格参照JavaWeb提供的规范来存放我们的资源。结构分析如下：
+注：
+WEB-INF里面的程序是不可见的，必需通过我们的程序访问；
+现在web.xml并不是必需的；如果项目中需要用到这个web.xml，建议可以从apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml拷贝；
+index是非常特殊的，我们访问到一个文件夹，如果没有确定是哪一个文件，它就会去找名称为index.html或者index.jsp的文件；
+部署流程 创建一个文件夹oa；
+在oa下面创建WEB-INF文件夹，在WEB-INF下面分别创建lib和classes文件夹；
+拷贝web.xml到WEB-INF下面。可以从\apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml拷贝；
+在oa文件夹下面创建一个hello.html；
+直接把文件夹放到Tomcat的webapps中
+在server.xml里面进行配置
+&lt;!-- docBase：项目的路径 path：项目访问的虚拟路径（可以为/代表没有） --&gt; &lt;Context docBase=&#34;D:/oa&#34; path=&#34;myoa&#34; /&gt; 注1：项目需要部署（将项目就交给tomcat保管）才能访问，以上两种部署方式：第一种将整个WebContent文件夹拖到tomcat的webapps下（不推荐，一般开发完项目可以这样做）。第二种使用server.xml配置（方便开发）。
+注2：直接访问域名&#43;端口号会根据apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml配置文件中的&lt;welcome-file-list&gt;标签中的顺序匹配
+Servlet相关 Servlet是一个接口，一个规范（sun公司并没有去实现它），它的实现就是由各大服务器厂商（Tomcat）去实现；Tomcat是一个javaweb服务器，也是一个Servlet容器；Servlet容器是管理所有Servlet对象的创建，运行，销毁的容器。而Servlet对象也只有在Servlet容器中才能使用。所以如果写了一个Servlet, 那么一定要记住，把这个Servlet交给Tomcat去管理。
+Servlet部署流程 访问之前一定要确保Tomcat服务要开启，并且要将项目部署到Tomcat，否则出现404错误；
+用户在浏览器端输入地址。例如：http://localhost:80/servlet/hello 该请求访问的是本地（localhost）端口号为80的程序，即tomcat；
+Tomcat会到webapps中去找到servlet这个程序或者到server.xml中根据上下文路径&lt;Context&gt;中的找到对应的项目
+然后Tomcat会去找到该项目的配置文件web.xml，然后查看有没有hello这个请求；
+请求：http://localhost:80/servlet/hello
+注：当我们找到这个 /hello 的时候，也就相应的找到了Servlet的名字（servlet-name） : hello
+Tomcat会根据请求hello去匹配web.xml中的&lt;url-pattern&gt;中的值：
+如果没有匹配上就去找这个项目默认web路径下有没有hello这个页面（html或jsp）：
+如果没有，404；
+如果有这个页面，显示页面的内容；
+如果匹配上了会根据&lt;Servlet-name&gt;标签找到相应的Servlet类：
+找到相应的类之后，到缓存区里面去看这个类有没有相应的实例：
+如果没有，通过反射创建一个实例，并将这个实例放到缓存区：
+执行构造方法
+执行初始化方法
+如果有，直接拿到这个实例；
+调用实例的service方法执行业务逻辑处理；
+如果正常关闭的话，会执行destroy方法，必须要初始化了servlet才会执行destroy方法；
+Servlet生命周期 Servlet容器调用无参构造创建对象：第一次访问 或 项目部署的时候 Servlet容器调用初始化方法init() ：第一次访问 或 项目部署的时候 Servlet容器调用服务方法service()、doGet()、doPost()：第n次访问 对于Tomcat来说，Servlet只有一个（它是单例的，每次创建的Servlet实例都会缓存起来） 当我们正常关闭Tomcat的时候，Servlet容器会自动调用销毁方法destory() 构造方法 &ndash;&gt; init方法 &ndash;&gt; service【每次请求都会执行】 &ndash;&gt; destory【正常关闭才执行】 Servlet的实现方式 有两种实现方式：" />
+  <meta name="author" content="BruisesL" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://bruisesl.github.io/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://bruisesl.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/theme.png" />
+
+  
+  <link rel="preload" as="image" href="https://bruisesl.github.io/github.svg" />
+  
+
+  
+  <link rel="icon" href="https://bruisesl.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://bruisesl.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.110.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="JavaWeb-Servlet与JSP" />
+<meta property="og:description" content="JavaWeb项目 开发JavaWeb的程序，必需要严格参照JavaWeb提供的规范来存放我们的资源。结构分析如下：
+注：
+WEB-INF里面的程序是不可见的，必需通过我们的程序访问；
+现在web.xml并不是必需的；如果项目中需要用到这个web.xml，建议可以从apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml拷贝；
+index是非常特殊的，我们访问到一个文件夹，如果没有确定是哪一个文件，它就会去找名称为index.html或者index.jsp的文件；
+部署流程 创建一个文件夹oa；
+在oa下面创建WEB-INF文件夹，在WEB-INF下面分别创建lib和classes文件夹；
+拷贝web.xml到WEB-INF下面。可以从\apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml拷贝；
+在oa文件夹下面创建一个hello.html；
+直接把文件夹放到Tomcat的webapps中
+在server.xml里面进行配置
+&lt;!-- docBase：项目的路径 path：项目访问的虚拟路径（可以为/代表没有） --&gt; &lt;Context docBase=&#34;D:/oa&#34; path=&#34;myoa&#34; /&gt; 注1：项目需要部署（将项目就交给tomcat保管）才能访问，以上两种部署方式：第一种将整个WebContent文件夹拖到tomcat的webapps下（不推荐，一般开发完项目可以这样做）。第二种使用server.xml配置（方便开发）。
+注2：直接访问域名&#43;端口号会根据apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml配置文件中的&lt;welcome-file-list&gt;标签中的顺序匹配
+Servlet相关 Servlet是一个接口，一个规范（sun公司并没有去实现它），它的实现就是由各大服务器厂商（Tomcat）去实现；Tomcat是一个javaweb服务器，也是一个Servlet容器；Servlet容器是管理所有Servlet对象的创建，运行，销毁的容器。而Servlet对象也只有在Servlet容器中才能使用。所以如果写了一个Servlet, 那么一定要记住，把这个Servlet交给Tomcat去管理。
+Servlet部署流程 访问之前一定要确保Tomcat服务要开启，并且要将项目部署到Tomcat，否则出现404错误；
+用户在浏览器端输入地址。例如：http://localhost:80/servlet/hello 该请求访问的是本地（localhost）端口号为80的程序，即tomcat；
+Tomcat会到webapps中去找到servlet这个程序或者到server.xml中根据上下文路径&lt;Context&gt;中的找到对应的项目
+然后Tomcat会去找到该项目的配置文件web.xml，然后查看有没有hello这个请求；
+请求：http://localhost:80/servlet/hello
+注：当我们找到这个 /hello 的时候，也就相应的找到了Servlet的名字（servlet-name） : hello
+Tomcat会根据请求hello去匹配web.xml中的&lt;url-pattern&gt;中的值：
+如果没有匹配上就去找这个项目默认web路径下有没有hello这个页面（html或jsp）：
+如果没有，404；
+如果有这个页面，显示页面的内容；
+如果匹配上了会根据&lt;Servlet-name&gt;标签找到相应的Servlet类：
+找到相应的类之后，到缓存区里面去看这个类有没有相应的实例：
+如果没有，通过反射创建一个实例，并将这个实例放到缓存区：
+执行构造方法
+执行初始化方法
+如果有，直接拿到这个实例；
+调用实例的service方法执行业务逻辑处理；
+如果正常关闭的话，会执行destroy方法，必须要初始化了servlet才会执行destroy方法；
+Servlet生命周期 Servlet容器调用无参构造创建对象：第一次访问 或 项目部署的时候 Servlet容器调用初始化方法init() ：第一次访问 或 项目部署的时候 Servlet容器调用服务方法service()、doGet()、doPost()：第n次访问 对于Tomcat来说，Servlet只有一个（它是单例的，每次创建的Servlet实例都会缓存起来） 当我们正常关闭Tomcat的时候，Servlet容器会自动调用销毁方法destory() 构造方法 &ndash;&gt; init方法 &ndash;&gt; service【每次请求都会执行】 &ndash;&gt; destory【正常关闭才执行】 Servlet的实现方式 有两种实现方式：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bruisesl.github.io/post/javaweb-servlet%E4%B8%8Ejsp/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-03-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-03-10T00:00:00+00:00" />
+
+  
+  <meta itemprop="name" content="JavaWeb-Servlet与JSP">
+<meta itemprop="description" content="JavaWeb项目 开发JavaWeb的程序，必需要严格参照JavaWeb提供的规范来存放我们的资源。结构分析如下：
+注：
+WEB-INF里面的程序是不可见的，必需通过我们的程序访问；
+现在web.xml并不是必需的；如果项目中需要用到这个web.xml，建议可以从apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml拷贝；
+index是非常特殊的，我们访问到一个文件夹，如果没有确定是哪一个文件，它就会去找名称为index.html或者index.jsp的文件；
+部署流程 创建一个文件夹oa；
+在oa下面创建WEB-INF文件夹，在WEB-INF下面分别创建lib和classes文件夹；
+拷贝web.xml到WEB-INF下面。可以从\apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml拷贝；
+在oa文件夹下面创建一个hello.html；
+直接把文件夹放到Tomcat的webapps中
+在server.xml里面进行配置
+&lt;!-- docBase：项目的路径 path：项目访问的虚拟路径（可以为/代表没有） --&gt; &lt;Context docBase=&#34;D:/oa&#34; path=&#34;myoa&#34; /&gt; 注1：项目需要部署（将项目就交给tomcat保管）才能访问，以上两种部署方式：第一种将整个WebContent文件夹拖到tomcat的webapps下（不推荐，一般开发完项目可以这样做）。第二种使用server.xml配置（方便开发）。
+注2：直接访问域名&#43;端口号会根据apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml配置文件中的&lt;welcome-file-list&gt;标签中的顺序匹配
+Servlet相关 Servlet是一个接口，一个规范（sun公司并没有去实现它），它的实现就是由各大服务器厂商（Tomcat）去实现；Tomcat是一个javaweb服务器，也是一个Servlet容器；Servlet容器是管理所有Servlet对象的创建，运行，销毁的容器。而Servlet对象也只有在Servlet容器中才能使用。所以如果写了一个Servlet, 那么一定要记住，把这个Servlet交给Tomcat去管理。
+Servlet部署流程 访问之前一定要确保Tomcat服务要开启，并且要将项目部署到Tomcat，否则出现404错误；
+用户在浏览器端输入地址。例如：http://localhost:80/servlet/hello 该请求访问的是本地（localhost）端口号为80的程序，即tomcat；
+Tomcat会到webapps中去找到servlet这个程序或者到server.xml中根据上下文路径&lt;Context&gt;中的找到对应的项目
+然后Tomcat会去找到该项目的配置文件web.xml，然后查看有没有hello这个请求；
+请求：http://localhost:80/servlet/hello
+注：当我们找到这个 /hello 的时候，也就相应的找到了Servlet的名字（servlet-name） : hello
+Tomcat会根据请求hello去匹配web.xml中的&lt;url-pattern&gt;中的值：
+如果没有匹配上就去找这个项目默认web路径下有没有hello这个页面（html或jsp）：
+如果没有，404；
+如果有这个页面，显示页面的内容；
+如果匹配上了会根据&lt;Servlet-name&gt;标签找到相应的Servlet类：
+找到相应的类之后，到缓存区里面去看这个类有没有相应的实例：
+如果没有，通过反射创建一个实例，并将这个实例放到缓存区：
+执行构造方法
+执行初始化方法
+如果有，直接拿到这个实例；
+调用实例的service方法执行业务逻辑处理；
+如果正常关闭的话，会执行destroy方法，必须要初始化了servlet才会执行destroy方法；
+Servlet生命周期 Servlet容器调用无参构造创建对象：第一次访问 或 项目部署的时候 Servlet容器调用初始化方法init() ：第一次访问 或 项目部署的时候 Servlet容器调用服务方法service()、doGet()、doPost()：第n次访问 对于Tomcat来说，Servlet只有一个（它是单例的，每次创建的Servlet实例都会缓存起来） 当我们正常关闭Tomcat的时候，Servlet容器会自动调用销毁方法destory() 构造方法 &ndash;&gt; init方法 &ndash;&gt; service【每次请求都会执行】 &ndash;&gt; destory【正常关闭才执行】 Servlet的实现方式 有两种实现方式："><meta itemprop="datePublished" content="2023-03-10T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-03-10T00:00:00+00:00" />
+<meta itemprop="wordCount" content="951">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaWeb-Servlet与JSP"/>
+<meta name="twitter:description" content="JavaWeb项目 开发JavaWeb的程序，必需要严格参照JavaWeb提供的规范来存放我们的资源。结构分析如下：
+注：
+WEB-INF里面的程序是不可见的，必需通过我们的程序访问；
+现在web.xml并不是必需的；如果项目中需要用到这个web.xml，建议可以从apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml拷贝；
+index是非常特殊的，我们访问到一个文件夹，如果没有确定是哪一个文件，它就会去找名称为index.html或者index.jsp的文件；
+部署流程 创建一个文件夹oa；
+在oa下面创建WEB-INF文件夹，在WEB-INF下面分别创建lib和classes文件夹；
+拷贝web.xml到WEB-INF下面。可以从\apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml拷贝；
+在oa文件夹下面创建一个hello.html；
+直接把文件夹放到Tomcat的webapps中
+在server.xml里面进行配置
+&lt;!-- docBase：项目的路径 path：项目访问的虚拟路径（可以为/代表没有） --&gt; &lt;Context docBase=&#34;D:/oa&#34; path=&#34;myoa&#34; /&gt; 注1：项目需要部署（将项目就交给tomcat保管）才能访问，以上两种部署方式：第一种将整个WebContent文件夹拖到tomcat的webapps下（不推荐，一般开发完项目可以这样做）。第二种使用server.xml配置（方便开发）。
+注2：直接访问域名&#43;端口号会根据apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml配置文件中的&lt;welcome-file-list&gt;标签中的顺序匹配
+Servlet相关 Servlet是一个接口，一个规范（sun公司并没有去实现它），它的实现就是由各大服务器厂商（Tomcat）去实现；Tomcat是一个javaweb服务器，也是一个Servlet容器；Servlet容器是管理所有Servlet对象的创建，运行，销毁的容器。而Servlet对象也只有在Servlet容器中才能使用。所以如果写了一个Servlet, 那么一定要记住，把这个Servlet交给Tomcat去管理。
+Servlet部署流程 访问之前一定要确保Tomcat服务要开启，并且要将项目部署到Tomcat，否则出现404错误；
+用户在浏览器端输入地址。例如：http://localhost:80/servlet/hello 该请求访问的是本地（localhost）端口号为80的程序，即tomcat；
+Tomcat会到webapps中去找到servlet这个程序或者到server.xml中根据上下文路径&lt;Context&gt;中的找到对应的项目
+然后Tomcat会去找到该项目的配置文件web.xml，然后查看有没有hello这个请求；
+请求：http://localhost:80/servlet/hello
+注：当我们找到这个 /hello 的时候，也就相应的找到了Servlet的名字（servlet-name） : hello
+Tomcat会根据请求hello去匹配web.xml中的&lt;url-pattern&gt;中的值：
+如果没有匹配上就去找这个项目默认web路径下有没有hello这个页面（html或jsp）：
+如果没有，404；
+如果有这个页面，显示页面的内容；
+如果匹配上了会根据&lt;Servlet-name&gt;标签找到相应的Servlet类：
+找到相应的类之后，到缓存区里面去看这个类有没有相应的实例：
+如果没有，通过反射创建一个实例，并将这个实例放到缓存区：
+执行构造方法
+执行初始化方法
+如果有，直接拿到这个实例；
+调用实例的service方法执行业务逻辑处理；
+如果正常关闭的话，会执行destroy方法，必须要初始化了servlet才会执行destroy方法；
+Servlet生命周期 Servlet容器调用无参构造创建对象：第一次访问 或 项目部署的时候 Servlet容器调用初始化方法init() ：第一次访问 或 项目部署的时候 Servlet容器调用服务方法service()、doGet()、doPost()：第n次访问 对于Tomcat来说，Servlet只有一个（它是单例的，每次创建的Servlet实例都会缓存起来） 当我们正常关闭Tomcat的时候，Servlet容器会自动调用销毁方法destory() 构造方法 &ndash;&gt; init方法 &ndash;&gt; service【每次请求都会执行】 &ndash;&gt; destory【正常关闭才执行】 Servlet的实现方式 有两种实现方式："/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="true">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://bruisesl.github.io">BruisesL&#39;s blog</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+  <nav class="menu">
+    
+    <a class="" href="/about/">About</a>
+    
+  </nav>
+  
+
+  
+  <nav class="social">
+    
+    <a
+      class="github"
+      style="--url: url(./github.svg)"
+      href="https://github.com/BruisesL"
+      target="_blank"
+    ></a>
+    
+  </nav>
+  
+</header>
+
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <aside>
+      <time>March 10, 2023</time>
+      
+      <span>BruisesL</span>
+      
+    </aside>
+    <h1>JavaWeb-Servlet与JSP</h1>
+  </header>
+  <section class="post-content"><h2 id="javaweb项目">JavaWeb项目</h2>
+<p>开发JavaWeb的程序，必需要严格参照JavaWeb提供的规范来存放我们的资源。结构分析如下：</p>
+<p><img src="/JavaWeb%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84.jpg" alt="JavaWeb项目结构"></p>
+<p><strong>注</strong>：</p>
+<ol>
+<li>
+<p>WEB-INF里面的程序是不可见的，必需通过我们的程序访问；</p>
+</li>
+<li>
+<p>现在web.xml并不是必需的；如果项目中需要用到这个web.xml，建议可以从apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml拷贝；</p>
+</li>
+<li>
+<p>index是非常特殊的，我们访问到一个文件夹，如果没有确定是哪一个文件，它就会去找名称为index.html或者index.jsp的文件；</p>
+</li>
+</ol>
+<h3 id="部署流程">部署流程</h3>
+<ol>
+<li>
+<p>创建一个文件夹oa；</p>
+</li>
+<li>
+<p>在oa下面创建WEB-INF文件夹，在WEB-INF下面分别创建lib和classes文件夹；</p>
+</li>
+<li>
+<p>拷贝web.xml到WEB-INF下面。可以从\apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml拷贝；</p>
+</li>
+<li>
+<p>在oa文件夹下面创建一个hello.html；</p>
+</li>
+<li>
+<p>直接把文件夹放到Tomcat的webapps中</p>
+</li>
+<li>
+<p>在server.xml里面进行配置</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> docBase：项目的路径
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> path：项目访问的虚拟路径（可以为/代表没有）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;Context</span> <span style="color:#a6e22e">docBase=</span><span style="color:#e6db74">&#34;D:/oa&#34;</span> <span style="color:#a6e22e">path=</span><span style="color:#e6db74">&#34;myoa&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span></code></pre></div><p><strong>注1</strong>：项目需要部署（将项目就交给tomcat保管）才能访问，以上两种部署方式：第一种将整个WebContent文件夹拖到tomcat的webapps下（不推荐，一般开发完项目可以这样做）。第二种使用server.xml配置（方便开发）。</p>
+<p><strong>注2</strong>：直接访问域名+端口号会根据apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml配置文件中的<code>&lt;welcome-file-list&gt;</code>标签中的顺序匹配</p>
+<h2 id="servlet相关">Servlet相关</h2>
+<p>Servlet是一个<strong>接口</strong>，一个<strong>规范</strong>（sun公司并没有去实现它），它的实现就是由各大服务器厂商（Tomcat）去实现；Tomcat是一个javaweb服务器，也是一个Servlet容器；Servlet容器是<strong>管理所有Servlet对象的创建，运行，销毁</strong>的容器。而Servlet对象也只有在Servlet容器中才能使用。所以如果写了一个Servlet, 那么一定要记住，<strong>把这个Servlet交给Tomcat去管理</strong>。</p>
+<h3 id="servlet部署流程">Servlet部署流程</h3>
+<ol>
+<li>
+<p>访问之前一定要确保Tomcat服务要开启，并且要将项目部署到Tomcat，否则出现404错误；</p>
+</li>
+<li>
+<p>用户在浏览器端输入地址。例如：http://localhost:80/servlet/hello  该请求访问的是本地（localhost）端口号为80的程序，即tomcat；</p>
+</li>
+<li>
+<p>Tomcat会到webapps中去找到servlet这个程序或者到server.xml中根据上下文路径<code>&lt;Context&gt;</code>中的找到对应的项目</p>
+</li>
+<li>
+<p>然后Tomcat会去找到该项目的配置文件web.xml，然后查看有没有hello这个请求；</p>
+</li>
+<li>
+<p>请求：http://localhost:80/servlet/hello</p>
+<p><strong>注</strong>：当我们找到这个 /hello 的时候，也就相应的找到了Servlet的名字（servlet-name） : hello</p>
+</li>
+<li>
+<p>Tomcat会根据请求hello去匹配web.xml中的<code>&lt;url-pattern&gt;</code>中的值：</p>
+<ul>
+<li>
+<p>如果没有匹配上就去找这个项目默认web路径下有没有hello这个页面（html或jsp）：</p>
+<p>如果没有，404；</p>
+<p>如果有这个页面，显示页面的内容；</p>
+</li>
+<li>
+<p>如果匹配上了会根据<code>&lt;Servlet-name&gt;</code>标签找到相应的Servlet类：</p>
+</li>
+</ul>
+</li>
+<li>
+<p>找到相应的类之后，到缓存区里面去看这个类有没有相应的实例：</p>
+<ul>
+<li>
+<p>如果没有，通过反射创建一个实例，并将这个实例放到缓存区：</p>
+<p>执行构造方法</p>
+<p>执行初始化方法</p>
+</li>
+<li>
+<p>如果有，直接拿到这个实例；</p>
+</li>
+</ul>
+</li>
+<li>
+<p>调用实例的service方法执行业务逻辑处理；</p>
+</li>
+<li>
+<p>如果正常关闭的话，会执行destroy方法，必须要初始化了servlet才会执行destroy方法；</p>
+</li>
+</ol>
+<p><img src="/Servlet%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.jpg" alt="Servlet执行流程"></p>
+<h3 id="servlet生命周期">Servlet生命周期</h3>
+<ol>
+<li>Servlet容器调用无参构造创建对象：第一次访问 或 项目部署的时候</li>
+<li>Servlet容器调用初始化方法<code>init()</code> ：第一次访问 或 项目部署的时候</li>
+<li>Servlet容器调用服务方法<code>service()</code>、<code>doGet()</code>、<code>doPost()</code>：第n次访问</li>
+<li>对于Tomcat来说，Servlet只有一个（它是单例的，每次创建的Servlet实例都会缓存起来）</li>
+<li>当我们正常关闭Tomcat的时候，Servlet容器会自动调用销毁方法<code>destory()</code></li>
+<li>构造方法 &ndash;&gt; init方法 &ndash;&gt; service【每次请求都会执行】 &ndash;&gt; destory【正常关闭才执行】</li>
+</ol>
+<p><img src="/servlet%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.png" alt="servlet的执行流程"></p>
+<h3 id="servlet的实现方式">Servlet的实现方式</h3>
+<p>有两种实现方式：</p>
+<p>第一种是实现Servlet接口，重写其中的所有方法；第二种是继承服务器重写Servlet接口的实现类，例如Tomcat中的HttpServlet</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SecondServlet</span> <span style="color:#66d9ef">extends</span> HttpServlet<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span> 	<span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">service</span><span style="color:#f92672">(</span>HttpServletRequest req<span style="color:#f92672">,</span> HttpServletResponse resp<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException<span style="color:#f92672">,</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 		<span style="color:#75715e">//写功能代码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="处理请求的方式">处理请求的方式</h3>
+<p><img src="/%E5%A4%84%E7%90%86%E8%AF%B7%E6%B1%82%E7%9A%84%E6%96%B9%E5%BC%8F.jpg" alt="处理请求的方式"></p>
+<p>Get请求与Post请求的区别：</p>
+<ol>
+<li>
+<p>get请求时，<strong>请求参数放在请求地址url后面</strong>，而post提交方式时，<strong>请求参数是放在请求数据包中的实体内容中传递</strong>；</p>
+</li>
+<li>
+<p>由于地址栏的数据有长度限制，所以Get请求传输的数据量小，一般不能大于2kb，Post请求传输的数据大小没有限制。所以一般文件上传下载使用的是Post请求；</p>
+</li>
+<li>
+<p>Post安全性相对Get较高；</p>
+</li>
+<li>
+<p>get请求的发送时间：</p>
+<ul>
+<li>直接输入网址</li>
+<li>点击链接</li>
+<li>设置表单的提交方式为get或表单的默认提交</li>
+</ul>
+<p>post请求的发送时间：</p>
+<ul>
+<li>设置表单提交方式为<code>post(method=&quot;post&quot;)</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="httpservlet中的request与response对象">HttpServlet中的Request与Response对象</h3>
+<h4 id="httpservletrequest">HttpServletRequest</h4>
+<p>HttpServletRequest对象是Servlet的请求对象，可以获取请求数据包/报文中的所有信息。</p>
+<p>常用方法：</p>
+<p><code>String getContextPath()</code>获取上下文路径，<code>&lt;Context path=&quot;上下文&quot; ../&gt;</code>；</p>
+<p><code>String getHeader(String headName)</code>根据指定的请求头获取对应的请求头的值；</p>
+<p><code>String getRequestURI()</code>返回当期请求的资源路径URI（上下文路径/资源名）；</p>
+<p><code>StringBuffer getRequestURL()</code>返回浏览器请求地址URL；</p>
+<p><code>String getRemoteAddr()</code>返回请求服务器的客户端的IP；</p>
+<p><code>String getServletPath()</code>返回请求，<code>&lt;url-pattern&gt;</code>中的值；</p>
+<p><code>String getParameter(String name)</code>根据参数名称,获取对应参数的值；</p>
+<p><code>String[] getParameterValues(String name)</code>根据参数名称,获取该参数的多个值；</p>
+<p><code>Map&lt;String,String[]&gt; getParameterMap()</code>返回请求参数组成的Map集合；</p>
+<p><code>void req.setCharacterEncoding(&quot;UTF-8&quot;)</code>能够正确获取post请求的中文参数而不出现乱码；</p>
+<p><code>String getProtocol()</code>获取协议版本HTTP/1.1</p>
+<p><code>String getMethod()</code>获取请求方式（GET or POST）</p>
+<p><code>int getServerPort()</code>获取端口号</p>
+<h4 id="httpservletresponse">HttpServletResponse</h4>
+<p>HttpServletResponse对象是Servlet的响应对象，可以设置响应的文件格式和编码格式，还可以获取输出流。</p>
+<p>常用方法：</p>
+<p><code>OutputStream getOutputStream()</code>获取流的方法一，获取字节输出流（上传下载用）</p>
+<p><code>resp.getWriter()</code>获取流的方法二，获取字符输出流（字符输出用此流，向页面输出）</p>
+<p><code>resp.setContentType(&quot;text/html;charset=UTF-8&quot;)</code>响应页面的文件格式和编码格式</p>
+<h4 id="乱码问题">乱码问题</h4>
+<ol>
+<li>
+<p>向页面输出中文</p>
+<p><code>resp.setContentType(&quot;text/html;charset=utf-8&quot;)</code>能够向页面输出中文，<code>&quot;&quot;</code>中的内容不要写错，否则浏览器不认识响应的类型，就会将问题抛给用户；</p>
+</li>
+<li>
+<p>获取表单提交的中文数据</p>
+<p>针对post请求（请求参数是在实体内容中）</p>
+<p>第一种：<code>req.setCharacterEncoding(&quot;utf-8&quot;)</code>必须写在获取参数前，因为如果获取了参数，设置编码无效</p>
+<p>第二种：<code>name = new String(name.getBytes(&quot;iso-8859-1&quot;), &quot;utf-8&quot;);</code>转码，缺点：太麻烦，每个数据都要转</p>
+<p><strong>注</strong>：两种只能用其一。</p>
+</li>
+<li>
+<p>针对get请求（请求参数是在地址栏上），tomcat8不做处理，如果是tomcat7及其以前：</p>
+<p>第一种：<code>name = new String(name.getBytes(&quot;iso-8859-1&quot;), &quot;utf-8&quot;);</code>转码</p>
+<p>第二种：修改服务器中的配置conf &ndash; server.xml &ndash; <code>&lt;Connector&gt;</code>标签中最后加上属性<code>URIEncoding=&quot;utf-8&quot;</code></p>
+<p><strong>注</strong>：两种只能用其一 ，以后服务器换了，还需重新配置一次；</p>
+</li>
+<li>
+<p>注意：</p>
+<ul>
+<li>
+<p>tomcat8.x之前的默认编码集为ISO-8859-1，tomcat8.x之后默认编码集为UTF-8；</p>
+</li>
+<li>
+<p>对于tomcat8.x以及之后的get请求不需要转码或配置，而Tomcat7需要配置；</p>
+</li>
+<li>
+<p>做项目的时候，项目部署不一定是tomcat，在不能修改web服务器的状态下，可以通过过滤器来解决；</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="servlet细节">Servlet细节</h3>
+<p><strong>url-pattern的多种匹配方式</strong>：</p>
+<ol>
+<li>
+<p>精确匹配配置什么就必须写什么，精确匹配中<code>/</code>不能少</p>
+<p>方式一：在一个<code>&lt;servlet-mapping&gt;</code>中配置多个<code>&lt;url-pattern&gt;&lt;/url-pattern&gt;</code></p>
+<p>方式二：在一个Servlet中可以配置配置多个<code>&lt;servlet-mapping&gt;&lt;/servlet-mapping&gt;</code></p>
+</li>
+<li>
+<p>通配符匹配<code>/*</code></p>
+<p>方式一：通配符匹配：可以拦截到所有的请求</p>
+<p>方式二：以指定路径开始的匹配，例如：<code>/system/</code>*、<code>/system/user/*</code> 很多时候，我们做权限，就会用到这个拦截</p>
+</li>
+<li>
+<p>后缀匹配（<code>*.后缀名</code>）</p>
+<p>以后缀的方式匹配，注意后缀匹配是没有加<code>/</code>的</p>
+<p>例如：<code>*.action</code>、<code>*.do</code>、<code>*.user</code>、<code>*.student</code>、<code>*.admin</code>等等，此方式不能加<code>/</code></p>
+<p><strong>注</strong>：后缀匹配中不要配置<code>*.html</code>和*.jsp后缀（与页面的后缀冲突），后缀请求匹配会先匹配web.xml或注解直接找到Servlet，而不会请求对应的html和jsp页面</p>
+</li>
+</ol>
+<p><strong>初始化配置</strong>：</p>
+<ol>
+<li>
+<p>为了提高第一次访问Servlet的效率，可以将Servlet实例化初始化的时机提前到项目部署的时候，只需要加上<code>&lt;load-on-startup&gt;&lt;/load-on-startup&gt;</code>即可</p>
+</li>
+<li>
+<p><code>&lt;load-on-startup&gt;&lt;/load-on-startup&gt;</code>里面的数字代表就是servlet创建的先后顺序，数字越小，越早启动</p>
+</li>
+<li>
+<p><code>&lt;servlet-name&gt;</code>中<strong>不能取名叫做default</strong>，默认的default对应的servlet就是访问静态资源，如果servlet名字叫做default会把别的功能覆盖掉</p>
+</li>
+</ol>
+<p><strong>注解方式</strong>：</p>
+<p>通过传统方式每配置一个servlet就需要写一大段的配置信息，所以servlet给我们提供了注解的形式。</p>
+<p>通过<code>@WebServlet(&quot;/暴露路径&quot;)</code>，将此注解加在servlet控制器类上，就可以代替我们之前的配置，配置方式：如果只有一个路径名称那么可以不加，但是<code>*.xxx</code>除外。</p>
+<p>例如：<code>@WebServlet(&quot;/mapping&quot;)</code>、<code>@WebServlet(urlPatterns={&quot;/mapping&quot;,&quot;/mapping2&quot;,&quot;/mapping3&quot;})</code>、<code>@WebServlet(urlPatterns={&quot;/system/user/*&quot;})</code>、<code>@WebServlet(urlPatterns={&quot;*.xxx&quot;})</code>、<code>@WebServlet(&quot;/*&quot;)</code></p>
+<p><strong>线程安全</strong>：</p>
+<p>Servlet是单例的（同一个线程发送多次请求，只会创建一个对象）。但是Servlet是线程不安全的。当多个线程同时访问同一个成员变量时，若其中一个线程修改了成员变量的值，则会出现线程安全问题。</p>
+<p>解决方法一：</p>
+<p>实现SingleThreadModel接口，这个方法SingleThreadModel相当于一个把锁，必须等第一个线程计算完，之后线程才进来，这样导致效率低下。</p>
+<p>解决方法二：</p>
+<p>避免写成员变量。</p>
+<p>注：Servlet和Springmvc都是非线程安全的（不要写成员变量）；Struts2是线程安全的（可以写成员变量）。</p>
+<p><strong>合并Servlet</strong>：</p>
+<p>如果涉及到一个表中有多个请求（CRUD等），可以将多个Servlet合并为一个。</p>
+<p>有三种合并方式：</p>
+<ol>
+<li>使用后缀匹配<code>*.</code>表名实现，后台判断请求的uri区分不同的请求，调用不同的方法处理；</li>
+<li>在表单中使用隐藏域，每个请求写不同的值，后台获取这个隐藏域参数之后再判断，然后调用不同的方法处理；</li>
+<li>在请求路径后面跟上一个特定参数，后台以这个参数来判断是要执行什么操作。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * dept页面的servlet
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 主要功能：
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 展示数据，增加部门，修改部门，删除部门
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @author bruises
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@WebServlet</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/dept/*&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DeptServlet</span> <span style="color:#66d9ef">extends</span> HttpServlet <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 获取一个私有化的dept的service层对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> DeptService deptService <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DeptServiceImpl<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 重写HttpServlet类中的doGet方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param req
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param resp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @throws ServletException
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @throws IOException
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doGet</span><span style="color:#f92672">(</span>HttpServletRequest req<span style="color:#f92672">,</span> HttpServletResponse resp<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException<span style="color:#f92672">,</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 设置请求内容的字符集
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        req<span style="color:#f92672">.</span><span style="color:#a6e22e">setCharacterEncoding</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;utf-8&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 请求过来的路径path
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        String uri <span style="color:#f92672">=</span> req<span style="color:#f92672">.</span><span style="color:#a6e22e">getRequestURI</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        String path <span style="color:#f92672">=</span> uri<span style="color:#f92672">.</span><span style="color:#a6e22e">substring</span><span style="color:#f92672">(</span>uri<span style="color:#f92672">.</span><span style="color:#a6e22e">lastIndexOf</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/&#34;</span><span style="color:#f92672">)+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 判断请求类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>path<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;list&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                doList<span style="color:#f92672">(</span>req<span style="color:#f92672">,</span>resp<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;add&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                doAdd<span style="color:#f92672">(</span>req<span style="color:#f92672">,</span>resp<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;update&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                doUpdate<span style="color:#f92672">(</span>req<span style="color:#f92672">,</span>resp<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;update_save&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                doSave<span style="color:#f92672">(</span>req<span style="color:#f92672">,</span>resp<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;delete&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                doDel<span style="color:#f92672">(</span>req<span style="color:#f92672">,</span>resp<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 重写HttpServlet类中的doPost方法，设置了输出内容字符集后，直接调用doGet业务逻辑
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param req
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param resp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @throws ServletException
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @throws IOException
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doPost</span><span style="color:#f92672">(</span>HttpServletRequest req<span style="color:#f92672">,</span> HttpServletResponse resp<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException<span style="color:#f92672">,</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        req<span style="color:#f92672">.</span><span style="color:#a6e22e">setCharacterEncoding</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;utf-8&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        doGet<span style="color:#f92672">(</span>req<span style="color:#f92672">,</span>resp<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 查询全量Dept数据的方法，私有化，仅允许doGet与doPost方法调用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param req
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param resp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @throws ServletException
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @throws IOException
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doList</span><span style="color:#f92672">(</span>HttpServletRequest req<span style="color:#f92672">,</span> HttpServletResponse resp<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException<span style="color:#f92672">,</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Dept<span style="color:#f92672">&gt;</span> listDept <span style="color:#f92672">=</span> deptService<span style="color:#f92672">.</span><span style="color:#a6e22e">findAllDept</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        req<span style="color:#f92672">.</span><span style="color:#a6e22e">setAttribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;listDept&#34;</span><span style="color:#f92672">,</span>listDept<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        req<span style="color:#f92672">.</span><span style="color:#a6e22e">getRequestDispatcher</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/WEB-INF/dept.jsp&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">forward</span><span style="color:#f92672">(</span>req<span style="color:#f92672">,</span>resp<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 获取用户新增的数据，并新增
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param req
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param resp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doAdd</span><span style="color:#f92672">(</span>HttpServletRequest req<span style="color:#f92672">,</span> HttpServletResponse resp<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException<span style="color:#f92672">,</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String name <span style="color:#f92672">=</span> req<span style="color:#f92672">.</span><span style="color:#a6e22e">getParameter</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        String manager <span style="color:#f92672">=</span> req<span style="color:#f92672">.</span><span style="color:#a6e22e">getParameter</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;manager&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        String tel <span style="color:#f92672">=</span> req<span style="color:#f92672">.</span><span style="color:#a6e22e">getParameter</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;tel&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        String num <span style="color:#f92672">=</span> req<span style="color:#f92672">.</span><span style="color:#a6e22e">getParameter</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;num&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        Dept dept <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Dept<span style="color:#f92672">(</span>name<span style="color:#f92672">,</span> manager<span style="color:#f92672">,</span> tel<span style="color:#f92672">,</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span>num<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>        deptService<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>dept<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        doList<span style="color:#f92672">(</span>req<span style="color:#f92672">,</span>resp<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 删除部门的方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param req
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param resp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doDel</span><span style="color:#f92672">(</span>HttpServletRequest req<span style="color:#f92672">,</span> HttpServletResponse resp<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException<span style="color:#f92672">,</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Integer id <span style="color:#f92672">=</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span>req<span style="color:#f92672">.</span><span style="color:#a6e22e">getParameter</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;id&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>        deptService<span style="color:#f92672">.</span><span style="color:#a6e22e">del</span><span style="color:#f92672">(</span>id<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        doList<span style="color:#f92672">(</span>req<span style="color:#f92672">,</span> resp<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 修改部门数据前，查询并展示部门的方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param req
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param resp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @throws ServletException
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @throws IOException
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doUpdate</span><span style="color:#f92672">(</span>HttpServletRequest req<span style="color:#f92672">,</span> HttpServletResponse resp<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException<span style="color:#f92672">,</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Integer id <span style="color:#f92672">=</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span>req<span style="color:#f92672">.</span><span style="color:#a6e22e">getParameter</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;id&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>        Dept dept <span style="color:#f92672">=</span> deptService<span style="color:#f92672">.</span><span style="color:#a6e22e">findById</span><span style="color:#f92672">(</span>id<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        req<span style="color:#f92672">.</span><span style="color:#a6e22e">setAttribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dept&#34;</span><span style="color:#f92672">,</span>dept<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        req<span style="color:#f92672">.</span><span style="color:#a6e22e">getRequestDispatcher</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/dept_edit.jsp&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">forward</span><span style="color:#f92672">(</span>req<span style="color:#f92672">,</span>resp<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 将前端数据读取并修改部门数据的方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param req
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * @param resp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doSave</span><span style="color:#f92672">(</span>HttpServletRequest req<span style="color:#f92672">,</span> HttpServletResponse resp<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException<span style="color:#f92672">,</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Integer id <span style="color:#f92672">=</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span>req<span style="color:#f92672">.</span><span style="color:#a6e22e">getParameter</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;id&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>        String name <span style="color:#f92672">=</span> req<span style="color:#f92672">.</span><span style="color:#a6e22e">getParameter</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        String manager <span style="color:#f92672">=</span> req<span style="color:#f92672">.</span><span style="color:#a6e22e">getParameter</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;manager&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        String tel <span style="color:#f92672">=</span> req<span style="color:#f92672">.</span><span style="color:#a6e22e">getParameter</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;tel&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        String num <span style="color:#f92672">=</span> req<span style="color:#f92672">.</span><span style="color:#a6e22e">getParameter</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;num&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        Dept dept <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Dept<span style="color:#f92672">(</span>id<span style="color:#f92672">,</span> name<span style="color:#f92672">,</span> manager<span style="color:#f92672">,</span> tel<span style="color:#f92672">,</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span>num<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>        deptService<span style="color:#f92672">.</span><span style="color:#a6e22e">update</span><span style="color:#f92672">(</span>dept<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        doList<span style="color:#f92672">(</span>req<span style="color:#f92672">,</span>resp<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="servlet交互">Servlet交互</h3>
+<p><strong>Servlet的三大职责</strong>：</p>
+<ol>
+<li>
+<p>接收请求参数（封装）</p>
+</li>
+<li>
+<p>调用业务方法处理业务（去调用业务service层）</p>
+</li>
+<li>
+<p>响应请求（跳转页面或其他Servlet）</p>
+</li>
+</ol>
+<p><img src="/%E7%94%A8%E6%88%B7%E7%99%BB%E9%99%86%E8%B7%B3%E8%BD%AC%E9%80%BB%E8%BE%91%E5%9B%BE.jpg" alt="用户登陆跳转逻辑图"></p>
+<p><strong>跳转和数据共享的原因</strong>：</p>
+<ul>
+<li>
+<p>跳转：需要做责任分离（Servlet擅长写代码即处理业务逻辑，jsp擅长展示页面）；</p>
+</li>
+<li>
+<p>共享：Http是无状态的，我们跳转的时候数据无法传递，因此需要做数据共享。</p>
+</li>
+</ul>
+<h4 id="跳转">跳转</h4>
+<p>跳转的目标有两种：Servlet跳转其它资源（例如：jsp，html）或者 Serlvet跳转其他Servlet</p>
+<p>跳转有两种方式：请求转发与重定向</p>
+<p><img src="/%E9%87%8D%E5%AE%9A%E5%90%91%E4%B8%8E%E8%BD%AC%E5%8F%91.jpg" alt="重定向与转发"></p>
+<p><strong>请求转发Forward</strong>：</p>
+<p>转发的方式：<code>req.getRequestDispatcher(&quot;路径&quot;).forward(request, response)</code></p>
+<p>特点：</p>
+<ul>
+<li>请求只有一次，不会发起多次请求</li>
+<li>浏览器请求地址不会改变</li>
+<li>多次转发之间获取到的参数是一样的</li>
+<li>可以访问受保护的资源</li>
+<li>只能转发到内部请求，不能访问别人的服务器，不能跨域</li>
+<li>只有最后一个response会生效</li>
+<li>即便请求转发走了，后面的代码还是会执行</li>
+</ul>
+<p>使用场景：</p>
+<ol>
+<li>如果想要多个servlet之间共享数据，那么使用请求转发</li>
+<li>如果想要访问WEB-INF下面的资源，那么使用请求转发</li>
+<li>查询完列表之后，使用请求转发，转发到列表界面，方便取值</li>
+</ol>
+<p><strong>重定向Redirect</strong>：</p>
+<p>重定向跳转的方式：<code>resp.sendRedirect(&quot;路径&quot;)</code></p>
+<p>特点：</p>
+<ul>
+<li>地址栏会发生变化</li>
+<li>会发送多次请求</li>
+<li>由于重定向是多次请求，所以多个servlet之间不能共享数据</li>
+<li>无法访问受保护的资源</li>
+<li>可以跨域访问</li>
+<li>每个response都会生效，但是只能看到最后一个，可以通过代码看到是生效了</li>
+<li>即便重定向走了，还是会执行后续的代码</li>
+</ul>
+<p>使用场景：</p>
+<ol>
+<li>如果想要跨域访问，那么使用重定向</li>
+<li>做数据的添加、删除、修改操作，使用重定向，因为请求转发可能会造成多次重复提交问题</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>请求转发(forward)</th>
+<th>重定向(redirect)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>访问 WEB-INF</td>
+<td>√</td>
+<td>×</td>
+</tr>
+<tr>
+<td>传参数</td>
+<td>√</td>
+<td>×</td>
+</tr>
+<tr>
+<td>访问外网</td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>重复提交的问题</td>
+<td>有</td>
+<td>无</td>
+</tr>
+<tr>
+<td>路径变化</td>
+<td>无</td>
+<td>有</td>
+</tr>
+<tr>
+<td>代码</td>
+<td>req.getRequestDispatcher(path).forward(req, resp);</td>
+<td>resp.sendRedirect(path)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jsp相关">JSP相关</h2>
+<p>为了将Servlet中用于表现的部分分离出来，Java使用JSP实现。<strong>JSP（java server page）即java服务器端（动态）网页</strong>，JSP就是Java中用来做动态网页的技术，既然是页面，对于前端代码编写人员来说，可以当成html页面来进行渲染工作。<strong>JSP底层就是一个Servlet</strong>，在执行的时候先转成Servlet然后同样要经历Servlet的生命周期，Servlet主要是处理业务为主（Java后台代码），JSP主要以表现为主（HTML,CSS,JS等前端代码），Servlet更擅长逻辑的编写，JSP更擅长于数据的显示，最后达到一个目标，servlet里面不要写HTML代码，jsp里面不要写java代码。</p>
+<p><strong>JSP原理分析</strong>：</p>
+<p><img src="/JSP%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90.jpg" alt="JSP原理分析"></p>
+<ol>
+<li>
+<p>浏览器第一次访问 hello.jsp 页面，会去找到<code>conf目录</code>web.xml里面<code>*.jsp</code>，在会找到JspServlet</p>
+</li>
+<li>
+<p>tomcat 会将 hello.jsp 转换为名为 hello_jsp.java 的一个 Servlet存储在tomcat目录下work\Catalina\localhost\ROOT\org\apache\jsp路径</p>
+</li>
+<li>
+<p>tomcat 再将转换的 servlet 编译成字节码文件 hello_jsp.class</p>
+</li>
+<li>
+<p>tomcat 会执行该字节码文件，向外提供服务</p>
+</li>
+</ol>
+<p><strong>语法</strong>：</p>
+<ol>
+<li>
+<p>注释：<code>&lt;%--这是注释--%&gt;</code> 在jsp翻译成Servlet的时候这个注释就没有了，源代码看不到</p>
+</li>
+<li>
+<p>JSP表达式：</p>
+<p>语法：<code>&lt;%=表达式%&gt;</code>（实际上就是调用输出流打印到页面上 <code>out.print(表达式)</code>）</p>
+<p>作用：输出数据到页面上</p>
+<p>例子：<code>&lt;%=new java.util.Date().toLocaleString() %&gt;</code>转化成Java代码：转换到自动生成Servlet的_jspService方法中<code>out.print(new java.util.Date ().toLocaleString());</code></p>
+</li>
+<li>
+<p>JSP申明：</p>
+<p>语法：<code>&lt;%! Java代码 %&gt;</code></p>
+<p>作用：定义成员</p>
+<p>转化成Java代码：转换成自动生成的Servlet类中的成员</p>
+</li>
+<li>
+<p>JSP脚本：</p>
+<p>语法：<code>&lt;% Java语句1;Java语句2;%&gt;</code></p>
+<p>作用：编写Java逻辑代码；</p>
+<p>转化成Java代码：转换到自动生成Servlet的_jspService方法中；</p>
+</li>
+</ol>
+<p><strong>JSP指令</strong>：</p>
+<p>JSP指令有三种：page（页面指令）、include（包含指令）、taglib（标签指令（JSTL））</p>
+<ul>
+<li>
+<p>page指令</p>
+<p>格式：<code>&lt;%@page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot; pageEncoding=&quot;UTF-8&quot; ... &gt;</code></p>
+<p>属性：</p>
+<p><code>language=&quot;java&quot;</code>语言只有java，意义不大</p>
+<p><code>contentType=&quot;text/html; charset=UTF-8&quot;</code>输出的页面类型，相当于在Servlet里面写resp.setContentType(&ldquo;text/html;charset=utf-8&rdquo;)`</p>
+<p><code>pageEncoding=&quot;UTF-8&quot;</code></p>
+<p><code>errorPage=&quot;/myerror.jsp&quot;</code> <strong>如果当前页面出错，就跳转到对应的页面</strong></p>
+<p><code>hello.jsp指定errorPage=&quot;/myerror.jsp&quot;</code></p>
+<p><code>isErrorPage=&quot;true&quot;</code>这个页面是否是错误页面（当要在页面上直接使用exception的时候就可以加上该属性）</p>
+</li>
+<li>
+<p>include指令</p>
+<p>当每个页面都有导航的时候，只需要使用一个，这个时候就可以使用包含指令。</p>
+<p>![JSP指令- include指令](/JSP指令- include指令.jpg)</p>
+</li>
+</ul>
+<p><strong>作用域对象</strong>：</p>
+<p>在做数据共享的时候，会把数据放到不同的地方。这个不同的地方就是放到不同的作用域里面，作用域对象有四个，JSP四大作用域对象属于9大内置对象里面的，用来共享或传递数据的。作用域有大小，存在哪个作用域对象里，就需要在哪个作用域对象中去取得，即不能跨域获取值。</p>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>对象（叫法）</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PageContext</td>
+<td>pageContext</td>
+<td>当前页才能使用，作用不大，值直接使用就是，根本不需要在放到对象里面</td>
+</tr>
+<tr>
+<td>HttpServletRequest</td>
+<td>request</td>
+<td>一次请求（必需请求转发）</td>
+</tr>
+<tr>
+<td>HttpSession</td>
+<td>session（多个对象）</td>
+<td>一次会话（只要浏览器或服务器任意一端断开则会话结束）</td>
+</tr>
+<tr>
+<td>ServletContext</td>
+<td>application（上下文对象）</td>
+<td>整个应用（有且只有一个对象）</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/%E4%BD%9C%E7%94%A8%E5%9F%9F%E8%8C%83%E5%9B%B4.jpg" alt="作用域范围"></p>
+<ul>
+<li>
+<p>对象获取：</p>
+<p>request就是通过请求获得的request对象</p>
+<p>session是通过<code>request.getSession()</code>获取session对象</p>
+<p>application，有四种获取方式：</p>
+<ol>
+<li>第一种是通过request获取，<code>ServletContext application = getServletContext();</code> 或者 <code>req.getServletContext();</code></li>
+<li>第二种是通过super获取，<code>ServletContext app1= super.getServletContext();</code></li>
+<li>第三种是通过ServletConfig对象获取，<code>super.getServletConfig( ) .getServletContext();</code></li>
+<li>第四种是通过session获取，<code>req.getSession() .getServletContext();</code></li>
+</ol>
+</li>
+<li>
+<p>语法：</p>
+<ul>
+<li>拿到作用域中共享后的数据：<code>作用域对象.getAttribute(&quot;key&quot;)</code></li>
+<li>设置作用域中数据：<code>作用域对象.setAttribute(&quot;key&quot;,&quot;value&quot;)</code></li>
+<li>删除作用域中数据：<code>作用域对象.removeAttribute(&quot;key&quot;)</code></li>
+<li>修改作用域内数据（重新放一次，设置一个相同的key）<code>作用域对象.setAttribute(&quot;key&quot;,&quot;value&quot;)</code></li>
+</ul>
+</li>
+<li>
+<p>ServletContext对象的常用方法：</p>
+<p><code>getContextPath();</code> 拿到上下文路径</p>
+<p><code>getRealPath(&quot;/&quot;);</code> 拿到真实路径（以后做上传下载可以使用）</p>
+<p><code>getInitParameter(&quot;encoding&quot;);</code> 拿到初始化参数（只能拿到全局里面的参数信息）</p>
+</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<p>由于 JSP页面内，既可以定义 HTML 标签，又可以定义 Java代码，造成了以下问题：</p>
+<ol>
+<li>书写麻烦：特别是复杂的页面，既要写 HTML 标签，还要写 Java 代码</li>
+<li>阅读麻烦：可读性差，html和java代码混合</li>
+<li>复杂度高：运行需要依赖于各种环境，JRE，JSP容器，JavaEE…</li>
+<li>占内存和磁盘：JSP会自动生成.java和.class文件占磁盘，运行的是.class文件占内存</li>
+<li>调试困难：出错后，需要找到自动生成的.java文件进行调试</li>
+<li>不利于团队协作：前端人员不会 Java，后端人员不精 HTML</li>
+<li>如果页面布局发生变化，前端工程师对静态页面进行修改，然后再交给后端工程师，由后端工程师再将该页面改为 JSP 页面</li>
+</ol>
+<p>由于上述的问题， JSP 已逐渐退出历史舞台，以后开发更多的是使用 HTML +  Ajax 来替代。有Ajax这个技术后，前端工程师负责前端页面开发，而后端工程师只负责后端代码开发。</p>
+<h2 id="el表达式">EL表达式</h2>
+<p>EL（Express Language）就是一种表达式语言，可以获取四大作用域中的共享数据，优化了JSP语法中的语句。EL表达式获取作用域中的属性要<strong>依靠JavaBean的可读属性即需要有getter方法</strong>，否则无法获取。</p>
+<p><strong>语法</strong>：</p>
+<ul>
+<li>
+<p>获取作用域中的属性：使用${key} 获取，会到依次从四个作用域里面去找到key对应的value，<strong>先取小的范围的值</strong>，小的没有，在取到大的范围的值，如果key不存在，显示为空字符串，而<strong>不会显示null值</strong>。</p>
+<p>如果两个作用域都存在需要取的key，则需要在取值时使用作用域Scope.key，例如 <code>${requstScope.msg}</code></p>
+<p>如果在设置属性值时有特殊字符，例如<code>KEY.IN.SESSION</code>则在获取时需要用<code>${sessionScope[&quot;KEY.IN.SESSION&quot;]}</code>获取</p>
+<pre tabindex="0"><code class="language-jsp" data-lang="jsp">&lt;%-- JSP语句写法 --%&gt;
+&lt;%= request.getAttribute(&#34;error&#34;)==null?&#34;&#34;:request.getAttribute(&#34;error&#34;) %&gt;
+
+&lt;%-- EL表达式 --%&gt;
+${error}
+</code></pre></li>
+<li>
+<p>访问JavaBean中的属性：用${对象名.属性名}获取，如果属性名有特殊字符，则通过 ${对象名[&ldquo;属性名&rdquo;]} 获取。其中对象名可以从四大作用中获取，而对象名写错会显示空字符串，属性名写错会报错。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// java代码中new一个对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>User user <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User<span style="color:#f92672">(</span><span style="color:#ae81ff">1L</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;张飞&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;123&#34;</span><span style="color:#f92672">);</span><span style="color:#75715e">// 属性分别为id，ueserName，password
+</span></span></span></code></pre></div><pre tabindex="0"><code class="language-jsp" data-lang="jsp">&lt;%-- 获取user对象的JavaBean属性 --%&gt;
+&lt;p&gt;
+id:${user.id}&lt;br&gt;
+user_name:${user.userName}&lt;br&gt;
+password:${user.password}&lt;br&gt;
+&lt;/p&gt;
+</code></pre><pre tabindex="0"><code class="language-jsp" data-lang="jsp">&lt;%-- 拿到上下文路径，页面上的href，src等属性可以使用这种方式制定绝对路径 --%&gt;
+${pageContext.request.contextPath} 
+&lt;%-- 例如 --%&gt;
+&lt;a href=&#34;${pageContext.request.contextPath}&#34;&gt;XXX&lt;/a&gt;
+</code></pre></li>
+<li>
+<p>EL运算符：</p>
+<pre tabindex="0"><code class="language-jsp" data-lang="jsp">&lt;%-- 算数运算符 --%&gt;
+${1+2} ${2-1} ${2*3} ${16/5}
+&lt;%-- 关系运算符 --%&gt;
+${16&gt;5}	或	${16 gt 5}
+${1==2}	或	${1 eq 2}
+&lt;%-- 逻辑运算符 --%&gt;
+${true &amp;&amp; true} 或 ${true and true}
+${!true} 或 ${not true}
+&lt;%-- 三目运算符 --%&gt;
+${A?B:C}
+&lt;%-- 其他运算符 --%&gt;
+${empty param.name} 如果param.name 为空返回true否则false
+</code></pre></li>
+</ul>
+<h2 id="jstl相关">JSTL相关</h2>
+<p>JSTL（JavaServer Pages Standard Tag Library）JSP标准标签库，标签库由标签库和EL表达式语言两个部分组成，用来<strong>消除JAVA代码</strong>。</p>
+<p><strong>使用</strong>：</p>
+<ol>
+<li>
+<p>导包 jstl.jar 和 standard.jar</p>
+</li>
+<li>
+<p>引用JSTL标签库</p>
+<table>
+<thead>
+<tr>
+<th>标签库</th>
+<th>URL</th>
+<th>前缀</th>
+<th>使用模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>核心标签库</td>
+<td><a href="http://java.sun.com/jstl/core">http://java.sun.com/jstl/core</a></td>
+<td>c</td>
+<td><code>&lt;c:tagname&gt;</code></td>
+</tr>
+<tr>
+<td>国标化标签（I18N）</td>
+<td><a href="http://java.sun.com/jstl/fmt">http://java.sun.com/jstl/fmt</a></td>
+<td>fmt</td>
+<td><code>&lt;fmt:tagname&gt;</code></td>
+</tr>
+<tr>
+<td>SQL标签库</td>
+<td><a href="http://java.sun.com/jstl/sql">http://java.sun.com/jstl/sql</a></td>
+<td>sql</td>
+<td><code>&lt;sql:tagname&gt;</code></td>
+</tr>
+<tr>
+<td>XML标签库</td>
+<td><a href="http://java.sun.com/jstl/xml">http://java.sun.com/jstl/xml</a></td>
+<td>x</td>
+<td><code>&lt;x:tagname&gt;</code></td>
+</tr>
+<tr>
+<td>函数标签库</td>
+<td><a href="http://java.sun.com/jstl/functions">http://java.sun.com/jstl/functions</a></td>
+<td>fn</td>
+<td><code>&lt;fn:tagname&gt;</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>在使用的jsp文件中导入使用语句，例如<code>&lt;%@ taglib uri=&quot;http://java.sun.com/jsp/jstl/core&quot; prefix=&quot;c&quot; %&gt;</code></p>
+</li>
+</ol>
+<h3 id="常用标签">常用标签</h3>
+<p><strong>if标签</strong>：</p>
+<pre tabindex="0"><code class="language-jsp" data-lang="jsp">&lt;%
+		request.setAttribute(&#34;age&#34;,16);
+%&gt;
+&lt;c:if test=&#34;${age &gt; 18}&#34;&gt;
+  	age is greater than 18
+&lt;/c:if&gt;
+&lt;c:if test=&#34;${age &lt; 18}&#34;&gt;
+  	age is less than 18
+&lt;/c:if&gt;
+</code></pre><p><strong>foreach标签</strong>：</p>
+<pre tabindex="0"><code class="language-jsp" data-lang="jsp">&lt;c:forEach items=&#34;${users}&#34; var=&#34;user&#34; varStatus=&#34;s&#34;&gt;
+		${s.count} |||| ${user.id}--${user.username}--${user.password}&lt;br&gt;
+&lt;/c:forEach&gt;
+</code></pre><ol>
+<li>items：要循环的集合或数组，必须通过el表达式获取作用域中的数据</li>
+<li>var：用于接收集合中的每一个对象</li>
+<li>varStatus：当前循环的状态，它是个javabean
+<ul>
+<li>index：循环索引，从0开始,相当于我们for循环的下标</li>
+<li>count：计数，从1开始，计算遍历了几次，跟下标的区别是他只能每次增加1</li>
+<li>last：是否是最后一次，只有最后一次的时候才是true</li>
+</ul>
+</li>
+<li>begin：表示从那里开始展示，从0开始</li>
+<li>end：表示从那里结束展示</li>
+<li>step：步长，表示每次循环+几个</li>
+</ol>
+<p><strong>choose标签</strong>：</p>
+<pre tabindex="0"><code class="language-jsp" data-lang="jsp">&lt;c:choose&gt;
+		&lt;c:when test=&#34;${age &lt;= 18}&#34;&gt;
+  			age is less than 18
+  	&lt;/c:when&gt;
+  	&lt;c:when test=&#34;${age &gt; 18 &amp;&amp; age &lt;= 60}&#34;&gt;
+  			age is between 18 and 60
+  	&lt;/c:when&gt;
+  	&lt;c:otherwise&gt;
+  			age is greater than 60
+  	&lt;/c:when&gt;
+&lt;/c:choose&gt;
+</code></pre></section>
+
+  
+  
+
+  
+  
+  
+  <nav class="post-nav">
+    
+    <a class="prev" href="https://bruisesl.github.io/post/maven%E7%9B%B8%E5%85%B3/"><span>←</span><span>Maven相关</span></a>
+     
+    <a class="next" href="https://bruisesl.github.io/post/javaweb-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8/"><span>JavaWeb-网络编程与服务器</span><span>→</span></a>
+    
+  </nav>
+  
+
+  
+  
+</article>
+
+</main>
+
+    <footer class="footer">
+  <p>&copy; 2023 <a href="https://bruisesl.github.io">BruisesL&#39;s blog</a></p>
+  <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+  <p>
+    <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.0</a>
+  </p>
+</footer>
+
+  </body>
+</html>

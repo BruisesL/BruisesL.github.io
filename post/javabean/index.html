@@ -121,7 +121,7 @@ JavaBean 的属性都具有 private 特性，方法具有 public 特性，方法
 如果首字母大写，也是属性名直接用作 getter/setter 方法中 get/set 的后部分。例如属性名为Name，方法是getName/setName，这种是最糟糕的情况，会找不到属性出错，因为默认的属性名是name。
 属性名/类型 getter 方法 setter 方法 xcoordinate/Double public Double getXcoordinate() public void setXcoordinate(Double newValue) xCoordinate/Double public Double getxCoordinate() public void setxCoordinate(Double newValue) XCoordinate/Double public Double getXCoordinate() public void setXCoordinate(Double newValue) Xcoordinate/Double 不允许 不允许 注：类中的属性为对象属性（字段），getter和setter⽅法上的属性为Bean属性（JavaBean属性），其中getter⽅法上的属性称之为可读属性，setter⽅法上⾯的属性称之为可写属性。"><meta itemprop="datePublished" content="2023-02-24T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2023-02-24T00:00:00+00:00" />
-<meta itemprop="wordCount" content="143">
+<meta itemprop="wordCount" content="145">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
@@ -278,6 +278,8 @@ JavaBean 的属性都具有 private 特性，方法具有 public 特性，方法
 </tbody>
 </table>
 <p><strong>注</strong>：类中的属性为对象属性（字段），<code>getter</code>和<code>setter</code>⽅法上的属性为Bean属性（JavaBean属性），其中<code>getter</code>⽅法上的属性称之为可读属性，<code>setter</code>⽅法上⾯的属性称之为可写属性。</p>
+<p>调用逻辑：</p>
+<p>获得Bean属性时，会根据需要找的Bean属性名寻找对应类中是否有Getter/Setter方法，如果有，则通过Getter/Setter方法读/写值。至于读写的值是否是对象属性，取决于Getter/Setter方法是怎么写的。</p>
 <h2 id="beanutils">BeanUtils</h2>
 <p>需要的jar包：</p>
 <p><code>commons-beanutils-1.9.2.jar</code></p>
@@ -317,7 +319,7 @@ JavaBean 的属性都具有 private 特性，方法具有 public 特性，方法
   
   <nav class="post-nav">
     
-    <a class="prev" href="https://bruisesl.github.io/post/javaee%E4%BB%8B%E7%BB%8D/"><span>←</span><span>JaveEE 介绍</span></a>
+    <a class="prev" href="https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8A%E8%AF%AD%E6%B3%95/"><span>←</span><span>数据库概述</span></a>
      
     <a class="next" href="https://bruisesl.github.io/post/%E5%8F%8D%E5%B0%84%E4%B8%8E%E6%B3%A8%E8%A7%A3/"><span>反射与注解</span><span>→</span></a>
     

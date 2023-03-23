@@ -114,8 +114,8 @@ InputStream openStream() 打开到此 URL 的连接并返回一个用于从该�
 public void testURL() throws Exception { // java要通过URL地址操作网页，可以通过URL对象来操作 // 创建URL的方式有很多种 // 第一种：就是通过网站的URL地址创建URL对象 //URL url = new URL(&#34;https://itsource." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://bruisesl.github.io/post/javaweb-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2021-03-10T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-03-10T00:00:00+00:00" />
+<meta property="article:published_time" content="2023-03-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-03-10T00:00:00+00:00" />
 
   
   <meta itemprop="name" content="JavaWeb-网络编程与服务器">
@@ -140,9 +140,9 @@ URL类中的常用方法：
 URL(String protocol, String host, int port, String file)
 URL(String url)
 InputStream openStream() 打开到此 URL 的连接并返回一个用于从该连接读入的 InputStream；
-public void testURL() throws Exception { // java要通过URL地址操作网页，可以通过URL对象来操作 // 创建URL的方式有很多种 // 第一种：就是通过网站的URL地址创建URL对象 //URL url = new URL(&#34;https://itsource."><meta itemprop="datePublished" content="2021-03-10T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2021-03-10T00:00:00+00:00" />
-<meta itemprop="wordCount" content="706">
+public void testURL() throws Exception { // java要通过URL地址操作网页，可以通过URL对象来操作 // 创建URL的方式有很多种 // 第一种：就是通过网站的URL地址创建URL对象 //URL url = new URL(&#34;https://itsource."><meta itemprop="datePublished" content="2023-03-10T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-03-10T00:00:00+00:00" />
+<meta itemprop="wordCount" content="533">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
@@ -230,7 +230,7 @@ public void testURL() throws Exception { // java要通过URL地址操作网页�
 <article class="post-single">
   <header class="post-title">
     <aside>
-      <time>March 10, 2021</time>
+      <time>March 10, 2023</time>
       
       <span>BruisesL</span>
       
@@ -513,204 +513,6 @@ public void testURL() throws Exception { // java要通过URL地址操作网页�
 <p>Tomcat是一个<strong>开源免费</strong>的Web服务器，它是 Apache 软件基金会的一个顶级项目，由 Apache，Sun和其他一些公司及个人共同开发而成。Tomcat8 支持最新的 Servlet 3.1 和JSP2.3 规范。<strong>Tomcat用java语言开发</strong>，Tomcat是一个符合J2EE（Servlet规范）标准的WEB服务器。如果要运行Tomcat，<strong>必需要有java的运行环境</strong>。</p>
 <p><strong>注</strong>：在项目部署的时候，Web应用必须选择正确的Web服务器版本，否则可能不能正常运行</p>
 <p><strong>修改端口</strong>：Tomcat默认端口是8080，很把这个端口进行修改成80，则访问直接可以不用加端口号访问。80端口是为HTTP（HyperText Transport Protocol）即超文本传输协议开放的，是HTTP的默认端口号。配置文件是conf/server.xml。</p>
-<h2 id="javaweb项目">JavaWeb项目</h2>
-<p>开发JavaWeb的程序，必需要严格参照JavaWeb提供的规范来存放我们的资源。结构分析如下：</p>
-<p><img src="/JavaWeb%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84.jpg" alt="JavaWeb项目结构"></p>
-<p><strong>注</strong>：</p>
-<ol>
-<li>
-<p>WEB-INF里面的程序是不可见的，必需通过我们的程序访问；</p>
-</li>
-<li>
-<p>现在web.xml并不是必需的；如果项目中需要用到这个web.xml，建议可以从apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml拷贝；</p>
-</li>
-<li>
-<p>index是非常特殊的，我们访问到一个文件夹，如果没有确定是哪一个文件，它就会去找名称为index.html或者index.jsp的文件；</p>
-</li>
-</ol>
-<h3 id="部署流程">部署流程</h3>
-<ol>
-<li>
-<p>创建一个文件夹oa；</p>
-</li>
-<li>
-<p>在oa下面创建WEB-INF文件夹，在WEB-INF下面分别创建lib和classes文件夹；</p>
-</li>
-<li>
-<p>拷贝web.xml到WEB-INF下面。可以从\apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml拷贝；</p>
-</li>
-<li>
-<p>在oa文件夹下面创建一个hello.html；</p>
-</li>
-<li>
-<p>直接把文件夹放到Tomcat的webapps中</p>
-</li>
-<li>
-<p>在server.xml里面进行配置</p>
-</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> docBase：项目的路径
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> path：项目访问的虚拟路径（可以为/代表没有）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> --&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;Context</span> <span style="color:#a6e22e">docBase=</span><span style="color:#e6db74">&#34;D:/oa&#34;</span> <span style="color:#a6e22e">path=</span><span style="color:#e6db74">&#34;myoa&#34;</span> <span style="color:#f92672">/&gt;</span>
-</span></span></code></pre></div><p><strong>注</strong>：项目需要部署（将项目就交给tomcat保管）才能访问，以上两种部署方式：第一种将整个WebContent文件夹拖到tomcat的webapps下（不推荐，一般开发完项目可以这样做）。第二种使用server.xml配置（方便开发）。</p>
-<h2 id="servlet">Servlet</h2>
-<p>Servlet是一个<strong>接口</strong>，一个<strong>规范</strong>（sun公司并没有去实现它），它的实现就是由各大服务器厂商（Tomcat）去实现；Tomcat是一个javaweb服务器，也是一个Servlet容器；Servlet容器是<strong>管理所有Servlet对象的创建，运行，销毁</strong>的容器。而Servlet对象也只有在Servlet容器中才能使用。所以如果写了一个Servlet, 那么一定要记住，<strong>把这个Servlet交给Tomcat去管理</strong>。</p>
-<h3 id="servlet部署流程">Servlet部署流程</h3>
-<ol>
-<li>
-<p>访问之前一定要确保Tomcat服务要开启，并且要将项目部署到Tomcat，否则出现404错误；</p>
-</li>
-<li>
-<p>用户在浏览器端输入地址。例如：http://localhost:80/servlet/hello  该请求访问的是本地（localhost）端口号为80的程序，即tomcat；</p>
-</li>
-<li>
-<p>Tomcat会到webapps中去找到servlet这个程序或者到server.xml中根据上下文路径<code>&lt;Context&gt;</code>中的找到对应的项目</p>
-</li>
-<li>
-<p>然后Tomcat会去找到该项目的配置文件web.xml，然后查看有没有hello这个请求；</p>
-</li>
-<li>
-<p>请求：http://localhost:80/servlet/hello</p>
-<p><strong>注</strong>：当我们找到这个 /hello 的时候，也就相应的找到了Servlet的名字（servlet-name） : hello</p>
-</li>
-<li>
-<p>Tomcat会根据请求hello去匹配web.xml中的<code>&lt;url-pattern&gt;</code>中的值：</p>
-<ul>
-<li>
-<p>如果没有匹配上就去找这个项目默认web路径下有没有hello这个页面（html或jsp）：</p>
-<p>如果没有，404；</p>
-<p>如果有这个页面，显示页面的内容；</p>
-</li>
-<li>
-<p>如果匹配上了会根据<code>&lt;Servlet-name&gt;</code>标签找到相应的Servlet类：</p>
-</li>
-</ul>
-</li>
-<li>
-<p>找到相应的类之后，到缓存区里面去看这个类有没有相应的实例：</p>
-<ul>
-<li>
-<p>如果没有，通过反射创建一个实例，并将这个实例放到缓存区：</p>
-<p>执行构造方法</p>
-<p>执行初始化方法</p>
-</li>
-<li>
-<p>如果有，直接拿到这个实例；</p>
-</li>
-</ul>
-</li>
-<li>
-<p>调用实例的service方法执行业务逻辑处理；</p>
-</li>
-<li>
-<p>如果正常关闭的话，会执行destroy方法，必须要初始化了servlet才会执行destroy方法；</p>
-</li>
-</ol>
-<p><img src="/Servlet%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.jpg" alt="Servlet执行流程"></p>
-<h3 id="servlet生命周期">Servlet生命周期</h3>
-<ol>
-<li>Servlet容器调用无参构造创建对象：第一次访问 或 项目部署的时候</li>
-<li>Servlet容器调用初始化方法<code>init()</code> ：第一次访问 或 项目部署的时候</li>
-<li>Servlet容器调用服务方法<code>service()</code>、<code>doGet()</code>、<code>doPost()</code>：第n次访问</li>
-<li>对于Tomcat来说，Servlet只有一个（它是单例的，每次创建的Servlet实例都会缓存起来）</li>
-<li>当我们正常关闭Tomcat的时候，Servlet容器会自动调用销毁方法<code>destory()</code></li>
-<li>构造方法 &ndash;&gt; init方法 &ndash;&gt; service【每次请求都会执行】 &ndash;&gt; destory【正常关闭才执行】</li>
-</ol>
-<p><img src="/servlet%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.png" alt="servlet的执行流程"></p>
-<h3 id="servlet的实现方式">Servlet的实现方式</h3>
-<p>有两种实现方式：</p>
-<p>第一种是实现Servlet接口，重写其中的所有方法；第二种是继承服务器重写Servlet接口的实现类，例如Tomcat中的HttpServlet</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SecondServlet</span> <span style="color:#66d9ef">extends</span> HttpServlet<span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span> 	<span style="color:#a6e22e">@Override</span>
-</span></span><span style="display:flex;"><span> 	<span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">service</span><span style="color:#f92672">(</span>HttpServletRequest req<span style="color:#f92672">,</span> HttpServletResponse resp<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException<span style="color:#f92672">,</span> IOException <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span> 		<span style="color:#75715e">//写功能代码
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 	<span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><h3 id="处理请求的方式">处理请求的方式</h3>
-<p><img src="/%E5%A4%84%E7%90%86%E8%AF%B7%E6%B1%82%E7%9A%84%E6%96%B9%E5%BC%8F.jpg" alt="处理请求的方式"></p>
-<p>Get请求与Post请求的区别：</p>
-<ol>
-<li>
-<p>get请求时，<strong>请求参数放在请求地址url后面</strong>，而post提交方式时，<strong>请求参数是放在请求数据包中的实体内容中传递</strong>；</p>
-</li>
-<li>
-<p>由于地址栏的数据有长度限制，所以Get请求传输的数据量小，一般不能大于2kb，Post请求传输的数据大小没有限制。所以一般文件上传下载使用的是Post请求；</p>
-</li>
-<li>
-<p>Post安全性相对Get较高；</p>
-</li>
-<li>
-<p>get请求的发送时间：</p>
-<ul>
-<li>直接输入网址</li>
-<li>点击链接</li>
-<li>设置表单的提交方式为get或表单的默认提交</li>
-</ul>
-<p>post请求的发送时间：</p>
-<ul>
-<li>设置表单提交方式为<code>post(method=&quot;post&quot;)</code></li>
-</ul>
-</li>
-</ol>
-<h3 id="httpservlet中的request与response对象">HttpServlet中的Request与Response对象</h3>
-<h4 id="httpservletrequest">HttpServletRequest</h4>
-<p>HttpServletRequest对象是Servlet的请求对象，可以获取请求数据包/报文中的所有信息。</p>
-<p>常用方法：</p>
-<p><code>String getContextPath()</code>获取上下文路径，<code>&lt;Context path=&quot;上下文&quot; ../&gt;</code>；</p>
-<p><code>String getHeader(String headName)</code>根据指定的请求头获取对应的请求头的值；</p>
-<p><code>String getRequestURI()</code>返回当期请求的资源路径URI（上下文路径/资源名）；</p>
-<p><code>StringBuffer getRequestURL()</code>返回浏览器请求地址URL；</p>
-<p><code>String getRemoteAddr()</code>返回请求服务器的客户端的IP；</p>
-<p><code>String getServletPath()</code>返回请求，<code>&lt;url-pattern&gt;</code>中的值；</p>
-<p><code>String getParameter(String name)</code>根据参数名称,获取对应参数的值；</p>
-<p><code>String[] getParameterValues(String name)</code>根据参数名称,获取该参数的多个值；</p>
-<p><code>Map&lt;String,String[]&gt; getParameterMap()</code>返回请求参数组成的Map集合；</p>
-<p><code>void req.setCharacterEncoding(&quot;UTF-8&quot;)</code>能够正确获取post请求的中文参数而不出现乱码；</p>
-<p><code>String getProtocol()</code>获取协议版本HTTP/1.1</p>
-<p><code>String getMethod()</code>获取请求方式（GET or POST）</p>
-<p><code>int getServerPort()</code>获取端口号</p>
-<h4 id="httpservletresponse">HttpServletResponse</h4>
-<p>HttpServletResponse对象是Servlet的响应对象，可以设置响应的文件格式和编码格式，还可以获取输出流。</p>
-<p>常用方法：</p>
-<p><code>OutputStream getOutputStream()</code>获取流的方法一，获取字节输出流（上传下载用）</p>
-<p><code>resp.getWriter()</code>获取流的方法二，获取字符输出流（字符输出用此流，向页面输出）</p>
-<p><code>resp.setContentType(&quot;text/html;charset=UTF-8&quot;)</code>响应页面的文件格式和编码格式</p>
-<h4 id="乱码问题">乱码问题</h4>
-<ol>
-<li>
-<p>向页面输出中文</p>
-<p><code>resp.setContentType(&quot;text/html;charset=utf-8&quot;)</code>能够向页面输出中文，<code>&quot;&quot;</code>中的内容不要写错，否则浏览器不认识响应的类型，就会将问题抛给用户；</p>
-</li>
-<li>
-<p>获取表单提交的中文数据</p>
-<p>针对post请求（请求参数是在实体内容中）</p>
-<p>第一种：<code>req.setCharacterEncoding(&quot;utf-8&quot;)</code>必须写在获取参数前，因为如果获取了参数，设置编码无效</p>
-<p>第二种：<code>name = new String(name.getBytes(&quot;iso-8859-1&quot;), &quot;utf-8&quot;);</code>转码，缺点：太麻烦，每个数据都要转</p>
-<p><strong>注</strong>：两种只能用其一。</p>
-</li>
-<li>
-<p>针对get请求（请求参数是在地址栏上），tomcat8不做处理，如果是tomcat7及其以前：</p>
-<p>第一种：<code>name = new String(name.getBytes(&quot;iso-8859-1&quot;), &quot;utf-8&quot;);</code>转码</p>
-<p>第二种：修改服务器中的配置conf &ndash; server.xml &ndash; <code>&lt;Connector&gt;</code>标签中最后加上属性<code>URIEncoding=&quot;utf-8&quot;</code></p>
-<p><strong>注</strong>：两种只能用其一 ，以后服务器换了，还需重新配置一次；</p>
-</li>
-<li>
-<p>注意：</p>
-<ul>
-<li>
-<p>tomcat8.x之前的默认编码集为ISO-8859-1，tomcat8.x之后默认编码集为UTF-8；</p>
-</li>
-<li>
-<p>对于tomcat8.x以及之后的get请求不需要转码或配置，而Tomcat7需要配置；</p>
-</li>
-<li>
-<p>做项目的时候，项目部署不一定是tomcat，在不能修改web服务器的状态下，可以通过过滤器来解决；</p>
-</li>
-</ul>
-</li>
-</ol>
 </section>
 
   
@@ -721,9 +523,9 @@ public void testURL() throws Exception { // java要通过URL地址操作网页�
   
   <nav class="post-nav">
     
-    <a class="prev" href="https://bruisesl.github.io/post/dos%E5%91%BD%E4%BB%A4/"><span>←</span><span>DOS命令</span></a>
+    <a class="prev" href="https://bruisesl.github.io/post/javaweb-servlet%E4%B8%8Ejsp/"><span>←</span><span>JavaWeb-Servlet与JSP</span></a>
      
-    <a class="next" href="https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8A%E8%AF%AD%E6%B3%95/"><span>数据库概述</span><span>→</span></a>
+    <a class="next" href="https://bruisesl.github.io/post/javaweb-html/"><span>JavaWeb-HTML</span><span>→</span></a>
     
   </nav>
   

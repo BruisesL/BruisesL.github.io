@@ -100,7 +100,7 @@ EJB 企业级 JavaBean（Enterprise JavaBean, EJB）是一个用来构筑企业�
 Servlet Servlet（Server Applet），是用 Java 编写的服务器端程序。其主要功能在于交互式地浏览和修改数据，生成动态 Web 内容。
 狭义的 Servlet 是指 Java 语言实现的一个接口，广义的 Servlet 是指任何实现了这个 Servlet 接口的类，一般情况下，人们将 Servlet 理解为后者。"><meta itemprop="datePublished" content="2023-03-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2023-03-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="180">
+<meta itemprop="wordCount" content="194">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
@@ -210,6 +210,7 @@ JSP（全称JavaServer Pages）是由 Sun 公司主导创建的一种动态网�
 </ul>
 <h2 id="javeee的三层架构">JaveEE的三层架构</h2>
 <p>所谓系统架构是指，整合应用系统程序大的结构。经常提到的系统结构有两种：三层架构与 MVC。这两种结构既有区别，又有联系。但这两种结构的使用，均是为了降低系统模块间的耦合度。</p>
+<h3 id="三层架构">三层架构</h3>
 <p>三层架构是指：视图层 Controller、服务层 Service，与持久层 DAO。它们分别完成不同的功能。</p>
 <ul>
 <li>Controller 层：用于接收用户提交请求的代码</li>
@@ -251,6 +252,27 @@ JSP（全称JavaServer Pages）是由 Sun 公司主导创建的一种动态网�
 <p>这个包类的名称：<code>XxxDAOImpl</code>/<code>XxxDaoImpl</code></p>
 </li>
 </ol>
+<h3 id="mvc模型">MVC模型</h3>
+<p>MVC(Model View Controller)是一种软件设计的框架模式，它采用模型(Model)-视图(View)-控制器(controller)的方法把业务逻辑、数据与界面显示分离。把众多的业务逻辑聚集到一个部件里面。核心思想：将数据的展示、业务处理、控制处理进行分离，使用不同的组件进行处理。</p>
+<ul>
+<li>
+<p>V：View视图，Web程序中指用户可以看到的并可以与之进行数据交互的界面，比如一个Html网页界面，或者某些客户端的界面。</p>
+</li>
+<li>
+<p>M：Model模型：进行所有数据的处理工作，模型返回的数据是中立的，和数据格式无关，一个模型可以为多个视图来提供数据，所以模型的代码重复性比较低，Model是不能直接与视图交互的。</p>
+</li>
+<li>
+<p>C：Controller控制器：负责接受用户的输入，并且调用模型和视图去完成用户的需求，控制器不会输出也不会做出任何处理，只会接受请求并调用模型构件去处理用户的请求，然后在确定用哪个视图去显示返回的数据。</p>
+</li>
+</ul>
+<h3 id="两者关系">两者关系</h3>
+<p>三层架构和MVC并没有直接的联系，MVC是一种设计模式，而三层架构是一种软件架构。目的都是解耦，提高代码复用，适用于团队开发；</p>
+<p>表现层（UI）：通俗讲就是展现给用户的界面，即用户在使用一个系统的时候他的所见所得；</p>
+<p>业务逻辑层（BLL）：针对具体问题的操作，也可以说是对数据层的操作，对数据业务逻辑处理；</p>
+<p>数据访问层（DAL）：该层所做事务直接操作数据库，针对数据的增添、删除、修改、更新、查找等；</p>
+<p><img src="/MVC%E4%B8%8E%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84.jpg" alt="MVC与三层架构"></p>
+<p>这两者之间的联系如下：</p>
+<p><img src="/%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84%E4%B8%8EMVC%E7%9A%84%E5%85%B3%E7%B3%BB.png" alt="三层架构与MVC的关系"></p>
 <h2 id="javaee框架">JavaEE框架</h2>
 <p>JavaEE 拥有广泛市场的原因之一就是可以使用多种框架来使开发变得简单。对于框架的选择多种多样，目前比较常见的框架组合有 SSH和SSM。在后面的章节中会作详细介绍。另外Spring本身也提供了多种层次的框架供选择，可以到Spring官网了解详情。</p>
 <ul>
@@ -302,7 +324,7 @@ JSP（全称JavaServer Pages）是由 Sun 公司主导创建的一种动态网�
     
     <a class="prev" href="https://bruisesl.github.io/post/javaee-jdbc/"><span>←</span><span>JavaEE-JDBC</span></a>
      
-    <a class="next" href="https://bruisesl.github.io/post/javabean/"><span>JavaBean</span><span>→</span></a>
+    <a class="next" href="https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8A%E8%AF%AD%E6%B3%95/"><span>数据库概述</span><span>→</span></a>
     
   </nav>
   

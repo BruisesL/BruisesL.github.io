@@ -7,7 +7,119 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2008–2019, Steve Francia and the lee.so; all rights reserved.</copyright>
-    <lastBuildDate>Tue, 07 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://bruisesl.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java 双亲委派模型</title>
+      <link>https://bruisesl.github.io/post/%E5%BE%85%E5%AE%8C%E6%88%90java-%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Sat, 18 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/%E5%BE%85%E5%AE%8C%E6%88%90java-%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B/</guid>
+      <description>虚拟机在加载类的过程中需要使用类加载器进行加载，而在Java中，类加载器有很多，那么当JVM想要加载一个.class文件的时候，需要使用哪个类加载器就需要靠&amp;quot;双亲委派机制&amp;quot;。
+首先，Java语言系统中支持以下4种类加载器：
+Bootstrap ClassLoader 启动类加载器 Extention ClassLoader 标准扩展类加载器 Application ClassLoader 应用类加载器 User ClassLoader 用户自定义类加载器 一般认为上一层加载器是下一层加载器的父加载器，那么，除了BootstrapClassLoader之外，所有的加载器都是有父加载器的。
+双亲委派机制，指的就是：当一个类加载器收到了类加载的请求的时候，他不会直接去加载指定的类，而是把这个请求委托给自己的父加载器去加载。只有父加载器无法加载这个类的时候，才会由当前这个加载器来负责类的加载。
+未完成 https://www.cnblogs.com/hollischuang/p/14260801.html</description>
+    </item>
+    
+    <item>
+      <title>Maven相关</title>
+      <link>https://bruisesl.github.io/post/maven%E7%9B%B8%E5%85%B3/</link>
+      <pubDate>Fri, 17 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/maven%E7%9B%B8%E5%85%B3/</guid>
+      <description>Maven 是一个项目管理和整合工具。Maven 为开发者提供了一套完整的构建生命周期框架。开发团队几乎不用花多少时间就能够自动完成工程的基础构建配置，因为 Maven 使用了一个标准的目录结构和一个默认的构建生命周期。在有多个开发团队环境的情况下，Maven 能够在很短的时间内使得每项工作都按照标准进行。因为大部分的工程配置操作都非常简单并且可复用，在创建报告、检查、构建和测试自动配置时，Maven可以让开发者的工作变得更简单。
+安装maven：
+解压Maven，解压缩后的⽬录结构如下：
+bin⽬录：存放的是可执⾏命令。
+conf⽬录：存放Maven的配置⽂件。 settings.xml 配置⽂件后期需要修改。
+lib⽬录：存放Maven依赖的jar包。Maven也是使⽤java开发的，所以它也依赖其他的jar包。
+配置环境变量 MAVEN_HOME 为安装路径的bin⽬录
+检查是否配置成功
+如果Maven出现JVM内存不足的情况，设置MAVEN_OPTS环境变量-Xms128m -Xmx512mJVM内存过小的问题解决JAVA_OPTS-Xms256m -Xmx1024m
+配置：
+配置本地仓库：
+在pom.xml配置需要下载的依赖时，Maven会自动添加相应的jar包：而这个jar包会先在本地仓库中查找，如果本地仓库中找不到，则会去Maven中央仓库去进行下载，并下载的本地仓库，进行引用。
+配置的方法是修改 conf/settings.xml 中的 &amp;lt;1ocalRepository&amp;gt;为一个指定目录作为本地仓库，用来存储jar包。
+&amp;lt;localRepository&amp;gt;/Users/bruises/software/apache-maven-3.6.1/mvn_resp&amp;lt;/localRepository&amp;gt; 配置私服
+中央仓库在国外，所以下载jar包速度可能比较慢，而阿里公司提供了一个远程仓库，里面基本也都有开源项目的jar包。 修改 conf/settings.xml 中的 标签，为其添加如下子标签：
+&amp;lt;mirror&amp;gt; &amp;lt;id&amp;gt;alimaven&amp;lt;/id&amp;gt; &amp;lt;name&amp;gt;aliyun maven&amp;lt;/name&amp;gt; &amp;lt;url&amp;gt;http://maven.aliyun.com/nexus/content/groups/public/&amp;lt;/url&amp;gt; &amp;lt;mirrorOf&amp;gt;central&amp;lt;/mirrorOf&amp;gt; &amp;lt;/mirror&amp;gt; 配置JDK编译版本
+Mavan默认的编译版本是JDK1.5，为了避免每次在项目中进行手动配置，这里修改conf/settings.xml 中的内容如下：
+&amp;lt;profile&amp;gt; &amp;lt;id&amp;gt;jdk8&amp;lt;/id&amp;gt; &amp;lt;activation&amp;gt; &amp;lt;activeByDefault&amp;gt;true&amp;lt;/activeByDefault&amp;gt; &amp;lt;jdk&amp;gt;1.8&amp;lt;/jdk&amp;gt; &amp;lt;/activation&amp;gt; &amp;lt;properties&amp;gt; &amp;lt;maven.compiler.source&amp;gt;1.8&amp;lt;/maven.compiler.source&amp;gt; &amp;lt;maven.compiler.target&amp;gt;1.8&amp;lt;/maven.compiler.target&amp;gt; &amp;lt;maven.compiler.compilerVersion&amp;gt;1.8&amp;lt;/maven.compiler.compilerVersion&amp;gt; &amp;lt;/properties&amp;gt; &amp;lt;/profile&amp;gt; Maven的生命周期 Maven 构建项目生命周期描述的是一次构建过程经历经历了多少个事件，Maven 对项目构建的生命周期划分为3套：
+clean ：清理工作。 default ：核心工作，例如编译，测试，打包，安装等。 site ： 产生报告，发布站点等。 同一套生命周期内，执行后边的命令，前面的所有命令会自动执行。
+Maven坐标 Maven 中的坐标是资源的唯一标识，使用坐标来定义项目或引入项目中需要的依赖。</description>
+    </item>
+    
+    <item>
+      <title>JavaWeb-Servlet与JSP</title>
+      <link>https://bruisesl.github.io/post/javaweb-servlet%E4%B8%8Ejsp/</link>
+      <pubDate>Fri, 10 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/javaweb-servlet%E4%B8%8Ejsp/</guid>
+      <description>JavaWeb项目 开发JavaWeb的程序，必需要严格参照JavaWeb提供的规范来存放我们的资源。结构分析如下：
+注：
+WEB-INF里面的程序是不可见的，必需通过我们的程序访问；
+现在web.xml并不是必需的；如果项目中需要用到这个web.xml，建议可以从apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml拷贝；
+index是非常特殊的，我们访问到一个文件夹，如果没有确定是哪一个文件，它就会去找名称为index.html或者index.jsp的文件；
+部署流程 创建一个文件夹oa；
+在oa下面创建WEB-INF文件夹，在WEB-INF下面分别创建lib和classes文件夹；
+拷贝web.xml到WEB-INF下面。可以从\apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml拷贝；
+在oa文件夹下面创建一个hello.html；
+直接把文件夹放到Tomcat的webapps中
+在server.xml里面进行配置
+&amp;lt;!-- docBase：项目的路径 path：项目访问的虚拟路径（可以为/代表没有） --&amp;gt; &amp;lt;Context docBase=&amp;#34;D:/oa&amp;#34; path=&amp;#34;myoa&amp;#34; /&amp;gt; 注1：项目需要部署（将项目就交给tomcat保管）才能访问，以上两种部署方式：第一种将整个WebContent文件夹拖到tomcat的webapps下（不推荐，一般开发完项目可以这样做）。第二种使用server.xml配置（方便开发）。
+注2：直接访问域名+端口号会根据apache-tomcat-xxx\webapps\ROOT\WEB-INF\web.xml配置文件中的&amp;lt;welcome-file-list&amp;gt;标签中的顺序匹配
+Servlet相关 Servlet是一个接口，一个规范（sun公司并没有去实现它），它的实现就是由各大服务器厂商（Tomcat）去实现；Tomcat是一个javaweb服务器，也是一个Servlet容器；Servlet容器是管理所有Servlet对象的创建，运行，销毁的容器。而Servlet对象也只有在Servlet容器中才能使用。所以如果写了一个Servlet, 那么一定要记住，把这个Servlet交给Tomcat去管理。
+Servlet部署流程 访问之前一定要确保Tomcat服务要开启，并且要将项目部署到Tomcat，否则出现404错误；
+用户在浏览器端输入地址。例如：http://localhost:80/servlet/hello 该请求访问的是本地（localhost）端口号为80的程序，即tomcat；
+Tomcat会到webapps中去找到servlet这个程序或者到server.xml中根据上下文路径&amp;lt;Context&amp;gt;中的找到对应的项目
+然后Tomcat会去找到该项目的配置文件web.xml，然后查看有没有hello这个请求；
+请求：http://localhost:80/servlet/hello
+注：当我们找到这个 /hello 的时候，也就相应的找到了Servlet的名字（servlet-name） : hello
+Tomcat会根据请求hello去匹配web.xml中的&amp;lt;url-pattern&amp;gt;中的值：
+如果没有匹配上就去找这个项目默认web路径下有没有hello这个页面（html或jsp）：
+如果没有，404；
+如果有这个页面，显示页面的内容；
+如果匹配上了会根据&amp;lt;Servlet-name&amp;gt;标签找到相应的Servlet类：
+找到相应的类之后，到缓存区里面去看这个类有没有相应的实例：
+如果没有，通过反射创建一个实例，并将这个实例放到缓存区：
+执行构造方法
+执行初始化方法
+如果有，直接拿到这个实例；
+调用实例的service方法执行业务逻辑处理；
+如果正常关闭的话，会执行destroy方法，必须要初始化了servlet才会执行destroy方法；
+Servlet生命周期 Servlet容器调用无参构造创建对象：第一次访问 或 项目部署的时候 Servlet容器调用初始化方法init() ：第一次访问 或 项目部署的时候 Servlet容器调用服务方法service()、doGet()、doPost()：第n次访问 对于Tomcat来说，Servlet只有一个（它是单例的，每次创建的Servlet实例都会缓存起来） 当我们正常关闭Tomcat的时候，Servlet容器会自动调用销毁方法destory() 构造方法 &amp;ndash;&amp;gt; init方法 &amp;ndash;&amp;gt; service【每次请求都会执行】 &amp;ndash;&amp;gt; destory【正常关闭才执行】 Servlet的实现方式 有两种实现方式：</description>
+    </item>
+    
+    <item>
+      <title>JavaWeb-网络编程与服务器</title>
+      <link>https://bruisesl.github.io/post/javaweb-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Fri, 10 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/javaweb-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>网络编程 计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，实现资源共享和信息传递的计算机系统；
+Java中专门提供java.net包，方便开发网络程序。Java的网络编程包括了两种通信协议：
+TCP(Transmission Control Protocal)：传输控制协议 UDP(User Datagram Protocol)：用户数据协议 相关术语 两台计算机进行网络通信需要满足一下条件：
+两台主机需要有一个唯一的标识：也就是IP地址，用来表示所处的身份和位置 需要有共同的语言：协议（TCP/IP） 都需要有相应的端口号：port 一台主机上可以运行多个应用程序，如何辨别不同应用程序的通信，就是通过端口号port来进行区分。
+IP地址 为实现网络中不同计算机之间的通信，每台计算器都必须有一个唯一的标识，那就是IP地址（公网IP），这就相当于每个人的手机号码一样。例如：192.168.0.1
+IP分以下两个大类：
+IPv4：32位，分4段，（每段的范围0-255）0~255之间的十进制表示。使用4个8位的二进制数据表示,每8位之间使用圆点隔开，每个8位整数可以转换成一个0~255的十进制整数，因此一般看到的IP地址类似：192.168.1.1 这4段组成的个数有限度（42.28亿），可能会不够用，就出现了Ipv6。 IPv6：128位，分8段，0000~FFFF的十六进制数值，冒号分割，如：1080:0:0:0:8:800:200C:417A IP地址号段分类：A类留给政府机构，B类分配给中等规模的公司，C类分配给任意需要的人，D类用于组播，E类用于实验，各类可容纳的地址数目不同：
+注：
+外网IP是全世界唯一的IP地址，仅分配给一个网络设备（计算机、交互机、路由器、打印机、光纤等）。而内网IP是由路由器分配给每一部内部使用的IP地址，而内网的所有用户都是通过同一个外网IP地址进行上网的；
+内网的IP地址每个人的都不一样，Internet上的用户也无法直接访问到内网用户。简单来说呢，外网IP就是标示了在整个互联网上的地址，就相当于小区的地址，而内网IP呢，就是标识着在局域网里面的地址，也就是小区内的几栋几楼几号房子；
+在局域网中，每台电脑都可以自己分配自己的IP，这个IP只在局域网中有效。而如果将电脑连接到互联网，网络提供商（ISP）的服务器会分配一个IP地址，这个IP地址才是在外网的IP。两个IP同时存在，一个对内，一个对外；
+区分内网和公网IP的区别，公网IP是全球唯一的，而内网IP只是在局域网内有效，不具有公网IP的作用。查询公网IP地址：www.ip138.com
+Port端口 端口port用来区分不同的应用程序，端口号范围为0~65535，其中0~1023被系统所保留，如果自定义端口号，建议为1023以后的；
+注：同一台机器上不能有两个程序使用同一个端口，会冲突；tomcat：8080/80，mysql：3306
+URL&amp;amp;URI URL(Uniform Resource Locator)统一资源定位符，可以直接使用此类找到互联网上的资源如一个简单的网页。一般由：协议名，资源所在主机，端口，资源名等部分组成。如：https://stackoverflow.com/questions/75698432/angular-ngrx-combinelatest-unwanted-emit
+URI(Uniform Resource Identifier) 是统一资源标识符，俗称请求资源路径。http://localhost:808/myweb/hello.html
+区别：URL包含URI，URI只是URL的一部分
+URL类中的常用方法：
+URL(String protocol, String host, int port, String file)
+URL(String url)
+InputStream openStream() 打开到此 URL 的连接并返回一个用于从该连接读入的 InputStream；
+public void testURL() throws Exception { // java要通过URL地址操作网页，可以通过URL对象来操作 // 创建URL的方式有很多种 // 第一种：就是通过网站的URL地址创建URL对象 //URL url = new URL(&amp;#34;https://itsource.</description>
+    </item>
+    
     <item>
       <title>JavaWeb-HTML</title>
       <link>https://bruisesl.github.io/post/javaweb-html/</link>
@@ -63,7 +175,7 @@ Jul (Java Util Logging)
 MyBatis 是一个半自动化的ORM框架 (Object Relationship Mapping) ，ORM是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。
 Mybatis优势：
 基于XML文件配置开发，不是硬编码 SQL语句和代码分离 优化JDBC的使用，高效开发，以及可以自动映射结果集，包括参数的优化（反射） 支持动态SQL。SQL语句的条件很有可能是不确定的，需要动态根据需求来进行查询或操作。 框架就是一个半成品软件，是一套可重用的、通用的、软件基础代码模型，在框架的基础之上构建软件编写更加高效、规范、通用、可扩展。
-思路流程 搭建环境
+使用流程 搭建环境
 导包：Mysql连接驱动包mysql-connector-j-8.0.32.jar 与 Mybatis包mybatis-3.5.11.jar
 拷贝Mybatis核心配置文件，并编写配置信息文件jdbc.properties与映射XxxMapper.xml文件
 Mybatis-Config.xml
@@ -123,6 +235,58 @@ Servlet Servlet（Server Applet），是用 Java 编写的服务器端程序。�
     </item>
     
     <item>
+      <title>数据库概述</title>
+      <link>https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8A%E8%AF%AD%E6%B3%95/</link>
+      <pubDate>Sun, 26 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8A%E8%AF%AD%E6%B3%95/</guid>
+      <description>数据库概述 数据库，简而言之可视为电子化的文件柜——存储电子文件的处所，用户可以对文件中的资料执行新增、截取、更新、删除等操作。
+所谓数据库是以一定方式储存在一起、能予多个用户共享、具有尽可能小的冗余度、与应用程序彼此独立的数据集合。一个数据库由多个表空间（Tablespace）构成，底层。
+数据库管理系统 数据库管理系统（Database Management System，简称DBMS）是为管理数据库而设计的电脑软件系统，一般具有存储、截取、安全保障、备份等基础功能。数据库管理系统可以依据它所支持的数据库模型来作分类，例如关系式、XML；或依据所支持的电脑类型来作分类，例如服务器聚类、移动电话；或依据所用查询语言来作分类，例如SQL、XQuery；或依据性能冲量重点来作分类，例如最大规模、最高执行速度；亦或其他的分类方式。不论使用哪种分类方式，一些DBMS能够跨类别，例如，同时支持多种查询语言。
+数据库的分类 随着数据库技术与其他分支学科技术的结合，出现了多种新型数据库，例如：与分布处理技术结合产生的分布式数据库、与并行处理技术结合产生的并行数据库、与人工智能结合产生的演绎数据库、与多媒体技术结合产生的多媒体数据库。另外，数据库技术应用于特定的领域，出现了工程数据库、 地理数据库、统计数据库、空间数据库等特定领域数据库。
+关系数据库：
+关系型数据库是信息的集合，它以预定义的关系组织数据，数据存储在一个或多个由列和行构成的表（或“关系”）中，用户可以轻松查看和理解不同数据结构之间的关系。 关系是不同表之间的逻辑连接，根据这些表之间的交互建立。
+MySQL
+MariaDB（MySQL的代替品）
+Percona Server（MySQL的代替品）
+PostgreSQL
+Microsoft Access
+Microsoft SQL Server
+Google Fusion Tables
+FileMaker
+Oracle数据库
+Sybase
+dBASE
+Clipper
+FoxPro
+foshub
+几乎所有的数据库管理系统都配备了一个开放式数据库连接（ODBC）驱动程序，令各个数据库之间得以互相集成。
+非关系型数据库（NoSQL）：
+Not only SQL，是对不同于传统的关系数据库的数据库管理系统的统称，其数据存储可以不需要固定的表格模式以及元数据（metadata），也经常会避免使用SQL的JOIN操作，一般有水平可扩展性的特征。
+BigTable（Google）
+Cassandra
+MongoDB
+CouchDB
+Redis
+键值数据库：
+Apache Cassandra（为Facebook所使用）：高度可扩展
+Dynamo
+LevelDB（Google）
+数据库模型 物件模型
+层次模型（轻量级数据访问协议）
+网状模型（大型数据储存）
+满足下面两个条件的基本层次联系的集合为网状模型。
+允许一个以上的结点无双亲； 一个结点可以有多于一个的双亲。 关系模型
+面向对象模型
+半结构化模型
+平面模型（表格模型，一般在形式上是一个二维阵列。如表格模型数据Excel)
+架构 (Schema) 资料库的架构可以大致区分为三个概括层次：内层、概念层和外层。
+内层：最接近实际储存体，亦即有关资料的实际储存方式。 外层：最接近使用者，即有关个别使用者观看资料的方式。 概念层：介于两者之间的间接层。[9] 数据库索引 资料索引的观念由来已久，像是一本书前面几页都有目录，目录也算是索引的一种，只是它的分类较广，例如车牌、身份证字号、条码等，都是一个索引的号码，当我们看到号码时，可以从号码中看出其中的端倪，若是要找的人、车或物品，也只要提供相关的号码，即可迅速查到正确的人事物。
+另外，索引跟栏位有著相应的关系，索引即是由栏位而来，其中栏位有所谓的关键栏位（Key Field），该栏位具有唯一性，即其值不可重复，且不可为&amp;quot;空值null&amp;quot;。例如：在合并资料时，索引便是扮演欲附加栏位资料之指向性用途的角色。故此索引为不可重复性且不可为空。
+数据库事务 事务（transaction）包含一组数据库操作的逻辑工作单元，在事务中包含的数据库操作是不可分割的整体，这些操作要么一起做，要么一起回滚（Roll Back）到执行前的状态。 事务的ACID特性：</description>
+    </item>
+    
+    <item>
       <title>JavaBean</title>
       <link>https://bruisesl.github.io/post/javabean/</link>
       <pubDate>Fri, 24 Feb 2023 00:00:00 +0000</pubDate>
@@ -163,25 +327,6 @@ Java反射的原理就是获取Class对象（类在运⾏时叫字节码对象ja
 对象名.getClass()
 Class.forName(全类名)
 public class TestReflect { /** * Constructor&amp;lt;?&amp;gt;[] getConstructors()：返回所有公共构造方法对象的数组 */ @Test public void testContructor1() throws Exception { //1.获取Student类的Class对象 Class&amp;lt;?&amp;gt; clazz = Class.forName(&amp;#34;reflect.constructor.Student&amp;#34;); //2.获取clazz的所有的公有构造方法 Constructor&amp;lt;?&amp;gt;[] constructors = clazz.getConstructors(); //3.遍历打印所有的构造方法 for (Constructor&amp;lt;?&amp;gt; constructor:constructors) { System.out.println(constructor); } } /** * Constructor&amp;lt;?&amp;gt;[] getDeclaredConstructors()：返回所有构造方法对象的数组(包括私有) */ @Test public void testContructor2() throws Exception { //1.获取Student类的Class对象 Class&amp;lt;?&amp;gt; clazz = Class.forName(&amp;#34;reflect.constructor.Student&amp;#34;); //2.获取clazz的所有的公有构造方法 Constructor&amp;lt;?&amp;gt;[] Constructors = clazz.getDeclaredConstructors(); //3.遍历打印所有的构造方法 for (Constructor&amp;lt;?</description>
-    </item>
-    
-    <item>
-      <title>Java设计模式</title>
-      <link>https://bruisesl.github.io/post/%E5%BE%85%E5%AE%8C%E5%96%84java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://bruisesl.github.io/post/%E5%BE%85%E5%AE%8C%E5%96%84java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
-      <description>设计模式（Design pattern）代表了最佳的实践，通常被有经验的面向对象的软件开发人员所采用。设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案。这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的。
-根据设计模式的参考书 **Design Patterns - Elements of Reusable Object-Oriented Software（中文译名：设计模式 - 可复用的面向对象软件元素）**中所提到的，总共有 23 种设计模式。这些模式可以分为三大类：创建型模式（Creational Patterns）、结构型模式（Structural Patterns）、行为型模式（Behavioral Patterns）。当然，我们还会讨论另一类设计模式：J2EE 设计模式。
-设计模式的六大原则 开闭原则（Open Close Principle） 开闭原则的意思是：对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。简言之，是为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，需要使用接口和抽象类。
-里氏代换原则（Liskov Substitution Principle） 里氏代换原则是面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。LSP 是继承复用的基石，只有当派生类可以替换掉基类，且软件单位的功能不受到影响时，基类才能真正被复用，而派生类也能够在基类的基础上增加新的行为。里氏代换原则是对开闭原则的补充。实现开闭原则的关键步骤就是抽象化，而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。
-依赖倒转原则（Dependence Inversion Principle） 这个原则是开闭原则的基础，具体内容：针对接口编程，依赖于抽象而不依赖于具体。
-接口隔离原则（Interface Segregation Principle） 这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。它还有另外一个意思是：降低类之间的耦合度。由此可见，设计模式就是从大型软件架构出发、便于升级和维护的软件设计思想，它强调降低依赖，降低耦合。
-迪米特法则，又称最少知道原则（Demeter Principle） 最少知道原则是指：一个实体应当尽量少地与其他实体之间发生相互作用，使得系统功能模块相对独立。
-合成复用原则（Composite Reuse Principle） 合成复用原则是指：尽量使用合成/聚合的方式，而不是使用继承。
-设计模式分类 创建型模式：这些设计模式提供了一种在创建对象的同时隐藏创建逻辑的方式，而不是使用 new 运算符直接实例化对象。这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活。
-单例模式（Singleton Pattern） 工厂模式（Factory Pattern） 抽象工厂模式（Abstract Factory Pattern） 建造者模式（Builder Pattern） 原型模式（Prototype Pattern） 结构型模式：这些设计模式关注类和对象的组合。继承的概念被用来组合接口和定义组合对象获得新功能的方式。
-适配器模式（Adapter Pattern） 桥接模式（Bridge Pattern） 过滤器模式（Filter、Criteria Pattern） 组合模式（Composite Pattern） 装饰器模式（Decorator Pattern） 外观模式（Facade Pattern） 享元模式（Flyweight Pattern） 代理模式（Proxy Pattern） 行为型模式：这些设计模式特别关注对象之间的通信。</description>
     </item>
     
     <item>
@@ -236,6 +381,25 @@ jar包 导入jar包的方法：</description>
     </item>
     
     <item>
+      <title>设计模式</title>
+      <link>https://bruisesl.github.io/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bruisesl.github.io/post/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description>设计模式（Design pattern）代表了最佳的实践，通常被有经验的面向对象的软件开发人员所采用。设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案。这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的。
+根据设计模式的参考书 **Design Patterns - Elements of Reusable Object-Oriented Software（中文译名：设计模式 - 可复用的面向对象软件元素）**中所提到的，总共有 23 种设计模式。这些模式可以分为三大类：创建型模式（Creational Patterns）、结构型模式（Structural Patterns）、行为型模式（Behavioral Patterns）。当然，我们还会讨论另一类设计模式：J2EE 设计模式。
+设计模式的六大原则 开闭原则（Open Close Principle） 开闭原则的意思是：对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。简言之，是为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，需要使用接口和抽象类。
+里氏代换原则（Liskov Substitution Principle） 里氏代换原则是面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。LSP 是继承复用的基石，只有当派生类可以替换掉基类，且软件单位的功能不受到影响时，基类才能真正被复用，而派生类也能够在基类的基础上增加新的行为。里氏代换原则是对开闭原则的补充。实现开闭原则的关键步骤就是抽象化，而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。
+依赖倒转原则（Dependence Inversion Principle） 这个原则是开闭原则的基础，具体内容：针对接口编程，依赖于抽象而不依赖于具体。
+接口隔离原则（Interface Segregation Principle） 这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。它还有另外一个意思是：降低类之间的耦合度。由此可见，设计模式就是从大型软件架构出发、便于升级和维护的软件设计思想，它强调降低依赖，降低耦合。
+迪米特法则，又称最少知道原则（Demeter Principle） 最少知道原则是指：一个实体应当尽量少地与其他实体之间发生相互作用，使得系统功能模块相对独立。
+合成复用原则（Composite Reuse Principle） 合成复用原则是指：尽量使用合成/聚合的方式，而不是使用继承。
+设计模式分类 创建型模式：这些设计模式提供了一种在创建对象的同时隐藏创建逻辑的方式，而不是使用 new 运算符直接实例化对象。这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活。
+单例模式（Singleton Pattern） 工厂模式（Factory Pattern） 抽象工厂模式（Abstract Factory Pattern） 建造者模式（Builder Pattern） 原型模式（Prototype Pattern） 结构型模式：这些设计模式关注类和对象的组合。继承的概念被用来组合接口和定义组合对象获得新功能的方式。
+适配器模式（Adapter Pattern） 桥接模式（Bridge Pattern） 过滤器模式（Filter、Criteria Pattern） 组合模式（Composite Pattern） 装饰器模式（Decorator Pattern） 外观模式（Facade Pattern） 享元模式（Flyweight Pattern） 代理模式（Proxy Pattern） 行为型模式：这些设计模式特别关注对象之间的通信。</description>
+    </item>
+    
+    <item>
       <title>流(Stream)、文件(File)和IO</title>
       <link>https://bruisesl.github.io/post/%E6%B5%81stream%E6%96%87%E4%BB%B6file%E5%92%8Cio/</link>
       <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
@@ -275,10 +439,10 @@ Java 程序通常不捕获错误。错误一般发生在严重故障时，它们
     
     <item>
       <title>集合框架</title>
-      <link>https://bruisesl.github.io/post/%E5%BE%85%E5%AE%8C%E5%96%84%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</link>
+      <link>https://bruisesl.github.io/post/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</link>
       <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://bruisesl.github.io/post/%E5%BE%85%E5%AE%8C%E5%96%84%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</guid>
+      <guid>https://bruisesl.github.io/post/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</guid>
       <description>集合框架 早在 Java 2 中之前，Java 就提供了特设类。比如：Dictionary, Vector, Stack, 和 Properties 这些类用来存储和操作对象组。
 虽然这些类都非常有用，但是它们缺少一个核心的，统一的主题。由于这个原因，使用 Vector 类的方式和使用 Properties 类的方式有着很大不同。
 集合框架被设计成要满足以下几个目标：
@@ -326,10 +490,10 @@ $ 表示正则表达式结尾（可写可不写），匹配输入字符串结尾
     
     <item>
       <title>Java 常用类</title>
-      <link>https://bruisesl.github.io/post/java%E5%B8%B8%E7%94%A8%E7%B1%BB/</link>
+      <link>https://bruisesl.github.io/post/java-%E5%B8%B8%E7%94%A8%E7%B1%BB/</link>
       <pubDate>Tue, 14 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://bruisesl.github.io/post/java%E5%B8%B8%E7%94%A8%E7%B1%BB/</guid>
+      <guid>https://bruisesl.github.io/post/java-%E5%B8%B8%E7%94%A8%E7%B1%BB/</guid>
       <description>String类 String类是一个特殊的对象，适用于描述字符串事物的，一旦被初始化就不可以被改变，可以进行字符串的大小写转换，分割字符串等字符串的操作。
 String底层是final类型的char[]，是不可修改的。
 String str1 = null;// 表示str1没有引用地址 String str2 = &amp;#34;&amp;#34;;// 表示str2对象引用了在常量池中创建了一个空字符串常量 String str3 = new String();// 表示str3对象引用了在堆中创建了一个空字符串常量 String	str4 = str1 + &amp;#34;a&amp;#34;; // 会创建StringBuilder的新对象，本质是调用了StringBuilder的apend()方法拼接 将其他类型转换为String类型不同方式效率对比：
@@ -508,88 +672,6 @@ https://www.azul.com/downloads/?package=jdk#download-openjdk</description>
     </item>
     
     <item>
-      <title>JavaWeb-网络编程与服务器</title>
-      <link>https://bruisesl.github.io/post/javaweb-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
-      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://bruisesl.github.io/post/javaweb-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
-      <description>网络编程 计算机网络是指将地理位置不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，实现资源共享和信息传递的计算机系统；
-Java中专门提供java.net包，方便开发网络程序。Java的网络编程包括了两种通信协议：
-TCP(Transmission Control Protocal)：传输控制协议 UDP(User Datagram Protocol)：用户数据协议 相关术语 两台计算机进行网络通信需要满足一下条件：
-两台主机需要有一个唯一的标识：也就是IP地址，用来表示所处的身份和位置 需要有共同的语言：协议（TCP/IP） 都需要有相应的端口号：port 一台主机上可以运行多个应用程序，如何辨别不同应用程序的通信，就是通过端口号port来进行区分。
-IP地址 为实现网络中不同计算机之间的通信，每台计算器都必须有一个唯一的标识，那就是IP地址（公网IP），这就相当于每个人的手机号码一样。例如：192.168.0.1
-IP分以下两个大类：
-IPv4：32位，分4段，（每段的范围0-255）0~255之间的十进制表示。使用4个8位的二进制数据表示,每8位之间使用圆点隔开，每个8位整数可以转换成一个0~255的十进制整数，因此一般看到的IP地址类似：192.168.1.1 这4段组成的个数有限度（42.28亿），可能会不够用，就出现了Ipv6。 IPv6：128位，分8段，0000~FFFF的十六进制数值，冒号分割，如：1080:0:0:0:8:800:200C:417A IP地址号段分类：A类留给政府机构，B类分配给中等规模的公司，C类分配给任意需要的人，D类用于组播，E类用于实验，各类可容纳的地址数目不同：
-注：
-外网IP是全世界唯一的IP地址，仅分配给一个网络设备（计算机、交互机、路由器、打印机、光纤等）。而内网IP是由路由器分配给每一部内部使用的IP地址，而内网的所有用户都是通过同一个外网IP地址进行上网的；
-内网的IP地址每个人的都不一样，Internet上的用户也无法直接访问到内网用户。简单来说呢，外网IP就是标示了在整个互联网上的地址，就相当于小区的地址，而内网IP呢，就是标识着在局域网里面的地址，也就是小区内的几栋几楼几号房子；
-在局域网中，每台电脑都可以自己分配自己的IP，这个IP只在局域网中有效。而如果将电脑连接到互联网，网络提供商（ISP）的服务器会分配一个IP地址，这个IP地址才是在外网的IP。两个IP同时存在，一个对内，一个对外；
-区分内网和公网IP的区别，公网IP是全球唯一的，而内网IP只是在局域网内有效，不具有公网IP的作用。查询公网IP地址：www.ip138.com
-Port端口 端口port用来区分不同的应用程序，端口号范围为0~65535，其中0~1023被系统所保留，如果自定义端口号，建议为1023以后的；
-注：同一台机器上不能有两个程序使用同一个端口，会冲突；tomcat：8080/80，mysql：3306
-URL&amp;amp;URI URL(Uniform Resource Locator)统一资源定位符，可以直接使用此类找到互联网上的资源如一个简单的网页。一般由：协议名，资源所在主机，端口，资源名等部分组成。如：https://stackoverflow.com/questions/75698432/angular-ngrx-combinelatest-unwanted-emit
-URI(Uniform Resource Identifier) 是统一资源标识符，俗称请求资源路径。http://localhost:808/myweb/hello.html
-区别：URL包含URI，URI只是URL的一部分
-URL类中的常用方法：
-URL(String protocol, String host, int port, String file)
-URL(String url)
-InputStream openStream() 打开到此 URL 的连接并返回一个用于从该连接读入的 InputStream；
-public void testURL() throws Exception { // java要通过URL地址操作网页，可以通过URL对象来操作 // 创建URL的方式有很多种 // 第一种：就是通过网站的URL地址创建URL对象 //URL url = new URL(&amp;#34;https://itsource.</description>
-    </item>
-    
-    <item>
-      <title>数据库概述</title>
-      <link>https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8A%E8%AF%AD%E6%B3%95/</link>
-      <pubDate>Fri, 26 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8A%E8%AF%AD%E6%B3%95/</guid>
-      <description>数据库概述 数据库，简而言之可视为电子化的文件柜——存储电子文件的处所，用户可以对文件中的资料执行新增、截取、更新、删除等操作。
-所谓数据库是以一定方式储存在一起、能予多个用户共享、具有尽可能小的冗余度、与应用程序彼此独立的数据集合。一个数据库由多个表空间（Tablespace）构成，底层。
-数据库管理系统 数据库管理系统（Database Management System，简称DBMS）是为管理数据库而设计的电脑软件系统，一般具有存储、截取、安全保障、备份等基础功能。数据库管理系统可以依据它所支持的数据库模型来作分类，例如关系式、XML；或依据所支持的电脑类型来作分类，例如服务器聚类、移动电话；或依据所用查询语言来作分类，例如SQL、XQuery；或依据性能冲量重点来作分类，例如最大规模、最高执行速度；亦或其他的分类方式。不论使用哪种分类方式，一些DBMS能够跨类别，例如，同时支持多种查询语言。
-数据库的分类 随着数据库技术与其他分支学科技术的结合，出现了多种新型数据库，例如：与分布处理技术结合产生的分布式数据库、与并行处理技术结合产生的并行数据库、与人工智能结合产生的演绎数据库、与多媒体技术结合产生的多媒体数据库。另外，数据库技术应用于特定的领域，出现了工程数据库、 地理数据库、统计数据库、空间数据库等特定领域数据库。
-关系数据库：
-关系型数据库是信息的集合，它以预定义的关系组织数据，数据存储在一个或多个由列和行构成的表（或“关系”）中，用户可以轻松查看和理解不同数据结构之间的关系。 关系是不同表之间的逻辑连接，根据这些表之间的交互建立。
-MySQL
-MariaDB（MySQL的代替品）
-Percona Server（MySQL的代替品）
-PostgreSQL
-Microsoft Access
-Microsoft SQL Server
-Google Fusion Tables
-FileMaker
-Oracle数据库
-Sybase
-dBASE
-Clipper
-FoxPro
-foshub
-几乎所有的数据库管理系统都配备了一个开放式数据库连接（ODBC）驱动程序，令各个数据库之间得以互相集成。
-非关系型数据库（NoSQL）：
-Not only SQL，是对不同于传统的关系数据库的数据库管理系统的统称，其数据存储可以不需要固定的表格模式以及元数据（metadata），也经常会避免使用SQL的JOIN操作，一般有水平可扩展性的特征。
-BigTable（Google）
-Cassandra
-MongoDB
-CouchDB
-Redis
-键值数据库：
-Apache Cassandra（为Facebook所使用）：高度可扩展
-Dynamo
-LevelDB（Google）
-数据库模型 物件模型
-层次模型（轻量级数据访问协议）
-网状模型（大型数据储存）
-满足下面两个条件的基本层次联系的集合为网状模型。
-允许一个以上的结点无双亲； 一个结点可以有多于一个的双亲。 关系模型
-面向对象模型
-半结构化模型
-平面模型（表格模型，一般在形式上是一个二维阵列。如表格模型数据Excel)
-架构 (Schema) 资料库的架构可以大致区分为三个概括层次：内层、概念层和外层。
-内层：最接近实际储存体，亦即有关资料的实际储存方式。 外层：最接近使用者，即有关个别使用者观看资料的方式。 概念层：介于两者之间的间接层。[9] 数据库索引 资料索引的观念由来已久，像是一本书前面几页都有目录，目录也算是索引的一种，只是它的分类较广，例如车牌、身份证字号、条码等，都是一个索引的号码，当我们看到号码时，可以从号码中看出其中的端倪，若是要找的人、车或物品，也只要提供相关的号码，即可迅速查到正确的人事物。
-另外，索引跟栏位有著相应的关系，索引即是由栏位而来，其中栏位有所谓的关键栏位（Key Field），该栏位具有唯一性，即其值不可重复，且不可为&amp;quot;空值null&amp;quot;。例如：在合并资料时，索引便是扮演欲附加栏位资料之指向性用途的角色。故此索引为不可重复性且不可为空。
-数据库事务 事务（transaction）包含一组数据库操作的逻辑工作单元，在事务中包含的数据库操作是不可分割的整体，这些操作要么一起做，要么一起回滚（Roll Back）到执行前的状态。 事务的ACID特性：</description>
-    </item>
-    
-    <item>
       <title>数据结构</title>
       <link>https://bruisesl.github.io/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
       <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
@@ -614,10 +696,10 @@ int[] arr2 = {1,3,5,8,9}; // 静态创建了一个长度为5，int类型的数�
     
     <item>
       <title>算法</title>
-      <link>https://bruisesl.github.io/post/%E5%BE%85%E5%AE%8C%E5%96%84%E7%AE%97%E6%B3%95/</link>
+      <link>https://bruisesl.github.io/post/%E7%AE%97%E6%B3%95/</link>
       <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://bruisesl.github.io/post/%E5%BE%85%E5%AE%8C%E5%96%84%E7%AE%97%E6%B3%95/</guid>
+      <guid>https://bruisesl.github.io/post/%E7%AE%97%E6%B3%95/</guid>
       <description>算法 算法定义：
 「算法 Algorithm」是在有限时间内解决问题的一组指令或操作步骤。算法具有以下特性：
 问题是明确的，需要拥有明确的输入和输出定义。 解具有确定性，即给定相同输入时，输出一定相同。 具有可行性，可在有限步骤、有限时间、有限内存空间下完成。 独立于编程语言，即可用多种语言实现。 数据结构定义：

@@ -27,7 +27,7 @@
 MyBatis 是一个半自动化的ORM框架 (Object Relationship Mapping) ，ORM是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。
 Mybatis优势：
 基于XML文件配置开发，不是硬编码 SQL语句和代码分离 优化JDBC的使用，高效开发，以及可以自动映射结果集，包括参数的优化（反射） 支持动态SQL。SQL语句的条件很有可能是不确定的，需要动态根据需求来进行查询或操作。 框架就是一个半成品软件，是一套可重用的、通用的、软件基础代码模型，在框架的基础之上构建软件编写更加高效、规范、通用、可扩展。
-思路流程 搭建环境
+使用流程 搭建环境
 导包：Mysql连接驱动包mysql-connector-j-8.0.32.jar 与 Mybatis包mybatis-3.5.11.jar
 拷贝Mybatis核心配置文件，并编写配置信息文件jdbc.properties与映射XxxMapper.xml文件
 Mybatis-Config.xml
@@ -83,7 +83,7 @@ Mybatis-Config.xml
 MyBatis 是一个半自动化的ORM框架 (Object Relationship Mapping) ，ORM是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。
 Mybatis优势：
 基于XML文件配置开发，不是硬编码 SQL语句和代码分离 优化JDBC的使用，高效开发，以及可以自动映射结果集，包括参数的优化（反射） 支持动态SQL。SQL语句的条件很有可能是不确定的，需要动态根据需求来进行查询或操作。 框架就是一个半成品软件，是一套可重用的、通用的、软件基础代码模型，在框架的基础之上构建软件编写更加高效、规范、通用、可扩展。
-思路流程 搭建环境
+使用流程 搭建环境
 导包：Mysql连接驱动包mysql-connector-j-8.0.32.jar 与 Mybatis包mybatis-3.5.11.jar
 拷贝Mybatis核心配置文件，并编写配置信息文件jdbc.properties与映射XxxMapper.xml文件
 Mybatis-Config.xml
@@ -101,7 +101,7 @@ Mybatis-Config.xml
 MyBatis 是一个半自动化的ORM框架 (Object Relationship Mapping) ，ORM是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。
 Mybatis优势：
 基于XML文件配置开发，不是硬编码 SQL语句和代码分离 优化JDBC的使用，高效开发，以及可以自动映射结果集，包括参数的优化（反射） 支持动态SQL。SQL语句的条件很有可能是不确定的，需要动态根据需求来进行查询或操作。 框架就是一个半成品软件，是一套可重用的、通用的、软件基础代码模型，在框架的基础之上构建软件编写更加高效、规范、通用、可扩展。
-思路流程 搭建环境
+使用流程 搭建环境
 导包：Mysql连接驱动包mysql-connector-j-8.0.32.jar 与 Mybatis包mybatis-3.5.11.jar
 拷贝Mybatis核心配置文件，并编写配置信息文件jdbc.properties与映射XxxMapper.xml文件
 Mybatis-Config.xml
@@ -109,7 +109,7 @@ Mybatis-Config.xml
 再关联扫描的Mapper文件，Mapper文件用于存储需要执行的sql语句。
 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt; &lt;!DOCTYPE configuration PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt; &lt;!--核心配置文件--&gt; &lt;configuration&gt; &lt;!-- 引入配置文件信息,这里不能加classpath:。 resource:引入类路径下的资源,即classpath，所以不需要写classpath: url:引入网络路径或磁盘路径下的资源 --&gt; &lt;properties resource=&#34;db.properties&#34;&gt;&lt;/properties&gt; &lt;!-- environments：配置数据库连接环境信息。可以配置多个environment， 通过default属性切换不同的environment. --&gt; &lt;environments default=&#34;development&#34;&gt; &lt;!"><meta itemprop="datePublished" content="2023-03-05T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2023-03-05T00:00:00+00:00" />
-<meta itemprop="wordCount" content="453">
+<meta itemprop="wordCount" content="895">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
@@ -118,7 +118,7 @@ Mybatis-Config.xml
 MyBatis 是一个半自动化的ORM框架 (Object Relationship Mapping) ，ORM是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。
 Mybatis优势：
 基于XML文件配置开发，不是硬编码 SQL语句和代码分离 优化JDBC的使用，高效开发，以及可以自动映射结果集，包括参数的优化（反射） 支持动态SQL。SQL语句的条件很有可能是不确定的，需要动态根据需求来进行查询或操作。 框架就是一个半成品软件，是一套可重用的、通用的、软件基础代码模型，在框架的基础之上构建软件编写更加高效、规范、通用、可扩展。
-思路流程 搭建环境
+使用流程 搭建环境
 导包：Mysql连接驱动包mysql-connector-j-8.0.32.jar 与 Mybatis包mybatis-3.5.11.jar
 拷贝Mybatis核心配置文件，并编写配置信息文件jdbc.properties与映射XxxMapper.xml文件
 Mybatis-Config.xml
@@ -203,7 +203,7 @@ Mybatis-Config.xml
 <li>支持动态SQL。SQL语句的条件很有可能是不确定的，需要动态根据需求来进行查询或操作。</li>
 </ol>
 <p>框架就是一个<strong>半成品软件</strong>，是一套<strong>可重用的、通用的、软件基础代码模型</strong>，在框架的基础之上构建软件编写更加<strong>高效、规范、通用、可扩展</strong>。</p>
-<h2 id="思路流程">思路流程</h2>
+<h2 id="使用流程">使用流程</h2>
 <p><img src="/MyBatis%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.jpg" alt="MyBatis执行流程"></p>
 <ol>
 <li>
@@ -319,6 +319,7 @@ Mybatis-Config.xml
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div></li>
 </ol>
+<h2 id="优化">优化</h2>
 <h3 id="使用mapper映射器优化">使用Mapper映射器优化</h3>
 <p>不实用Mapper映射器存在一定的问题。</p>
 <p><strong>存在问题</strong>：</p>
@@ -357,7 +358,7 @@ Mybatis-Config.xml
 <p>测试。</p>
 </li>
 </ol>
-<h3 id="别名优化">别名优化</h3>
+<h3 id="domain类别名优化">domain类别名优化</h3>
 <p>在Mybatis中，通过在mybatis-config.xml文件中配置typeAlias来设置你自己的别名，将实体类的名称简化，方便开发，别名分为内置别名和自定义别名。</p>
 <p>内置别名是Mybatis提供的，可以直接使用。</p>
 <p><img src="/%E5%86%85%E7%BD%AE%E5%88%AB%E5%90%8D.jpg" alt="内置别名"></p>
@@ -393,6 +394,21 @@ Mybatis-Config.xml
 <p><code>$</code>：MyBatis会把<code>${}</code>表达式的值替换到sql中，作为sql的组成部分。把获取到值直接<strong>拼接</strong>到SQL中。</p>
 </li>
 </ol>
+<p>模糊匹配：</p>
+<ul>
+<li>
+<p>方案一：直接用<code>#</code>，日志中发现值并没有替换，所以不能直接使用<code>#</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">and</span> (name <span style="color:#66d9ef">like</span> <span style="color:#e6db74">&#39;%#{keywords}%&#39;</span> <span style="color:#66d9ef">or</span> password <span style="color:#66d9ef">like</span> <span style="color:#e6db74">&#39;%#{keywords}%&#39;</span>)
+</span></span></code></pre></div></li>
+<li>
+<p>方案二：使用<code>$</code>符号，测试成功，但是可能会出现SQL注入</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">and</span> (name <span style="color:#66d9ef">like</span> <span style="color:#e6db74">&#39;%${keywords}%&#39;</span> <span style="color:#66d9ef">or</span> password <span style="color:#66d9ef">like</span> <span style="color:#e6db74">&#39;%${keywords}%&#39;</span>)   
+</span></span></code></pre></div></li>
+<li>
+<p>方案三：用mysql中字符串拼接函数<code>concat</code>，测试成功，也不会出现SQL注入</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">and</span>(name <span style="color:#66d9ef">like</span> concat(<span style="color:#e6db74">&#39;%&#39;</span>,<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">{</span>keywords<span style="color:#960050;background-color:#1e0010">}</span>,<span style="color:#e6db74">&#39;%&#39;</span>) <span style="color:#66d9ef">or</span> password <span style="color:#66d9ef">like</span> concat(<span style="color:#e6db74">&#39;%&#39;</span>,<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">{</span>keywords<span style="color:#960050;background-color:#1e0010">}</span>,<span style="color:#e6db74">&#39;%&#39;</span>)
+</span></span></code></pre></div></li>
+</ul>
 <p><strong>步骤</strong>：</p>
 <ol>
 <li>
@@ -416,7 +432,44 @@ Mybatis-Config.xml
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div></li>
 </ol>
-<h2 id="获取自增主键">获取自增主键</h2>
+<h3 id="数据库字段与domain类属性映射">数据库字段与domain类属性映射</h3>
+<p>通常会因为数据库字段命名规则与变量名命名规则不一致，导致映射出错，无法将查询的数据封装入domain对象。</p>
+<p><strong>解决方案一</strong>：</p>
+<p>可以在写sql语句时给字段起别名，将别名定义成和属性名一致即可。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;select</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;selectAll&#34;</span> <span style="color:#a6e22e">resultType=</span><span style="color:#e6db74">&#34;Brand&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      select
+</span></span><span style="display:flex;"><span>          id, brand_name as brandName, company_name as companyName, ordered, description, status
+</span></span><span style="display:flex;"><span>      from tb_brand
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/select&gt;</span>
+</span></span></code></pre></div><p><strong>解决方案二</strong>：</p>
+<p>将需要复用的SQL片段抽取到 <code>&lt;sql&gt;</code> 标签中</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;sql</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;brand_column&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>		id, brand_name as brandName, company_name as companyName, ordered, description, status
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/sql&gt;</span>
+</span></span></code></pre></div><p>在原sql语句中进行引用，<code>refid</code> 指定上述 SQL 片段的id值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;select</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;selectAll&#34;</span> <span style="color:#a6e22e">resultType=</span><span style="color:#e6db74">&#34;brand&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    select
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;include</span> <span style="color:#a6e22e">refid=</span><span style="color:#e6db74">&#34;brand_column&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    from tb_brand;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/select&gt;</span>
+</span></span></code></pre></div><p><strong>解决方案三</strong>：</p>
+<p>使用<code>resultMap</code>来定义字段和属性的映射关系。在映射配置文件中使用 <code>resultMap</code> 定义数据库字段<code>column</code>和实体类属性<code>property</code>的映射关系</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;resultMap</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;brandResultMap&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;brand&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!--
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        id：完成主键字段的映射
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        type:映射的java对象类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        result：完成一般字段的映射
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">            column：表的列名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">            property：实体类的属性名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;result</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;brand_name&#34;</span> <span style="color:#a6e22e">property=</span><span style="color:#e6db74">&#34;brandName&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;result</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;company_name&#34;</span> <span style="color:#a6e22e">property=</span><span style="color:#e6db74">&#34;companyName&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/resultMap&gt;</span>
+</span></span></code></pre></div><p>SQL语句正常编写时类型为 <code>resultMap</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;select</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;selectAll&#34;</span> <span style="color:#a6e22e">resultMap=</span><span style="color:#e6db74">&#34;brandResultMap&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    select * from tb_brand
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/select&gt;</span>
+</span></span></code></pre></div><h3 id="获取自增主键">获取自增主键</h3>
 <p>当数据库字段设置了自增长后，可以通过该方法获取到自增长的主键，与其他参数一并传入对象内。获取的方式分为两种。</p>
 <p><strong>方法一</strong>：</p>
 <p>通过在XxxMapper映射文件给编写sql的标签设置属性实现：</p>
@@ -444,7 +497,187 @@ Mybatis-Config.xml
 </span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 注意：如果没有指定例名，请严格按照表中的字段顺序进行占位 --&gt;</span>
 </span></span><span style="display:flex;"><span>        insert into product values(#{id},#{productName},#{dir_id},#{salePrice},#{supplier},#{brand},#{cutoff},#{costPrice})
 </span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/insert&gt;</span>
-</span></span></code></pre></div></section>
+</span></span></code></pre></div><h2 id="高级查询">高级查询</h2>
+<p>高级查询其实就是多条件查询，在真实开发中，需要根据用户选择的条件来查询某些数据的，例如在逛淘宝、京东的时候，需要筛选手机-&gt;品牌-&gt;价格。</p>
+<p>在Mybatis中，高级查询就是由<strong>动态sql</strong>实现</p>
+<h3 id="功能实现的步骤">功能实现的步骤</h3>
+<ol>
+<li>
+<p>编写接口方法</p>
+<ul>
+<li>参数：所有查询条件。三种定义方式</li>
+<li>结果：List</li>
+</ul>
+<p>Mybatis针对多参数有三种实现：</p>
+<ol>
+<li>定义多个参数：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Brand<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">selectByCondition</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> status<span style="color:#f92672">,</span> String companyName<span style="color:#f92672">,</span>String brandName<span style="color:#f92672">);</span>
+</span></span></code></pre></div><ol start="2">
+<li>将多个参数封装成一个 实体对象 ，将该实体对象作为接口的方法参数。该方式要求在映射配置文件的SQL中使用 <code>#{内容}</code> 时，里面的内容必须和实体类属性名保持一致。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Brand<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">selectByCondition</span><span style="color:#f92672">(</span>Brand brand<span style="color:#f92672">);</span>
+</span></span></code></pre></div><ol start="3">
+<li>将多个参数封装到map集合中，将map集合作为接口的方法参数。该方式要求在映射配置文件的SQL中使用 <code>#{内容}</code> 时，里面的内容必须和map集合中键的名称一致。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Brand<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">selectByCondition</span><span style="color:#f92672">(</span>Map map<span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>在映射配置文件中编写SQL语句</p>
+<p>在 <code>BrandMapper.xml</code> 映射配置文件中编写 <code>statement</code>，使用 <code>resultMap</code> 而不是使用 <code>resultType</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;select</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;selectByCondition&#34;</span> <span style="color:#a6e22e">resultMap=</span><span style="color:#e6db74">&#34;brandResultMap&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    select *
+</span></span><span style="display:flex;"><span>    from tb_brand
+</span></span><span style="display:flex;"><span>    where status = #{status}
+</span></span><span style="display:flex;"><span>      and company_name like concat(&#34;%&#34;,#{companyName},&#34;%&#34;)
+</span></span><span style="display:flex;"><span>      and brand_name like concat(&#34;%&#34;,#{brandName},&#34;%&#34;)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/select&gt;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>编写测试方法并执行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testSelectByCondition</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//模拟数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> status <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    String companyName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;华为&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    String brandName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;华为&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    Map map <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    map<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;companyName&#34;</span><span style="color:#f92672">,</span>companyName<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    map<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;brandName&#34;</span><span style="color:#f92672">,</span>brandName<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    map<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;status&#34;</span><span style="color:#f92672">,</span>status<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Brand<span style="color:#f92672">&gt;</span> brands <span style="color:#f92672">=</span> mapper<span style="color:#f92672">.</span><span style="color:#a6e22e">selectByCondition</span><span style="color:#f92672">(</span>map<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    brands<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">::</span>println<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="mybatis动态sql标签">Mybatis动态sql标签</h3>
+<p>Mybatis对动态SQL有很强大的支撑，提供了多种标签：</p>
+<ul>
+<li>if</li>
+<li>where</li>
+<li>choose (when, otherwise)</li>
+<li>trim (where, set)</li>
+<li>foreach</li>
+</ul>
+<h4 id="if标签">if标签</h4>
+<p>作用：</p>
+<ol>
+<li>用于判断条件是否满足，满足就拼接sql，不满足不拼接</li>
+<li>会自动加上空格，避免造成sql语法错误</li>
+</ol>
+<blockquote>
+<p>如果参数是字符串类型，那么需要判断null和空字符串；
+如果参数是数值类型，只需要判断null值。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- 下列SQL语句就会根据传递的参数值进行动态的拼接。如果此时status和companyName有值那么就会值拼接这两个条件。 --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;select</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;selectByCondition&#34;</span> <span style="color:#a6e22e">resultMap=</span><span style="color:#e6db74">&#34;brandResultMap&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    select *
+</span></span><span style="display:flex;"><span>    from tb_brand
+</span></span><span style="display:flex;"><span>    where
+</span></span><span style="display:flex;"><span>  			1 = 1
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;if</span> <span style="color:#a6e22e">test=</span><span style="color:#e6db74">&#34;status != null&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            and status = #{status}
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/if&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;if</span> <span style="color:#a6e22e">test=</span><span style="color:#e6db74">&#34;companyName != null and companyName != &#39;&#39; &#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            and company_name like #{companyName}
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/if&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;if</span> <span style="color:#a6e22e">test=</span><span style="color:#e6db74">&#34;brandName != null and brandName != &#39;&#39; &#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            and brand_name like #{brandName}
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/if&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/select&gt;</span>
+</span></span></code></pre></div><h4 id="where标签">where标签</h4>
+<p>作用：</p>
+<ol>
+<li>替换where关键字</li>
+<li>忽略第一个多余的and 或者 or</li>
+<li>如果所有的参数没有值则不加where关键字</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;select</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;selectByCondition&#34;</span> <span style="color:#a6e22e">resultMap=</span><span style="color:#e6db74">&#34;brandResultMap&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    select *
+</span></span><span style="display:flex;"><span>    from tb_brand
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;where&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;if</span> <span style="color:#a6e22e">test=</span><span style="color:#e6db74">&#34;status != null&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            and status = #{status}
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/if&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;if</span> <span style="color:#a6e22e">test=</span><span style="color:#e6db74">&#34;companyName != null and companyName != &#39;&#39; &#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            and company_name like #{companyName}
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/if&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;if</span> <span style="color:#a6e22e">test=</span><span style="color:#e6db74">&#34;brandName != null and brandName != &#39;&#39; &#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            and brand_name like #{brandName}
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/if&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/where&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/select&gt;</span>
+</span></span></code></pre></div><h4 id="foreach标签">foreach标签</h4>
+<p>在批量增删的场景，需要使用foreach标签实现，标签提供了一下属性。</p>
+<ul>
+<li><code>collection</code> 指的是集合或者数组，这里接受两种值，如果是集合就写 “list”，如果是数组就写“array”</li>
+<li><code>open</code> 开始元素，我们需要使用“（ ” 作为开始</li>
+<li><code>item</code> 循环的每一个元素，这里的每一个元素就是list中的每一个id</li>
+<li><code>separator</code> 分隔符，我们拼接后的sql需要使用“,”来分割多个ID</li>
+<li><code>close</code> 结束元素，我们需要使用“ ）”作为结束</li>
+</ul>
+<ol>
+<li>
+<p>批量删除：</p>
+<p>批量删除方法，参数是一个List，即：根据多个ID来删除。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 批量删除
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param ids 要删除的数据id
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">batchDelete</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> ids<span style="color:#f92672">);</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;delete</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;batchDelete&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    delete
+</span></span><span style="display:flex;"><span>    from
+</span></span><span style="display:flex;"><span>        tb_brand
+</span></span><span style="display:flex;"><span>    where
+</span></span><span style="display:flex;"><span>        id in
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">		collection 指的是集合或者数组，这里接受两种值，如果是集合就写 “list”，如果是数组就写“array”
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    open 开始元素，我们需要使用“（ ” 作为开始
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">		item 循环的每一个元素，这里的每一个元素就是list中的每一个id
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">		separator 分隔符，我们拼接后的sql需要使用“,”来分割多个ID
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">		close 结束元素，我们需要使用“ ）”作为结束
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">		#{id} 循环的内容，这里是把id的值取出来了，比如循环三次就如同 :
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">		--&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;foreach</span> <span style="color:#a6e22e">collection=</span><span style="color:#e6db74">&#34;list&#34;</span> <span style="color:#a6e22e">open=</span><span style="color:#e6db74">&#34;(&#34;</span> <span style="color:#a6e22e">item=</span><span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#a6e22e">close=</span><span style="color:#e6db74">&#34;)&#34;</span> <span style="color:#a6e22e">separator=</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        #{id}
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/foreach&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/delete&gt;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>批量插入：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--批量添加--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;insert</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;batchInsert&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    insert into
+</span></span><span style="display:flex;"><span>        tb_brand(brand_name,company_name,ordered,description)
+</span></span><span style="display:flex;"><span>    values 
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;foreach</span> <span style="color:#a6e22e">collection=</span><span style="color:#e6db74">&#34;list&#34;</span>  <span style="color:#a6e22e">item=</span><span style="color:#e6db74">&#34;brand&#34;</span> <span style="color:#a6e22e">separator=</span><span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            (#{brand.brandName},#{brand.companyName},#{brand.ordered},#{brand.description})
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/foreach&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/insert&gt;</span>
+</span></span></code></pre></div><blockquote>
+<p>这里跟批量删除有点不一样 ，需要的效果是 <code>VALUES (&quot;ls&quot;,11,1),(&quot;ww&quot;,12,1),(&quot;cq&quot;,13,1)</code> 这种，它其实没有开始符号和结束符号，因为每个值前面都有 ”(“以及”)“ ，所以不能使用 open和close 。这里的循环内容为   <code>(#{emp.username},#{emp.age},#{emp.sex})</code> ,比如循环两次，用“ ， ”分割就是：
+<code>(#{emp.username},#{emp.age},#{emp.sex})</code> , <code>(#{emp.username},#{emp.age},#{emp.sex})</code>  效果。这里的item的值是emp，其实是一个Employee对象，因为list中装的就是Employee对象，当 #{xx}被替换成对应的值之后就形成了<code>VALUES (&quot;ls&quot;,11,1),(&quot;ww&quot;,12,1)</code>这种效果</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="联表查询中的一对多与多对一">联表查询中的一对多与多对一</h3>
+<h4 id="关联关系domain的设计">关联关系domain的设计</h4>
+<ul>
+<li>
+<p>一对多</p>
+<p>在一方添加多方的List集合对象字段</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"></code></pre></div></li>
+</ul>
+<h2 id="相关插件">相关插件</h2>
+<h3 id="mybatisx-插件">MyBatisX 插件</h3>
+<p>MybatisX 是一款基于 IDEA 的快速开发插件，为效率而生。</p>
+<p>主要功能：</p>
+<ul>
+<li>XML映射配置文件 和 接口方法 间相互跳转</li>
+<li>根据接口方法生成 statement</li>
+</ul>
+</section>
 
   
   
